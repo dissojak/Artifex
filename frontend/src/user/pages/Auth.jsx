@@ -7,16 +7,25 @@ import { setCredentials } from "../../slices/authSlice";
 
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../../slices/usersApiSlice";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "../../slices/usersApiSlice";
 
 function Auth() {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [login, { isLoading }] = useLoginMutation();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [login] = useLoginMutation();
+  const [register] = useRegisterMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -26,8 +35,13 @@ function Auth() {
     }
   }, [navigate, userInfo]);
 
+  useEffect(() => {
+    console.log("isLoading:", isLoading);
+  }, [isLoading]);
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
@@ -35,12 +49,36 @@ function Auth() {
     } catch (err) {
       console.log(err);
       if (err?.data?.message || err.error) {
+        setIsLoading(false);
         toast.error(err?.data?.message || err.error);
       } else {
         toast.error("Couldn't login error happened");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  const submitRegisterHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // if (password !== confirmPassword) {
+    //   setIsLoading(false);
+    //   toast.error("Passwords do not match");
+    // } else {
+      try {
+        const res = await register({ name, email, password }).unwrap();
+        dispatch(setCredentials({ ...res }));
+        navigate("/");
+      } catch (err) {
+        setIsLoading(false);
+        toast.error(err?.data?.message || err.error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  // };
 
   useEffect(() => {
     console.log("isLoginMode :", isLoginMode);
@@ -60,10 +98,10 @@ function Auth() {
 
   return (
     <>
-      {isLoading && <LoadingSpinner asOverlay />}
       <div className="container" id="container">
         <div className="form-container sign-up">
-          <form>
+          <form onSubmit={submitRegisterHandler}>
+            {isLoading && <LoadingSpinner asOverlay />}
             <h1 className="login-signup">Create Account</h1>
             <div className="social-icons">
               <Link to="#" className="icon">
@@ -82,14 +120,30 @@ function Auth() {
             <span className="login-signup">
               or use your email for registration
             </span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button>Sign Up</button>
           </form>
         </div>
         <div className="form-container sign-in">
           <form onSubmit={submitHandler}>
+            {isLoading && <LoadingSpinner asOverlay />}
             <h1 className="login-signup">Login</h1>
             <div className="social-icons">
               <Link to="#" className="icon">

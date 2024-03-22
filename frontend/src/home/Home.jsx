@@ -115,7 +115,7 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button class="signupBtn" onClick={logoutHandler}></button>
+          <button className="signupBtn" onClick={logoutHandler}></button>
         </div>
       </div>
       <div className="article_index">
