@@ -1,0 +1,150 @@
+/* .authentication__header {
+  color: white;
+  text-align: center;
+} */
+
+/* .authentication {
+  width: 90%;
+  max-width: 25rem;
+  margin: 7rem auto;
+  /* text-align: center; */
+/* } */
+
+/* .authentication form {
+  margin-bottom: 1rem;
+} */
+
+/* 
+#signup_form_content {
+  display: grid;
+  gap: 15px;
+} */
+
+#signup-login_form_content {
+  display: grid;
+  /* gap: 10px; */
+}
+
+.button-login_su___login {
+  font-family: 'ptsimple';
+  background-color: #4D3223;
+  color: white;
+  width: 210px;
+  border: none;
+  height: 30px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+}
+
+.button-login_su___login:hover {
+  color:#281a12 ;
+  background-color: #936955; /* Slightly darker shade on hover */
+}
+
+.button_ca_su___login {
+  background-color: #C08979;
+  color: white;
+  width: 210px;
+  border: none;
+  height: 30px;
+  font-family: 'ptsimple';
+  font-size: 11px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+}
+
+.button_ca_su___login:hover {
+  color: #4D3223;
+  background-color: #B17867; /* Slightly darker shade on hover */
+}
+
+.button_ca_su {
+  background-color: #00A8E8;
+  color: white;
+  width: 210px;
+  border: none;
+  height: 30px;
+  font-family: 'ptsimple';
+  font-size: 11px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+}
+
+.button_ca_su:hover {
+  /* color: #00517F; */
+  background-color: #0077B6; /* Change to a darker or lighter shade for hover */
+}
+
+
+.button-login_su {
+  font-family: 'ptsimple';
+  background-color: #0185B7;
+  color: white;
+  width: 210px;
+  border: none;
+  height: 30px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+}
+
+.button-login_su:hover {
+  background-color: #00517F; /* Change to a darker or lighter shade for hover */
+}
+
+.button-login_su___Image {
+  font-family: 'ptsimple';
+  background-color: #89b201;
+  color: white;
+  width: 210px;
+  border: none;
+  height: 30px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+}
+
+.button-login_su___Image:hover {
+  background-color: #aece53; /* Change to a darker or lighter shade for hover */
+}
+
+.font{
+  font-family: 'Raleway-SemiBold';
+  font-size: 28px;
+}
+
+.inder_form {
+  width: 190px;
+  font-family: 'Raleway-Regular';
+  font-size: 9px;
+  color: #777777;
+}
+
+.login-body{
+  background-color: #F9EFD4;
+}
+.signup-body{
+  background-color: #87CEEB;
+}
+
+.LogoBleu {
+  margin-top: 20px;
+  margin-left: 19px;
+  z-index: 1000;
+  /* position: fixed; */
+  /* position: relative; */
+  position :absolute;
+  top: 0;
+  width:10.6vw;
+}
+
+.login_from_here{
+  font-family: 'Raleway-SemiBold';
+  cursor: pointer;
+  text-decoration: underline;
+  font-style: normal;
+  font-size: 10px;
+}

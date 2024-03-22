@@ -1,0 +1,96 @@
+.change {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3); /* Darker background color */
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.tit_ch {
+    font-family: 'BebasNeue-Regular';
+    font-size: 3.71vw;
+    color: #4D3223;
+    /* margin:auto; */
+}
+
+.tit_ch_img{
+    position:relative;
+    width: 2.16vw;
+    height: 2.16vw;
+    top:9.65vh;
+    cursor: pointer;
+}
+
+.la-ch {
+    font-family: 'Raleway-extrabold';
+    font-size: 1.173vw;
+    color: #4D3223;
+    text-transform: capitalize;
+}
+
+.ch1 {
+    width: 35.15vw;
+    height: 69.38vh;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding-left: 2.95vw;
+    padding-right: 2.95vw;
+    position: relative;
+    top:6.9vh;
+}
+
+.first_ch {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -4.25vh;
+}
+
+.inp_ch {
+    width:  29.49vw;
+    height: 8.9vh;
+    border: none;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    padding-left: 1.65vw;
+    box-sizing: border-box;
+}
+
+.inp_ch:focus{
+    border: 0.15vw solid #C08979;
+    outline: none;
+}
+
+.inp_ch::placeholder {
+    font-family: 'Raleway-SemiBold';
+    font-size: 0.916vw;
+    color: #A8A8A8;
+
+
+}
+
+.btn_ch {
+    width: 12.50vw;
+    height: 6.5vh;
+    background-color: #4D3223;
+    color: #ffffff;
+    font-family: 'ptsimple';
+    font-size: 2.1vw;
+    text-transform: capitalize;
+    margin-left: 17.5vw;
+    margin-top: -2.5vh;
+    cursor: pointer;
+}
+
+.form_ch {
+    margin-top: -50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.45vh;
+}

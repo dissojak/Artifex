@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="245" height="245" viewBox="0 0 245 245">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Tracé_259" data-name="Tracé 259" d="M0,0H245V245H0Z" fill="#4d3223"/>
+    </clipPath>
+  </defs>
+  <g id="username_shape" clip-path="url(#clip-path)">
+    <path id="Tracé_257" data-name="Tracé 257" d="M0,0H245V245H0Z" fill="#4d3223"/>
+    <path id="Tracé_258" data-name="Tracé 258" d="M124.5,46.833H2V67.25H124.5ZM124.5,6H2V26.417H124.5ZM2,108.083H83.667V87.667H2ZM201.062,62.146l15.313,15.312-71.356,71.458-46.04-45.937,15.312-15.312,30.727,30.625Z" transform="translate(18.417 55.25)" fill="#db9"/>
+  </g>
+</svg>

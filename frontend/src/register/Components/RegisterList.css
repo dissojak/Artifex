@@ -1,0 +1,11 @@
+#hackatons_index {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+    width: 90%;
+    margin: auto;
+    /* margin-left: 100px; */
+    margin-top: -2.5rem;
+}

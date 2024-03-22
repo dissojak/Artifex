@@ -1,0 +1,78 @@
+#ban1 {
+  width: 100vw;
+  height: 100vh;
+  margin-top: -5rem;
+}
+
+.imgbanned {
+  width: 70%; /* Set the width to 100% */
+  height: 100%; /* Set the height to 100% */
+  object-fit: cover; /* Maintain the aspect ratio while covering the container */
+  z-index: -100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the image using translate */
+}
+
+#flou {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f05b;
+  backdrop-filter: blur(5px);
+  /* opacity: 0.5; */
+  z-index: -15;
+}
+
+#ban2 {
+  width: 99.55vw;
+  height: 100vh;
+  background-color: rgba(255, 29, 29, 0.7);
+  box-sizing: border-box;
+  position: absolute;
+}
+
+#sahara-ban {
+  /* position: absolute; */
+  position: fixed;
+  z-index: -90;
+  font-family: "BebasNeue-Regular";
+  font-size: 580px;
+  color: #f4f0ff;
+  /* bottom:70vh; */
+  top: 65vh;
+  left: 50%;
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  opacity: 70%;
+  -webkit-text-stroke: 3px rgba(239, 133, 133, 0.5); /* Contour the letters with a white stroke */
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25vh;
+  width: 40vh;
+}
+
+.suspended {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.understand {
+  cursor: pointer;
+  position: relative;
+  top:50%;
+  left:25%;
+  z-index: 1000;
+}

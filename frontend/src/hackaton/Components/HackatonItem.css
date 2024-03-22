@@ -1,0 +1,174 @@
+#hackaton {
+    width: 48%;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    height: 280px;
+}
+
+#hackaton_info {
+    width: 45%;
+    height: 203px;
+}
+
+.img_hackaton_index {
+    width: 55%;
+    height: 280px;
+    border-radius: 25px;
+    margin-top: 10px;
+
+}
+
+.cfc {
+    border-radius: 15px;
+    background-color: #C99C6E;
+    width: 97%;
+    height: 44px;
+    color: #4D3223;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    padding-top: 13px;
+    padding-left: 10px;
+
+
+}
+
+.inder_cfc {
+    color: #A8A8A8;
+    font-family: 'Arimo-Bold';
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.date_hackaton {
+    font-family: 'Roboto', 'Roboto-Bold';
+    font-size: 12;
+    color: #4D3223;
+}
+
+#name_logo_club {
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom: 19px;
+}
+
+.club_name {
+    font-family: 'Arimo-Bold';
+    color: #4D3223;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+.image_club_name {
+    width: 20%;
+
+}
+
+#Details_botton {
+    background-color: #4D3223;
+    color: white;
+    width: 100%;
+    height: 41px;
+    border: none;
+    padding: 10px;
+    padding-left: 108px;
+    display: flex;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#flame_flag {
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    height: 17px;
+    margin-top: 5px;
+
+}
+
+#mail_flag {
+    display: flex;
+    justify-content: space-between;
+}
+
+#flags_nb {
+    font-family: 'Arimo-Bold';
+    width: 29%;
+    color: black;
+    font-size: 18px;
+}
+
+
+
+#name_logo_club {
+
+    display: flex;
+    justify-content: space-around;
+    justify-content: flex-start;
+}
+
+
+/* 
+        ----------------SAVE BUTTON---------------
+*/
+
+
+.btnSave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+  
+.btnSave::after {
+    content: 'like';
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s linear;
+    top: 115%;
+}
+  
+.icon {
+    width: 30px;
+    height: 30px;
+    transition: .2s linear;
+}
+  
+.icon path {
+    fill: white;
+    transition: .2s linear;
+}
+  
+.btnSave:hover > .icon {
+    transform: scale(1.2);
+}
+  
+.btnSave:hover > .icon path {
+    fill: #C99C6E;
+}
+  
+.btnSave:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+  
+  

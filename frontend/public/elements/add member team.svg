@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="344.834" height="137.092" viewBox="0 0 344.834 137.092">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #f0f0f0;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_32" data-name="Groupe 32" transform="matrix(0.996, -0.087, 0.087, 0.996, -519.284, -593.768)">
+    <rect id="Rectangle_1099" data-name="Rectangle 1099" class="cls-1" width="336.688" height="108.159" rx="5" transform="translate(463 666)"/>
+    <circle id="Ellipse_21" data-name="Ellipse 21" class="cls-2" cx="42.304" cy="42.304" r="42.304" transform="translate(476.084 678.211)"/>
+    <rect id="Rectangle_1100" data-name="Rectangle 1100" class="cls-2" width="146.538" height="23.551" rx="11.775" transform="translate(579.009 692.167)"/>
+    <rect id="Rectangle_1101" data-name="Rectangle 1101" class="cls-2" width="102.925" height="15.7" rx="7.85" transform="translate(582.498 723.568)"/>
+  </g>
+</svg>

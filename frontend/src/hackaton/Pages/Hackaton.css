@@ -1,0 +1,33 @@
+#article_index {
+    width: 88%;
+    margin: auto;
+    padding-top: 70px;
+    margin-bottom: 100px;
+}
+#sahara {
+    /* position: absolute; */
+    position: fixed;
+    z-index: -1;
+    font-family: 'BebasNeue-Regular';
+    font-size: 402px;
+    color: #F7F6FA;
+    top: 3.5rem;
+    left: 45%;
+    width: 65%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.title_index {
+    font-weight: lighter;
+    font-size: 70px;
+    margin-left: 40px;
+    color: #C99C6E;
+    font-family: 'BebasNeue-Regular';
+}
+
+body {
+    margin: 0;
+    /* background: #4d4d4d; */
+    /* background-color: #F6F7F9; */
+    background-color: #ffff;
+  }

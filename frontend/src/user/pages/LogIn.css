@@ -1,0 +1,67 @@
+#page_signup {
+    margin-top: 15vh;
+}
+
+#login_content {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: auto;
+    align-items: center;
+    width: 867px;
+}
+
+#login_left_slide {
+   
+    padding-right: 20px;
+    padding-top: 30px;
+
+    background-color: #C08979;
+    /* width: 459px; */
+    width: 50%;
+    height: 570px;
+    box-shadow: 50px 0px 50px rgba(0, 0, 0, 0.16);
+    z-index: 9;
+
+}
+
+#login_pharagraphe p {
+    font-family: 'ptsimple';
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+#tony_robbins {
+    width: max-content;
+    margin: auto;
+    padding-bottom: 4%;
+}
+
+#login_form {
+
+    background-color: white;
+  
+    font-family: 'ptsimple';
+  
+    display: grid;
+    width: 773px;
+    box-sizing: border-box;
+    padding-top: 110px;
+    padding-bottom: 60px;
+    padding-left: 100px;
+  
+  
+  
+  
+  }
+
+  .logo{
+    margin-top: -5%;
+    margin-left: 5%;
+  }
+
+  .locker{
+    margin-left: -10%;
+    margin-top: -5%;
+  }

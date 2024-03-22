@@ -1,0 +1,33 @@
+#header_right {
+    right: 1vw;
+    justify-content: space-around;
+    display: flex;
+    width: fit-content;
+    margin-top: 1vh;
+    position:absolute;
+    z-index: 1000;
+    gap: 15px;
+}
+
+.button_header_right {
+    width: 20px;
+    margin-top: 1.5vh;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.a {
+    margin-top: 10px;
+    width: 48px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.name {
+    width: fit-content;
+    font-family: 'Raleway-regular';
+    font-size: 24px;
+    color: #4D3223;
+}

@@ -1,0 +1,50 @@
+/* ImageUpload.css */
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .avatar_profile {
+    position: relative;
+  }
+  
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .avatar_profile img {
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .changeProfileImageBtn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .changeProfileImageBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  

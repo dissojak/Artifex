@@ -1,0 +1,50 @@
+#navbar {
+  width: 396px;
+  /* height: 80px; */
+  height: 86px;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 39vw;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 16px;
+  list-style-type: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.16);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-sizing: border-box;
+}
+
+#navbar li {
+  width: 56px;
+  height: 48px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  /* margin-right: 35px; */
+  border-radius: 10px;
+  transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.connection_selected {
+  background-color: #c08979;
+  transition: background-color 0.3s ease;
+}
+
+.register-icon {
+  color: #4d3223;
+}
+
+/* -------------------------ADMIN------------------------ */
+
+.centered-heading {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    transform: translateY(-50%);
+  }
