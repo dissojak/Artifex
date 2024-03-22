@@ -14,13 +14,13 @@ import {
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttp } from "../../shared/hooks/http-hook";
 import "./PlaceForm.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 const UpdatePlace = () => {
   const { isLoading, error, sendRequest, clearError } = useHttp();
   const [place, setPlace] = useState();
   const placeId = useParams().placeId;
-  const history = useHistory();
+  const history = useNavigate();
   const auth = useContext(AuthContext);
 
   // eslint-disable-next-line
@@ -66,7 +66,7 @@ const UpdatePlace = () => {
           "Content-Type": "application/json",
         }
       );
-      history.push("/"+auth.userId+"/places");
+      history("/"+auth.userId+"/places");
     } catch (e) {}
   };
 

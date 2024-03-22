@@ -1,13 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route , Redirect , Switch, } from "react-router-dom";
+import React, { useCallback, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  // Redirect,
+  //  Switch,
+} from "react-router-dom";
 
 import Home from "./home/Home.jsx";
 import Ban from "./shared/components/Pages/Ban";
 import Users from "./user/pages/Users";
-import NewPlace from "./places/pages/NewPlace";
+// import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from "./places/pages/UserPlaces.jsx";
-import UpdatePlace from "./places/pages/UpdatePlace.jsx";
-// import Auth from "./user/pages/Auth";
+// import UpdatePlace from "./places/pages/UpdatePlace.jsx";
+import Auth from "./user/pages/Auth.jsx";
 import MainNavigation from "./shared/components/Navigation/MainNavigation.jsx";
 import { AuthContext } from "./shared/context/auth-context";
 import Signup from "./user/pages/Signup.jsx";
@@ -17,7 +23,7 @@ import Profile from "./profile/Pages/Profile.jsx";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import store from "./store";
@@ -69,91 +75,45 @@ const App = () => {
 
   if (isLoggedIn && !isAdmin && !ban) {
     routes = (
-      <Switch>
-        <Route path="/" exact>
-          {/* <Hackatons /> */}
-          <Home />
-        </Route>
-        <Route path="/:userId/places" exact>
-          <UserPlaces />
-        </Route>
-        <Route path="/places/new" exact>
-          <NewPlace />
-        </Route>
-        {/* ----------ADEM IS HERE---------- */}
-        <Route path="/profile" exact>
-          <Profile />
-        </Route>
-        <Route path="/places/:placeId">
-          <UpdatePlace />
-        </Route>
-        <Route path="/registred-hackatons" exact>
-          <RegisterHackatons />
-        </Route>
-        <Route path="/users" exact>
-          <Users />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:userId/places" element={<UserPlaces />} />
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+        <Route path="/registred-hackatons" element={<RegisterHackatons />} />
+        <Route path="/users" element={<Users />} />
+        {/* Add more routes as needed */}
+      </Routes>
     );
   } else if (isLoggedIn && !isAdmin && ban) {
     routes = (
-      <Switch>
-        <Route path="/" exact>
-          <Ban />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Ban />} />
+      </Routes>
     );
   } else if (isLoggedIn && isAdmin) {
     routes = (
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* Add more routes as needed */}
+      </Routes>
     );
   } else {
     routes = (
-      <Switch>
-        <Route path="/" exact>
-          {/* --------------- */}
-          {/* <Hackatons /> */}
-          {/* <Profile/> */}
-          {/* ---------------- */}
-
-          <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:userId/places" element={<UserPlaces />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/home" element={<HomeScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/profile" element={<ProfileScreen />} />
         </Route>
-        <Route path="/:userId/places" exact>
-          <UserPlaces />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-          {/* <Users /> */}
-        </Route>
-        {/* <Route path="/auth">
-          <Auth />
-        </Route> */}
-{/* --------------------------- */}
-        <Route path="home">
-          <HomeScreen />
-        </Route>
-        <Route path="/login">
-          <LoginScreen />
-        </Route>
-        <Route path="/register">
-          <RegisterScreen />
-        </Route>
-        <Route>
-          <PrivateRoute />{" "}
-        </Route>
-        <Route path="/profile">
-          <ProfileScreen />
-        </Route>
-{/* ----------------------------- */}
-        <Redirect to="/auth" />
-      </Switch>
+        {/* Add more routes as needed */}
+      </Routes>
     );
   }
 
@@ -175,14 +135,10 @@ const App = () => {
         }}
       >
         <Router>
-          <Header />
+          {/* <Header /> */}
           <ToastContainer />
-          <Container className="my-2">
-            <Router>
-            <MainNavigation />
+            {/* <MainNavigation /> */}
             <main style={{ marginTop: 0 }}>{routes}</main>
-            </Router>
-          </Container>
         </Router>
       </AuthContext.Provider>
     </Provider>

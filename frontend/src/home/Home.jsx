@@ -5,8 +5,32 @@ import Hackatons from "../hackaton/Pages/Hacktons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../shared/context/auth-context";
 
+
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { logout } from '../slices/authSlice';
+
+
 const Home = () => {
   const auth = useContext(AuthContext);
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
 
   //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
 
@@ -91,6 +115,7 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
+          <button class="signupBtn" onClick={logoutHandler}></button>
         </div>
       </div>
       <div className="article_index">

@@ -72,7 +72,7 @@ const Nav = () => {
                 className={buttonStates.home ? "login_selected" : null}
                 onClick={(e) => handleClick("home", e)}
               >
-                <NavLink to="/" exact>
+                <NavLink to="/" exact="true">
                   <img src="elements/home.svg" alt="home" className="img" />
                 </NavLink>
               </li>
@@ -81,7 +81,7 @@ const Nav = () => {
                 className={buttonStates.signup ? "signup_selected" : null}
                 onClick={(e) => handleClick("signup", e)}
               >
-                <NavLink to="/signup" exact>
+                <NavLink to="/signup" exact="true">
                   <SignupButton cursorStyle={true} />
                 </NavLink>
               </li>
@@ -91,7 +91,7 @@ const Nav = () => {
                 className={buttonStates.login ? "login_selected" : null}
                 onClick={(e) => handleClick("login", e)}
               >
-                <NavLink to="/auth" exact>
+                <NavLink to="/auth" exact="true">
                   <img
                     src="elements/login.svg"
                     alt=""
@@ -108,7 +108,7 @@ const Nav = () => {
                 className={buttonStates.home ? "login_selected" : null}
                 onClick={(e) => handleClick("home", e)}
               >
-                <NavLink to="/" exact>
+                <NavLink to="/" exact="true">
                   <img
                     src="elements/home_blue.svg"
                     alt=""
@@ -121,7 +121,7 @@ const Nav = () => {
                 className="signup_selected"
                 onClick={(e) => handleClick("signup", e)}
               >
-                <NavLink to="/users" exact>
+                <NavLink to="/users" exact="true">
                   <img src="elements/add.svg" alt="" className="img" />
                 </NavLink>
               </li>
@@ -130,7 +130,7 @@ const Nav = () => {
                 className={buttonStates.login ? "login_selected" : null}
                 onClick={(e) => handleClick("login", e)}
               >
-                <NavLink to="/auth" exact>
+                <NavLink to="/auth" exact="true">
                   <img
                     src="elements/login_blue.svg"
                     alt=""
