@@ -25,7 +25,7 @@ It includes the following:
 - Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
 
 
-Change the MongoDB URI with your own from atlas
+Change the MongoDB URI with your own from atlas & 
 Change the JWT_SECRET to what you want
 
 ### Install Dependencies (frontend & backend)
