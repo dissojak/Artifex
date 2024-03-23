@@ -43,7 +43,7 @@ function Auth() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await login({ email, password }).unwrap();
+      const res = await login({ username:email, email, pw:password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate("/");
     } catch (err) {
@@ -68,7 +68,7 @@ function Auth() {
     //   toast.error("Passwords do not match");
     // } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
+        const res = await register({ username:name, email, pw:password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate("/");
       } catch (err) {
@@ -161,7 +161,7 @@ function Auth() {
             </div>
             <span className="login-signup">or use your email password</span>
             <input
-              type="email"
+              type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

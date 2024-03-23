@@ -1,0 +1,15 @@
+DOCUMENTAION:
+lenna nhotou notes eli 3ana , wala badalet heja tetsawar 
+ma nrahech tayechha lenna awka nwali dima ki nodkhel lenna 
+na9ra taw nchouf chfama w chma famech ...
+
+kif-kif el pushet wali ki tjy tpushy 3ady esmek 9bal el comment 
+EXP: git commit -m " Adem : update note for information "
+bech netkhalwdhouch w naarfou koll wahed chzed w chkhdem wala heja
+
+ADEM:
+1/check el ReviewController w awka review routes !!! 
+
+
+TAREK:
+1/
