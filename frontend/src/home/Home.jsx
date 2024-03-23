@@ -50,6 +50,7 @@ const Home = () => {
           </div>
         </>
       )}
+      {/* // this is just for updating git , deleteing backend-auth */}
       <div id="home1">
         <div id={auth.isAdmin ? "home2-admin" : "home2"}>
           <h1
