@@ -13,7 +13,7 @@ import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from "./places/pages/UserPlaces.jsx";
 import UpdatePlace from "./places/pages/UpdatePlace.jsx";
-import Auth from "./user/pages/Auth.jsx";
+import Auth from "./user/Auth/Auth.jsx";
 import MainNavigation from "./shared/components/Navigation/MainNavigation.jsx";
 import { AuthContext } from "./shared/context/auth-context";
 import Signup from "./user/pages/Signup.jsx";
