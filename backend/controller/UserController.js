@@ -1,8 +1,7 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
 const User = require("../models/user");
-const LikedArtworks = require("../models/likedArtworks");
-const SavedArtworks = require("../models/savedArtworks");
+const Artwork = require("../models/artwork");
 const asyncHandler = require("express-async-handler");
 const GT = require("../utils/generateToken.js");
 
@@ -27,71 +26,23 @@ exports.signupAdmin = async (req, res, next) => {
     return next(new HttpError("Creating Admin failed ! ", 500));
   }
   res.status(201).json({
-    message: "Admin has been added successfully !",
+    msg: "Admin has been added successfully !",
     admin: createdAdmin.toObject({ getters: true }),
   });
 };
 
-exports.signupUser = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    console.log(errors);
-    return next(new HttpError("Invalid Inputs , check your data ", 422));
-  }
-  const {
-    email,
-    username,
-    pw,
-    userType,
-    phone_number,
-    instagram,
-    twitter,
-    linkedin,
-    facebook,
-  } = req.body;
-  const createdClient = new User({
-    email,
-    username: username.toLowerCase(),
-    pw,
-    userType,
-    banned: false,
-    phone_number: phone_number,
-    instagram: instagram,
-    twitter: twitter,
-    linkedin: linkedin,
-    facebook: facebook,
-    panier: [], // Initialize empty panier array for client
-  });
-  try {
-    await createdClient.save();
-    console.log("Client saved successfully");
-  } catch (e) {
-    return next(new HttpError("Creating Client failed ! ", 500));
-  }
-  let message;
-  if (userType === "client") {
-    message = "Client has been added successfully !";
-  } else if (userType === "artist") {
-    message = "Artist has been added successfully !";
-  }
-  res.status(201).json({
-    message,
-    client: createdClient.toObject({ getters: true }),
-  });
-};
-
-// -----------------------------------------------------------------------------------------------------
-
-// @desc    Auth user & get token
-// @route   POST /api/users/auth
-// @access  Public
+/**
+ * @desc    Authenticate user and generate token
+ * @route   POST /api/user/auth
+ * @access  Public
+ */
 exports.authUser = asyncHandler(async (req, res, next) => {
   const { username, email, pw } = req.body;
   let user;
   if (username) {
     const name = username.toLowerCase();
-    user = await User.findOne({ username:name }).select("+pw");
-  }else if (email) {
+    user = await User.findOne({ username: name }).select("+pw");
+  } else if (email) {
     console.log(email);
     user = await User.findOne({ email }).select("+pw");
   }
@@ -109,9 +60,11 @@ exports.authUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @desc    Register a new user
-// @route   POST /api/users
-// @access  Public
+/**
+ * @desc    Register a new user
+ * @route   POST /api/user/signup
+ * @access  Public
+ */
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -172,20 +125,24 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/users/logout
-// @access  Public
+/**
+ * @desc    Logout user and clear cookie
+ * @route   POST /api/user/logout
+ * @access  Public
+ */
 exports.logoutUser = (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
     expires: new Date(0),
   });
-  res.status(200).json({ message: "Logged out successfully" });
+  res.status(200).json({ msg: "Logged out successfully" });
 };
 
-// @desc    Get user profile
-// @route   GET /api/users/profile
-// @access  Private
+/**
+ * @desc    Get user profile
+ * @route   GET /api/user/getUser
+ * @access  Private
+ */
 exports.getUserProfile = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
@@ -195,16 +152,26 @@ exports.getUserProfile = asyncHandler(async (req, res, next) => {
       _id: user._id,
       username: user.username,
       email: user.email,
+      createdAt: user.createdAt.toLocaleString(),
+      updatedAt: user.updatedAt.toLocaleString(),
     });
   } else {
     return next(new HttpError("User not found", 404));
   }
 });
 
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private
+/**
+ * @desc    Update user profile
+ * @route   PUT /api/user/settings
+ * @access  Private
+ */
 exports.updateUserProfile = asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    return next(new HttpError("Invalid Inputs , check your data ", 422));
+  }
+
   const { username, email, newPw, oldPw } = req.body;
 
   // Check if none of the required fields are provided
@@ -226,21 +193,20 @@ exports.updateUserProfile = asyncHandler(async (req, res, next) => {
     user.username = username || user.username;
     user.email = email || user.email;
 
-    // we still to make verification of last password before updating
-    // to new password , so we need to get the old password from
-    // body and verify it with the one in DB before updating to the
-    // new Password !!!
+    /* we still to make verification of last password before updating
+     to new password , so we need to get the old password from
+     body and verify it with the one in DB before updating to the
+     new Password !!! */
     //--------- USE THAT oldPw IN BODY-PARSER ------------
 
-    // Check if newPw is provided and oldPw exists
+    /*  Check if newPw is provided and oldPw exists to excute the 
+      update of password */
     if (newPw && oldPw) {
       // Check if oldPw matches the current password stored in the database
       // Use matchPassword() to crypt the pw to make test successfully
       if (await user.matchPassword(oldPw)) {
-        // If it matches, update the password to newPw
         user.pw = newPw;
       } else {
-        // If oldPw does not match, return an error
         return next(new HttpError("Invalid old password", 401));
       }
     }
@@ -263,5 +229,140 @@ exports.updateUserProfile = asyncHandler(async (req, res, next) => {
     });
   } else {
     return next(new HttpError("User not found", 404));
+  }
+});
+
+/**
+ * @desc    Get all clients
+ * @route   GET /api/user/getClients
+ * @access  Private
+ */
+exports.getClients = asyncHandler(async (req, res, next) => {
+  try {
+    const clients = await User.find({ userType: "client" });
+    if (clients.length > 0) {
+      res.json({
+        msg: "Clients found",
+        clients: clients.map((client) => ({
+          _id: client._id,
+          username: client.username,
+          email: client.email,
+        })),
+      });
+    } else {
+      throw new HttpError("No clients found", 404);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+/**
+ * @desc    Update user profile image
+ * @route   PATCH /api/user/update-profile-image
+ * @access  Private
+ */
+
+exports.update_ProfileImage = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log(errors);
+      return next(new HttpError("Invalid Inputs , check your data ", 422));
+    }
+
+    const userId = req.user._id;
+    const { imageUrl } = req.body;
+
+    // Update the user's profileImage field in the database
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profileImage: imageUrl },
+      { new: true } // To get the updated user document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error("Error updating profile image:", error);
+    res.status(500).json({ error: "Failed to update profile image" });
+  }
+};
+
+/**
+ * @desc    Get panier of user
+ * @route   GET /api/user/getPanier
+ * @access  Private
+ */
+exports.getPanier = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  let user;
+  try {
+    user = await User.findById(userId);
+  } catch (error) {
+    return next(new HttpError("Failed to retrieve user panier", 500));
+  }
+
+  if (!user) {
+    return next(new HttpError("User not found", 404));
+  }
+
+  const artworkIds = user.panier;
+  let artworks;
+  try {
+    /*
+    select all artworks from the database using their IDs stored 
+    in the artworkIds array. This approach, using $in operator 
+    in MongoDB, allows you to fetch multiple artworks in a 
+    single query based on their IDs. It's an efficient way 
+    to retrieve all artworks associated with the user's panier.
+    ------------- its like jointure--------------
+    */
+    artworks = await Artwork.find({ _id: { $in: artworkIds } });
+  } catch (error) {
+    return next(new HttpError("Failed to retrieve artworks from panier", 500));
+  }
+
+  // If no artworks are found for the provided IDs, return an empty array
+  if (!artworks || artworks.length === 0) {
+    return res.json({ msg: "vide", panier: [] });
+  }
+  res.json({
+    msg: "Artworks retrieved successfully",
+    artworks: artworks,
+  });
+});
+
+/**
+ * @desc    add artwork to panier of user
+ * @route   POST /api/user/addArtworkToPanier
+ * @access  Private
+ */
+exports.addArtworkToPanier = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  const artworkId = req.body.artworkId;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new HttpError("User not found", 404);
+    }
+
+    // Check if artworkId is valid
+    const artwork = await Artwork.findById(artworkId);
+    if (!artwork) {
+      throw new HttpError("Artwork not found", 404);
+    }
+
+    // Add artworkId to the user's panier
+    user.panier.push(artworkId);
+    await user.save();
+
+    res.status(200).json({ message: "Artwork added to panier successfully" });
+  } catch (error) {
+    next(new HttpError("Failed to add artwork to panier", 500));
   }
 });

@@ -19,6 +19,6 @@ const savedArtworksSchema = new mongoose.Schema({
 
 savedArtworksSchema.plugin(uniqueValidator);
 
-const SavedArtworks = mongoose.model('LikedArtwork', savedArtworksSchema);
+const SavedArtworks = mongoose.model('SavedArtworks', savedArtworksSchema);
 
 module.exports = SavedArtworks;

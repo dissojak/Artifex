@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true, // Username is required
       unique: true, // Username must be unique
-      minlength: [3, "Username must be at least 3 characters long"], // Minimum length of username
+      minlength: [2, "Username must be at least 2 characters long"], // Minimum length of username
       maxlength: [14, "Username cannot be longer than 14 characters"], // Maximum length of username
     },
     // Email field
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true, // Password is required
       minlength: [3, "Password must be at least 3 characters long"], // Minimum length of password
-      maxlength: [20, "Password cannot be longer than 20 characters"], // Maximum length of password
+      maxlength: [40, "Password cannot be longer than 40 characters"], // Maximum length of password
       select: false,
     },
     // User type field
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
       type: String, // Badge field is optional (its SVG of the badge depends on the role "admin" or plan)
     },
     // Profile image field
-    profile_image: {
+    profileImage: {
       type: String,
     },
     // Banned field
@@ -74,6 +74,11 @@ const userSchema = new mongoose.Schema(
         ref: "Artwork", // Assuming 'Artwork' is the name of the related model for items in the shopping cart
       },
     ],
+    // Artist Plan ID referencing the Plan model
+    CurrentPlan_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Plan", // Assuming 'Plan' is the name of the related model
+    },
     //for artist order
     normalPrice: {
       type: Number,

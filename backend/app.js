@@ -19,6 +19,7 @@ const follow = require("./routes/follow");
 const category= require("./routes/category");
 const analytics = require("./routes/analytics");
 const report= require("./routes/report");
+const likedSaved = require("./routes/savedLikedArtworks");
 
 
 
@@ -55,6 +56,7 @@ app.use("/api/follow", follow);
 app.use("/api/category", category);
 app.use("/api/analysis", analytics);
 app.use("/api/report", report);
+app.use("/api/liked/saved",likedSaved);
 
 
 

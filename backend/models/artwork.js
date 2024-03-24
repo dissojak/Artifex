@@ -19,6 +19,11 @@ const artworkSchema = new mongoose.Schema({
     type: Number,
     default: 0 // Default price is 0
   },
+  // Image of the artwork
+  ImageArtwork:{
+    type: String,
+    required: true // Image is required
+  },
   // Category ID referencing the Category model
   id_category: {
     type: mongoose.Schema.Types.ObjectId,
