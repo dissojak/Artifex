@@ -110,6 +110,74 @@ exports.addComment = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc     Save the view of Client for an artwork !
+ * @function Save Data
+ * @method   PATCH
+ * @route    PATCH /api/review/updateView
+ * @params   artistId, artworkId
+ * @access   Private
+ */
+
+exports.updateView = async (req, res, next) => {
+  const { artistId, artworkId } = req.body;
+  const clientId = req.user._id;
+
+  let review;
+  let analytics;
+
+  try {
+    review = await Review.findOne({ clientId, artworkId });
+
+    // Find or create analytics for the artwork
+    analytics = await Analytics.findOne({ artistId });
+
+    if (!analytics) {
+      analytics = new Analytics({ artistId });
+    }
+    if (!review) {
+      review = new Review({
+        clientId,
+        artworkId,
+        view:true,
+      });
+      analytics.totaleReviews += 1;
+      analytics.viewsAnalytics += 1;
+    } 
+    /*but look this is just for security reasons , otherwise 
+    the this else will never excute , cuz the review will never
+    be created by putting a rating or a comment , cuz before 
+    you ever can do those u need to enter to artwork , and whenever
+    you do that as a client , this view function will be called
+    and , she will be the first thing that will be create that review.
+    ---- 
+    also the VIEW filed in review to check if the user view the artwork 
+    before or not is usless too , cuz if we create a review , that
+    means 100% the user view the artwork so there is no need to 
+    even check that !*/
+    else {
+      // and this will never be false too 
+      if (review.view === false) {
+        analytics.viewsAnalytics += 1;
+      }
+      review.view = true;
+    }
+
+    // Save the review and analytics changes within a session
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await review.save({ session });
+    await analytics.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+
+    res.status(201).json({ message: "Clinet viewed this artwork ! Saving data done successfully" });
+  } catch (err) {
+    console.error(err);
+    return next(new HttpError("Failed to save data", 500));
+  }
+};
+
 // Delete a comment from a review
 exports.deleteComment = async (req, res, next) => {
   // Implement your logic here
@@ -118,15 +186,15 @@ exports.deleteComment = async (req, res, next) => {
 
 // Add rating to a review
 exports.addRating = async (req, res, next) => {
-  // Implement your logic here
-  //   update the analytics
+  /*Implement your logic here
+  update the analytics
+  if its just add for new rating , 
+  just add the rating to analytics
+  else if its an update you should check the old rating before
+  updating , delete it from analytics , then update it in reviews 
+  and analytics again !*/
 };
 
-// Update rating in a review
-exports.updateRating = async (req, res, next) => {
-  // Implement your logic here
-  // when you update rating, update the analytics
-};
 
 // Delete a review
 exports.deleteReview = async (req, res, next) => {
@@ -134,11 +202,6 @@ exports.deleteReview = async (req, res, next) => {
   // when you delete review , update the analytics
 };
 
-// Update view count in a review
-exports.updateView = async (req, res, next) => {
-  // Implement your logic here
-  //   update the analytics
-};
 
 // Report a review
 exports.reportReview = async (req, res, next) => {
