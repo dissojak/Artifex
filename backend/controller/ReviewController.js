@@ -1,9 +1,11 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
+const asyncHandler = require("express-async-handler");
 const Review = require("../models/review");
 const Artwork = require("../models/artwork");
 const Analytics = require("../models/analytics");
 const ReportReview = require("../models/reportReview");
+const mongoose = require("mongoose");
 
 // Add your controller methods here
 
@@ -12,21 +14,100 @@ const ReportReview = require("../models/reportReview");
 //  nthabtou fyha lin nt2kdou mich ne9sa chy w kif tkhdem w testy bel POSTMAN ma tensech taamel
 //  capturet lel mongoDB w postman w hothom f dousi bech baaed nkhdmou byhom f rapport -------
 
-// Get reviews by artwork ID
-exports.getReviewsByArtworkId = async (req, res, next) => {
-  // Implement your logic here
-};
+/**
+ * @desc    Get reviews by artwork ID
+ * @route   GET /api/review/:artworkId
+ * @access  Private
+ */
+exports.getReviewsByArtworkId = asyncHandler(async (req, res, next) => {
+  const artworkId = req.params.artworkId;
 
-// Add a comment to a review
+  let reviews;
+  try {
+    reviews = await Review.find({ artworkId });
+  } catch (err) {
+    return next(
+      new HttpError("Fetching reviews failed, please try again later.", 500)
+    );
+  }
+
+  if (!reviews || reviews.length === 0) {
+    return next(
+      new HttpError("Could not find reviews for the provided artwork ID.", 404)
+    );
+  }
+
+  res.status(200).json({
+    reviews: reviews.map((review) => review.toObject({ getters: true })),
+  });
+});
+
+/**
+ * @desc     Add a comment to a review Or Update it
+ * @function Update or Add
+ * @method   PATCH
+ * @route    PATCH /api/review/addComment
+ * @params   artistId, artworkId, comment
+ * @access   Private
+ */
 exports.addComment = async (req, res, next) => {
-  // Implement your logic here
-  //   update the analytics
-};
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    return next(new HttpError("Invalid Inputs, check your data", 422));
+  }
+  const { artistId, artworkId, comment } = req.body;
+  const clientId = req.user._id;
 
-// Update a review
-exports.updateComment = async (req, res, next) => {
-  // Implement your logic here
-  // when you ... , update the analytics
+  let review;
+  let analytics;
+
+  try {
+    review = await Review.findOne({ clientId, artworkId });
+
+    // Find or create analytics for the artwork
+    analytics = await Analytics.findOne({ artistId });
+
+    if (!analytics) {
+      analytics = new Analytics({ artistId });
+    }
+    
+    /*but this also will never happen cuz when the user even 
+    unter to check the artwork , it will automaticly create 
+    a review to update the fild view by true , 
+    or even when the artist like the artwork before even seeing it,
+    that will create a new analytics to update the number of likes*/
+    
+    if (!review) {
+      // If there is no existing review, create a new one
+      review = new Review({
+        clientId,
+        artworkId,
+        comment,
+      });
+      analytics.totaleReviews += 1;
+      analytics.numberOfComments += 1;
+    } else {
+      if (review.comment === "") {
+        analytics.numberOfComments += 1;
+      }
+      // If the review exists, add or update the comment
+      review.comment = comment;
+    }
+
+    // Save the review and analytics changes within a session
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await review.save({ session });
+    await analytics.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+
+    res.status(201).json({ message: "Comment added successfully" });
+  } catch (err) {
+    console.error(err);
+    return next(new HttpError("Failed to add comment", 500));
+  }
 };
 
 // Delete a comment from a review

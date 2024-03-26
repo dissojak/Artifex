@@ -1,30 +1,29 @@
 const express = require("express");
 const router = express.Router();
+const { check } = require("express-validator");
 const RC = require("../controller/ReviewController");
+const MW = require("../middleware/authMiddleware");
 
 // Get reviews by artwork ID
-router.get("/artwork/:artworkId", RC.getReviewsByArtworkId);
+router.get("/:artworkId",MW.protect, RC.getReviewsByArtworkId);
 
 // Add a comment to a review
-router.post("/addcomment/:reviewId", RC.addComment);
-
-// Update a comment in a review
-router.patch("/updatecomment/:reviewId/:commentId", RC.updateComment);
+router.patch("/addComment",[check("comment").isLength({ min: 2, max: 50 })],MW.protect, RC.addComment);
 
 // Delete a comment from a review
-router.delete("/deletecomment/:reviewId/:commentId", RC.deleteComment);
+router.delete("/deleteComment/:reviewId/:commentId", RC.deleteComment);
 
 // Add rating to a review
-router.post("/addrating/:reviewId", RC.addRating);
+router.post("/addRating/:reviewId", RC.addRating);
 
 // Update rating in a review
-router.patch("/updaterating/:reviewId", RC.updateRating);
+router.patch("/updateRating/:reviewId", RC.updateRating);
 
 // Delete a review
-router.delete("/deletereview/:reviewId", RC.deleteReview);
+router.delete("/deleteReview/:reviewId", RC.deleteReview);
 
 // Update view count in a review
-router.patch("/updateview/:reviewId", RC.updateView);
+router.patch("/updateView/:reviewId", RC.updateView);
 
 // Report a review
 router.post("/report/:reviewId", RC.reportReview);

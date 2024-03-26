@@ -34,6 +34,7 @@ exports.signupAdmin = async (req, res, next) => {
 /**
  * @desc    Authenticate user and generate token
  * @route   POST /api/user/auth
+ * @params  username,email,pw(password)
  * @access  Public
  */
 exports.authUser = asyncHandler(async (req, res, next) => {
@@ -63,6 +64,7 @@ exports.authUser = asyncHandler(async (req, res, next) => {
 /**
  * @desc    Register a new user
  * @route   POST /api/user/signup
+ * @params  username,email,pw(password),userType
  * @access  Public
  */
 exports.registerUser = asyncHandler(async (req, res, next) => {
@@ -162,7 +164,8 @@ exports.getUserProfile = asyncHandler(async (req, res, next) => {
 
 /**
  * @desc    Update user profile
- * @route   PUT /api/user/settings
+ * @route   PUT /api/user/settings 
+ * @params  username || email || newPw(new password) && oldPw(old password)
  * @access  Private
  */
 exports.updateUserProfile = asyncHandler(async (req, res, next) => {
@@ -260,6 +263,7 @@ exports.getClients = asyncHandler(async (req, res, next) => {
 /**
  * @desc    Update user profile image
  * @route   PATCH /api/user/update-profile-image
+ * @params  imageUrl
  * @access  Private
  */
 
@@ -299,46 +303,33 @@ exports.update_ProfileImage = async (req, res) => {
  */
 exports.getPanier = asyncHandler(async (req, res, next) => {
   const userId = req.user._id;
-  let user;
+
   try {
-    user = await User.findById(userId);
+    const user = await User.findById(userId).populate('panier');
+    
+    if (!user) {
+      return next(new HttpError("User not found", 404));
+    }
+
+    const artworks = user.panier;
+    if (!artworks || artworks.length === 0) {
+      return res.json({ msg: "vide", panier: [] });
+    }
+
+    res.json({
+      msg: "Artworks retrieved successfully",
+      artworks,
+    });
   } catch (error) {
     return next(new HttpError("Failed to retrieve user panier", 500));
   }
-
-  if (!user) {
-    return next(new HttpError("User not found", 404));
-  }
-
-  const artworkIds = user.panier;
-  let artworks;
-  try {
-    /*
-    select all artworks from the database using their IDs stored 
-    in the artworkIds array. This approach, using $in operator 
-    in MongoDB, allows you to fetch multiple artworks in a 
-    single query based on their IDs. It's an efficient way 
-    to retrieve all artworks associated with the user's panier.
-    ------------- its like jointure--------------
-    */
-    artworks = await Artwork.find({ _id: { $in: artworkIds } });
-  } catch (error) {
-    return next(new HttpError("Failed to retrieve artworks from panier", 500));
-  }
-
-  // If no artworks are found for the provided IDs, return an empty array
-  if (!artworks || artworks.length === 0) {
-    return res.json({ msg: "vide", panier: [] });
-  }
-  res.json({
-    msg: "Artworks retrieved successfully",
-    artworks: artworks,
-  });
 });
+
 
 /**
  * @desc    add artwork to panier of user
  * @route   POST /api/user/addArtworkToPanier
+ * @param   artworkId
  * @access  Private
  */
 exports.addArtworkToPanier = asyncHandler(async (req, res, next) => {

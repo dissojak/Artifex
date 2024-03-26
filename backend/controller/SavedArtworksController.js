@@ -25,7 +25,16 @@ exports.getSavedArtworks = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.SaveArtwork = asyncHandler(async (req, res, next) => {
+/**
+ * @desc     save an artwork
+ * @function Update
+ * @method   PATCH
+ * @route    PATCH api/liked/saved/saveArtwork
+ * @params   artistId, artworkId
+ * @access   Private
+ */
+
+exports.saveArtwork = asyncHandler(async (req, res, next) => {
   const userId = req.user._id;
   const artworkId = req.body.artworkId;
 

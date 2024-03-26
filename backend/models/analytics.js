@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const analyticsSchema = new mongoose.Schema({
+  // Artist ID
+  artistId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Artist', // Assuming 'Artist' is the name of the Artist model
+    required: true
+  },
+  // Number of reveiws
+  totaleReviews:{
+    type: Number,
+    default:0
+  },
   // Rating analytics
   ratingAnalytics: {
     type: Number,

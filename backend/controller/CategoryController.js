@@ -6,6 +6,7 @@ const Category = require("../models/category");
 /**
  * @desc    Add new category
  * @route   POST /api/categories
+ * @params  category
  * @access  Private
  */
 exports.addCategory = asyncHandler(async (req, res, next) => {

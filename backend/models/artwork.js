@@ -20,7 +20,7 @@ const artworkSchema = new mongoose.Schema({
     default: 0 // Default price is 0
   },
   // Image of the artwork
-  ImageArtwork:{
+  imageArtwork:{
     type: String,
     required: true // Image is required
   },

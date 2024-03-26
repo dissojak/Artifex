@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get("/getLikedArtworks", MW.protect, LAC.getLikedArtworks);
 router.get("/getSavedArtworks", MW.protect, SAC.getSavedArtworks);
-router.post("/saveArtwork",MW.protect, SAC.SaveArtwork);
+router.patch("/saveArtwork",MW.protect, SAC.saveArtwork);
+router.patch("/likeArtwork",MW.protect, LAC.likeArtwork);
 
 module.exports = router;
