@@ -44,6 +44,10 @@ const artworkSchema = new mongoose.Schema({
     type : Boolean,
     default: false,
   },
+  isDeletedByOwner:{
+    type: Boolean,
+    default: false,
+  }
 });
 
 artworkSchema.plugin(uniqueValidator);

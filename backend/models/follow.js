@@ -13,6 +13,10 @@ const followSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // Assuming 'User' is the name of the User model
     required: true
+  },
+  dataFollow:{
+    type: Date,
+    default: Date.now,
   }
 });
 
