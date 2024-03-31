@@ -52,5 +52,8 @@ router.delete(
   AWC.deleteArtworkByAdmin
 );
 router.delete("/deleteArtwork/:artworkId", MW.protect, AWC.deleteArtwork);
+router.get("/getArtworksByArtistId",MW.protect, AWC.getArtworksByArtistId)
+router.get("/getArtworksByCategory",MW.protect, AWC.getArtworksByCategory)
+
 
 module.exports = router;

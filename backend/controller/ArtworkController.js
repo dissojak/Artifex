@@ -219,4 +219,41 @@ exports.editArtwork = asyncHandler(async (req, res, next) => {
     next(new HttpError(error.message || "Failed to update artwork", 500));
   }
 });
-// JUST FOR GIT STREAK
+
+exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
+  const artistId = req.body.artistId || req.user._id;
+
+  try {
+    const artworks = await Artwork.find({ id_artist: artistId });
+
+    if (!artworks || artworks.length === 0) {
+      return res.status(404).json({ message: "No artworks found for this artist" });
+    }
+
+    res.status(200).json({
+      message: "Artworks retrieved successfully",
+      artworks,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to retrieve artworks", 500));
+  }
+});
+
+exports.getArtworksByCategory = asyncHandler(async (req, res, next) => {
+  const categoryId = req.body.categoryId;
+
+  try {
+    const artworks = await Artwork.find({ id_category: categoryId });
+
+    if (!artworks || artworks.length === 0) {
+      return res.status(404).json({ message: "No artworks found for this category" });
+    }
+
+    res.status(200).json({
+      message: "Artworks retrieved successfully",
+      artworks,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to retrieve artworks", 500));
+  }
+});

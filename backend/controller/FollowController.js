@@ -76,3 +76,76 @@ exports.unfollowArtist = async (req, res, next) => {
     return next(new HttpError('Failed to unfollow the artist', 500));
   }
 };
+
+/**
+ * @desc    Get followers of an artist
+ * @route   GET /api/follow/followers
+ * @access  Private
+ */
+exports.getFollowers = asyncHandler(async (req, res, next) => {
+  const artistId = req.user._id;
+
+  try {
+    // Find all followers of the artist
+    const followers = await Follow.find({ artistId }).populate('clientId', 'username profileImage');
+
+    if (!followers || followers.length === 0) {
+      return res.json({ msg: "No followers found", followers: [] });
+    }
+
+    res.json({
+      msg: "Followers retrieved successfully",
+      followers,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to get followers", 500));
+  }
+});
+
+/**
+ * @desc    Get followers of an artist
+ * @route   GET /api/follow/FollowedArtists
+ * @access  Private
+ */
+exports.getFollowedArtists= asyncHandler(async (req, res, next) => {
+  const clientId = req.user._id;
+
+  try {
+    // Find all followers of the artist
+    const followed = await Follow.find({ clientId }).populate('artistId', 'username profileImage');
+
+    if (!followed || followed.length === 0) {
+      return res.json({ msg: "No followed artists are found", followed: [] });
+    }
+
+    res.json({
+      msg: "Followed artists retrieved successfully",
+      followed,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to get followed artists", 500));
+  }
+});
+
+/**
+ * @desc    remove a client follow by artist
+ * @route   DELETE /api/follow/removeFollower/:clientId
+ * @access  Private
+ */
+exports.removeFollower = async (req, res, next) => {
+  const artistId = req.user._id;
+  const clientId = req.params.clientId;
+
+  try {
+    const isFollowing = await Follow.findOne({ clientId, artistId });
+    if (!isFollowing) {
+      return next(new HttpError('You are not currently following this artist', 400));
+    }
+    await Follow.findOneAndDelete({ clientId, artistId });
+    res.status(200).json({ message: `You have unfollowed artist ${artistId}` });
+  } catch (err) {
+    return next(new HttpError('Failed to unfollow the artist', 500));
+  }
+};
+
+
