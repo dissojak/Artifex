@@ -64,7 +64,8 @@ exports.authUser = asyncHandler(async (req, res, next) => {
 /**
  * @desc    Register a new user
  * @route   POST /api/user/signup
- * @params  username,email,pw(password),userType
+ * @params  username,email,pw(password),userType,phone_number 
+ *          instagram,facebook,twitter,linked (optional)
  * @access  Public
  */
 exports.registerUser = asyncHandler(async (req, res, next) => {
@@ -73,7 +74,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     return next(new HttpError("Invalid Inputs, check your data", 422));
   }
 
-  const { username, email, pw, userType } = req.body;
+  const { username, email, pw, userType,phone_number } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -94,13 +95,11 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   if (userType === "artist") {
     userData = {
       ...userData,
+      phone_number,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
       linkedin: req.body.linkedin,
       facebook: req.body.facebook,
-      normalPrice: req.body.normalPrice,
-      rapidPrice: req.body.rapidPrice,
-      orderStatus: req.body.orderStatus,
     };
   }
 
@@ -146,6 +145,7 @@ exports.logoutUser = (req, res) => {
  * @access  Private
  */
 exports.getUserProfile = asyncHandler(async (req, res, next) => {
+  
   const user = await User.findById(req.user._id);
 
   if (user) {

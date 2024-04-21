@@ -4,13 +4,13 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const museumPinnedSchema = new mongoose.Schema({
   // Client ID who liked the artwork
-  clientId: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
   // Museum ID that got liked
-  artworkId: {
+  museumId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Museum',
     required: true

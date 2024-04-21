@@ -166,37 +166,37 @@ exports.reportArtwork = async (req, res, next) => {
   const { reportClass, artworkId } = req.body;
   const reportingClientId = req.user._id;
 
-  try {
-    const artwork = await Artwork.findById(artworkId);
+  const artwork = await Artwork.findById(artworkId);
 
-    if (!artwork) {
-      return next(new HttpError("artwork not found", 404));
-    }
+  if (!artwork) {
+    return next(new HttpError("artwork not found", 404));
+  }
 
-    const existingReport = await ReportArtwork.findOne({
+  const existingReport = await ReportArtwork.findOne({
+    reportClass,
+    clientId: reportingClientId,
+    artworkId: artwork._id,
+  });
+
+  if (existingReport) {
+    res.status(201).json({ message: "Your report has already been saved." });
+  } else {
+    // Create a new report
+    const report = new ReportArtwork({
       reportClass,
-      clientId: reportingClientId,
+      clientId: reportingClientId, //here clientId is the person who reported
       artworkId: artwork._id,
     });
 
-    if (existingReport) {
-      res.status(201).json({ message: "Your report has already been saved." });
-    } else {
-      // Create a new report
-      const report = new ReportArtwork({
-        reportClass,
-        clientId: reportingClientId, //here clientId is the person who reported
-        artworkId: artwork._id,
-      });
-
+    try {
       // Save the report to the database
       await report.save();
-
-      res.status(201).json({ message: "Artwork reported successfully" });
+    } catch (err) {
+      return next(
+        new HttpError(`Failed to report the artwork: ${err.message}`, 500)
+      );
     }
-  } catch (err) {
-    return next(
-      new HttpError(`Failed to report the artwork: ${err.message}`, 500)
-    );
+
+    res.status(201).json({ message: "Artwork reported successfully" });
   }
 };

@@ -27,23 +27,25 @@ const artworkSchema = new mongoose.Schema({
   // Category ID referencing the Category model
   id_category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category' // Assuming 'Category' is the name of the related model
+    ref: 'Category' 
   },
   // Artist ID referencing the User model
   id_artist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User' // Assuming 'User' is the name of the related model
+    ref: 'User' 
   },
-  // Type of the artwork (public or private)
-  type: {
+  // visibility of the artwork (public or private)
+  visibility: {
     type: String,
-    enum: ['public', 'private'], // Type can only be 'public' or 'private'
+    enum: ['public', 'private'], // visibility can only be 'public' or 'private'
     default: 'public' // Default type is 'public'
   },
+  // is Artwork exclusive or not ?
   exclusive:{
     type : Boolean,
     default: false,
   },
+  // is Artwork deleted by artist or not ?
   isDeletedByOwner:{
     type: Boolean,
     default: false,

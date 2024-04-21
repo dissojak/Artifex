@@ -5,14 +5,19 @@ const participantSchema = new mongoose.Schema({
   // ID of the museum
   museumId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Museum', // Assuming 'Museum' is the name of the Museum model
+    ref: 'Museum',
     required: true
   },
   // ID of the client or artist
   participantId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Assuming 'User' is the name of the User model
+    ref: 'User', 
     required: true
+  },
+  participantType: {
+    type: String,
+    enum: [ "client", "artist"],
+    required: true,
   }
 });
 

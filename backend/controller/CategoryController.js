@@ -55,3 +55,14 @@ exports.getCategoryNameById = async (categoryId) => {
       throw new HttpError(error.message || "Failed to retrieve category name", 500);
     }
   };
+
+  exports.isCategoryExist = async (id) => {
+    try {
+      const category = await Category.findById( id );
+      return !!category; // Returns true if category exists, false otherwise
+    } catch (error) {
+      // Handle error if any
+      console.error("Error checking category existence:", error);
+      throw new Error("Failed to check category existence");
+    }
+  };

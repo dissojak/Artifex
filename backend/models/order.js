@@ -18,7 +18,8 @@ const orderSchema = new mongoose.Schema({
   serviceType: {
     type: String,
     enum: ['normal', 'rapid'], // Service type can only be 'normal' or 'rapid'
-    default: 'normal' // Default service type is 'normal'
+    default: 'normal', // Default service type is 'normal'
+    required: true // serviceType is required
   },
   // Client ID referencing the User model
   clientId: {
@@ -35,6 +36,7 @@ const orderSchema = new mongoose.Schema({
   // Status of the order
   status: {
     type: String,
+    enum: ['pending','completed','rejected','accepted'],
     default: 'pending' // Default status is 'pending'
   },
   // Delivery date
@@ -44,7 +46,11 @@ const orderSchema = new mongoose.Schema({
   // Image of the delivery
   image_liv: {
     type: String // URL or filename of the image
-  }
+  },
+  // description of the order
+  description: {
+    type: String,
+  },
 });
 
 orderSchema.plugin(uniqueValidator);

@@ -48,8 +48,8 @@ const userSchema = new mongoose.Schema(
     },
     // Phone number field
     phone_number: {
-      type: String, // Phone number of the user
-      // Additional validation for phone number format can be added here if necessary
+      type: Number, // Phone number of the user
+      unique: true,
     },
     // Instagram username field
     instagram: {

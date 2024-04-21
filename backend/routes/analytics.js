@@ -1,8 +1,11 @@
 const express = require("express");
 const ANC = require("../controller/AnalyticsController");
-const { check } = require("express-validator");
+const MW = require("../middleware/authMiddleware");
 const router = express.Router();
 
-// Add your routes here
+// just for test
+// router.get('/getArtistAnalytics/:artistId', MW.protect,ANC.getAnalytics);
+
+router.get('/getArtistAnalytics', MW.protect,ANC.getAnalytics);
 
 module.exports = router;
