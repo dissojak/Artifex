@@ -1,22 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
+import "./style.css";
 
-import "./Home.css";
-import Hackatons from "../hackaton/Pages/Hacktons";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../shared/context/auth-context";
-
-
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import FacebookIcon from "../assets/images/Facebook.svg";
+import TwitterIcon from "../assets/images/Tracé 2.svg";
+import InstagramIcon from "../assets/images/Instagram.svg";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 
-
 const Home = () => {
-  const auth = useContext(AuthContext);
-
-  const { userInfo } = useSelector((state) => state.auth);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,104 +18,66 @@ const Home = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/auth');
+      navigate("/login");
     } catch (err) {
       console.error(err);
     }
   };
 
-
-  //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
-
   return (
     <>
-      <Link to="/">
-        <img src="elements/logo_white.svg" alt="" className="Logowhite" />
-      </Link>
-      {auth.isLoggedIn && (
-        <>
-          <div id="header_right_home">
-            <button className="button_header_right_home">
-              {" "}
-              <img className="pol" src="elements/Polygone 3.svg" alt="" />
-            </button>
-            <h1 className="username">{auth.userName}</h1>
-          </div>
-        </>
-      )}
-      {/* // this is just for updating git , deleteing backend-auth */}
-      <div id="home1">
-        <div id={auth.isAdmin ? "home2-admin" : "home2"}>
-          <h1
-            className="where"
-            style={!auth.isAdmin ? { color: "#FFDCBA" } : { color: "#00A8E8" }}
-          >
-            Where Innovation{" "}
+    <div className="hero-section">
+      <div className="hero-overlay">
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="creative-text" style={{ color: "#86e1ff" }}>
+              WHERE CREATIVITY
+            </span>{" "}
+            UNLEASHES POSSIBILITIES
           </h1>
-          <h1 className="meets">Meets Determination</h1>
-          <p className="p1">
-            "Join a Global Community of Innovators. SaharaBytes hosts hackathons
-            that ignite creativity,
-          <br/>
-            foster collaboration, and drive real-world solutions. Dive in,
-            compete, and shape the future with us."
+          <p className="hero-subtitle">
+            "Embark on a journey of innovation. At Artifex, we cultivate a
+            community where creativity thrives, collaboration flourishes, and
+            groundbreaking solutions take flight. Join us, explore, and shape
+            the landscape of tomorrow."
           </p>
-          <button
-            className="button_home"
-            onClick={() =>
-              (window.location.href = "mailto:StoonProduction@gmail.com")
-            }
-          >
-            <h2
-              className="button_home_1"
-              style={
-                !auth.isAdmin ? { color: "#4D3223" } : { color: "#0185B7" }
-              }
-            >
-              For Hosting
-            </h2>
-            <h2
-              className="button_home_2"
-              style={
-                !auth.isAdmin
-                  ? { color: "#4D3223", backgroundColor: "#FFDCBA" }
-                  : { color: "#0185B7", backgroundColor: "#87CEEB" }
-              }
-            >
-              Contact us
-            </h2>
-            {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
-            <img
-              src={
-                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow_bleu.svg"
-              }
-              alt=""
-              className="arrow"
-            />
-          </button>
+          <div className="hero-social-links">
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <img src={FacebookIcon} className="icon-img" alt="Facebook" />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <img src={InstagramIcon} className="icon-img" alt="Instagram" />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <img src={TwitterIcon} className="icon-img" alt="Twitter" />
+            </a>
+          </div>
 
-          <ul className="icons_home">
-            <li>
-              {" "}
-              <img src="elements/home/Instagram.svg" alt="" />
-            </li>
-
-            <li>
-              {" "}
-              <img src="elements/home/twiiter.svg" alt="" />
-            </li>
-            <li>
-              {" "}
-              <img src="elements/home/Facebook.svg" alt="" />
-            </li>
-          </ul>
-          <button className="signupBtn" onClick={logoutHandler}></button>
+          <div className="hero-cta-buttons">
+            <button className="btn faq-button" style={{ color: "#86e1ff" }}>
+              FAQ Questions
+            </button>
+            <button className="btn contact-button">
+              Contact us     
+              <svg
+                className="button-arrow"
+                xmlns="http://www.w3.org/2000/svg"
+                width="41.618"
+                height="11.687"
+                viewBox="0 0 41.618 11.687"
+              >
+                <path
+                  d="M-5.2,0-6.264,1.062l4.022,4.022H-40.975V6.6H-2.242l-4.022,4.022L-5.2,11.687.642,5.844Z"
+                  transform="translate(40.975)"
+                  fill="#fff"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <div className="article_index">
-        <div id="sahara">sahara</div>
-      </div>
-      {auth.isLoggedIn && <Hackatons />}
+    </div>
+    <button className="signupBtn" onClick={logoutHandler}></button>
     </>
   );
 };

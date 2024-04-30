@@ -33,6 +33,9 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import PrivateRoute from "./components/PrivateRoute";
 
+import Landing from "./landing/pages/Landing.jsx";
+import NewArtwork from "./artwork/pages/NewArtwork.jsx";
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
@@ -102,17 +105,20 @@ const App = () => {
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+        <Route path="/login" element={<Auth />} />
+        {/* <Route path="/auth" element={<Auth />} /> */}
         <Route path="/:userId/places" element={<UserPlaces />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/home" element={<HomeScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/profile" element={<ProfileScreen />} />
         </Route>
         {/* Add more routes as needed */}
+        <Route path="/AddArtwork" element={<NewArtwork />} />
       </Routes>
     );
   }
@@ -137,8 +143,8 @@ const App = () => {
         <Router>
           {/* <Header /> */}
           <ToastContainer />
-            {/* <MainNavigation /> */}
-            <main style={{ marginTop: 0 }}>{routes}</main>
+          {/* <MainNavigation /> */}
+          <main style={{ marginTop: 0 }}>{routes}</main>
         </Router>
       </AuthContext.Provider>
     </Provider>

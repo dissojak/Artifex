@@ -1,0 +1,128 @@
+.hero-section {
+    position: relative;
+    background-image: url('../assets/images/pexels-markus-winkler-3693019.png'); /* Add your image path */
+    background-size: cover;
+    background-position: center;
+    height: 990px; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .hero-overlay {
+    background-color: rgba(106, 90, 205, 0.8); /* Purple overlay with transparency */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-content {
+    text-align: left;
+    color: #fff;
+    max-width: 1200px;
+    padding: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-size: 75px;
+    font-weight: bolder;
+    position: relative;
+    left: -473px;
+    top: 11px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    bottom: -143px;
+    position: relative;
+  }
+  
+  .hero-social-links {
+    display: inline-flex;
+    justify-content: center;
+    gap: 38px;
+    margin-bottom: 2rem;
+    position: relative;
+    bottom: -319px;
+    left: -538px;
+  }
+ /* Adjust padding to fit the content    */
+  
+    .hero-cta-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Adjust gap between buttons */
+    }
+    
+    .hero-cta-buttons .btn {
+        position: relative;
+        right: -1100px;
+        bottom: -158px;
+        padding: 1rem 2rem; /* Adjust padding to fit the content */
+        border: none;
+        border-radius: 50px; /* Full pill shape */
+        font-weight: bold;
+        cursor: pointer;
+        color: #FFF; /* White text */
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px; /* Minimum width to keep buttons similar in size */
+        flex-grow: 0; /* Prevent the buttons from growing */
+    }
+    
+    .faq-button {
+        background-color: white; /* Adjusted to match the image */
+       
+    }
+    
+    .contact-button {
+        background-color: #86e1ff; /* Adjusted to match the image */
+        padding-right: 1.5rem; /* Reduce padding on the right for smaller width */
+    }
+    
+    .contact-button::after {
+       
+        font-size: 1.5rem; /* Adjust if needed */
+        display: inline-block;
+       
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px); /* Slight raise effect on hover */
+    }
+    
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  }
+  
+  .signupBtn {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+    gap: 9px;
+    color: white;
+    background: #7738c7;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  }

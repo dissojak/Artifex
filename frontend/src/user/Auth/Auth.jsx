@@ -31,7 +31,7 @@ function Auth() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/home");
     }
   }, [navigate, userInfo]);
 
@@ -45,7 +45,7 @@ function Auth() {
     try {
       const res = await login({ username:email, email, pw:password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log(err);
       if (err?.data?.message || err.error) {
@@ -70,7 +70,7 @@ function Auth() {
       try {
         const res = await register({ username:name, email, pw:password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/");
+        navigate("/home");
       } catch (err) {
         setIsLoading(false);
         toast.error(err?.data?.message || err.error);

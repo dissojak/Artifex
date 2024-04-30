@@ -3,6 +3,20 @@ const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/category");
 
+
+exports.getCategories = asyncHandler(async (req, res,next) => { 
+  let category;
+  try{
+  category = await Category.find();
+  }catch(err){
+    return next(new HttpError("Categories not found", 404));
+  }
+  res.json({
+    msg: "Category retrived successfully",
+    category,
+  });
+})
+
 /**
  * @desc    Add new category
  * @route   POST /api/categories
