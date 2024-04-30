@@ -3,7 +3,6 @@ import "./NewArtwork.css"; // Ensure this path is correct for your CSS file
 import backgroundImage from "../../assets/images/Signupbackground2.png";
 import { useHttp } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const newArtwork = () => {
   const [categories, setCategories] = useState();
@@ -64,7 +63,7 @@ const newArtwork = () => {
                 <p style={{ color: "black" }}>Categorie</p>
                 <select>
                   {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
+                    <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
                   ))}
@@ -104,7 +103,7 @@ const newArtwork = () => {
                 <p style={{ color: "black" }}>Categorie</p>
                 <select>
                   {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
+                    <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
                   ))}
@@ -187,7 +186,7 @@ const newArtwork = () => {
                 <p style={{ color: "black" }}>Categorie</p>
                 <select>
                   {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
+                    <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
                   ))}
