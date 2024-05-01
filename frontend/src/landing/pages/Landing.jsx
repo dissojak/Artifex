@@ -14,6 +14,7 @@ import ContactUsSection from './ContactUsSection.jsx';
 import ServicesSection from './ServicesSection.jsx';
 import TeamBehind from './TeamBehind.jsx';
 import DiscoverBanner from './DiscoverBanner.jsx';
+import ArtsSection from './ArtsSection.jsx';
 import Footer from './Footer.jsx';
 const Landing = () => {
   return (
@@ -27,6 +28,7 @@ const Landing = () => {
         <ImageStars2 />
         <ImageStars3 />
         <Collection />
+        <ArtsSection />
         <br />
         <ViewMore />
         <br />
