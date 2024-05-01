@@ -1,0 +1,74 @@
+.Discover-banner1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E1D2FF;  /* Adjust the color to match the exact pink hue */
+    color: #000;
+    padding: 8px 10%;  /* Adds padding around the content, adjust as per design */
+  }
+  
+  .banner-left1 h1 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 36px;  /* Adjust based on your design requirement */
+    margin: 0;  /* Removes any default margin */
+    color: #000;  /* Adjust if a different color is required */
+  }
+  .banner-left1 {
+    text-align: left;  /* Aligns the text and buttons to the right */
+  }
+  
+  .banner-right1 {
+    text-align: left;  /* Aligns the text and buttons to the right */
+  }
+  
+  .banner-right1 p {
+    margin: 0 0 20px;  /* Adds space below the paragraph */
+    font-size: 20px;  /* Adjust based on your design requirement */
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 17px;
+}
+  
+  .button-container .btn1, .button-container .sign-up2 {
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #000;  /* Black background for the button */
+    padding: 15px 30px;  /* Padding inside the button */
+    font-size: 18px;
+    cursor: pointer;  /* Shows a pointer cursor on hover */
+      /* Slight rounding of corners */
+  }
+  
+  .button-container .sign-up2 {
+    background-color: #E1D2FF;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    border: 4px solid rgb(0, 0, 0);  /* Red color for the sign-up button */
+  }
+  
+  /* Hover effects for buttons */
+  .button-container .btn1:hover, .button-container .sign-up1:hover {
+    opacity: 0.9;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .collection-banner1 {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .banner-right1 {
+      text-align: center;
+    }
+  
+    .button-container {
+      justify-content: center;
+    }
+  }
+  

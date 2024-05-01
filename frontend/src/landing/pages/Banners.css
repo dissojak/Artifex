@@ -1,0 +1,51 @@
+.bannerSection {
+    padding: 25px 0;
+    width: 100%; /* Ensure full width */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .banner {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 15px;
+  }
+  
+  .box {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center; /* Centers the content of '.box' */
+  }
+  
+  .box:hover img {
+    transform: scale(1.1);
+  }
+  
+  .responsive-banner {
+    overflow: hidden;
+    background-repeat: no-repeat;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .special-paragraph {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .icon-img {
+    width: 120px; /* Adjust width as necessary */
+    height: 120px; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between image and text */
+  }
+  
