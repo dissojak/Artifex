@@ -16,10 +16,15 @@ function Auth() {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   // const [isLoading, setIsLoading] = useState(true);
+
+  const [userType, setUserType] = useState("customer");
+  // console.log("user: ",userType);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +48,11 @@ function Auth() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await login({ username:email, email, pw:password }).unwrap();
+      const res = await login({
+        username: email,
+        email,
+        pw: password,
+      }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate("/home");
     } catch (err) {
@@ -67,8 +76,13 @@ function Auth() {
     //   setIsLoading(false);
     //   toast.error("Passwords do not match");
     // } else {
+    if (userType === "customer") {
       try {
-        const res = await register({ username:name, email, pw:password }).unwrap();
+        const res = await register({
+          username: name,
+          email,
+          pw: password,
+        }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate("/home");
       } catch (err) {
@@ -77,7 +91,20 @@ function Auth() {
       } finally {
         setIsLoading(false);
       }
+    }else {
+      const userData = {
+        username: name,
+        email: email,
+        pw: password
+      };
+      // Convert the userData object into a string
+      const userDataString = JSON.stringify(userData);
+      // Save the stringified user data to localStorage
+      localStorage.setItem('userData', userDataString);
+      setIsLoading(false);
+      navigate("/addArtwork");
     }
+  };
   // };
 
   useEffect(() => {
@@ -103,27 +130,73 @@ function Auth() {
           <form onSubmit={submitRegisterHandler}>
             {isLoading && <LoadingSpinner asOverlay />}
             <h1 className="login-signup">Create Account</h1>
-            <div className="social-icons">
-              <Link to="#" className="icon">
-                <i className="fab fa-google-plus-g">G</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-facebook-f">F</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-github">Git</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-linkedin-in">LIn</i>
-              </Link>
+            {/* <label class="radio-button">
+              <input type="radio" name="example-radio" value="option1" />
+              <span className="radio"></span>
+              Option 1
+            </label>
+
+            <label class="radio-button">
+              <input type="radio" name="example-radio" value="option2" />
+              <span className="radio"></span>
+              Option 2
+            </label> */}
+            {/* <div className="radioContainer">
+              <RadioCheckbox
+                userType="Customer"
+                isChecked={true}
+                changeType={() => {
+                  setUserType("Customer");
+                  console.log("adem");
+                }}
+              />
+              <RadioCheckbox
+                userType="Artist"
+                isChecked={false}
+                changeType={() => {
+                  setUserType("Artist");
+                  console.log("adem");
+                }}
+              />
+            </div> */}
+            <div className="radio-button-container">
+              <div className="radio-button">
+                <input
+                  type="radio"
+                  className="radio-button__input"
+                  id="customer"
+                  checked={userType === "customer"}
+                  name="userType"
+                  onChange={() => setUserType("customer")}
+                />
+                <label className="radio-button__label" htmlFor="customer">
+                  <span className="radio-button__custom"></span>
+                  Customer
+                </label>
+              </div>
+              <div className="radio-button">
+                <input
+                  type="radio"
+                  className="radio-button__input"
+                  id="artist"
+                  name="userType"
+                  onChange={() => setUserType("artist")}
+                />
+                <label className="radio-button__label" htmlFor="artist">
+                  <span className="radio-button__custom"></span>
+                  Artist
+                </label>
+              </div>
             </div>
-            <span className="login-signup">
+
+            <span className="use-your-email-for-registration">
               or use your email for registration
             </span>
             <input
               type="text"
               placeholder="Name"
               value={name}
+              className="input_login"
               onChange={(e) => setName(e.target.value)}
             />
             <input
@@ -159,7 +232,9 @@ function Auth() {
                 <i className="fab fa-linkedin-in">LIn</i>
               </Link>
             </div>
-            <span className="login-signup">or use your email password</span>
+            <span className="use-your-email-for-registration">
+              or use your email password
+            </span>
             <input
               type="text"
               placeholder="Email"

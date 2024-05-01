@@ -23,18 +23,14 @@ import Profile from "./profile/Pages/Profile.jsx";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
-import Header from "./components/Header";
 import store from "./store";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import PrivateRoute from "./components/PrivateRoute";
 
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
+import SocialMedia from "./user/pages/SocialMedia.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -119,6 +115,7 @@ const App = () => {
         </Route>
         {/* Add more routes as needed */}
         <Route path="/AddArtwork" element={<NewArtwork />} />
+        <Route path="/socialMedia" element={<SocialMedia />} />
       </Routes>
     );
   }

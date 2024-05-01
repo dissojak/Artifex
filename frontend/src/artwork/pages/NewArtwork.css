@@ -15,7 +15,7 @@
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   padding: 40px;
-  width: 700px; /* Or as per your design */
+  width: 900px; /* Or as per your design */
   margin: 50px auto;
   position: relative;
   border-top: 4px solid #ffffff; /* Green top border as per screenshot */
@@ -41,10 +41,13 @@
   margin-bottom: 15px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
+.newArtworkInputs{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
 select,
 textarea {
   width: 100%;
@@ -67,14 +70,21 @@ textarea {
 }
 
 .art-signin-button {
-  padding: 10px 30px;
-  border-radius: 20px;
+  padding: 10px 25px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   transition: all 0.3s ease;
   width: auto;
   text-align: center;
+}
+
+.arrow{
+  margin-left: 15px;
+}
+.arrow_inverse{
+  margin-right: 15px;
 }
 
 .art-signin-next {
