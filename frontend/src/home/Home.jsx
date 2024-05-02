@@ -5,7 +5,10 @@ import Hackatons from "../hackaton/Pages/Hacktons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../shared/context/auth-context";
 
-
+import Facebook from '../assets/images/facebook.svg';
+import Instagram from '../assets/images/instagram.svg';
+import Twitter from '../assets/images/tracé 2.svg';
+import Youtube from '../assets/images/youtube.svg';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
@@ -39,6 +42,7 @@ const Home = () => {
       <Link to="/">
         <img src={Logo} alt="" className="Logowhite" />
       </Link>
+      
       {auth.isLoggedIn && (
         <>
           <div id="header_right_home">
@@ -67,6 +71,7 @@ const Home = () => {
           groundbreaking solutions take flight. Join us, explore, and shape
             the landscape of tomorrow."
           </p>
+         
           <button
             className="button_home"
             onClick={() =>
@@ -97,10 +102,15 @@ const Home = () => {
                 !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
               }
               alt=""
-              className="arrow"
+              className="arrow" style={{padding: '9px 0',color:'black'}}
             />
           </button>
-
+          <div className="social-links2">
+          <Link to="#">  <img src={Facebook} alt="Facebook" /></Link>
+          <Link to="#">  <img src={Instagram} alt="Instagram" /></Link>
+          <Link to="#">  <img src={Twitter} alt="FaceTwitterbook" /></Link>
+          <Link to="#">  <img src={Youtube} alt="Youtube" /></Link>
+        </div>
           <ul className="icons_home">
             <li>
               {" "}
@@ -116,12 +126,10 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button className="signupBtn" onClick={logoutHandler}>Logout</button>
+          <button className="LogoutBtn" onClick={logoutHandler}>Logout</button>
         </div>
       </div>
-      <div className="article_index">
-        <div id="sahara">sahara</div>
-      </div>
+     
       {auth.isLoggedIn && <Hackatons />}
     </>
   );

@@ -145,20 +145,36 @@ width: 3.5vh;
 height: auto;
 }
 
-.signupBtn {
-  width: 120px;
-  height: 40px;
+.LogoutBtn {
+  width: 150px;
+  height: 50px;
   border-radius: 4px;
+  font-weight: bold;
   border: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 20px;
+  padding-left: 50px;
   gap: 9px;
-  right: -1355px;
+  right:-1355px;
   color: white;
-  background: #7738c7;
+  background: #7E3FFF;
   position: relative;
   cursor: pointer;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+}
+.LogoutBtn:hover {
+  background-color: #9866ff;
+}
+
+.social-links2 {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  bottom: 8vh;
+  left: 8vh;
+} 
+.social-links2 img {
+  width: 30px;
+  height: 30px;
 }
