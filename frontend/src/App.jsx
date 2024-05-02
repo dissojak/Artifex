@@ -7,7 +7,7 @@ import {
   //  Switch,
 } from "react-router-dom";
 
-import Home from "./home/Home.jsx";
+import Home from "./home/HomePage.jsx";
 import Ban from "./shared/components/Pages/Ban";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";

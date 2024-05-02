@@ -1,15 +1,22 @@
-import React from "react";
-import "./style.css";
+import React, { useContext } from "react";
 
-import FacebookIcon from "../assets/images/Facebook.svg";
-import TwitterIcon from "../assets/images/Tracé 2.svg";
-import InstagramIcon from "../assets/images/Instagram.svg";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import "./Home.css";
+import Hackatons from "../hackaton/Pages/Hacktons";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../shared/context/auth-context";
+
+
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import Logo from '../assets/images/Logo_Artifex.svg';
 
 const Home = () => {
+  const auth = useContext(AuthContext);
+
+  const { userInfo } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,66 +25,104 @@ const Home = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate("/login");
+      navigate('/login');
     } catch (err) {
       console.error(err);
     }
   };
 
+
+  //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
+
   return (
     <>
-    <div className="hero-section">
-      <div className="hero-overlay">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="creative-text" style={{ color: "#86e1ff" }}>
-              WHERE CREATIVITY
-            </span>{" "}
-            UNLEASHES POSSIBILITIES
+      <Link to="/">
+        <img src={Logo} alt="" className="Logowhite" />
+      </Link>
+      {auth.isLoggedIn && (
+        <>
+          <div id="header_right_home">
+            <button className="button_header_right_home">
+              {" "}
+              <img className="pol" src="elements/Polygone 3.svg" alt="" />
+            </button>
+            <h1 className="username">{auth.userName}</h1>
+          </div>
+        </>
+      )}
+      {/* // this is just for updating git , deleteing backend-auth */}
+      <div id="home1">
+        <div id={auth.isAdmin ? "home2-admin" : "home2"}>
+          <h1
+            className="where"
+            style={!auth.isAdmin ? { color: "#5BD6FF" } : { color: "#5BD6FF" }}
+          >
+             WHERE CREATIVITY{" "}
           </h1>
-          <p className="hero-subtitle">
+          <h1 className="meets">UNLEASHES POSSIBILITIES</h1>
+          <p className="p1">
             "Embark on a journey of innovation. At Artifex, we cultivate a
             community where creativity thrives, collaboration flourishes, and
-            groundbreaking solutions take flight. Join us, explore, and shape
+          <br/>
+          groundbreaking solutions take flight. Join us, explore, and shape
             the landscape of tomorrow."
           </p>
-          <div className="hero-social-links">
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <img src={FacebookIcon} className="icon-img" alt="Facebook" />
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <img src={InstagramIcon} className="icon-img" alt="Instagram" />
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <img src={TwitterIcon} className="icon-img" alt="Twitter" />
-            </a>
-          </div>
+          <button
+            className="button_home"
+            onClick={() =>
+              (window.location.href = "mailto:StoonProduction@gmail.com")
+            }
+          >
+            <h2
+              className="button_home_1"
+              style={
+                !auth.isAdmin ? { color: "black" } : { color: "#0185B7" }
+              }
+            >
+              For Hosting
+            </h2>
+            <h2
+              className="button_home_2"
+              style={
+                !auth.isAdmin
+                  ? { color: "#ffff", backgroundColor: "#5BD6FF" }
+                  : { color: "#ffff", backgroundColor: "#5BD6FF" }
+              }
+            >
+              Contact us
+            </h2>
+            {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
+            <img
+              src={
+                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
+              }
+              alt=""
+              className="arrow"
+            />
+          </button>
 
-          <div className="hero-cta-buttons">
-            <button className="btn faq-button" style={{ color: "#86e1ff" }}>
-              FAQ Questions
-            </button>
-            <button className="btn contact-button">
-              Contact us     
-              <svg
-                className="button-arrow"
-                xmlns="http://www.w3.org/2000/svg"
-                width="41.618"
-                height="11.687"
-                viewBox="0 0 41.618 11.687"
-              >
-                <path
-                  d="M-5.2,0-6.264,1.062l4.022,4.022H-40.975V6.6H-2.242l-4.022,4.022L-5.2,11.687.642,5.844Z"
-                  transform="translate(40.975)"
-                  fill="#fff"
-                />
-              </svg>
-            </button>
-          </div>
+          <ul className="icons_home">
+            <li>
+              {" "}
+              <img src="../assets/images/Logo_Artifex.svg" alt="" />
+            </li>
+
+            <li>
+              {" "}
+              <img src="elements/home/twiiter.svg" alt="" />
+            </li>
+            <li>
+              {" "}
+              <img src="elements/home/Facebook.svg" alt="" />
+            </li>
+          </ul>
+          <button className="signupBtn" onClick={logoutHandler}>Logout</button>
         </div>
       </div>
-    </div>
-    <button className="signupBtn" onClick={logoutHandler}></button>
+      <div className="article_index">
+        <div id="sahara">sahara</div>
+      </div>
+      {auth.isLoggedIn && <Hackatons />}
     </>
   );
 };
