@@ -1,4 +1,4 @@
-#homearts {
+#Artists-section {
     width: 99.55vw;
     height: 130vh;
     background-image: url("../assets/images/line2.svg");
@@ -8,7 +8,7 @@
     
     
   }
-  .auth-section2 {
+  .Artists-section2 {
     text-align: left;
     padding-left: 130px;
     padding-top: 95px;

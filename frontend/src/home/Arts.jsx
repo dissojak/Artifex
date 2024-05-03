@@ -19,7 +19,7 @@ const Arts = () => {
     <h1 style={{fontWeight:'bold',fontSize:'40px'}}>Art Showcase</h1>
     <p>Discover Exquisite Artworks from Talented Artist</p>
   </div>
-<div className="gallery-container">
+<div className="gallery-container2">
         <div  className="cardd">
           <img src={Art} alt="" className="card-image" />
           <div className="card-body">

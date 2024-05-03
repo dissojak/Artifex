@@ -1,0 +1,10 @@
+
+
+.MuseumPage-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 130vh;  
+    background-color: white;
+  }
+  

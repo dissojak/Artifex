@@ -31,6 +31,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
 import Artists from "./ArtistPage/ArtistPage.jsx";
+import Museums from "./MuseumPage/MuseumPage.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
 
 const App = () => {
@@ -106,6 +107,7 @@ const App = () => {
         <Route path="" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/artists" element={<Artists />} />
+          <Route path="/museums" element={<Museums />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}
