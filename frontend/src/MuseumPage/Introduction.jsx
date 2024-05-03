@@ -39,7 +39,9 @@ const Introduction = () => {
 
   return (
     <>
-     
+      <Link to="/">
+        <img src={Logo} alt="" className="Logowhite" />
+      </Link>
       
       {auth.isLoggedIn && (
         <>

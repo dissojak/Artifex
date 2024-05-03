@@ -36,11 +36,12 @@ const slider = () => {
   }, []);
 
   return (
+    <div id="slidercont">
     <div className="slider-container">
       <div className="slider-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
         {slides.map((slide, index) => (
           <div className="slide" key={index}>
-            <img src={slide} alt={`Slide ${index + 1}`} />
+            <img src={slide}  alt={`Slide ${index + 1}`} />
           </div>
         ))}
       </div>
@@ -54,6 +55,7 @@ const slider = () => {
       <button onClick={prevSlide} className="slide-btn prev-btn">Prev</button>
       <button onClick={nextSlide} className="slide-btn next-btn">Next</button>
         */}
+    </div>
     </div>
   );
 };

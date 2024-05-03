@@ -10,7 +10,7 @@ const Museums = () => {
   
     <div id="museum-section">
     <div className="museum-section2">
-        <p style={{color:'#FD006F',fontWeight:'bold'}}>Discover</p>
+        <p style={{color:'#5BD6FF',fontWeight:'bold'}}>Discover</p>
     <h1 style={{fontWeight:'bold',fontSize:'40px'}}>Check Out Our Museums</h1>
     <p>Get to know the special pieces from our artists in Artifex.</p>
   </div>

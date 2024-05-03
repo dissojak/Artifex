@@ -47,6 +47,9 @@
   .button-container .sign-up2 {
     background-color: #E1D2FF;
     font-weight: bold;
+    height: 52px;
+    /* text-align: center; */
+    padding-top: 12px;
     color: rgb(0, 0, 0);
     border: 4px solid rgb(0, 0, 0);  /* Red color for the sign-up button */
   }

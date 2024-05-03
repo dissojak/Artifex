@@ -1,7 +1,12 @@
+#slidercont {
+    width: 99.55vw;
+    height: 100vh;
+  }
 .slider-container {
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 100vh;
   }
   
   .slider-wrapper {
@@ -20,6 +25,8 @@
   .slide img {
     width: 100%;
     display: block;
+    position: relative;
+    top: 168px;
   }
   
   .slide-btn {
