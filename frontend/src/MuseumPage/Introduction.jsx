@@ -39,9 +39,7 @@ const Introduction = () => {
 
   return (
     <>
-      <Link to="/">
-        <img src={Logo} alt="" className="Logowhite" />
-      </Link>
+     
       
       {auth.isLoggedIn && (
         <>
@@ -99,7 +97,7 @@ const Introduction = () => {
                 !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
               }
               alt=""
-              className="arrow" style={{padding: '9px 0',color:'black'}}
+              className="arrow" style={{padding: '9px 0',color:'white'}}
             />
           </button>
           <div className="social-links2">

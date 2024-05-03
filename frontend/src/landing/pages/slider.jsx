@@ -47,6 +47,8 @@ const slider = () => {
       <div className="info">
         <h2 style={{color:'#7E3FFF',fontSize:'50px'}}>{slideTexts[currentSlide]}</h2>
         <p>Artifex is a vibrant artist marketplace where creativity thrives and community connects.</p>
+        <button className="signup-button-slider">SIGN UP</button>
+      <button className="login-button-slider">LOGIN</button>
       </div>
       {/*
       <button onClick={prevSlide} className="slide-btn prev-btn">Prev</button>

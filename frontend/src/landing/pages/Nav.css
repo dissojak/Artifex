@@ -73,7 +73,8 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
   }
   .signupBtn1:hover {
-    background-color: #e6e6e6;
+    background-color:#FE0081 ;
+    color: white;
   }
   
   
