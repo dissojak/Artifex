@@ -12,23 +12,16 @@
     width: 71vw;
     margin-left: 30vh;
     height: 100vh; 
-    background-color: black;
+    background-color: white;
     padding-left: 30vh;
   }
   .Buttons-section3 {
     text-align: left;
-    padding-left: 90px;
+    padding-left: 100px;
     padding-top: 95px;
     padding-bottom: 40px;
   }
-  .Profile-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px; /* Adjust space between cards */
-    padding: 109px;
-    padding-top: 24px;
-  }
+
 
 
 
@@ -107,3 +100,9 @@
   
 
   
+
+
+
+
+
+

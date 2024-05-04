@@ -1,0 +1,45 @@
+
+
+.orders-container {
+    width: 125%;
+    overflow-x: auto;
+    margin-left: -220px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 800px;
+  }
+  
+  th, td {
+    padding: 12px;
+    /*border: 1px solid #ccc;*/
+  }
+  
+  th {
+    background-color: #F8F9FB;
+    color: #A6A7A8;
+    border: 1px solid #707070;
+  }
+  
+  tr:nth-child(even) {
+    background-color: white;
+  }
+ 
+  .status.pending {
+    color: #FFBF09;
+    background-color:#FFF7E6 ;
+  }
+  
+  .status.completed {
+    color: #55BF9A;
+    background-color: #E9F9F2;
+  }
+  
+  .status.rejected {
+    color: #E36281;
+    background-color:#FDF4F6 ;
+  }
+  
