@@ -13,22 +13,22 @@ const ArtistCardItem = (props) => {
   const star4 = `${props.id}star4`;
   const star5 = `${props.id}star5`;
 
-  const socialMediaCSS=5.5;
+  const socialMediaCSS = 5.5;
   let instagramChecker, twitterChecker, linkedinChecker;
-  if (props.instagram) instagramChecker = 1;
-  else instagramChecker = 0;
-  if (props.twitter) twitterChecker = 1;
-  else twitterChecker = 0;
-  if (props.linkedin) linkedinChecker = 1;
-  else linkedinChecker = 0;
+  instagramChecker = props.instagram ? 1 : 0;
+  twitterChecker = props.twitter ? 1 : 0;
+  linkedinChecker = props.linkedin ? 1 : 0;
 
-  const socialMedia =
-    socialMediaCSS -
-    instagramChecker -
-    twitterChecker -
-    linkedinChecker +
-    "rem";
-  console.log("socialMedia:", socialMedia);
+  const totalSocialMedia = instagramChecker + twitterChecker + linkedinChecker;
+  let socialMedia;
+
+  if (totalSocialMedia === 1) {
+    socialMedia = socialMediaCSS + "rem";
+  } else if (totalSocialMedia === 0) {
+    socialMedia = "11.5rem";
+  } else {
+    socialMedia = `${socialMediaCSS - totalSocialMedia}rem`;
+  }
 
   const auth = useContext(AuthContext);
   // eslint-disable-next-line
@@ -95,7 +95,9 @@ const ArtistCardItem = (props) => {
           </div>
           <div className="info9">
             <div>
-              <p className="name9">{props.username}</p>
+              <Link to={`/artist/${props.username}`} className="name9">
+                {props.username}
+              </Link>
               <p className="function9">{props.category}</p>
             </div>
             <div className="cont-rating9">
@@ -242,10 +244,12 @@ const ArtistCardItem = (props) => {
                 </svg>
               </Link>
             )}
-            <Link to={`https://wa.me/+216${props.phoneNumber}`}
+            <Link
+              to={`https://wa.me/+216${props.phoneNumber}`}
               className="socialContainer9 containerFour9"
               href="#"
               style={{ width: socialMedia }}
+              // style={{ width: socialMedia }}
             >
               <svg
                 viewBox="0 0 16 16"

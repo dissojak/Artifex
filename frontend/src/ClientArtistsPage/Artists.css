@@ -71,8 +71,13 @@
     line-height: 1.75rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 1);
+    text-decoration: none;
   }
-  
+  .name9:hover{
+    cursor: pointer;
+    color: #9866FF;
+
+  }
   .function9 {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -115,7 +120,7 @@
   
   .state-value9 {
     font-weight: 700;
-    color: rgb(118, 36, 194);
+    color: #7E3FFF;
   }
   
   .request9 {
@@ -137,7 +142,7 @@
   .bookmarkBtn9 {
     max-width: 7.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #7738c7;
+    border: 1px solid #7E3FFF;
     display: flex;
     align-items: center;
     padding-left: 4px;
@@ -205,10 +210,9 @@
   }
   /* for all social containers*/
   .socialContainer9 {
-    /* width: 2.5rem; */
     height: 2.5rem;
     border-radius: 0.25rem;
-    background-color: #7738c7;
+    background-color: #9866FF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +292,7 @@
   
   .rating9 input:checked ~ label,
   .rating9 label:checked ~ label {
-    color: #6f00ff;
+    color: #7E3FFF;
     transition: color 0.3s;
   }
 
