@@ -27,11 +27,8 @@ const ArtistCardItem = (props) => {
   } else if (totalSocialMedia === 0) {
     socialMedia = "11.5rem";
   } else {
-    // Calculate the width based on how many are available
     socialMedia = `${socialMediaCSS - totalSocialMedia}rem`;
   }
-
-  console.log("socialMedia:", socialMedia);
 
   const auth = useContext(AuthContext);
   // eslint-disable-next-line
