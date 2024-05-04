@@ -23,4 +23,6 @@ router.put(
 );
 router.patch("/socialMedia", MW.protect, AC.socialMedia);
 
+router.get("/artists", MW.protect, AC.getArtists);
+
 module.exports = router;

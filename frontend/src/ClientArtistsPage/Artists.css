@@ -3,10 +3,8 @@
     height: 130vh;
     background-image: url("../assets/images/line2.svg");
     background-repeat: no-repeat;
-    background-size: 220vh;
+    /* background-size: 250vh ; */
     background-position: -10vh 10vh;
-    
-    
   }
   .Artists-section2 {
     text-align: left;

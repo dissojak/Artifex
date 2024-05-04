@@ -30,7 +30,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
-import Artists from "./ArtistPage/ArtistPage.jsx";
+import Artists from "./ClientArtistsPage/ArtistPage.jsx";
 import Museums from "./MuseumPage/MuseumPage.jsx";
 import UserProfile from "./UserProfile/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
