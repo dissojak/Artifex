@@ -66,8 +66,8 @@ const ArtistCardItem = (props) => {
                 width: "7.5rem",
                 borderRadius: "0.5rem",
               }}
-              src={Adem}
-              alt="tarek"
+              src={props.image}
+              alt="profile picture"
             />
           </div>
           <div className="info9">
