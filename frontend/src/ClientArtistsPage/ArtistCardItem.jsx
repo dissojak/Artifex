@@ -88,7 +88,7 @@ const ArtistCardItem = (props) => {
                 <input value="1" name="rating" id="star1" type="radio" />
                 <label htmlFor="star1"></label>
               </div>
-              <p className="function9">4.2/5</p>
+              <p className="function9">{props.rating}/5</p>
             </div>
             <div className="stats9">
               <div className="flex flex-col">

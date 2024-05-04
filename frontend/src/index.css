@@ -119,12 +119,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #C99C6E;
+  background-color: #9866FF;
   /* border-radius: 50px; */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #D4BFFF;
 }
 
 a:-webkit-any-link {
