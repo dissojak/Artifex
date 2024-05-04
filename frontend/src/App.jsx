@@ -32,6 +32,7 @@ import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
 import Artists from "./ArtistPage/ArtistPage.jsx";
 import Museums from "./MuseumPage/MuseumPage.jsx";
+import UserProfile from "./UserProfile/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
 
 const App = () => {
@@ -108,6 +109,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/museums" element={<Museums />} />
+          <Route path="/userprofile" element={<UserProfile />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

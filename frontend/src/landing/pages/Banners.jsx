@@ -26,8 +26,8 @@ Explore diverse portfolios and engage directly with creators.
 Your artistic journey starts here."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
-            <button className="signup-button-back">SIGN UP</button>
-      <button className="login-button-back">LOGIN</button>
+            <button className="signup-button-back">LEARN MORE</button>
+      <button className="login-button-back">SIGN UP</button>
       </div>
     </div>
   </div>
@@ -48,8 +48,8 @@ Your artistic journey starts here."
     "At Artifex, we prioritize security and seamless payments. Our encrypted platform ensures your financial information is safe, allowing you to buy and sell art with confidence."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
-            <button className="signup-button-back2">SIGN UP</button>
-      <button className="login-button-back2">LOGIN</button>
+            <button className="signup-button-back2">LEARN MORE</button>
+      <button className="login-button-back2">SIGN UP</button>
       </div>
     </div>
   </div>
@@ -73,8 +73,8 @@ Your artistic journey starts here."
       "Artifex unveils exclusive artworks at museum events, offering patrons the chance to acquire unique pieces not found elsewhere."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
-            <button className="signup-button-back">SIGN UP</button>
-      <button className="login-button-back">LOGIN</button>
+            <button className="signup-button-back">LEARN MORE</button>
+      <button className="login-button-back">SIGN UP</button>
       </div>
     </div>
   </div>
