@@ -23,7 +23,7 @@ const ArtistCardItem = (props) => {
   let socialMedia;
 
   if (totalSocialMedia === 1) {
-    socialMedia = socialMediaCSS+"rem";
+    socialMedia = socialMediaCSS + "rem";
   } else if (totalSocialMedia === 0) {
     socialMedia = "11.5rem";
   } else {
@@ -95,7 +95,9 @@ const ArtistCardItem = (props) => {
           </div>
           <div className="info9">
             <div>
-              <p className="name9">{props.username}</p>
+              <Link to={`/artist/${props.username}`} className="name9">
+                {props.username}
+              </Link>
               <p className="function9">{props.category}</p>
             </div>
             <div className="cont-rating9">
