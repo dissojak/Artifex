@@ -117,7 +117,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="" element={<PrivateRoute />}>
-          <Route path="/profile" element={<ProfileScreen />} />
+      
         </Route>
         {/* Add more routes as needed */}
         <Route path="/AddArtwork" element={<NewArtwork />} />
