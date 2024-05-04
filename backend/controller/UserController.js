@@ -95,6 +95,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   if (userType === "artist") {
     userData = {
       ...userData,
+      numberOfFollowers:0,
       phone_number,
       instagram: req.body.instagram,
       twitter: req.body.twitter,

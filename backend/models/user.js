@@ -33,10 +33,12 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "client", "artist"], // User type can only be one of these values
       default: "client", // Default user type is 'client'
     },
-    // Badge field
-    badge: {
-      type: String, // Badge field is optional (its SVG of the badge depends on the role "admin" or plan)
-    },
+
+    // // Badge field
+    // badge: {
+    //   type: String, // Badge field is optional (its SVG of the badge depends on the role "admin" or plan)
+    // },
+
     // Profile image field
     profileImage: {
       type: String,
@@ -74,11 +76,13 @@ const userSchema = new mongoose.Schema(
         ref: "Artwork", // Assuming 'Artwork' is the name of the related model for items in the shopping cart
       },
     ],
-    // Artist Plan ID referencing the Plan model
-    CurrentPlan_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Plan", // Assuming 'Plan' is the name of the related model
-    },
+
+    // // Artist Plan ID referencing the Plan model
+    // CurrentPlan_id: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Plan", // Assuming 'Plan' is the name of the related model
+    // },
+
     //for artist order
     normalPrice: {
       type: Number,
@@ -91,6 +95,13 @@ const userSchema = new mongoose.Schema(
     orderStatus: {
       type: Boolean,
       default: false,
+    },
+    numberOfFollowers: {
+      type: Number,
+    },
+    idCategory: {
+      type: mongoose.Types.ObjectId,
+      ref: "Category", 
     },
     // Creation timestamp
     createdAt: {

@@ -3,19 +3,27 @@ const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/category");
 
-
-exports.getCategories = asyncHandler(async (req, res,next) => { 
+exports.getCategories = asyncHandler(async (req, res, next) => {
   let category;
-  try{
-  category = await Category.find();
-  }catch(err){
+  try {
+    category = await Category.find();
+  } catch (err) {
     return next(new HttpError("Categories not found", 404));
   }
   res.json({
     msg: "Category retrived successfully",
     category,
   });
-})
+});
+
+exports.getCategoryName = async (id) => {
+  let category;
+  category = await Category.findById(id);
+  if (!category) {
+    return "unfound";
+  }
+  return category.name;
+};
 
 /**
  * @desc    Add new category
@@ -58,25 +66,28 @@ exports.addCategory = asyncHandler(async (req, res, next) => {
  * @access Super Admin
  */
 exports.getCategoryNameById = async (categoryId) => {
-    try {
-      const category = await Category.findById(categoryId);
-  
-      if (!category) {
-        throw new HttpError("Category not found", 404);
-      }
-      return category.name;
-    } catch (error) {
-      throw new HttpError(error.message || "Failed to retrieve category name", 500);
-    }
-  };
+  try {
+    const category = await Category.findById(categoryId);
 
-  exports.isCategoryExist = async (id) => {
-    try {
-      const category = await Category.findById( id );
-      return !!category; // Returns true if category exists, false otherwise
-    } catch (error) {
-      // Handle error if any
-      console.error("Error checking category existence:", error);
-      throw new Error("Failed to check category existence");
+    if (!category) {
+      throw new HttpError("Category not found", 404);
     }
-  };
+    return category.name;
+  } catch (error) {
+    throw new HttpError(
+      error.message || "Failed to retrieve category name",
+      500
+    );
+  }
+};
+
+exports.isCategoryExist = async (id) => {
+  try {
+    const category = await Category.findById(id);
+    return !!category; // Returns true if category exists, false otherwise
+  } catch (error) {
+    // Handle error if any
+    console.error("Error checking category existence:", error);
+    throw new Error("Failed to check category existence");
+  }
+};

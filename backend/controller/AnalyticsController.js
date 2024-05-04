@@ -35,6 +35,15 @@ const artistAnalytics = async (artistId) => {
   return analytics;
 };
 
+exports.artistRating = async (artistId) => {
+  const analytics = await Analytics.findOne({ artistId });
+  if (!analytics) {
+    return 0;
+  }
+  const rating= analytics.ratingAnalytics/analytics.totaleReviews;
+  return rating;
+};
+
 exports.calculateScore = async (id) => {
   // on the top ( artistAnalytics )
   const analytics = await artistAnalytics(id); // JSON object
