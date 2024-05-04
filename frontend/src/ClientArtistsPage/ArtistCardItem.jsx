@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useHttp } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import Adem from "../assets/images/Adem.jpg";
 import "./Artists.css";
 
 const ArtistCardItem = (props) => {
@@ -66,7 +65,7 @@ const ArtistCardItem = (props) => {
                 width: "7.5rem",
                 borderRadius: "0.5rem",
               }}
-              src={props.image}
+              src={props.image||"elements/default_profile_img.jpg"}
               alt="profile picture"
             />
           </div>
@@ -93,7 +92,7 @@ const ArtistCardItem = (props) => {
             </div>
             <div className="stats9">
               <div className="flex flex-col">
-                Articles
+                Artworks
                 <span className="state-value9"> 35 </span>
               </div>
               <div className="flex">
