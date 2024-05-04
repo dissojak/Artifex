@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Auth_new.css";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { AuthContext } from "../../shared/context/auth-context";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
 
 import { toast } from "react-toastify";
@@ -12,7 +12,14 @@ import {
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
 
+
+
+
 function Auth() {
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const signup = queryParams.get('signup') === 'true';
+  // console.log(signup||"there is no signup");
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   // const [isLoading, setIsLoading] = useState(true);
@@ -49,8 +56,7 @@ function Auth() {
     setIsLoading(true);
     try {
       const res = await login({
-        username: email,
-        email,
+        login: email,
         pw: password,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
@@ -91,16 +97,17 @@ function Auth() {
       } finally {
         setIsLoading(false);
       }
-    }else {
+    } else {
       const userData = {
         username: name,
         email: email,
-        pw: password
+        userType: userType,
+        pw: password,
       };
       // Convert the userData object into a string
       const userDataString = JSON.stringify(userData);
       // Save the stringified user data to localStorage
-      localStorage.setItem('userData', userDataString);
+      localStorage.setItem("userData", userDataString);
       setIsLoading(false);
       navigate("/addArtwork");
     }
@@ -125,40 +132,15 @@ function Auth() {
 
   return (
     <>
+      <div
+        className="auth-background"
+        style={{ backgroundImage: `url(${"./elements/background_shape_Auth.svg"})` }}
+      ></div>
       <div className="container" id="container">
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>
             {isLoading && <LoadingSpinner asOverlay />}
             <h1 className="login-signup">Create Account</h1>
-            {/* <label class="radio-button">
-              <input type="radio" name="example-radio" value="option1" />
-              <span className="radio"></span>
-              Option 1
-            </label>
-
-            <label class="radio-button">
-              <input type="radio" name="example-radio" value="option2" />
-              <span className="radio"></span>
-              Option 2
-            </label> */}
-            {/* <div className="radioContainer">
-              <RadioCheckbox
-                userType="Customer"
-                isChecked={true}
-                changeType={() => {
-                  setUserType("Customer");
-                  console.log("adem");
-                }}
-              />
-              <RadioCheckbox
-                userType="Artist"
-                isChecked={false}
-                changeType={() => {
-                  setUserType("Artist");
-                  console.log("adem");
-                }}
-              />
-            </div> */}
             <div className="radio-button-container">
               <div className="radio-button">
                 <input
@@ -237,14 +219,16 @@ function Auth() {
             </span>
             <input
               type="text"
-              placeholder="Email"
+              placeholder="Email or Username"
               value={email}
+              name="email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
+              name="password"
               onChange={(e) => setPassword(e.target.value)}
             />
             <Link to="#">Forget Your Password?</Link>

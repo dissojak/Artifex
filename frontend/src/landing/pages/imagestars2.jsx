@@ -33,7 +33,7 @@ function imagestars2() {
         <h2>Discover Unique Artwork Online</h2>
         <p>Explore curated collections and find the perfect piece for your home or office. Our marketplace connects you with talented artists from around the world.</p>
        
-        <div class="containerr">
+        <div className="containerr">
      <div className="row">
         <div className="column">
           <h2 className="section-title">Featured Artworks</h2>

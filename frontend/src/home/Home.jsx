@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 
 import "./Home.css";
-import Hackatons from "../hackaton/Pages/Hacktons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../shared/context/auth-context";
 
-import Facebook from '../assets/images/facebook.svg';
-import Instagram from '../assets/images/instagram.svg';
-import Twitter from '../assets/images/tracé 2.svg';
+import Facebook from '../assets/images/Facebook.svg';
+import Instagram from '../assets/images/Instagram.svg';
+import Twitter from '../assets/images/Tracé 2.svg';
 import Youtube from '../assets/images/youtube.svg';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -130,7 +129,6 @@ const Home = () => {
         </div>
       </div>
      
-      {auth.isLoggedIn && <Hackatons />}
     </>
   );
 };

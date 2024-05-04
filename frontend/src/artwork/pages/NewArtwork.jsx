@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./NewArtwork.css"; // Ensure this path is correct for your CSS file
-import backgroundImage from "../../assets/images/Signupbackground2.png";
 import { useHttp } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import { useNavigate } from "react-router-dom";
@@ -9,20 +8,8 @@ const NewArtwork = () => {
   const [categories, setCategories] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttp();
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
 
-  useEffect(() => {
-    const req = async () => {
-      try {
-        const responseData = await sendRequest(
-          "http://localhost:5000/api/category/getCategories"
-        );
-        setCategories(responseData.category);
-      } catch (e) {}
-    };
-    req();
-  }, [sendRequest]);
-
-  console.log(categories);
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -50,6 +37,18 @@ const NewArtwork = () => {
     width: "",
     year: "",
   });
+
+  useEffect(() => {
+    const req = async () => {
+      try {
+        const responseData = await sendRequest(
+          "http://localhost:5000/api/category/getCategories"
+        );
+        setCategories(responseData.category);
+      } catch (e) {}
+    };
+    req();
+  }, [sendRequest]);
 
   useEffect(() => {
     const handleUnload = (event) => {
@@ -82,11 +81,6 @@ const NewArtwork = () => {
     });
   };
 
-  // const saveData = () => {
-  //   localStorage.setItem("newArtworkData", JSON.stringify(formData));
-  // };
-  const [step, setStep] = useState(1);
-
   const saveData = () => {
     if (step === 1) {
       localStorage.setItem("newArtworkData1", JSON.stringify(formData));
@@ -96,12 +90,25 @@ const NewArtwork = () => {
       localStorage.setItem("newArtworkData3", JSON.stringify(formData3));
     }
   };
+
   const nextStep = () => {
     saveData();
     if (step < 3) {
       setStep(step + 1);
     }
   };
+
+  const prevStep = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
+
+  const sendDataHandler = () => {
+    saveData();
+    navigate("/socialMedia");
+  };
+
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -115,20 +122,18 @@ const NewArtwork = () => {
     }
   };
 
-  const prevStep = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
-  };
 
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && categories && (
-        <div className="art-form-background-wrapper">
+        // <div className="art-form-background-wrapper">
+        <div>
           <div
             className="art-form-background"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            style={{
+              backgroundImage: `url(${"/elements/background_shape_Auth.svg"})`,
+            }}
           ></div>
           <div className="art-signin-form-container">
             <div className="art-signin-header">Add Artwork</div>
@@ -142,6 +147,7 @@ const NewArtwork = () => {
                   type="text"
                   placeholder="Artwork Title"
                   name="title"
+                  // value={JSON.parse(localStorage.getItem("newArtworkData1")).title||formData.title}
                   value={formData.title}
                   onChange={handleChange}
                 />
@@ -335,16 +341,23 @@ const NewArtwork = () => {
                   placeholder="Artwork Title"
                   name="title"
                   value={formData3.title}
-                  onClick={handleChange3}
+                  onChange={handleChange3}
                 />
                 <p style={{ color: "black" }}>Price</p>
                 <input
                   type="text"
                   className="newArtworkInputs"
                   placeholder="Price"
+                  name="price"
+                  value={formData3.price}
+                  onChange={handleChange3}
                 />
                 <p style={{ color: "black" }}>Categorie</p>
-                <select>
+                <select
+                  name="category"
+                  value={formData3.category}
+                  onChange={handleChange3}
+                >
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
@@ -352,7 +365,12 @@ const NewArtwork = () => {
                   ))}
                 </select>
                 <p style={{ color: "black" }}>Description</p>
-                <textarea placeholder="Describe the artwork"></textarea>
+                <textarea
+                  name="description"
+                  placeholder="Describe the artwork"
+                  value={formData3.description}
+                  onChange={handleChange3}
+                ></textarea>
                 <label className="image-uploader">
                   <input
                     type="file"
@@ -378,12 +396,7 @@ const NewArtwork = () => {
                   </button>
                   <button
                     className="art-signin-button art-signin-create"
-                    onClick={
-                      // sendDataHandler();
-                      () => {
-                        navigate("/socialMedia");
-                      }
-                    }
+                    onClick={sendDataHandler}
                   >
                     Create Your Account 3/3
                     <img

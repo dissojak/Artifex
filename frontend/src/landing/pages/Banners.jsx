@@ -9,9 +9,9 @@ const Banners = () => {
   return (
     <div className="bannerSection">
       <div className="banner">
-      <div class="cardtest">
-  <div class="card-inner">
-    <div class="card-front">
+      <div className="cardtest">
+  <div className="card-inner">
+    <div className="card-front">
     <div className="responsive-banner">
             <img src={icon1}  className="icon-img" alt=''/>
             <p className="special-paragraph">
@@ -19,7 +19,7 @@ const Banners = () => {
             </p>
           </div>
     </div>
-    <div class="card-back">
+    <div className="card-back">
     <p className="special-paragraphback">
     "Discover and connect with talented artists on Artifex. 
 Explore diverse portfolios and engage directly with creators.
@@ -33,9 +33,9 @@ Your artistic journey starts here."
   </div>
 </div>
 
-<div class="cardtest">
-  <div class="card-inner">
-    <div class="card-front2">
+<div className="cardtest">
+  <div className="card-inner">
+    <div className="card-front2">
     <div className="responsive-banner">
             <img src={icon2}  className="icon-img" alt=''/>
             <p className="special-paragraph">
@@ -43,7 +43,7 @@ Your artistic journey starts here."
             </p>
           </div>
     </div>
-    <div class="card-back2">
+    <div className="card-back2">
     <p className="special-paragraphback">
     "At Artifex, we prioritize security and seamless payments. Our encrypted platform ensures your financial information is safe, allowing you to buy and sell art with confidence."
             </p>
@@ -55,9 +55,9 @@ Your artistic journey starts here."
   </div>
 </div>
 
-<div class="cardtest">
-  <div class="card-inner">
-    <div class="card-front">
+<div className="cardtest">
+  <div className="card-inner">
+    <div className="card-front">
     <div className="responsive-banner">
             <img src={icon3} className="icon-img" alt=''/>
             <p className="special-paragraph">
@@ -67,7 +67,7 @@ Your artistic journey starts here."
       
 
     </div>
-    <div class="card-back">
+    <div className="card-back">
       
       <p className="special-paragraphback">
       "Artifex unveils exclusive artworks at museum events, offering patrons the chance to acquire unique pieces not found elsewhere."

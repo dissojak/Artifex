@@ -1,10 +1,18 @@
+.landing-container > * {
+  margin-bottom: 100px; /* Adjust the space as needed */
+}
 
- /* Landing.css */
- .landing-container {
+/* Landing.css */
+.landing-container {
   display: flex;
   flex-direction: column;
-
   width: 100%;
-  margin-top: 780vh; 
+  padding-top: 1200px;
+  margin-top: 5546px;
+  margin-top: 780vh;
   background-color: white;
+}
+
+.landing-container > *:last-child {
+  margin-bottom: 0;
 }
