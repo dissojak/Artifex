@@ -4,21 +4,27 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  /* height: 477px; */
+  height:67.5vh;
+  margin-top: 14.3rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1; /* Ensure it stays behind the form container */
+  z-index: -1; 
 }
+
 .art-signin-form-container {
   transform: scale(0.65);
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   padding: 40px;
-  width: 900px; /* Or as per your design */
-  margin: 50px auto;
-  position: relative;
-  border-top: 4px solid #ffffff; /* Green top border as per screenshot */
+  width: 77vw;
+  height:min-content;
+  position:fixed;
+  top: -18vh; 
+  left: 11.5vw;
 }
 
 .art-signin-header {

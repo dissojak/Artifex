@@ -9,9 +9,9 @@ const ServicesSection = () => {
       <h2>For more info</h2>
       <div className="services-container">
       
-        <a class="card human-resources" href="#">
-     <div class="overlay"></div>
-  <div class="circle">
+        <a className="card human-resources" href="#">
+     <div className="overlay"></div>
+  <div className="circle">
   <svg version="1.1" viewBox="0 0 66 77" height="77px" width="66px">
     <g fillRule="evenodd" fill="none" strokeWidth="1" stroke="none">
         <path fill="#AFCEFF" d="M4.28872448,42.7464904 C4.28872448,39.3309774 5.4159227,33.7621426 6.40576697,30.4912557 C10.5920767,32.1098991 14.3021264,35.1207513 18.69596,35.1207513 C30.993618,35.1207513 42.5761396,28.7162991 49.9992251,17.9014817 C56.8027248,23.8881252 60.8188351,33.0463165 60.8188351,42.7464904 C60.8188351,60.817447 47.6104607,76.6693426 32.5537798,76.6693426 C17.4970989,76.6693426 4.28872448,60.817447 4.28872448,42.7464904" />
