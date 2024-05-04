@@ -1,7 +1,12 @@
+#slider2cont {
+    width: 99.55vw;
+    height: 100vh;
+  }
 .slider-container {
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 100vh;
   }
   
   .slider-wrapper {
@@ -43,7 +48,7 @@
   }
   .info2 {
     position: absolute;
-    bottom: 195px;
+    bottom: 310px;
     width: 803px;
     left: 750px;
     color: black;

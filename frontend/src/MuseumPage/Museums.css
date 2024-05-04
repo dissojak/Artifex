@@ -1,0 +1,24 @@
+#museum-section {
+    width: 99.55vw;
+    height: 130vh;
+    background-image: url("../assets/images/linemuseum.svg");
+    background-repeat: no-repeat;
+    background-size: 220vh;
+    background-position: -10vh 10vh;
+    
+    
+  }
+  .museum-section2 {
+    text-align: left;
+    padding-left: 130px;
+    padding-top: 95px;
+    padding-bottom: 40px;
+  }
+  .museum-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Adjust space between cards */
+    padding: 109px;
+    padding-top: 24px;
+  }

@@ -1,0 +1,293 @@
+#Artists-section {
+    width: 99.55vw;
+    height: 130vh;
+    background-image: url("../assets/images/line2.svg");
+    background-repeat: no-repeat;
+    background-size: 220vh;
+    background-position: -10vh 10vh;
+    
+    
+  }
+  .Artists-section2 {
+    text-align: left;
+    padding-left: 130px;
+    padding-top: 95px;
+    padding-bottom: 40px;
+  }
+  .Artists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Adjust space between cards */
+    padding: 109px;
+    padding-top: 24px;
+  }
+  
+
+
+
+
+  .cardArtist9{
+    width: 370px;
+    border-radius: 1rem;
+    background-color: rgba(31, 41, 55, 1);
+    padding: 1rem;
+  }
+  
+  .infos9 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    grid-gap: 1rem;
+    gap: 1rem;
+  }
+  
+  .cont-rating9 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+ 
+  
+  .image9 {
+    height: 7.5rem;
+    width: 7.5rem;
+    border-radius: 0.5rem;
+   
+    background-color: rgb(118, 36, 194);
+  
+    background-size: cover; /* Cover the entire area of the element */
+    background-position: center; /* Center the background image */
+  }
+  
+  .info9 {
+    height: 7rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .name9 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+  }
+  
+  .function9 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .stats9 {
+    width: 90%;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  .follow_social9 {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 4px;
+  }
+  
+  .state-value9 {
+    font-weight: 700;
+    color: rgb(118, 36, 194);
+  }
+  
+  .request9 {
+    margin-top: 1.5rem;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .request9:hover {
+    background-color: rgb(118, 36, 194);
+    color: #fff;
+  }
+  
+  .bookmarkBtn9 {
+    max-width: 7.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #7738c7;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding: 0.25rem;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+  }
+  
+  .IconContainer9 {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: 0.3s;
+  }
+  
+  .icon9 {
+    border-radius: 1px;
+  }
+  
+  .text9 {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    color: #292929;
+    z-index: 1;
+    transition-duration: 0.3s;
+    font-size: 1.04em;
+  }
+  
+  .bookmarkBtn9:hover .IconContainer9 {
+    width: 110px;
+    transition-duration: 0.3s;
+  }
+  
+  .bookmarkBtn9:hover .text9 {
+    transform: translate(100px);
+    width: 0;
+    font-size: 0;
+    margin-left: 0;
+    transition-duration: 0.3s;
+  }
+  
+  .bookmarkBtn9:active {
+    transform: scale(0.95);
+    transition-duration: 0.3s;
+  }
+  
+  .card_social9 {
+    width: fit-content;
+    height: fit-content;
+  
+    display: flex;
+    /*padding: 4px 4px;*/
+    gap: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+  }
+  
+  /* for all social containers*/
+  .socialContainer9 {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    background-color: #7738c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition-duration: 0.3s;
+  }
+  /* instagram*/
+  .containerOne9:hover {
+    background-color: #d62976;
+    transition-duration: 0.3s;
+  }
+  /* twitter*/
+  .containerTwo9:hover {
+    background-color: #00acee;
+    transition-duration: 0.3s;
+  }
+  /* linkdin*/
+  .containerThree9:hover {
+    background-color: #0072b1;
+    transition-duration: 0.3s;
+  }
+  /* Whatsapp*/
+  .containerFour9:hover {
+    background-color: #128c7e;
+    transition-duration: 0.3s;
+  }
+  
+  .socialContainer9:active {
+    transform: scale(0.9);
+    transition-duration: 0.3s;
+  }
+  
+  .socialSvg9 {
+    width: 17px;
+  }
+  
+  .socialSvg9 path {
+    fill: rgb(255, 255, 255);
+  }
+  
+  .socialContainer9:hover .socialSvg9 {
+    animation: slide-in-top 0.3s both;
+  }
+  
+  @keyframes slide-in-top {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .rating9 {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  .rating9 input {
+    display: none;
+  }
+  
+  .rating9 label {
+    float: right;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s;
+  }
+  
+  .rating9 label:before {
+    content: "\2605";
+    font-size: 1rem;
+  }
+  
+  .rating9 input:checked ~ label,
+  .rating9 label:hover,
+  .rating9 label:hover ~ label {
+    color: #6f00ff;
+    transition: color 0.3s;
+  }
+

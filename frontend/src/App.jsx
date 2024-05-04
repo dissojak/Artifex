@@ -7,7 +7,7 @@ import {
   //  Switch,
 } from "react-router-dom";
 
-import Home from "./home/Home.jsx";
+import Home from "./home/HomePage.jsx";
 import Ban from "./shared/components/Pages/Ban";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
@@ -30,6 +30,8 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
+import Artists from "./ArtistPage/ArtistPage.jsx";
+import Museums from "./MuseumPage/MuseumPage.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
 
 const App = () => {
@@ -104,6 +106,8 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/museums" element={<Museums />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

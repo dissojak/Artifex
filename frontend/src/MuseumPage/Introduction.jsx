@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
 
-import "./Home.css";
+import "./Introduction.css";
 import Hackatons from "../hackaton/Pages/Hacktons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../shared/context/auth-context";
 
-
+import Facebook from '../assets/images/Facebook.svg';
+import Instagram from '../assets/images/Instagram.svg';
+import Twitter from '../assets/images/Tracé 2.svg';
+import Youtube from '../assets/images/youtube.svg';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import Logo from '../assets/images/Logo_Artifex.svg';
 
-
-const Home = () => {
+const Introduction = () => {
   const auth = useContext(AuthContext);
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -37,8 +40,9 @@ const Home = () => {
   return (
     <>
       <Link to="/">
-        <img src="elements/logo_white.svg" alt="" className="Logowhite" />
+        <img src={Logo} alt="" className="Logowhite" />
       </Link>
+      
       {auth.isLoggedIn && (
         <>
           <div id="header_right_home">
@@ -51,22 +55,20 @@ const Home = () => {
         </>
       )}
       {/* // this is just for updating git , deleteing backend-auth */}
-      <div id="home1">
+      <div id="museum">
         <div id={auth.isAdmin ? "home2-admin" : "home2"}>
           <h1
             className="where"
-            style={!auth.isAdmin ? { color: "#FFDCBA" } : { color: "#00A8E8" }}
+            style={!auth.isAdmin ? { color: "#5BD6FF" } : { color: "#5BD6FF" }}
           >
-            Where Innovation{" "}
+             Where Every Brushstroke{" "}
           </h1>
-          <h1 className="meets">Meets Determination</h1>
+          <h1 className="meets">Tells a Story</h1>
           <p className="p1">
-            "Join a Global Community of Innovators. SaharaBytes hosts hackathons
-            that ignite creativity,
-          <br/>
-            foster collaboration, and drive real-world solutions. Dive in,
-            compete, and shape the future with us."
+            "Explore the Rich Tapestry of Human Creativity. At Artifex Museums, we invite you to embark on a journey through time,
+ where every exhibit unveils new dimensions of imagination and unlocks the boundless potential of human expression."
           </p>
+         
           <button
             className="button_home"
             onClick={() =>
@@ -76,7 +78,7 @@ const Home = () => {
             <h2
               className="button_home_1"
               style={
-                !auth.isAdmin ? { color: "#4D3223" } : { color: "#0185B7" }
+                !auth.isAdmin ? { color: "black" } : { color: "#0185B7" }
               }
             >
               For Hosting
@@ -85,8 +87,8 @@ const Home = () => {
               className="button_home_2"
               style={
                 !auth.isAdmin
-                  ? { color: "#4D3223", backgroundColor: "#FFDCBA" }
-                  : { color: "#0185B7", backgroundColor: "#87CEEB" }
+                  ? { color: "#ffff", backgroundColor: "#5BD6FF" }
+                  : { color: "#ffff", backgroundColor: "#5BD6FF" }
               }
             >
               Contact us
@@ -94,17 +96,22 @@ const Home = () => {
             {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
             <img
               src={
-                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow_bleu.svg"
+                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
               }
               alt=""
-              className="arrow"
+              className="arrow" style={{padding: '9px 0',color:'white'}}
             />
           </button>
-
+          <div className="social-links2">
+          <Link to="#">  <img src={Facebook} alt="Facebook" /></Link>
+          <Link to="#">  <img src={Instagram} alt="Instagram" /></Link>
+          <Link to="#">  <img src={Twitter} alt="FaceTwitterbook" /></Link>
+          <Link to="#">  <img src={Youtube} alt="Youtube" /></Link>
+        </div>
           <ul className="icons_home">
             <li>
               {" "}
-              <img src="elements/home/Instagram.svg" alt="" />
+              <img src="../assets/images/Logo_Artifex.svg" alt="" />
             </li>
 
             <li>
@@ -116,15 +123,13 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button className="signupBtn" onClick={logoutHandler}></button>
+          <button className="LogoutBtn" onClick={logoutHandler}>Logout</button>
         </div>
       </div>
-      <div className="article_index">
-        <div id="sahara">sahara</div>
-      </div>
+     
       {auth.isLoggedIn && <Hackatons />}
     </>
   );
 };
 
-export default Home;
+export default Introduction;
