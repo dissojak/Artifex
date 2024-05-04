@@ -41,7 +41,7 @@ exports.artistRating = async (artistId) => {
     return 0;
   }
   const rating= analytics.ratingAnalytics/analytics.totaleReviews;
-  return rating;
+  return {rating,nbReviews:analytics.totaleReviews};
 };
 
 exports.calculateScore = async (id) => {
