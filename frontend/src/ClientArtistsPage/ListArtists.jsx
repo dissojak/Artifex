@@ -16,9 +16,10 @@ const ListArtists = (props) => {
           username={artist.username}
           plan={artist.plan}
           category={artist.category}
-          rating={artist.rating}
+          rating={artist.rating.rating||0}
+          reviews={artist.rating.nbReviews||0}
           numberOfArtworks={artist.numberOfArtworks}
-          numberOfFollowers={artist.numberOfFollowers}
+          numberOfFollowers={artist.numberOfFollowers||0}
           isFollowing={artist.isFollowing}
           instagram={artist.instagram}
           twitter={artist.twitter}

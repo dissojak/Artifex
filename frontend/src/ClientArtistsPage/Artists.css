@@ -78,6 +78,12 @@
     line-height: 1rem;
     color: rgba(156, 163, 175, 1);
   }
+
+  .function8 {
+    font-size: 0.75rem;
+    color: rgba(156, 163, 175, 1);
+    margin : 0 -0.6rem 0.25rem -0.6rem;
+  }
   
   .stats9 {
     width: 90%;
@@ -192,16 +198,14 @@
   .card_social9 {
     width: fit-content;
     height: fit-content;
-  
     display: flex;
     /*padding: 4px 4px;*/
     gap: 8px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
   }
-  
   /* for all social containers*/
   .socialContainer9 {
-    width: 2.5rem;
+    /* width: 2.5rem; */
     height: 2.5rem;
     border-radius: 0.25rem;
     background-color: #7738c7;
@@ -283,8 +287,7 @@
   }
   
   .rating9 input:checked ~ label,
-  .rating9 label:hover,
-  .rating9 label:hover ~ label {
+  .rating9 label:checked ~ label {
     color: #6f00ff;
     transition: color 0.3s;
   }
