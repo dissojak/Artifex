@@ -1,6 +1,6 @@
 #Profile-section {
     width: 99.55vw;
-    height: 100vh;
+    height: 130vh;
     background-image: url("../assets/images/Tracé 6415.svg"), url("../assets/images/Tracé 6419.svg"), url("../assets/images/Tracé 6420.svg");
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: 40vh,40vh,15vh;
@@ -9,14 +9,27 @@
   .Profile-section2 {
     width: 71vw;
     margin-left: 30vh;
-    height: 100vh; 
+    height: 130vh; 
     background-color: white;
     padding-left: 30vh;
+
+
+  }
+  .profile-cover {
+    width: 71vw;
+    margin-left: -30vh;
+    height: 30vh; 
+    background-color: #9866FF;
+    padding-left: 15vh;
+padding-top: 17vh;
+    display: flex;
+  align-items: center;
+
   }
   .Buttons-section3 {
     text-align: left;
-    padding-left: 100px;
-    padding-top: 95px;
+    padding-left: 135px;
+    padding-top: 70px;
     padding-bottom: 40px;
   }
 
@@ -37,7 +50,7 @@
   
     padding: 2px;
   width: 394px;
-    background-color: #dadadb;
+    background-color: transparent;
     border-radius: 9px;
   }
   
@@ -45,7 +58,7 @@
     content: "";
     width: 130px;
     height: 28px;
-    background: #ffffff;
+    background: #E1D2FF;
     position: absolute;
     top: 2px;
     left: 2px;
@@ -83,6 +96,9 @@
   
     cursor: pointer;
   }
+  .tab_label.active {
+    color: #9866FF;
+  }
   
   .tab--1:checked ~ .indicator {
     left: 2px;
@@ -104,3 +120,49 @@
 
 
 
+  .profile-image-container {
+    width: 150px; /* Size of the white circle */
+    height: 150px;
+    background-color: white; /* White background for the circle */
+    border-radius: 50%; /* Makes the div a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-image {
+    width: 140px; /* Actual image size */
+    height: 140px;
+    border-radius: 50%; /* Makes the image rounded */
+    border: 3px solid white; /* Optional: Adds a white border around the image */
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px; /* Space between image and text */
+    color: white; /* Text color */
+  }
+  
+  .profile-name {
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .profile-email {
+    font-size: 16px;
+  }
+  
+  /* Optionally you can add responsiveness */
+  @media (max-width: 600px) {
+    .profile-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+  
+    .profile-info {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
