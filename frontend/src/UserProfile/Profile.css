@@ -30,8 +30,8 @@ padding-top: 17vh;
   }
   .Buttons-section3 {
     text-align: left;
-    padding-left: 100px;
-    padding-top: 95px;
+    padding-left: 135px;
+    padding-top: 70px;
     padding-bottom: 40px;
   }
 
@@ -52,7 +52,7 @@ padding-top: 17vh;
   
     padding: 2px;
   width: 394px;
-    background-color: #dadadb;
+    background-color: transparent;
     border-radius: 9px;
   }
   
@@ -60,7 +60,7 @@ padding-top: 17vh;
     content: "";
     width: 130px;
     height: 28px;
-    background: #ffffff;
+    background: #E1D2FF;
     position: absolute;
     top: 2px;
     left: 2px;
@@ -97,6 +97,9 @@ padding-top: 17vh;
     opacity: 0.6;
   
     cursor: pointer;
+  }
+  .tab_label.active {
+    color: #9866FF;
   }
   
   .tab--1:checked ~ .indicator {

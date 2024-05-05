@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import SaveIcon from "../assets/images/save.svg";
-import PinIcon from "../assets/images/Pin.svg";
-import OrderIcon from "../assets/images/order.svg";
+import SaveIcon from "../assets/images/saveblack.svg";
+import SaveIconActive from "../assets/images/savepurple.svg";
+import PinIcon from "../assets/images/Pinblack.svg";
+import PinIconActive from "../assets/images/Pinpurple.svg";
+import OrderIcon from "../assets/images/orderblack.svg";
+import OrderIconActive from "../assets/images/orderpurple.svg";
 import Orders from "./Orders.jsx";
 import SavedArtwork from "./SavedArtwork.jsx";
 import PinnedMuseums from "./PinnedMuseums.jsx";
@@ -10,6 +13,15 @@ import Adem from "../assets/images/Adem.jpg";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("orders");
+  const getIcon = (tabName) => {
+    if (tabName === 'orders') {
+      return activeTab === 'orders' ? OrderIconActive : OrderIcon;
+    } else if (tabName === 'artworks') {
+      return activeTab === 'artworks' ? SaveIconActive : SaveIcon;
+    } else if (tabName === 'museums') {
+      return activeTab === 'museums' ? PinIconActive : PinIcon;
+    }
+  };
 
   return (
     <>
@@ -26,58 +38,58 @@ const Profile = () => {
             </div>
           <div className="Buttons-section3">
             <div className="tab-container">
-              <input
-                type="radio"
-                name="tab"
-                id="tab1"
-                className="tab tab--1"
-                checked={activeTab === "orders"}
-                onChange={() => setActiveTab("orders")}
-              />
-              <label className="tab_label" htmlFor="tab1">
-                <img
-                  src={OrderIcon}
-                  style={{ width: "1.2em", height: "1.2em" }}
-                  alt="Order Icon"
-                />
-                Booking Orders
-              </label>
+            <input
+          type="radio"
+          name="tab"
+          id="tab1"
+          className="tab tab--1"
+          checked={activeTab === "orders"}
+          onChange={() => setActiveTab("orders")}
+        />
+        <label className={`tab_label ${activeTab === 'orders' ? 'active' : ''}`} htmlFor="tab1">
+          <img
+            src={getIcon('orders')}
+            style={{ width: "1.2em", height: "1.2em" }}
+            alt="Order Icon"
+          />
+          Booking Orders
+        </label>
 
-              <input
-                type="radio"
-                name="tab"
-                id="tab2"
-                className="tab tab--2"
-                checked={activeTab === "artworks"}
-                onChange={() => setActiveTab("artworks")}
-              />
-              <label className="tab_label" htmlFor="tab2">
-                <img
-                  src={SaveIcon}
-                  style={{ width: "1.2em", height: "1.2em" }}
-                  alt="Save Icon"
-                />
-                Saved Artworks
-              </label>
+        <input
+          type="radio"
+          name="tab"
+          id="tab2"
+          className="tab tab--2"
+          checked={activeTab === "artworks"}
+          onChange={() => setActiveTab("artworks")}
+        />
+        <label className={`tab_label ${activeTab === 'artworks' ? 'active' : ''}`} htmlFor="tab2">
+          <img
+            src={getIcon('artworks')}
+            style={{ width: "1.2em", height: "1.2em" }}
+            alt="Save Icon"
+          />
+          Saved Artworks
+        </label>
 
-              <input
-                type="radio"
-                name="tab"
-                id="tab3"
-                className="tab tab--3"
-                checked={activeTab === "museums"}
-                onChange={() => setActiveTab("museums")}
-              />
-              <label className="tab_label" htmlFor="tab3">
-                <img
-                  src={PinIcon}
-                  style={{ width: "1.2em", height: "1.2em" }}
-                  alt="Pin Icon"
-                />
-                Pinned Museums
-              </label>
+        <input
+          type="radio"
+          name="tab"
+          id="tab3"
+          className="tab tab--3"
+          checked={activeTab === "museums"}
+          onChange={() => setActiveTab("museums")}
+        />
+        <label className={`tab_label ${activeTab === 'museums' ? 'active' : ''}`} htmlFor="tab3">
+          <img
+            src={getIcon('museums')}
+            style={{ width: "1.2em", height: "1.2em" }}
+            alt="Pin Icon"
+          />
+          Pinned Museums
+        </label>
 
-              <div className="indicator"></div>
+        <div className="indicator"></div>
             </div>
           </div>
 
