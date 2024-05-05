@@ -25,7 +25,7 @@
   }
   
   tr:nth-child(even) {
-    background-color: white;
+    background-color: #F2F3F9;
   }
  
   .status.pending {
