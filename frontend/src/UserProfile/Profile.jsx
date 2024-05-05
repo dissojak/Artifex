@@ -6,6 +6,7 @@ import OrderIcon from "../assets/images/order.svg";
 import Orders from "./Orders.jsx";
 import SavedArtwork from "./SavedArtwork.jsx";
 import PinnedMuseums from "./PinnedMuseums.jsx";
+import Adem from "../assets/images/Adem.jpg";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("orders");
@@ -14,6 +15,15 @@ const Profile = () => {
     <>
       <div id="Profile-section">
         <div className="Profile-section2">
+            <div className="profile-cover">
+            <div className="profile-image-container">
+        <img src={Adem} alt="Adem Ben Amor" className="profile-image" />
+      </div>
+      <div className="profile-info">
+        <div className="profile-name">Adem Ben Amor</div>
+        <div className="profile-email">Dissojak@gmail.com</div>
+      </div>
+            </div>
           <div className="Buttons-section3">
             <div className="tab-container">
               <input
