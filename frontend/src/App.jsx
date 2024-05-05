@@ -143,7 +143,7 @@ const App = () => {
         <Router>
           {/* <Header /> */}
           <ToastContainer />
-          {/* <MainNavigation /> */}
+          <MainNavigation />
           <main style={{ marginTop: 0 }}>{routes}</main>
         </Router>
       </AuthContext.Provider>

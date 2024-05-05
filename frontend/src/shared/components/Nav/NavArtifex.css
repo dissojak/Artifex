@@ -1,0 +1,81 @@
+.Buttons-section31 {
+  text-align: left;
+  position: fixed;
+  align-items: center;
+  top: 1.5rem;
+  left: 15rem;
+  padding-left: 5rem;
+  z-index: 10000;
+}
+
+/*buttons*/
+/* Remove this container when use*/
+
+.tab-container10 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 2px;
+  width: 350px;
+  background-color: transparent;
+  border-radius: 9px;
+}
+
+.indicator10 {
+  content: "";
+  width: 100px;
+  height: 28px;
+  background: #e1d2ff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 9;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 7px;
+  transition: all 0.2s ease-out;
+}
+
+
+.tab1 {
+  width: 100px;
+  height: 28px;
+  position: absolute;
+  z-index: 99;
+  outline: none;
+  opacity: 0;
+}
+.tab1_label {
+  width: 100px;
+  height: 28px;
+  color: #292929;
+  position: relative;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.tab1_label a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tab1_label.active {
+  color: #9866ff;
+}
+
+.tab1--1:checked ~ .indicator {
+  left: 2px;
+}
+
+.tab1--2:checked ~ .indicator {
+  left: calc(130px + 2px);
+}
+
+.tab1--3:checked ~ .indicator {
+  left: calc(130px * 2 + 2px);
+}

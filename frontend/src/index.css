@@ -113,6 +113,10 @@ body {
   align-items: center;
 }
 
+.text-decoration-link{
+  text-decoration: none;
+}
+
 /* For Webkit Browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 7.5px;

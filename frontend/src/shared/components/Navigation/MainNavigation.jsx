@@ -13,6 +13,7 @@ import { useHttp } from "../../hooks/http-hook";
 
 import "./MainNavigation.css";
 import "./ProfileNav.css";
+import NavArtifex from "../Nav/NavArtifex";
 
 const MainNavigation = (props) => {
   const auth = useContext(AuthContext);
@@ -55,7 +56,8 @@ const MainNavigation = (props) => {
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
         <nav>
           {/* <NavLinks /> */}
-          <Nav />
+          {/* <Nav /> */}
+          <NavArtifex/>
         </nav>
       </SideDrawer>
 
@@ -68,7 +70,8 @@ const MainNavigation = (props) => {
           <img src="elements/logo.svg" alt="" className="img_header" />
         </Link>
         {/* <NavLinks /> */}
-        <Nav />
+        {/* <Nav /> */}
+        <NavArtifex/>
         {auth.isLoggedIn && (
           <>
             <div id="header_right">
