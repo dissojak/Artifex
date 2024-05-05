@@ -25,6 +25,12 @@ const Profile = () => {
 
   return (
     <>
+    <div className="RightBacgroundProfileSvg">
+      <img src="./elements/rightBackgroundProfile.svg" className="rightImage" alt="" />
+    </div>
+    <div className="LeftBacgroundProfileSvg">
+      <img src="./elements/leftBackgroundProfile.svg" className="leftImage" alt="" />
+    </div>
       <div id="Profile-section">
         <div className="Profile-section2">
             <div className="profile-cover">

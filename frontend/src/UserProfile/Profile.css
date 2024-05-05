@@ -1,168 +1,169 @@
 #Profile-section {
-    width: 99.55vw;
-    height: 130vh;
-    background-image: url("../assets/images/Tracé 6415.svg"), url("../assets/images/Tracé 6419.svg"), url("../assets/images/Tracé 6420.svg");
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: 40vh,40vh,15vh;
-    background-position: 0vh 20vh,166vh 15vh,5vh 34vh;
-  }
-  .Profile-section2 {
-    width: 71vw;
-    margin-left: 30vh;
-    height: 130vh; 
-    background-color: white;
-    padding-left: 30vh;
+  width: 99.3vw;
+  height: 130vh;
+  margin-left: 4px;
+  /* background-image: url("../assets/images/Tracé 6415.svg"),
+    url("../assets/images/Tracé 6419.svg"),
+    url("../assets/images/Tracé 6420.svg");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: 40vh, 40vh, 15vh;
+  background-position: 0vh 20vh, 166vh 15vh, 5vh 34vh; */
+}
 
-
-  }
-  .profile-cover {
-    width: 71vw;
-    margin-left: -30vh;
-    height: 30vh; 
-    background-color: #9866FF;
-    padding-left: 15vh;
-padding-top: 17vh;
-    display: flex;
+.RightBacgroundProfileSvg{
+  position: fixed;
+  top: 158px;
+  /* top :258px; */
+}
+.LeftBacgroundProfileSvg{
+  position: fixed;
+  /* top :258px; */
+  top: 158px;
+  right :39px;
+}
+.leftImage{
+  width: 121.5%;
+}
+.rightImage{
+  width: 110%;
+}
+.Profile-section2 {
+  width: 71vw;
+  margin-left: 30vh;
+  height: 130vh;
+  background-color: white;
+  padding-left: 30vh;
+}
+.profile-cover {
+  width: 71vw;
+  margin-left: -30vh;
+  height: 30vh;
+  background-color: #9866ff;
+  padding-left: 15vh;
+  padding-top: 17vh;
+  display: flex;
   align-items: center;
+}
+.Buttons-section3 {
+  text-align: left;
+  padding-left: 135px;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
 
-  }
-  .Buttons-section3 {
-    text-align: left;
-    padding-left: 135px;
-    padding-top: 70px;
-    padding-bottom: 40px;
-  }
-
-
-
-
-
-  /*buttons*/
-  /* Remove this container when use*/
-
+/*buttons*/
+/* Remove this container when use*/
 
 .tab-container {
-    position: relative;
-  
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  
-    padding: 2px;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  padding: 2px;
   width: 394px;
-    background-color: transparent;
-    border-radius: 9px;
-  }
-  
-  .indicator {
-    content: "";
-    width: 130px;
-    height: 28px;
-    background: #E1D2FF;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    z-index: 9;
-    border: 0.5px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
-    border-radius: 7px;
-    transition: all 0.2s ease-out;
-  }
-  
-  .tab {
-    width: 130px;
-    height: 28px;
-    position: absolute;
-    z-index: 99;
-    outline: none;
-    opacity: 0;
-  }
-  
-  .tab_label {
-    width: 130px;
-    height: 28px;
-  
-    position: relative;
-    z-index: 999;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    border: 0;
-  
-    font-size: 0.75rem;
-    opacity: 0.6;
-  
-    cursor: pointer;
-  }
-  .tab_label.active {
-    color: #9866FF;
-  }
-  
-  .tab--1:checked ~ .indicator {
-    left: 2px;
-  }
-  
-  .tab--2:checked ~ .indicator {
-    left: calc(130px + 2px);
-  }
-  
-  .tab--3:checked ~ .indicator {
-    left: calc(130px * 2 + 2px);
-  }
-  
+  background-color: transparent;
+  border-radius: 9px;
+}
 
-  
+.indicator {
+  content: "";
+  width: 130px;
+  height: 28px;
+  background: #e1d2ff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 9;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 7px;
+  transition: all 0.2s ease-out;
+}
 
+.tab {
+  width: 130px;
+  height: 28px;
+  position: absolute;
+  z-index: 99;
+  outline: none;
+  opacity: 0;
+}
 
+.tab_label {
+  width: 130px;
+  height: 28px;
+  color: #292929;
+  position: relative;
+  z-index: 999;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.tab_label.active {
+  color: #9866ff;
+}
 
+.tab--1:checked ~ .indicator {
+  left: 2px;
+}
 
+.tab--2:checked ~ .indicator {
+  left: calc(130px + 2px);
+}
 
-  .profile-image-container {
-    width: 150px; /* Size of the white circle */
-    height: 150px;
-    background-color: white; /* White background for the circle */
-    border-radius: 50%; /* Makes the div a circle */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .profile-image {
-    width: 140px; /* Actual image size */
-    height: 140px;
-    border-radius: 50%; /* Makes the image rounded */
-    border: 3px solid white; /* Optional: Adds a white border around the image */
-  }
-  
-  .profile-info {
-    display: flex;
+.tab--3:checked ~ .indicator {
+  left: calc(130px * 2 + 2px);
+}
+
+.profile-image-container {
+  width: 150px; /* Size of the white circle */
+  height: 150px;
+  background-color: white; /* White background for the circle */
+  border-radius: 50%; /* Makes the div a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  width: 140px; /* Actual image size */
+  height: 140px;
+  border-radius: 50%; /* Makes the image rounded */
+  border: 3px solid white; /* Optional: Adds a white border around the image */
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px; /* Space between image and text */
+  color: white; /* Text color */
+}
+
+.profile-name {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.profile-email {
+  font-size: 16px;
+}
+
+/* Optionally you can add responsiveness */
+@media (max-width: 600px) {
+  .profile-container {
     flex-direction: column;
-    margin-left: 15px; /* Space between image and text */
-    color: white; /* Text color */
+    align-items: center;
+    padding: 20px;
   }
-  
-  .profile-name {
-    font-size: 35px;
-    font-weight: bold;
+
+  .profile-info {
+    margin-left: 0;
+    margin-top: 10px;
   }
-  
-  .profile-email {
-    font-size: 16px;
-  }
-  
-  /* Optionally you can add responsiveness */
-  @media (max-width: 600px) {
-    .profile-container {
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-  
-    .profile-info {
-      margin-left: 0;
-      margin-top: 10px;
-    }
-  }
+}
