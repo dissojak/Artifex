@@ -10,36 +10,34 @@
   background-position: 0vh 20vh, 166vh 15vh, 5vh 34vh; */
 }
 
-.RightBacgroundProfileSvg{
-  position: fixed;
-  top: 158px;
-  /* top :258px; */
-}
-.LeftBacgroundProfileSvg{
-  position: fixed;
-  /* top :258px; */
-  top: 158px;
-  right :39px;
-}
 .leftImage{
-  width: 121.5%;
+  position: fixed;
+  /* top :258px; */
+  top: 33vh;
+  right :0;
+  width: 15vw;
 }
 .rightImage{
-  width: 110%;
+  position: fixed; 
+  top:44vh;
+  width: 15vw;
+  left: 0;
 }
 .Profile-section2 {
+  position: relative;
   width: 71vw;
-  margin-left: 30vh;
+  left: 13.7vw;
   height: 130vh;
   background-color: white;
-  padding-left: 30vh;
+  padding-left: 13.7vw;
 }
 .profile-cover {
+  position: relative;
   width: 71vw;
-  margin-left: -30vh;
+  right :13.7vw;
   height: 30vh;
   background-color: #9866FF;
-  padding-left: 15vh;
+  padding-left: 6.5vw;
   padding-top: 17vh;
   display: flex;
   align-items: center;

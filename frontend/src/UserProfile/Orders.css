@@ -1,10 +1,11 @@
-
-
 .orders-container {
-    width: 125%;
+   position: relative;
+    width: 124%;
     overflow-x: auto;
-    margin-left: -220px;
+    /* margin-left: -211px; */
+    right: 13.74vw;
   }
+
   
   table {
     width: 100%;
