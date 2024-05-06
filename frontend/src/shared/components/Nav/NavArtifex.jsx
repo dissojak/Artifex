@@ -49,15 +49,15 @@ const NavArtifex = () => {
   return (
     <div className="Buttons-section31">
       <div className="tab-container10">
-        <NavLink to="/" exact activeClassName="active" className="tab1_label text-decoration-link" ref={homeRef}>
+        <NavLink to="/" exact activeclassname="active" className="tab1_label text-decoration-link" ref={homeRef}>
           <img src={getIcon("/")} alt="Home Icon" style={{ marginRight: 5 }} />
           Home
         </NavLink>
-        <NavLink to="/artists" exact activeClassName="active" className="tab1_label text-decoration-link" ref={artistsRef}>
+        <NavLink to="/artists" exact activeclassname="active" className="tab1_label text-decoration-link" ref={artistsRef}>
           <img src={getIcon("/artists")} alt="Artists Icon" style={{ marginRight: 5 }} />
           Artists
         </NavLink>
-        <NavLink to="/profile" exact activeClassName="active" className="tab1_label text-decoration-link" ref={profileRef}>
+        <NavLink to="/profile" exact activeclassname="active" className="tab1_label text-decoration-link" ref={profileRef}>
           <img src={getIcon("/profile")} alt="Profile Icon" style={{ marginRight: 5 }} />
           Profile
         </NavLink>

@@ -13,7 +13,7 @@ import { useHttp } from "../../hooks/http-hook";
 
 import "./MainNavigation.css";
 import "./ProfileNav.css";
-import NavArtifex from "../Nav/NavArtifex";
+// import NavArtifex from "../Nav/NavArtifex";
 import NavArt from "../Nav/NavArt";
 
 
@@ -60,10 +60,12 @@ const MainNavigation = (props) => {
           {/* <NavLinks /> */}
           {/* <Nav /> */}
           {/* <NavArtifex/> */}
+        <NavArt/>
         </nav>
       </SideDrawer>
 
       <MainHeader>
+        <div className="navMargin">
         <button
           className="main-navigation__menu-btn"
           onClick={openDrawerHandler}
@@ -93,6 +95,7 @@ const MainNavigation = (props) => {
             </div>
           </>
         )}
+        </div>
       </MainHeader>
     </React.Fragment>
   );

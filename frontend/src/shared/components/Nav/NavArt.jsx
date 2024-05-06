@@ -1,24 +1,25 @@
-import React, { useRef, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import './NavArt.css';
+import React, { useRef, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import "./NavArt.css";
 import HomeIcon from "../../../assets/images/saveblack.svg";
 import ArtistsIcon from "../../../assets/images/orderblack.svg";
 import MuseumIcon from "../../../assets/images/Pinblack.svg";
 import HomeIconActive from "../../../assets/images/savepurple.svg";
 import MuseumIconActive from "../../../assets/images/Pinpurple.svg";
 import ArtistsIconActive from "../../../assets/images/orderpurple.svg";
+import Logo from "../../../assets/images/Logo_Artifex.svg"; 
 
 const NavArtifex = () => {
   const location = useLocation();
   const indicatorRef = useRef(null);
 
   useEffect(() => {
-    const activeTab = document.querySelector('.nav-item.active');
+    const activeTab = document.querySelector(".nav-item.active");
     if (activeTab) {
       const { offsetLeft, clientWidth } = activeTab;
       indicatorRef.current.style.width = `${clientWidth}px`;
       indicatorRef.current.style.left = `${offsetLeft}px`;
-      indicatorRef.current.style.transition = 'left 0.3s ease, width 0.3s ease';
+      indicatorRef.current.style.transition = "left 0.3s ease, width 0.3s ease";
     }
   }, [location]);
 
@@ -33,28 +34,53 @@ const NavArtifex = () => {
       case "/museums":
         return isActive ? MuseumIconActive : MuseumIcon;
       default:
-        return HomeIcon;  // Default icon in case of unmatched route
+        return HomeIcon; // Default icon in case of unmatched route
     }
   };
 
   return (
-    <div className='navInNavContainer'>
-      <div className="nav-container">
-        <NavLink to="/" exact="true" id="home-tab" className="nav-item" activeClassName="active">
-          <img src={getIcon("/")} alt="Home" />
-          <span>Home</span>
-        </NavLink>
-        <NavLink to="/artists" exact="true" id="artists-tab" className="nav-item" activeClassName="active">
-          <img src={getIcon("/artists")} alt="Artists" />
-          <span>Artists</span>
-        </NavLink>
-        <NavLink to="/profile" exact="true" id="museums-tab" className="nav-item" activeClassName="active">
-          <img src={getIcon("/museums")} alt="Museums" />
-          <span>Profile</span>
-        </NavLink>
-        <div className="indicatorNav" ref={indicatorRef}></div>
+    <>
+      <div className="navbarArt">
+        <Link to="/">
+          <img src={Logo} alt="Artifex Logo" className="logoNavArt" />
+        </Link>
       </div>
-    </div>
+      <div className="navInNavContainer">
+        <div className="nav-container">
+          <NavLink
+            to="/"
+            exact="true"
+            id="home-tab"
+            className="nav-item"
+            activeclassname="active"
+          >
+            <img src={getIcon("/")} alt="Home" />
+            <span>Home</span>
+          </NavLink>
+          <NavLink
+            to="/artists"
+            exact="true"
+            id="artists-tab"
+            className="nav-item"
+            activeclassname="active"
+          >
+            <img src={getIcon("/artists")} alt="Artists" />
+            <span>Artists</span>
+          </NavLink>
+          <NavLink
+            to="/profile"
+            exact="true"
+            id="museums-tab"
+            className="nav-item"
+            activeclassname="active"
+          >
+            <img src={getIcon("/museums")} alt="Museums" />
+            <span>Profile</span>
+          </NavLink>
+          <div className="indicatorNav" ref={indicatorRef}></div>
+        </div>
+      </div>
+    </>
   );
 };
 

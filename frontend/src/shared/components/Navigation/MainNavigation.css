@@ -56,3 +56,8 @@
     display: block;
   }
 }
+
+/* active this when using the NavArt only */
+.navMargin{
+  height: 160px;
+}

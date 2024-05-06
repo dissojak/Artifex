@@ -1,9 +1,27 @@
+.navbarArt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #FFFFFF; /* Change according to your color scheme */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 80px; /* Adjust based on your preference */
+    width: 100%;
+    left:-2px;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+}
+.logoNavArt {
+    margin-top: 5px;
+    height: 60px; /* Adjust size to fit your logo */
+}
 .navInNavContainer{
     text-align: left;
-    position: fixed;
+    position: absolute;
     align-items: center;
     top: -0.7rem;
-    left: 15rem;
+    left: 30vw;
     padding-left: 5rem;
     z-index: 10000;
 }
