@@ -31,6 +31,17 @@ const ArtistPage = () => {
     };
     req();
   },[]);
+
+  const SkeletonLoader = () => {
+    return (
+      <div className="skeleton-loader">
+        <div className="skeleton-image"></div>
+        <div className="skeleton-text"></div>
+        <div className="skeleton-text small"></div>
+      </div>
+    );
+  };  
+
   return (
     <>
       <div className="ArtistPage-container">
@@ -45,7 +56,9 @@ const ArtistPage = () => {
           {isLoading && (
             <div className="center_spinner">
               {/* <SBLoader className="Overlay"/> */}
-              <LoadingSpinner />
+              {/* <LoadingSpinner /> */}
+              <img src="./elements/11a.gif" alt="" />
+              {/* <SkeletonLoader /> */}
             </div>
           )}
           {!isLoading && artists && <ListArtists items={artists}/>}

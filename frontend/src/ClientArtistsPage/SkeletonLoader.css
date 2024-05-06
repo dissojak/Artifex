@@ -1,0 +1,47 @@
+.skeleton-loader {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #eee;
+    margin: 10px;
+  }
+  
+  .skeleton-image {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 50%;
+  }
+  
+  .skeleton-text {
+    height: 20px;
+    margin-top: 10px;
+    background-color: #ddd;
+  }
+  
+  .skeleton-text.small {
+    width: 60%;
+    height: 10px;
+    background-color: #ddd;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -468px 0
+    }
+    100% {
+      background-position: 468px 0
+    }
+  }
+  
+  .skeleton-loader div {
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    background: darkgray;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    position: relative;
+  }
+  

@@ -4,6 +4,7 @@ import { useHttp } from "../shared/hooks/http-hook";
 import { AuthContext } from "../shared/context/auth-context";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import "./Artists.css";
+import './SkeletonLoader.css';
 
 const ArtistCardItem = (props) => {
   const rating = Math.round(props.rating);
@@ -75,6 +76,7 @@ const ArtistCardItem = (props) => {
       setNumberParticipants(numberParticipants);
     }
   };
+
 
   return (
     <>
