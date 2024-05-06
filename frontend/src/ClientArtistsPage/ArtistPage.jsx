@@ -36,8 +36,8 @@ const ArtistPage = () => {
       <div className="ArtistPage-container">
         <div id="Artists-section">
           <div className="Artists-section2">
-            <p style={{ color: "#FD006F", fontWeight: "bold" }}>Discover</p>
-            <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>
+            <p style={{ color: "#FD006F", fontWeight: "bold" ,marginBottom: '1rem' }}>Discover</p>
+            <h1 style={{ fontWeight: "bold", fontSize: "40px",marginBottom: '2rem' }}>
               Meet Our Artists
             </h1>
             <p>Get to know the passionate individuals behind Artifex.</p>
