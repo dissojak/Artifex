@@ -104,7 +104,7 @@
 .Logowhite {
   margin-top: 21px;
   margin-left: 20px;
-  z-index: 1000;
+  z-index: 100000;
   /* position: fixed; */
   /* position: relative; */
   position: absolute;
@@ -156,12 +156,13 @@ height: auto;
   justify-content: flex-start;
   padding-left: 50px;
   gap: 9px;
-  right:-1355px;
+  left:88vw;
   color: white;
   background: #7E3FFF;
   position: relative;
   cursor: pointer;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  z-index: 100000;
 }
 .LogoutBtn:hover {
   background-color: #9866ff;
