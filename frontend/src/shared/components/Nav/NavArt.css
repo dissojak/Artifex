@@ -1,0 +1,49 @@
+.navInNavContainer{
+    text-align: left;
+    position: fixed;
+    align-items: center;
+    top: -0.7rem;
+    left: 15rem;
+    padding-left: 5rem;
+    z-index: 10000;
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    /*
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Optional: adds shadow for elevation */
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px 0px 20px;
+    text-decoration: none;
+    color: black;  /* Text color */
+    transition: color 0.3s ease;
+  }
+  
+  .nav-item:hover, .nav-item.active {
+    color: #9866ff;  /* Highlight color on hover/active */
+  }
+  
+  .nav-item img {
+    margin-bottom: 5px;  /* Space between icon and text */
+  }
+  .nav-item:hover img, .nav-item.active img {
+    filter: brightness(0) saturate(100%) invert(40%) sepia(85%) saturate(3957%) hue-rotate(245deg) brightness(96%) contrast(104%);
+    /* Adjust this filter to match your hover color needs */
+  }
+  
+  .indicatorNav {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    background-color: #9866ff;  /* Indicator color */
+  }
+  
+  /* Additional styles for responsive or specific adjustments */
+  
