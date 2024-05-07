@@ -3,7 +3,7 @@ import { useRegisterMutation } from "../../slices/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
-import { useAddArtworkMutation } from "../../slices/artworksSlice";
+import { useAddArtworkSignupMutation } from "../../slices/artworksSlice";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { toast } from "react-toastify";
 
@@ -11,7 +11,7 @@ const SocialMedia = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [register] = useRegisterMutation();
-  const [addArtwork] = useAddArtworkMutation();
+  const [addArtwork] = useAddArtworkSignupMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,10 +1,7 @@
 import React from "react";
 import "./Artists.css";
 import ArtistCardItem from "./ArtistCardItem";
-const dummyData = [{ name: "adem ben amor" }];
 const ListArtists = (props) => {
-  //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
-
   return (
     <>
       <div className="Artists-container">

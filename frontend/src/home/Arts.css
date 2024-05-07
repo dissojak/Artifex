@@ -155,7 +155,7 @@
     justify-content: center;
   }
   
-  #checkboxInput {
+  .checkbox-input[type="checkbox"] {
     display: none;
   }
   
@@ -175,13 +175,13 @@
     top: 1px;
   }
   
-  #checkboxInput:checked + .bookmark::before {
+  .checkbox-input[type="checkbox"]:checked + .bookmark::before {
     content: "\2713";
     font-size: 0.70em;
     top: 5px;
   }
   
-  #checkboxInput:checked + .bookmark .svgIcon path {
+  .checkbox-input[type="checkbox"]:checked + .bookmark .svgIcon path {
     fill: rgb(121, 199, 3);
   }
   
@@ -199,7 +199,7 @@
     z-index: -1;
   }
   
-  #checkboxInput:checked + .bookmark::after {
+  .checkbox-input[type="checkbox"]:checked + .bookmark::after {
     animation: puff-out-center .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
   }
   

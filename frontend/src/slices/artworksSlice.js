@@ -3,9 +3,9 @@ const ARTWORKS_URL = '/api/artwork';
 
 export const artworkApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    addArtwork: builder.mutation({
+    addArtworkSignup: builder.mutation({
       query: (data) => ({
-        url: `${ARTWORKS_URL}/AddArtwork`,
+        url: `${ARTWORKS_URL}/signup/AddArtwork`,
         method: 'POST',
         body: data,
       }),
@@ -34,7 +34,7 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useAddArtworkMutation,
+  useAddArtworkSignupMutation,
 //   useLogoutMutation,
 //   useRegisterMutation,
 //   useUpdateUserMutation,

@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation,
   // Redirect,
   //  Switch,
 } from "react-router-dom";
@@ -34,6 +35,7 @@ import Artists from "./ClientArtistsPage/ArtistPage.jsx";
 import Museums from "./MuseumPage/MuseumPage.jsx";
 import UserProfile from "./UserProfile/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
+import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -72,6 +74,12 @@ const App = () => {
     setTeamId(null);
     setBan(null);
   }, []);
+
+  // const location = useLocation();
+  // const publicPaths = ["/login", ];
+
+  // // Check if the current path is one of the protected paths
+  // const showMainNavigation = publicPaths.includes(location.pathname);
 
   let routes;
 
@@ -143,8 +151,11 @@ const App = () => {
         <Router>
           {/* <Header /> */}
           <ToastContainer />
-          <MainNavigation />
-          <main style={{ marginTop: 0 }}>{routes}</main>
+          <NavigationWrapper>
+            {/*this is sent as a children to navigation 
+            warpper that will handel rundering it */}
+            {routes}
+          </NavigationWrapper>
         </Router>
       </AuthContext.Provider>
     </Provider>

@@ -398,3 +398,45 @@ exports.getArtworksByCategory = asyncHandler(async (req, res, next) => {
     next(new HttpError("Failed to retrieve artworks", 500));
   }
 });
+
+/**
+ * @desc    Add new artwork
+ * @route   POST /api/artwork/signup/addArtwork
+ * @params  title,description,price,imageArtwork,id_category
+ * @access  Private
+ */
+exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("Invalid data", 400));
+  }
+
+  const artistId = req.user._id;
+  console.log("artist id is : ",artistId);
+  const { title, description, price, imageArtwork, id_category, exclusive } =
+    req.body;
+
+  // Create new artwork instance
+  const newArtwork = new Artwork({
+    title,
+    description,
+    price,
+    imageArtwork,
+    id_category,
+    id_artist: artistId,
+    exclusive: false,
+  });
+  let artwork;
+  // const session = await mongoose.startSession();
+  // session.startTransaction();
+  try {
+    // artwork = await newArtwork.save({ session });
+    artwork = await newArtwork.save();
+  } catch (e) {
+    return next(new HttpError("artwork not saved , error hapnned :", e, 500));
+  }
+  next(res.json({
+    msg: "Artwork added successfully",
+    artwork,
+  }));
+});
