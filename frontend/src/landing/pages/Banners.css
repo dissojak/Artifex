@@ -1,6 +1,9 @@
 .bannerSection {
     padding: 25px 0;
-    width: 100%; /* Ensure full width */
+    transform: scale(1.1);
+    width: 83%;
+    position: relative;
+    left: 134px;
     display: flex;
     justify-content: center;
   }
