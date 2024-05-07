@@ -1,6 +1,7 @@
 import React from 'react';
 import './imagestars.css';
 import Banner3 from '../../assets/images/image 1.png'; // Ensure the path is correct
+import UserProfile from './UserProfile.jsx'
 
 function imagestars() {
   return (
@@ -8,9 +9,9 @@ function imagestars() {
       <div className="image-container">
       <div className="special-wrapper">
       <div className="special-box">
-        <img src={Banner3} alt="" /> 
+        <img className="Wallpaper" src={Banner3} alt="" /> 
         <div className="special-info">
-          <h2>Person Name</h2>
+       <UserProfile />
           <p></p>
           <div className="special-rating">
             <input value="5" name="rating" id="special-star5" type="radio" />

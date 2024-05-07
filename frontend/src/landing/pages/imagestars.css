@@ -12,7 +12,7 @@
     height: auto; /* Adjust height as needed */
   }
   
-  .image-container img {
+  .Wallpaper {
     width: 100%;
     height: auto;
     object-fit: cover; /* Ensures the image covers the element without distorting aspect ratio */
@@ -93,24 +93,7 @@
     clip-path: circle(0% at 50% 50%);
   }
   
-  .special-info h2 {
-    font-family: impact;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 30px;
-    color: #ffffff;
-    line-height: 1.5;
-    letter-spacing: 2px;
-    position: absolute;
-    top: 10px; /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
-  }
-  
-  .special-info p {
-    font-size: 15px;
-    color: #ffffff;
-    line-height: 1.6;
-  }
+
   
   .special-box:hover .special-info {
     clip-path: circle(70% at 50% 50%);
@@ -151,3 +134,9 @@
     left: 7%;
     z-index: 100;
 }
+
+
+
+
+
+

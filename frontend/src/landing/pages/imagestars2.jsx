@@ -1,7 +1,7 @@
 import React from 'react';
 import './imagestars2.css';
 import Banner3 from '../../assets/images/image 2.png'; // Ensure the path is correct
-
+import UserProfile from './UserProfile.jsx'
 function imagestars2() {
   return (
     <div className="card-container">
@@ -10,19 +10,19 @@ function imagestars2() {
       <div className="special-box">
         <img src={Banner3} alt="" /> 
         <div className="special-info">
-          <h2>Person Name</h2>
+          <UserProfile />
           <p></p>
           <div className="special-rating2">
-            <input value="5" name="rating" id="special-star5" type="radio" />
-            <label htmlFor="special-star5"></label>
-            <input value="4" name="rating" id="special-star4" type="radio" />
-            <label htmlFor="special-star4"></label>
-            <input value="3" name="rating" id="special-star3" type="radio" />
-            <label htmlFor="special-star3"></label>
-            <input value="2" name="rating" id="special-star2" type="radio" />
-            <label htmlFor="special-star2"></label>
-            <input value="1" name="rating" id="special-star1" type="radio" />
-            <label htmlFor="special-star1"></label>
+            <input value="star5" name="rating" id="star5" type="radio" />
+            <label htmlFor="star5"></label>
+            <input value="star4" name="rating" id="star4" type="radio" />
+            <label htmlFor="star4"></label>
+            <input value="star3" name="rating" id="star3" type="radio" />
+            <label htmlFor="star3"></label>
+            <input value="star2" name="rating" id="star2" type="radio" />
+            <label htmlFor="star2"></label>
+            <input value="star1" name="rating" id="star1" type="radio" />
+            <label htmlFor="star1"></label>
           </div>
           
         </div>
