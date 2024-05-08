@@ -1,5 +1,5 @@
 import React from "react";
-import "./Artists.css";
+import "../Pages/Artists.css";
 import ArtistCardItem from "./ArtistCardItem";
 const ListArtists = (props) => {
   return (

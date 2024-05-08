@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./ArtistPage.css";
 import "./Artists.css";
-import ListArtists from "./ListArtists.jsx";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import { useGetArtistsMutation } from '../slices/artistsSlice.js';
-import { setCredentials } from '../slices/authSlice';
+import ListArtists from "../Components/ListArtists.jsx";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal.jsx";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner.jsx";
+import { useGetArtistsMutation } from '../../slices/artistsSlice.js';
+import { setCredentials } from '../../slices/authSlice.js';
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import loading from "../../assets/images/loadpurple.gif";
 
 const ArtistPage = () => {
   const [artists, setArtists] = useState();
@@ -54,10 +55,12 @@ const ArtistPage = () => {
             <p>Get to know the passionate individuals behind Artifex.</p>
           </div>
           {isLoading && (
-            <div className="center_spinner">
+            <div className="center_spinner" style={{position:'relative',top:'4rem'}}>
               {/* <SBLoader className="Overlay"/> */}
               {/* <LoadingSpinner /> */}
-              <img src="./elements/11a.gif" alt="" />
+              {/* <img src="./elements/11a.gif" alt="" /> */}
+              <img src={loading} alt="" />
+
               {/* <SkeletonLoader /> */}
             </div>
           )}

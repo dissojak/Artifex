@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useHttp } from "../shared/hooks/http-hook";
-import { AuthContext } from "../shared/context/auth-context";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import "./Artists.css";
+import { useHttp } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import "../Pages/Artists.css";
 import './SkeletonLoader.css';
 
 const ArtistCardItem = (props) => {
@@ -203,6 +203,7 @@ const ArtistCardItem = (props) => {
                 to={`https://www.instagram.com/${props.instagram}`}
                 className="socialContainer9 containerOne9"
                 style={{ width: socialMedia }}
+                target="_blank"
               >
                 <svg
                   viewBox="0 0 16 16"
@@ -219,6 +220,7 @@ const ArtistCardItem = (props) => {
                 className="socialContainer9 containerTwo9"
                 style={{ width: socialMedia }}
                 to={`https://twitter.com/${props.twitter}`}
+                target="_blank"
               >
                 <svg
                   viewBox="0 0 16 16"
@@ -235,6 +237,7 @@ const ArtistCardItem = (props) => {
                 className="socialContainer9 containerThree9"
                 href="#"
                 style={{ width: socialMedia }}
+                target="_blank"
               >
                 <svg
                   viewBox="0 0 448 512"
@@ -251,7 +254,7 @@ const ArtistCardItem = (props) => {
               className="socialContainer9 containerFour9"
               href="#"
               style={{ width: socialMedia }}
-              // style={{ width: socialMedia }}
+              target="_blank"
             >
               <svg
                 viewBox="0 0 16 16"
