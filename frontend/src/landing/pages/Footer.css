@@ -1,5 +1,6 @@
 .footer-container {
-   
+  position: absolute;
+   top: 1040vh;
   width: 99.55vw;
   height: 0vh;
  
@@ -87,7 +88,6 @@
     justify-content: flex-end;
     gap: 30px;
     padding-bottom: 80px;
-   
     width: 100%;
   }
   

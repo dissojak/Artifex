@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 
 import "./Arts.css";
 
@@ -101,7 +101,7 @@ const Arts = () => {
   //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
 
   return (
-    <>
+    <Fragment>
       <br />
       <div id="homearts">
         <div className="auth-section2">
@@ -116,7 +116,7 @@ const Arts = () => {
           )}
           {!isLoading && Artworks && <ArtsList items={Artworks}/>}
       </div>
-    </>
+    </Fragment>
   );
 };
 
