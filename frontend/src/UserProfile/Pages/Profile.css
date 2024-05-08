@@ -165,3 +165,47 @@
     margin-top: 10px;
   }
 }
+
+
+.button-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  position:relative;
+  left:370px;
+  top:15px;
+  height: 36px;
+  width: 120px;
+  border: none;
+  background: #D4BFFF;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lable-profile {
+  line-height: 20px;
+  font-size: 17px;
+  color: #5D41DE;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button-profile:hover {
+  background: #B38EFF;
+}
+
+.button-profile:hover .svg-icon-profile {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

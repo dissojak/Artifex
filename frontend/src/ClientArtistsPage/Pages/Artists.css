@@ -1,11 +1,12 @@
 #Artists-section {
     width: 99.55vw;
     height: 130vh;
-    background-image: url("../assets/images/line2.svg");
+    background-image: url("../../assets/images/line2.svg");
     background-repeat: no-repeat;
     /* background-size: 250vh ; */
     background-position: -10vh 10vh;
   }
+  
   .Artists-section2 {
     text-align: left;
     padding-left: 130px;

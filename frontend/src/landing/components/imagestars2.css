@@ -142,7 +142,7 @@
   .special-rating2 input:checked ~ label,
   .special-rating2 label:hover,
   .special-rating2 label:hover ~ label {
-    color: #6f00ff;
+    color: #FFCB37;
     transition: color 0.3s;
   }
   .content .info {
