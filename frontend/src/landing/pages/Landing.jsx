@@ -14,7 +14,7 @@ import ContactUsSection from "./ContactUsSection.jsx";
 import ServicesSection from "./ServicesSection.jsx";
 import TeamBehind from "./TeamBehind.jsx";
 import DiscoverBanner from "./DiscoverBanner.jsx";
-import Footer from "./Footer.jsx";
+import Footer from "../../shared/components/UIElements/Footer.jsx";
 import ArtsHomeList from "../../home/ArtsHomeList.jsx";
 import Art from "../../assets/images/image_artwork.png";
 

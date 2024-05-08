@@ -1,14 +1,14 @@
 import React from "react";
 import "./Footer.css";
-import Logo from "../../assets/images/Logo_Artifex.svg";
+import Logo from "../../../assets/images/Logo_Artifex.svg";
 import { Link } from "react-router-dom";
-import Facebook from "../../assets/images/Facebook.svg";
-import Instagram from "../../assets/images/Instagram.svg";
-import Twitter from "../../assets/images/Tracé 2.svg";
-import Youtube from "../../assets/images/youtube.svg";
-import Location from "../../assets/images/location.png";
-import Telephone from "../../assets/images/telephone.png";
-import Mail from "../../assets/images/mail.png";
+import Facebook from "../../../assets/images/Facebook.svg";
+import Instagram from "../../../assets/images/Instagram.svg";
+import Twitter from "../../../assets/images/Tracé 2.svg";
+// import Youtube from "../../../assets/images/youtube.svg";
+// import Location from "../../../assets/images/location.png";
+// import Telephone from "../../../assets/images/telephone.png";
+// import Mail from "../../../assets/images/mail.png";
 const Footer = () => {
   return (
     <>
