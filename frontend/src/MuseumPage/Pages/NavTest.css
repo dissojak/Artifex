@@ -4,6 +4,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* hedhy men andy , khter el nav eli amelha ena el oroginal 
+    z-index mta7a 100000 haja haka so base mech bech todhher 
+    wala elements fiha mech bech yodhhrou bel mrigel  */
+    z-index: 10000000; 
 }
 
 .header-content {

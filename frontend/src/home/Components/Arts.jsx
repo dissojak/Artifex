@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from "react";
 
 import "./Arts.css";
 
-import Art from "../assets/images/image_artwork.png";
+import Art from "../../assets/images/image_artwork.png";
 import ArtsList from "./ArtsList";
 const Artworks = [
   {

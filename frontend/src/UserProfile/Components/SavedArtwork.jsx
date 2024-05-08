@@ -1,9 +1,9 @@
 import React, {  } from "react";
 import "./SavedArtwork.css";
-import Art from "../assets/images/image_artwork.png";
+import Art from "../../assets/images/image_artwork.png";
 
-import heart from "../assets/images/heart.png";
-import eye from "../assets/images/eye.png";
+import heart from "../../assets/images/heart.png";
+import eye from "../../assets/images/eye.png";
 const Artworks = [
     { Image: Art, Artist: "Tarek Chebbi", Likes: "77", Views: "10.7"},
     { Image: Art, Artist: "Tarek Chebbi", Likes: "77", Views: "10.7"},

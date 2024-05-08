@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import SaveIcon from "../assets/images/saveblack.svg";
-import SaveIconActive from "../assets/images/savepurple.svg";
-import PinIcon from "../assets/images/Pinblack.svg";
-import PinIconActive from "../assets/images/Pinpurple.svg";
-import OrderIcon from "../assets/images/orderblack.svg";
-import OrderIconActive from "../assets/images/orderpurple.svg";
-import Orders from "./Orders.jsx";
-import SavedArtwork from "./SavedArtwork.jsx";
-import PinnedMuseums from "./PinnedMuseums.jsx";
-import Adem from "../assets/images/Adem.jpg";
+import SaveIcon from "../../assets/images/saveblack.svg";
+import SaveIconActive from "../../assets/images/savepurple.svg";
+import PinIcon from "../../assets/images/Pinblack.svg";
+import PinIconActive from "../../assets/images/Pinpurple.svg";
+import OrderIcon from "../../assets/images/orderblack.svg";
+import OrderIconActive from "../../assets/images/orderpurple.svg";
+import Orders from "../Components/Orders.jsx";
+import SavedArtwork from "../Components/SavedArtwork.jsx";
+import PinnedMuseums from "../Components/PinnedMuseums.jsx";
+import Adem from "../../assets/images/Adem.jpg";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("orders");

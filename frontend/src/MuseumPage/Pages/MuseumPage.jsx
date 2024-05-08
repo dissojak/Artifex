@@ -1,7 +1,7 @@
 import React from "react";
 import './MuseumPage.css';
-import Introduction from './Introduction.jsx';
-import Museums from './Museums.jsx';
+import Introduction from '../Components/Introduction.jsx';
+import Museums from '../Components/Museums.jsx';
 
 const MuseumPage = () => {
   return (

@@ -1,21 +1,20 @@
 import React, { useContext } from "react";
 
-import "./Introduction.css";
-import Hackatons from "../hackaton/Pages/Hacktons";
+import "./Home.css";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/auth-context";
 
-import Facebook from '../assets/images/Facebook.svg';
-import Instagram from '../assets/images/Instagram.svg';
-import Twitter from '../assets/images/Tracé 2.svg';
-import Youtube from '../assets/images/youtube.svg';
+import Facebook from '../../assets/images/Facebook.svg';
+import Instagram from '../../assets/images/Instagram.svg';
+import Twitter from '../../assets/images/Tracé 2.svg';
+import Youtube from '../../assets/images/youtube.svg';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../slices/usersApiSlice';
-import { logout } from '../slices/authSlice';
-import Logo from '../assets/images/Logo_Artifex.svg';
+import { useLogoutMutation } from '../../slices/usersApiSlice';
+import { logout } from '../../slices/authSlice';
+import Logo from '../../assets/images/Logo_Artifex.svg';
 
-const Introduction = () => {
+const Home = () => {
   const auth = useContext(AuthContext);
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -55,18 +54,21 @@ const Introduction = () => {
         </>
       )}
       {/* // this is just for updating git , deleteing backend-auth */}
-      <div id="museum">
+      <div id="home1">
         <div id={auth.isAdmin ? "home2-admin" : "home2"}>
           <h1
             className="where"
             style={!auth.isAdmin ? { color: "#5BD6FF" } : { color: "#5BD6FF" }}
           >
-             Where Every Brushstroke{" "}
+             WHERE CREATIVITY{" "}
           </h1>
-          <h1 className="meets">Tells a Story</h1>
+          <h1 className="meets">UNLEASHES POSSIBILITIES</h1>
           <p className="p1">
-            "Explore the Rich Tapestry of Human Creativity. At Artifex Museums, we invite you to embark on a journey through time,
- where every exhibit unveils new dimensions of imagination and unlocks the boundless potential of human expression."
+            "Embark on a journey of innovation. At Artifex, we cultivate a
+            community where creativity thrives, collaboration flourishes, and
+          <br/>
+          groundbreaking solutions take flight. Join us, explore, and shape
+            the landscape of tomorrow."
           </p>
          
           <button
@@ -99,7 +101,7 @@ const Introduction = () => {
                 !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
               }
               alt=""
-              className="arrow" style={{padding: '9px 0',color:'white'}}
+              className="arrow" style={{padding: '9px 0',color:'black'}}
             />
           </button>
           <div className="social-links2">
@@ -127,9 +129,8 @@ const Introduction = () => {
         </div>
       </div>
      
-      {auth.isLoggedIn && <Hackatons />}
     </>
   );
 };
 
-export default Introduction;
+export default Home;

@@ -8,7 +8,7 @@ import {
   //  Switch,
 } from "react-router-dom";
 
-import Home from "./home/HomePage.jsx";
+import Home from "./home/Page/HomePage.jsx";
 import Ban from "./shared/components/Pages/Ban";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
@@ -32,8 +32,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
 import Artists from "./ClientArtistsPage/ArtistPage.jsx";
-import Museums from "./MuseumPage/MuseumPage.jsx";
-import UserProfile from "./UserProfile/UserProfile.jsx";
+import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
+import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 

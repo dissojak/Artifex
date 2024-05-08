@@ -1,11 +1,12 @@
 import React from "react";
 import "./Arts.css";
-import ArtsItem from "../shared/components/UIElements/ArtsItemCard";
-const ArtsList = (props) => {
+import ArtsItem from "../../shared/components/UIElements/ArtsItemCard";
+const ArtsHomeList = (props) => {
+    const X_Items = props.items.slice(0, props.numberOfItems);
   return (
     <>
       <div className="gallery-container2">
-        {props.items.map(artwork => (
+        {X_Items.map(artwork => (
         <ArtsItem
           key={artwork.id}
           id={artwork.id}
@@ -23,4 +24,4 @@ const ArtsList = (props) => {
   );
 };
 
-export default ArtsList;
+export default ArtsHomeList;
