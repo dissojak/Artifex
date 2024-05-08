@@ -35,6 +35,7 @@ import Artists from "./ClientArtistsPage/Pages/ArtistPage.jsx";
 import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
 import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
+import ArtworkDetails from "./ArtworkDetails/Pages/ArtworkDetails.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 
 const App = () => {
@@ -118,6 +119,7 @@ const App = () => {
           <Route path="/artists" element={<Artists />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}
