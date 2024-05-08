@@ -173,15 +173,34 @@
   align-items: center;
   padding: 6px 12px;
   gap: 8px;
-  position:relative;
-  left:370px;
-  top:15px;
+ 
   height: 36px;
   width: 120px;
   border: none;
   background: #D4BFFF;
   border-radius: 20px;
   cursor: pointer;
+}
+.button-profile-following {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+ 
+  height: 36px;
+  width: 130px;
+  border: none;
+  background: #D4BFFF;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.cover-buttons-container{
+  position:relative;
+  display: flex;
+  gap :8px;
+  left:240px;
+  top:15px;
 }
 
 .lable-profile {
@@ -195,7 +214,9 @@
 .button-profile:hover {
   background: #B38EFF;
 }
-
+.button-profile-following:hover {
+  background: #B38EFF;
+}
 .button-profile:hover .svg-icon-profile {
   animation: spin 2s linear infinite;
 }

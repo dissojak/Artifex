@@ -50,7 +50,11 @@ const Profile = () => {
               <div className="profile-email">Dissojak@gmail.com</div>
             </div>
             {/*button section start */}
-            <button className="button-profile">
+            <div className="cover-buttons-container">
+            <button className="button-profile-following">
+      <p className="label-profile" style={{color:'#7E3FFF',fontWeight:'bold'}}>Following 700</p>
+    </button>
+    <button className="button-profile">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" className="svg-icon-profile">
         <g stroke-width="1.5" stroke-linecap="round" stroke="#5d41de">
           <circle r="2.5" cy="10" cx="10"></circle>
@@ -59,6 +63,7 @@ const Profile = () => {
       </svg>
       <p className="label-profile" style={{color:'#7E3FFF',fontWeight:'bold'}}>Settings</p>
     </button>
+    </div>
     {/*button section ending */}
           </div>
           <div className="Buttons-section3">
