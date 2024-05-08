@@ -1,6 +1,6 @@
 import React from "react";
 import "./Arts.css";
-import ArtsItem from "./ArtsItem";
+import ArtsItem from "../shared/components/UIElements/ArtsItemCard";
 const ArtsList = (props) => {
   return (
     <>

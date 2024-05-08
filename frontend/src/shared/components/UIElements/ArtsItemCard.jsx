@@ -1,7 +1,7 @@
 import React from "react";
-import heart from "../assets/images/heart.png";
-import eye from "../assets/images/eye.png";
-import "./Arts.css";
+import heart from "../../../assets/images/heart.png";
+import eye from "../../../assets/images/eye.png";
+import "./ArtsItemCard.css";
 const ArtsItem = (props) => {
     const checkBoxId = `checkboxInput-${props.id}`;
   return (

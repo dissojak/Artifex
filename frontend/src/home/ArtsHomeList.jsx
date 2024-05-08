@@ -1,6 +1,6 @@
 import React from "react";
 import "./Arts.css";
-import ArtsItem from "./ArtsItem";
+import ArtsItem from "../shared/components/UIElements/ArtsItemCard";
 const ArtsHomeList = (props) => {
     const X_Items = props.items.slice(0, props.numberOfItems);
   return (
