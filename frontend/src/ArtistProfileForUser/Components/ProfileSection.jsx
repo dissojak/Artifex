@@ -19,7 +19,7 @@ const ProfileSection = () => {
   <span className="effect7"></span>
 </button>
     </div>
-    <h1>test</h1>
+    <h1>tests</h1>
       </div>
     </>
   );
