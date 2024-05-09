@@ -5,6 +5,7 @@ const Details = () => {
        <div className="artwork-details">
       <h1>Artwork Name</h1>
       <p className="price">1500 DT</p>
+      <div className="ratingArtworkDetailsContainer">
       <div className="ratings">
            <div className="special-rating-commentsection">
             <input value="5" name="rating" id="special-star5" type="radio" />
@@ -18,6 +19,8 @@ const Details = () => {
             <input value="1" name="rating" id="special-star1" type="radio" />
             <label htmlFor="special-star1"></label>
           </div> 
+      </div>
+      <p>(4.2 stars) - 12 rating</p>
       </div>
       <p className="description">
         Uncover hidden talents and support up-and-coming artists. Our platform showcases a diverse range of artists, giving you the opportunity to find unique and innovative artwork.

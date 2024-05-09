@@ -1,10 +1,16 @@
-
-
 .ArtworkDetails-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 0vh;  
-    background-color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0vh;
+  background-color: white;
+}
+
+#DetailsSectionContainer {
+  width: 50vw;
+  height: 100vh;
+  background-color: white;
+  position: relative;
+  right: -380px;
+  padding-top: 140px;
+}
