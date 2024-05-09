@@ -1,14 +1,8 @@
 .artwork-details {
-    font-family: Arial, sans-serif; 
-    max-width: 640px; 
-    height: 70vh;
     transform: scale(1.1);
     margin: 20px auto; 
     padding: 20px;
-    background-color: transparent;
     color: #292929;
-    position: relative;
-    /* right: 15vw; */
   }
   
   .artwork-details h1 {
