@@ -6,79 +6,7 @@
     right: -380px;
     padding-top: 140px;
   }
-  .artwork-details {
-    font-family: Arial, sans-serif; 
-    max-width: 640px; 
-    height: 70vh;
-    transform: scale(1.1);
-    margin: 20px auto; 
-    padding: 20px;
-    background-color: transparent;
-  }
   
-  .artwork-details h1 {
-    font-size: 2.1rem;
-    color: #333;
-  }
-  
-  .price {
-    font-size: 1.5rem;
-    color: #666;
-    margin-top: 5px;
-  }
-  
-  .ratings {
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 10px;
-  }
-  
-  .stars {
-    color: #ffc107; 
-  }
-  
-  .description {
-    margin-top: 15px;
-    line-height: 1.5;
-  }
-  
-  .category {
-    font-style: italic;
-    margin-top: 15px;
-  }
-  
-  .buttonsartsection {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 10px; 
-  }
-  
-  .add-to-cart  {
-    background-color: #7e3fff; 
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    
-  }
-   .buy-now {
-    background-color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #7e3fff;
-    border: 2px solid #7e3fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    
-  }
   
   
 
@@ -149,3 +77,52 @@
     color: #666;
   }
   
+
+
+  .comment-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Ensure the relative positioning for absolute positioning of the menu */
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none; /* Remove focus outline for aesthetics */
+    font-size: 24px; /* Adjust size as needed */
+  }
+  
+  .comment-menu {
+    position: absolute;
+    top: 100%;  /* Position directly below the button */
+    left: 0;    /* Align to the left of the button */
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 200px; /* Adjust width as necessary */
+    z-index: 1000; /* High z-index to ensure it's on top of other content */
+    display: block; /* Ensures that ul is not inline */
+  }
+  
+  .comment-menu li {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    border-bottom: 1px solid #eee; /* Visual separation of items */
+    background: #fff; /* Background color needed to block underlying content */
+    display: block; /* Ensures that li is not inline */
+  }
+  
+  .comment-menu li:last-child {
+    border-bottom: none; /* No border for the last item */
+  }
+  
+  .comment-menu li:hover {
+    background-color: #f0f0f0;
+  }
