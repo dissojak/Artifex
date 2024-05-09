@@ -15,7 +15,7 @@ const ProfileSection = () => {
         <div className="profile-container7">
           <img className="profile-image7" src={Adem} alt="Artist Image" />
           <h1 className="profile-name7">Adem Ben Amor</h1>
-          <p className="profile-details7" style={{ fontSize: '12px', color: '#9866FF', fontWeight: 'bold' }}>
+          <p className="profile-details7" style={{ fontSize: '12px', color: '#9866FF',fontFamily:'Raleway-SemiBold' }}>
             <img src={Logo} alt="logo" /> Artist
           </p>
           <p className="profile-details7">245 Subscribers • 12 Artworks</p>
