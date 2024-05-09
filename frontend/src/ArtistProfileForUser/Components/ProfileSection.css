@@ -33,12 +33,14 @@
     color: rgb(0, 0, 0);
     font-size: 36px;
     margin-top: 10px;
+    font-family: "DubaiB", "Dubai-Bold";
   }
   
   .profile-details7 {
     color: rgb(0, 0, 0);
     font-size: 16px;
     margin: 5px 0;
+    font-family: "Dubai";
   }
   
 
@@ -99,5 +101,12 @@
   
   .Btn7:hover {
     fill: rgb(255, 255, 255);
+  }
+
+
+  .Buttonart-order-section
+  {
+    text-align: center;
+   
   }
   
