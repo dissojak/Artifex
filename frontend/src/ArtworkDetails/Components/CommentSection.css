@@ -92,8 +92,8 @@
   
   .comment-menu {
     position: absolute;
-    top: 65%;  /* Position directly below the button */
-    left: 64%;    /* Align to the left of the button */
+    top: 60%;  /* Position directly below the button */
+    left: 57.5%;    /* Align to the left of the button */
     background-color: #fff;
     list-style: none;
     padding: 0;
