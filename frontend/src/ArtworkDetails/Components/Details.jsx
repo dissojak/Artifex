@@ -28,7 +28,7 @@ const Details = () => {
         unique and innovative artwork.
       </p>
       <div className="ratingArtworkDetailsContainer">
-        <p className="category" style={{color:"#7e3fff",fontWeight: "bold"}}>Category: </p>
+        <p className="category" style={{color:"#9866FF",fontWeight: "bold"}}>Category: </p>
         <p className="category">Digital art</p>
       </div>
       <div className="buttonsartsection">

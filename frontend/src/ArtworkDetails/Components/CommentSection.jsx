@@ -43,7 +43,7 @@ const CommentSection = () => {
   }, []);
   return (
     <>
-      <h1 style={{ paddingLeft: "60px", color: "#7e3fff" }}>COMMENTS :</h1>
+      <h1 style={{ color: "#9866FF" ,fontSize:"2.8rem",marginTop:'8vh'}}>COMMENTS :</h1>
         <div className="comments-section">
             <div className="comment-input-container">
             <img src={Adem} alt="Samir Lousif" className="user-avatar" />
@@ -58,7 +58,7 @@ const CommentSection = () => {
                     <img src={comment.avatar} alt={comment.name} className="avatar" />
                     <div className="comment-content">
                             <div className="comment-header">
-                                <h4>{comment.name}</h4>
+                                <h2>{comment.name}</h2>
                                 <button
                                 onClick={() => toggleMenu(index)}
                                 className="menu-button"
