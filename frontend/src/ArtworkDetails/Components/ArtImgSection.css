@@ -14,7 +14,7 @@
 .Artist-container-ArtImg {
   position: relative;
   bottom: 27.5vh;
-  right: 10vw;
+  right: 11.25vw;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -64,17 +64,10 @@
   position: absolute;
   top: 200px;
   left: 60px;
-  background-color: #f0f0f0;
-  border: 5px solid #704cb6;
+  border: 5px solid #9866FF;
   margin: 5vh auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border-radius: 10px;  */
-}
-
-.image-placeholdertest {
-  max-width: 97%;
-  max-height: 97%;
-  object-fit: contain;
+  padding: 1rem;
 }

@@ -12,9 +12,7 @@ const ArtImgSection = () => {
           <div className="Artist-Type-ArtImg">Digital Artist</div>
         </div>
       </div>
-      <div className="image-containertest">
-        <img src={Art} alt="Placeholder" className="image-placeholdertest" />
-      </div>
+        <img src={Art} alt="Placeholder" className="image-containertest" />
     </div>
   );
 };

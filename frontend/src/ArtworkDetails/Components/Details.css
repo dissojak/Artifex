@@ -6,24 +6,25 @@
     margin: 20px auto; 
     padding: 20px;
     background-color: transparent;
+    color: #292929;
+    position: relative;
+    /* right: 15vw; */
   }
   
   .artwork-details h1 {
-    font-size: 2.1rem;
-    color: #333;
+    font-size: 2.5rem;
     font-family: 'RalewayEB','Raleway-extrabold' ;
   }
 
   .ratingArtworkDetailsContainer{
     display: flex; /* Uses flexbox to align children side by side */
     align-items: center; /* Vertically center aligns the items */
-    gap: 10px;
+    gap: 8px;
   }
   
   .price {
     font-size: 1.5rem;
-    color: #666;
-    margin-top: 5px;
+    margin-top: 0px;
     font-family: 'DubaiB','Dubai-bold' ;
 
   }
@@ -31,7 +32,9 @@
   .ratings {
     font-size: 0.9rem;
     color: #888;
-    margin-top: 0px;
+    margin-top: 7px;
+    font-family: 'Raleway','Raleway-Regular' ;
+
   }
   
   .stars {
@@ -39,8 +42,10 @@
   }
   
   .description {
-    margin-top: 15px;
-    line-height: 1.5;
+    margin-top: 10px;
+    /* line-height: 1.5; */
+    font-family: 'Raleway','Raleway-Regular' ;
+    font-size: 18px;
   }
   
   .category {
@@ -98,7 +103,7 @@
   
   .special-rating-commentsection label:before {
     content: '\2605';
-    font-size: 30px;
+    font-size: 25px;
   }
   
   .special-rating-commentsection input:checked ~ label,

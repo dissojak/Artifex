@@ -43,7 +43,7 @@ const CommentSection = () => {
   }, []);
   return (
     <>
-      <h1 style={{ paddingLeft: "60px", color: "#7e3fff" }}>COMMENTS :</h1>
+      <h1 style={{ paddingLeft: "60px", color: "#9866FF" }}>COMMENTS :</h1>
         <div className="comments-section">
             <div className="comment-input-container">
             <img src={Adem} alt="Samir Lousif" className="user-avatar" />
