@@ -1,10 +1,11 @@
 /* style.css */
-.card-container {
+.card-container3 {
     display: flex;
     align-items: stretch;
     justify-content: center;
     margin: 42px;
     padding-top: 20px;
+    margin-bottom: 20vh;
   }
   
   .image-container {

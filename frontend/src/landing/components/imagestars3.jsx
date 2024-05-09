@@ -4,7 +4,7 @@ import Banner3 from '../../assets/images/image 3.png'; // Ensure the path is cor
 
 function imagestars3() {
   return (
-    <div className="card-container">
+    <div className="card-container3">
       <div className="image-container">
       <div className="special-wrapper">
       <div className="special-box">

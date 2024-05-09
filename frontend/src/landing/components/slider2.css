@@ -1,6 +1,8 @@
 #slider2cont {
     width: 99.55vw;
     height: 100vh;
+    position: relative;
+    top:-10vh
   }
 .slider-container {
     position: relative;
