@@ -8,7 +8,7 @@
     height: 80px; /* Adjust based on your preference */
     width: 100%;
     left:-2px;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 1000;
 }
@@ -18,7 +18,7 @@
 }
 .navInNavContainer{
     text-align: left;
-    position: absolute;
+    position: fixed;
     align-items: center;
     top: -0.7rem;
     left: 30vw;
