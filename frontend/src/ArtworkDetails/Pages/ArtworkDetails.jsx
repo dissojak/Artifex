@@ -1,13 +1,16 @@
 import React from "react";
-import './ArtworkDetails.css';
+import "./ArtworkDetails.css";
 import ArtSection from "../Components/ArtImgSection.jsx";
 import CommentSection from "../Components/CommentSection.jsx";
+import Details from "../Components/Details.jsx";
 const ArtworkDetails = () => {
   return (
     <div className="ArtworkDetails-container">
-   
       <ArtSection />
-      <CommentSection />
+      <div id="DetailsSectionContainer">
+        <Details />
+        <CommentSection />
+      </div>
     </div>
   );
 };

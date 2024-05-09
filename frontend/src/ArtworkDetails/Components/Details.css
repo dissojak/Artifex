@@ -12,6 +12,12 @@
     font-size: 2.1rem;
     color: #333;
   }
+
+  .ratingArtworkDetailsContainer{
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 10px;
+  }
   
   .price {
     font-size: 1.5rem;
