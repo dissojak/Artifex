@@ -11,6 +11,7 @@
   .artwork-details h1 {
     font-size: 2.1rem;
     color: #333;
+    font-family: 'RalewayEB','Raleway-extrabold' ;
   }
 
   .ratingArtworkDetailsContainer{
@@ -23,12 +24,14 @@
     font-size: 1.5rem;
     color: #666;
     margin-top: 5px;
+    font-family: 'DubaiB','Dubai-bold' ;
+
   }
   
   .ratings {
     font-size: 0.9rem;
     color: #888;
-    margin-top: 10px;
+    margin-top: 0px;
   }
   
   .stars {
