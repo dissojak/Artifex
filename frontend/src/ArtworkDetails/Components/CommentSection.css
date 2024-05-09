@@ -38,8 +38,8 @@
     display: flex;
     align-items: center;
     background-color: #E0E0E0; 
-    border-radius: 20px; 
-    margin-bottom: 10px;
+    border-radius: 8px; 
+    margin-bottom: 2.5vh;
     padding: 8px 16px;
     width: 100%; 
   }
@@ -58,7 +58,8 @@
     background-color: transparent; 
     color: #333;
     font-size: 16px; 
-    width: 300px; 
+    width: 100%; 
+    height: 4vh;
   }
   
   .comment-input::placeholder {
@@ -79,14 +80,15 @@
     background: none;
     border: none;
     cursor: pointer;
+    color: #9866FF;
     outline: none; /* Remove focus outline for aesthetics */
     font-size: 24px; /* Adjust size as needed */
   }
   
   .comment-menu {
     position: absolute;
-    top: 100%;  /* Position directly below the button */
-    left: 0;    /* Align to the left of the button */
+    top: 65%;  /* Position directly below the button */
+    left: 64%;    /* Align to the left of the button */
     background-color: #fff;
     list-style: none;
     padding: 0;
