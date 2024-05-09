@@ -24,10 +24,6 @@
     color: #A6A7A8;
     border: 1px solid #707070;
   }
-  
-  tr:nth-child(even) {
-    background-color: #F2F3F9;
-  }
  
   .status.pending {
     color: #FFBF09;
