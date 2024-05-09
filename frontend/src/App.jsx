@@ -31,7 +31,7 @@ import PrivateRoute from "./BuildKite/PrivateRoute.jsx";
 
 import Landing from "./landing/pages/Landing.jsx";
 import NewArtwork from "./artwork/pages/NewArtwork.jsx";
-import Artists from "./ClientArtistsPage/Pages/ArtistPage.jsx";
+import Artists from "./ArtistsPage/Pages/ArtistPage.jsx";
 import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
 import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
 import SocialMedia from "./user/pages/SocialMedia.jsx";
