@@ -1,6 +1,7 @@
 .artwork-details {
     transform: scale(1.1);
     margin: 20px auto; 
+    margin-top: 0;
     padding: 20px;
     color: #292929;
   }
