@@ -14,7 +14,9 @@
   }
 
   .ratingArtworkDetailsContainer{
-
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 10px;
   }
   
   .price {

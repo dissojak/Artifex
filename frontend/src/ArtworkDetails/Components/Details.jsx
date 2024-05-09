@@ -20,7 +20,7 @@ const Details = () => {
             <label htmlFor="special-star1"></label>
           </div> 
       </div>
-      <p>(4.2 stars) - 12 rating</p>
+      <p className="ratings">(4.2 stars) - 12 rating</p>
       </div>
       <p className="description">
         Uncover hidden talents and support up-and-coming artists. Our platform showcases a diverse range of artists, giving you the opportunity to find unique and innovative artwork.
