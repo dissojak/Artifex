@@ -58,7 +58,7 @@ const CommentSection = () => {
                     <img src={comment.avatar} alt={comment.name} className="avatar" />
                     <div className="comment-content">
                             <div className="comment-header">
-                                <h4>{comment.name}</h4>
+                                <h2>{comment.name}</h2>
                                 <button
                                 onClick={() => toggleMenu(index)}
                                 className="menu-button"
