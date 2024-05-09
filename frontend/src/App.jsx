@@ -38,6 +38,7 @@ import SocialMedia from "./user/pages/SocialMedia.jsx";
 import ArtworkDetails from "./ArtworkDetails/Pages/ArtworkDetails.jsx";
 import ArtistProfileForUser from "./ArtistProfileForUser/Pages/ArtistProfileForUser.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
+import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -121,6 +122,7 @@ const App = () => {
           <Route path="/museums" element={<Museums />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
+          <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
           <Route path="/artistprofile" element={<ArtistProfileForUser />} />
         </Route>
         <Route path="/login" element={<Auth />} />
