@@ -2,3 +2,102 @@
     width: 99.3vw;
     height: 130vh;
 }
+.profile-Banner {
+    background-color: #9866FF;
+    width: 655px;
+    height:218px ;
+    position: relative;
+    left: 430px;
+    top:110px;
+    border-radius: 20px;
+  }
+.profile-container7 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 30px;
+    padding: 20px;
+    position: relative;  /* Set position to relative, absolute, or fixed as needed */
+    z-index: 1;
+  }
+  
+  .profile-image7 {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 4px solid white;
+  }
+  
+  .profile-name7 {
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+    margin-top: 10px;
+  }
+  
+  .profile-details7 {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+
+
+  .Btn7 {
+    width: 120px;
+    height: 45px;
+    background-color: rgb(65, 64, 64);
+    border: none;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.342);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .5s;
+  }
+  
+  .text7 {
+    color: #7E3FFF;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+    z-index: 2;
+  }
+  
+  .effect7 {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #7E3FFF;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    transition-duration: .5s;
+  }
+  
+  .Btn7:hover .effect7 {
+    transform: scale(15);
+    transform-origin: center;
+    opacity: 1;
+    transition-duration: .5s;
+  }
+  
+  .Btn7:hover {
+    box-shadow: 0px 0px 5px #7E3FFF,
+    0px 0px 10px #7E3FFF,
+    0px 0px 30px #7E3FFF;
+    transition-duration: .7s;
+  }
+  
+  .Btn7:hover .text7 {
+    color: rgb(255, 255, 255);
+  }
+  
+  .Btn7:hover {
+    fill: rgb(255, 255, 255);
+  }
+  
