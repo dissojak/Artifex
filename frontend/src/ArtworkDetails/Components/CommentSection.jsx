@@ -44,42 +44,42 @@ const CommentSection = () => {
   return (
     <>
       <h1 style={{ paddingLeft: "60px", color: "#7e3fff" }}>COMMENTS :</h1>
-      <div className="comments-section">
-        <div className="comment-input-container">
-          <img src={Adem} alt="Samir Lousif" className="user-avatar" />
-          <input
-            type="text"
-            placeholder="Comment As Samir Lousif"
-            className="comment-input"
-          />
-        </div>
-        {comments.map((comment, index) => (
-          <div key={index} className="comment">
-            <img src={comment.avatar} alt={comment.name} className="avatar" />
-            <div className="comment-content">
-              <div className="comment-header">
-                <h4>{comment.name}</h4>
-                <button
-                  onClick={() => toggleMenu(index)}
-                  className="menu-button"
-                >
-                  ⋮
-                </button>
-              </div>
-              <p>{comment.comment}</p>
-              {visibleMenuIndex === index && (
-                <ul className="comment-menu" ref={menuRef}>
-                  <li>Spam</li>
-                  <li>Nudity/Pornography</li>
-                  <li>Hate Speech/Discrimination</li>
-                  <li>Harassment/Bullying</li>
-                  <li>Violence/Gore</li>
-                </ul>
-              )}
+        <div className="comments-section">
+            <div className="comment-input-container">
+            <img src={Adem} alt="Samir Lousif" className="user-avatar" />
+            <input
+                type="text"
+                placeholder="Comment As Samir Lousif"
+                className="comment-input"
+            />
             </div>
-          </div>
-        ))}
-      </div>
+            {comments.map((comment, index) => (
+                <div key={index} className="comment">
+                    <img src={comment.avatar} alt={comment.name} className="avatar" />
+                    <div className="comment-content">
+                            <div className="comment-header">
+                                <h4>{comment.name}</h4>
+                                <button
+                                onClick={() => toggleMenu(index)}
+                                className="menu-button"
+                                >
+                                ⋮
+                                </button>
+                                    {visibleMenuIndex === index && (
+                                        <ul className="comment-menu" ref={menuRef}>
+                                        <li>Spam</li>
+                                        <li>Nudity/Pornography</li>
+                                        <li>Hate Speech/Discrimination</li>
+                                        <li>Harassment/Bullying</li>
+                                        <li>Violence/Gore</li>
+                                        </ul>
+                                    )}
+                            </div>
+                        <p>{comment.comment}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
     </>
   );
 };
