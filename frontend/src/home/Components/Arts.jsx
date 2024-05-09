@@ -103,7 +103,8 @@ const Arts = () => {
   return (
     <Fragment>
       <br />
-      <div id="homearts">
+      {/* <div id="homearts"> */}
+      <img src="./elements/line.svg" className="backgroundLineArts" alt="" />
         <div className="auth-section2">
           <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Art Showcase</h1>
           <p>Discover Exquisite Artworks from Talented Artist</p>
@@ -115,7 +116,7 @@ const Arts = () => {
             </div>
           )}
           {!isLoading && Artworks && <ArtsList items={Artworks}/>}
-      </div>
+      {/* </div> */}
     </Fragment>
   );
 };

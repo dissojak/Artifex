@@ -1,17 +1,26 @@
 #homearts {
     width: 99.55vw;
     height: 150vh;
-    background-image: url("../../assets/images/line.svg");
+    /* background-image: url("../../../assets/images/line.svg"); */
+    background-image: url("./elements/line.svg");
     background-repeat: no-repeat;
     background-size: 220vh;
     background-position: -10vh 10vh;
     
-    
   }
+.backgroundLineArts{
+  position: absolute;
+  top:6vh;
+  left:-7.5vw;
+  height: 100%;
+  width: 120%;
+}
+
   .auth-section2 {
     text-align: center;
     padding-top: 100px;
     padding-bottom: 40px;
+    z-index: 1;
   }
   .gallery-container2 {
     display: flex;
@@ -19,6 +28,7 @@
     justify-content: space-around;
     gap: 15px; /* Adjust space between cards */
     padding: 20px; /* Padding around the gallery container */
+    z-index: 1;
   }
   
   .cardd {
