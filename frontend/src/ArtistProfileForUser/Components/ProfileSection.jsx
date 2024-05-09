@@ -20,9 +20,21 @@ const ProfileSection = () => {
 </button>
     </div>
     <div className="Buttonart-order-section">
-    <h1>tests</h1>
+    <br />
+    <div className="tab-container7">
+  <input type="radio" name="tab" id="tab1" className="tab7 tab--17" />
+  <label className="tab_label7" htmlFor="tab1">Artworks</label>
+
+  <input type="radio" name="tab" id="tab2" className="tab7 tab--27" />
+  <label className="tab_label7" htmlFor="tab2">Order</label>
+
+
+  <div className="indicator7"></div>
+</div>
     
     </div>
+    {/*here*/}
+     {/*ends*/}
       </div>
     </>
   );
