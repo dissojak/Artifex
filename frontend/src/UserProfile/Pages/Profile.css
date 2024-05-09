@@ -1,47 +1,113 @@
 #Profile-section {
   width: 99.3vw;
-  height: 130vh;
+  height: 100vh;
   margin-left: 4px;
-  /* background-image: url("../assets/images/Tracé 6415.svg"),
-    url("../assets/images/Tracé 6419.svg"),
-    url("../assets/images/Tracé 6420.svg");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-size: 40vh, 40vh, 15vh;
-  background-position: 0vh 20vh, 166vh 15vh, 5vh 34vh; */
+  position: relative;
 }
+
 
 .leftImage{
   position: fixed;
   /* top :258px; */
   top: 33vh;
   right :0;
-  width: 15vw;
+  width: 14.6vw;
 }
 .rightImage{
   position: fixed; 
   top:44vh;
-  width: 15vw;
+  width: 13.95vw;
   left: 0;
 }
 .Profile-section2 {
   position: relative;
   width: 71vw;
   left: 13.7vw;
-  height: 130vh;
-  background-color: white;
+  height: fit-content;
   padding-left: 13.7vw;
 }
-.profile-cover {
+.profile-cover, .settingsClinetProfile {
   position: relative;
   width: 71vw;
-  right :13.7vw;
-  height: 30vh;
+  right: 13.7vw;
   background-color: #9866FF;
   padding-left: 6.5vw;
   padding-top: 17vh;
   display: flex;
   align-items: center;
+  transition: height 0.3s ease; /* Animate height changes */
 }
+
+.profile-cover {
+  height: 30vh; /* Initial height */
+}
+
+.settingsClinetProfile {
+  height: 100vh; /* Expanded height when settings are clicked */
+}
+
+.profileInfoContainer, .profileInfoContainerSettings {
+  width: 65vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: bottom 0.3s ease; /* Animate bottom changes */
+}
+
+.profileInfoContainer {
+  bottom: 0; /* Initial bottom position */
+}
+
+.profileInfoContainerSettings {
+  bottom: 35vh; /* Adjusted position when settings are clicked */
+}
+
+#SettingsContainerCard {
+  position: relative;
+  top: 5vh;
+  margin: -22.5vw;
+  right:26vw;
+  width: 68.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.l {
+  box-sizing: border-box;
+  padding-top: 4.3vh;
+  width: 35.4vh;
+  height: 35.4vh;
+  background-color: #ffff;
+  border-radius: 20px;
+  box-shadow: -25px 25px 50px rgba(0, 0, 0, 0.16);
+
+  text-align: center; /* Center the content horizontally */
+  margin-bottom: 5px; /* Add space between image and text */
+}
+
+.ch {
+  font-family: "Raleway-SemiBold";
+  /* font-size: 27px; */
+  font-size: 1.75vw;
+  color: #fffFFF;
+}
+.btn2 img {
+  width: 27.5vh;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure images are block elements */
+  margin: 0 auto; /* Center the images horizontally */
+}
+
+.btn23 img {
+  width: 27vh;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure images are block elements */
+  margin: 0 auto; /* Center the images horizontally */
+  margin-top: -0.5vh;
+}
+
+
 .Buttons-section3 {
   text-align: left;
   padding-left: 135px;

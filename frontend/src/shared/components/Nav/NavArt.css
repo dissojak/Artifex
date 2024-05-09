@@ -58,7 +58,7 @@
   
   .indicatorNav {
     position: absolute;
-    bottom: 0;
+    bottom: 12px;
     height: 4px;
     background-color: #9866ff;  /* Indicator color */
   }
