@@ -1,11 +1,10 @@
 #home1 {
+  margin-top:20vh;
   width: 99.55vw;
   height: 100vh;
   background-image: url("../../assets/images/HomePage.png");
-
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: 3vh;
 }
 #home2-admin {
   width: 99.55vw;
