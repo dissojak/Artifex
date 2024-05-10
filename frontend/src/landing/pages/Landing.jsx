@@ -15,7 +15,7 @@ import ServicesSection from "../components/ServicesSection.jsx";
 import TeamBehind from "../components/TeamBehind.jsx";
 import DiscoverBanner from "../components/DiscoverBanner.jsx";
 import Footer from "../../shared/components/UIElements/Footer.jsx";
-import ArtsHomeList from "../../home/Components/ArtsHomeList.jsx";
+import ArtsHomeList from "../../home/Components/ArtsLandingList.jsx";
 import Art from "../../assets/images/image_artwork.png";
 
 const Artworks = [

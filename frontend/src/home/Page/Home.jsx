@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../shared/context/auth-context";
 
-import Facebook from '../../assets/images/Facebook.svg';
-import Instagram from '../../assets/images/Instagram.svg';
-import Twitter from '../../assets/images/Tracé 2.svg';
-import Youtube from '../../assets/images/youtube.svg';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../../slices/usersApiSlice';
-import { logout } from '../../slices/authSlice';
-import Logo from '../../assets/images/Logo_Artifex.svg';
+import Facebook from "../../assets/images/Facebook.svg";
+import Instagram from "../../assets/images/Instagram.svg";
+import Twitter from "../../assets/images/Tracé 2.svg";
+import Youtube from "../../assets/images/youtube.svg";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "../../slices/usersApiSlice";
+import { logout } from "../../slices/authSlice";
+import Logo from "../../assets/images/Logo_Artifex.svg";
 
 const Home = () => {
   const auth = useContext(AuthContext);
@@ -27,12 +27,11 @@ const Home = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/login');
+      navigate("/login");
     } catch (err) {
       console.error(err);
     }
   };
-
 
   //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
 
@@ -41,7 +40,7 @@ const Home = () => {
       <Link to="/">
         <img src={Logo} alt="" className="Logowhite" />
       </Link>
-      
+
       {auth.isLoggedIn && (
         <>
           <div id="header_right_home">
@@ -60,17 +59,17 @@ const Home = () => {
             className="where"
             style={!auth.isAdmin ? { color: "#5BD6FF" } : { color: "#5BD6FF" }}
           >
-             WHERE CREATIVITY{" "}
+            WHERE CREATIVITY{" "}
           </h1>
           <h1 className="meets">UNLEASHES POSSIBILITIES</h1>
           <p className="p1">
             "Embark on a journey of innovation. At Artifex, we cultivate a
             community where creativity thrives, collaboration flourishes, and
-          <br/>
-          groundbreaking solutions take flight. Join us, explore, and shape
+            <br />
+            groundbreaking solutions take flight. Join us, explore, and shape
             the landscape of tomorrow."
           </p>
-         
+
           <button
             className="button_home"
             onClick={() =>
@@ -79,9 +78,7 @@ const Home = () => {
           >
             <h2
               className="button_home_1"
-              style={
-                !auth.isAdmin ? { color: "black" } : { color: "#0185B7" }
-              }
+              style={!auth.isAdmin ? { color: "black" } : { color: "#0185B7" }}
             >
               For Hosting
             </h2>
@@ -97,19 +94,30 @@ const Home = () => {
             </h2>
             {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
             <img
-              src={
-                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
-              }
+              src={!auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"}
               alt=""
-              className="arrow" style={{padding: '9px 0',color:'black'}}
+              className="arrow"
+              style={{ padding: "9px 0", color: "black" }}
             />
           </button>
           <div className="social-links2">
-          <Link to="#">  <img src={Facebook} alt="Facebook" /></Link>
-          <Link to="#">  <img src={Instagram} alt="Instagram" /></Link>
-          <Link to="#">  <img src={Twitter} alt="FaceTwitterbook" /></Link>
-          <Link to="#">  <img src={Youtube} alt="Youtube" /></Link>
-        </div>
+            <Link to="#">
+              {" "}
+              <img src={Facebook} alt="Facebook" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Instagram} alt="Instagram" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Twitter} alt="FaceTwitterbook" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Youtube} alt="Youtube" />
+            </Link>
+          </div>
           <ul className="icons_home">
             <li>
               {" "}
@@ -125,10 +133,11 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button className="LogoutBtn" onClick={logoutHandler}>Logout</button>
+          <button className="LogoutBtn" onClick={logoutHandler}>
+            Logout
+          </button>
         </div>
       </div>
-     
     </>
   );
 };

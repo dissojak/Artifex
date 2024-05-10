@@ -10,12 +10,12 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    // logout: builder.mutation({
-    //   query: () => ({
-    //     url: `${ARTWORKS_URL}/logout`,
-    //     method: 'POST',
-    //   }),
-    // }),
+    getArtworks: builder.mutation({
+      query: () => ({
+        url: `${ARTWORKS_URL}/getArtworks`,
+        method: 'GET',
+      }),
+    }),
     // register: builder.mutation({
     //   query: (data) => ({
     //     url: `${ARTWORKS_URL}/signup`,
@@ -35,7 +35,7 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useAddArtworkSignupMutation,
-//   useLogoutMutation,
+  useGetArtworksMutation,
 //   useRegisterMutation,
 //   useUpdateUserMutation,
 } = artworkApiSlice;

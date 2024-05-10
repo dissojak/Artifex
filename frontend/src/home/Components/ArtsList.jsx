@@ -7,12 +7,13 @@ const ArtsList = (props) => {
       <div className="gallery-container2">
         {props.items.map(artwork => (
         <ArtsItem
-          key={artwork.id}
-          id={artwork.id}
-          Image={artwork.Image}
+          passKey={true}
+          key={artwork._id}
+          id={artwork._id}
+          Image={artwork.imageArtwork}
           username={artwork.Artist}
           Likes={artwork.Likes}
-          Views={artwork.Views}
+          Views={artwork.Views||0}
           title={artwork.title}
           price={artwork.price}
         //   rating={artwork.rating.rating||0}
