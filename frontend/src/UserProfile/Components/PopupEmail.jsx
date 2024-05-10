@@ -1,35 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import "../Pages/style_profile.css";
-import '../Pages/Profile.css';
+import "../Pages/Profile.css";
 import "./PopupUsername.css";
-import { useHttp } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useUpdateUserMutation } from "../../slices/usersApiSlice";
+import { setCredentials } from "../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const PopupEmail = (props) => {
   const [newEmail, setNewEmail] = useState("");
-  const { isLoading, error, sendRequest, clearError } = useHttp();
+
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+  const [updateProfile, { isLoading }] = useUpdateUserMutation();
+
+  useEffect(() => {
+    setNewEmail(userInfo.email);
+  }, [userInfo.email]);
 
   const SubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      await sendRequest(
-        `http://localhost:8000/api/user/settings/email/${props.userId}`,
-        "PATCH",
-        JSON.stringify({
-          email: newEmail,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
+      const res = await updateProfile({
+        _id: userInfo._id,
+        email: newEmail,
+      }).unwrap();
+      console.log(res);
+      dispatch(setCredentials(res));
+      toast.success("Email updated successfully");
       props.showChangeEmailHandler();
-    } catch (e) {}
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
       <div className="loader">{isLoading && <LoadingSpinner />}</div>
       <div className="change">
         <div className="ch1user">
