@@ -1,15 +1,65 @@
 #ShowcaseMus-section {
     width: 99.3vw;
-    height: 130vh;
+    height: 200vh;
+    background-image: url("../../assets/images/line2.svg");
+    background-repeat: no-repeat;
+    /* background-size: 250vh ; */
+    background-position: -10vh 80vh;
 }
 
-.profile-Banner {
-    background-image: url("");
+.ShowcaseMus-Banner {
+    background-image: url("../../assets/images/Museum.png");
+  
+    background-repeat: no-repeat;
+    background-size: cover ;
+    background-position:20px;
     width: 655px;
-    height:218px ;
+    height:444px ;
     position: relative;
     left: 430px;
-    top:110px;
+    top:-25px;
     border-bottom-left-radius: 20px; 
     border-bottom-right-radius: 20px;  
   }
+
+  .ShowcaseMus-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    margin-top: -115px;
+    padding: 20px;
+    position: relative;  /* Set position to relative, absolute, or fixed as needed */
+    z-index: 1;
+  }
+  
+  .ShowcaseMus-name {
+    width: 270px;
+    height: 70px;
+    background-color: #292929;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;  
+    font-size: 36px;
+    padding-top: 8px;
+    color: white;
+  }
+  .ShowcaseMus-name p{
+    font-family:"Raleway-SemiBold" ;
+  }
+  
+  .ShowcaseMus-title {
+    color: rgb(0, 0, 0);
+    font-size: 56px;
+    margin-top: 10px;
+    font-family: "Dubai-Bold";
+  }
+  
+  .ShowcaseMus-details{
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin: 5px 0;
+    font-family: "Raleway-Regular";
+  }
+  
