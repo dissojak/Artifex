@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./OrderSection.css";
+import Adem from "../../assets/images/Adem.jpg";
 const OrderSection = () => {
   return (
     <>
@@ -7,7 +8,10 @@ const OrderSection = () => {
     <div className="requestFormWrapper">
       <div className="requestForm">
         <div className="formSection left">
+            <div className="testinprofile">
+            <img src={Adem} alt="Adem Ben Amor" className="Artist-image-ArtImg" />
           <p>Let's get your request ready to send</p>
+          </div>
           <label htmlFor="artType">What's the type of art you are looking for?</label>
           <div className="inputGroup" >
             
