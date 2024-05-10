@@ -57,8 +57,9 @@ const PopupEmail = (props) => {
             <br />
             <input
               type="text"
-              placeholder={props.username + "@gmail.com"}
+              placeholder={setNewEmail}
               className="inp_ch"
+              name="emailProfile"
               value={newEmail}
               onChange={(event) => setNewEmail(event.target.value)}
             />

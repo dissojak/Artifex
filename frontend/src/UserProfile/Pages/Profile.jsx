@@ -6,7 +6,7 @@ import PinIcon from "../../assets/images/Pinblack.svg";
 import PinIconActive from "../../assets/images/Pinpurple.svg";
 import OrderIcon from "../../assets/images/orderblack.svg";
 import OrderIconActive from "../../assets/images/orderpurple.svg";
-import Orders from "../Components/Orders.jsx";
+import Orders from "../Components/Orders/Pages/Orders.jsx";
 import SavedArtwork from "../Components/SavedArtwork.jsx";
 import PinnedMuseums from "../Components/PinnedMuseums.jsx";
 import Adem from "../../assets/images/Adem.jpg";

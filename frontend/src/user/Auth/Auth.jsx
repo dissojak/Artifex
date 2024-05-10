@@ -175,7 +175,7 @@ function Auth() {
               or use your email for registration
             </span>
             <input
-              type="text"
+              type="name"
               placeholder="Name"
               value={name}
               className="input_login"
@@ -218,7 +218,7 @@ function Auth() {
               or use your email password
             </span>
             <input
-              type="text"
+              type="username-email"
               placeholder="Email or Username"
               value={email}
               name="email"

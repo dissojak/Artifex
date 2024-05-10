@@ -99,7 +99,7 @@ const Popup_pw = (props) => {
               type="password"
               name="newPwSec"
               value={formState.newPwSec}
-              placeholder="re-enter old password"
+              placeholder="Confirm password"
               className="inp_ch"
               onChange={inputChangeHandler}
             />

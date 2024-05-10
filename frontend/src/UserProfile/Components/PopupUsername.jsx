@@ -64,6 +64,7 @@ const PopupUsername = (props) => {
               type="text"
               placeholder={newUsername}
               className="inp_ch"
+              name="usernameProfile"
               value={newUsername}
               onChange={handleInputChange}
             />

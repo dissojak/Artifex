@@ -6,7 +6,21 @@
     right: 13.74vw;
   }
 
-  
+  .noOrdersContainer {
+    position:absolute; /* or 'absolute' depending on the context */
+    /* z-index: 1; */
+    top: 130%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Optional, depends on the desired width */
+    text-align: center; /* Center the text inside the container */
+  }
+  .noOrdersContainer h1{
+    color: #ff5757;
+    position: relative;
+    font-family: 'ptsimple';
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -40,3 +54,7 @@
     background-color:#FDF4F6 ;
   }
   
+  .status.accepted{
+    color:#096BFF;
+    background-color: #E6EEFF;
+  }
