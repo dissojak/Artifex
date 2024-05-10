@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import "../Pages/style_profile.css";
 import "../Pages/Profile.css";
-import "./PopupUsername.css";
+import "./Popup_Profile.css";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useUpdateUserMutation } from "../../slices/usersApiSlice";

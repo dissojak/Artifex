@@ -15,7 +15,7 @@
 .tit_ch {
     font-family: 'BebasNeue-Regular';
     font-size: 3.71vw;
-    color: #4D3223;
+    color: #7E3FFF;
     /* margin:auto; */
 }
 
@@ -23,14 +23,14 @@
     position:relative;
     width: 2.16vw;
     height: 2.16vw;
-    top:9.65vh;
+    top:3.65vh;
     cursor: pointer;
 }
 
 .la-ch {
     font-family: 'Raleway-extrabold';
     font-size: 1.173vw;
-    color: #4D3223;
+    color: #000000;
     text-transform: capitalize;
 }
 
@@ -49,7 +49,7 @@
 .first_ch {
     display: flex;
     justify-content: space-between;
-    margin-top: -4.25vh;
+    margin-top:  1.75vh;
 }
 
 .inp_ch {
@@ -63,7 +63,7 @@
 }
 
 .inp_ch:focus{
-    border: 0.15vw solid #C08979;
+    border: 0.15vw solid #9866FF;
     outline: none;
 }
 
@@ -78,18 +78,31 @@
 .btn_ch {
     width: 12.50vw;
     height: 6.5vh;
-    background-color: #4D3223;
+    background-color: #7E3FFF;
     color: #ffffff;
     font-family: 'ptsimple';
     font-size: 2.1vw;
     text-transform: capitalize;
     margin-left: 17.5vw;
-    margin-top: -2.5vh;
+    margin-top: -2.5vh;  
+    cursor: pointer;
+}
+.btn_ch_pw {
+    width: 12.50vw;
+    height: 6.5vh;
+    background-color: #7E3FFF;
+    color: #ffffff;
+    font-family: 'ptsimple';
+    font-size: 2.1vw;
+    text-transform: capitalize;
+    margin-left: 17.5vw;
+    margin-top: 1.5vh;   
     cursor: pointer;
 }
 
+
 .form_ch {
-    margin-top: -50px;
+    margin-top: 11px;
     display: flex;
     flex-wrap: wrap;
     gap: 1.45vh;

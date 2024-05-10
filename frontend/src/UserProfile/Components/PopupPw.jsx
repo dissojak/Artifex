@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // import "../Pages/style_profile.css";
-import "../Pages/Profile.css";
 import "./Popup_Profile.css";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -109,7 +108,7 @@ const Popup_pw = (props) => {
             </label>
             <br /> */}
             <button
-              className="btn_ch"
+              className="btn_ch_pw"
               disabled={isLoading}
               style={isLoading ? { backgroundColor: "grey" } : {}}
             >
