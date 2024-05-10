@@ -20,7 +20,6 @@ const ArtSection = () => {
       <h1>Museum Name</h1>
       <p className="getyourpass-price">300 DT</p>
       <div className="getyourpass-ratingArtworkDetailsContainer">
-      
         <p className="getyourpass-date"> DATE :</p>
         <div class="dateLabel-Start">12 August</div>
         <div class="dateLabel-End">18 August</div>
