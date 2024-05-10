@@ -1,6 +1,6 @@
 #ArtSection-Section {
     width: 99.3vw;
-    height: 130vh;
+    height: 110vh;
 }
 
   .ArtSection-containertest {
@@ -142,4 +142,126 @@ justify-content: space-between;
     border-radius: 20px; 
     font-size: 18px; 
     font-family: "Roboto";
+  }
+
+
+  
+  .buttonsartsection8 {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .add-to-cart8  {
+    background-color: #7E3FFF; 
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; 
+    
+  }
+  
+
+  .buttoncart8 {
+    cursor: pointer;
+    --width: 560px;
+    --height: 55px;
+    --tooltip-height: 35px;
+    --tooltip-width: 90px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: #7e3fff;
+    --tooltip-color: #fff;
+    border: 2px solid #7e3fff;
+    width: var(--width);
+    height: var(--height);
+    background: var(--button-color);
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    font-family: "Arial";
+    transition: background 0.3s;
+  }
+ 
+  .buttoncart8::after,
+  .buttoncart8::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+  }
+  
+  .textcart8 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-wrappercart8,
+  .textcart8,
+  .iconcart8 {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+  }
+  
+  .textcart8 {
+    top: 0;
+    color: #ffffff;
+  }
+  
+  .textcart8,
+  .iconcart8 {
+    transition: top 0.5s;
+  }
+  
+  .iconcart8 {
+    color: #fff;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iconcart8 img {
+    width: 24px;
+    height: 24px;
+  }
+  .textcart8 img {
+    width: 24px;
+    height: 24px;
+    padding-left: 15px;
+  }
+  
+  .buttoncart8:hover {
+    background: #7e3fff;
+  }
+  
+  .buttoncart8:hover .textcart8 {
+    top: -100%;
+  }
+  
+  .buttoncart8:hover .iconcart8 {
+    top: 0;
+  }
+  
+  .buttoncart8:hover:before,
+  .buttoncart8:hover:after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .buttoncart8:hover:after {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+  }
+  
+  .buttoncart8:hover:before {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
   }

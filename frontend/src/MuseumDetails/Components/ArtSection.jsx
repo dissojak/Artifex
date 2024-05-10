@@ -1,7 +1,9 @@
 import React from "react";
 import "./ArtSection.css";
 import Art from "../../assets/images/image 2.png";
-import Adem from "../../assets/images/Adem.jpg";
+import Ticket from "../../assets/images/Tracé 10.svg";
+import Pass from "../../assets/images/event_pass.svg";
+import Pin from "../../assets/images/Pinblack.svg";
 const ArtSection = () => {
   return (
     <div id="ArtSection-Section">
@@ -17,7 +19,7 @@ const ArtSection = () => {
         {/*get pass*/}
         <div className="getyourpass-container">
         <div className="getyourpass-details">
-      <h1>Museum Name</h1>
+      <h1>Museum Name  <img src={Pin} alt="Pin"  /></h1>
       <p className="getyourpass-price">300 DT</p>
       <div className="getyourpass-ratingArtworkDetailsContainer">
         <p className="getyourpass-date"> DATE :</p>
@@ -32,19 +34,12 @@ const ArtSection = () => {
         <p className="getyourpass-category">Digital art</p>
       </div>
       {/*button section */}
-      <div className="buttonsartsection" style={{paddingTop:'80px'}}>
-        <div className="buttoncart">
-          <div className="button-wrappercart">
-            <div className="textcart">Get Your Pass</div>
-            <span className="iconcart">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="bi bi-cart2"
-                viewBox="0 0 16 16"
-              >
-                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-              </svg>
+      <div className="buttonsartsection8" style={{paddingTop:'80px'}}>
+        <div className="buttoncart8">
+          <div className="button-wrappercart8">
+            <div className="textcart8">Get Your Pass  <img src={Ticket} alt="Ticket"  /></div>
+            <span className="iconcart8">
+            <img src={Pass} alt="Ticket" className="bi bi-cart2" />
             </span>
           </div>
           </div>
