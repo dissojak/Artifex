@@ -1,31 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import "../Pages/style_profile.css";
-import '../Pages/Profile.css';
+import "../Pages/Profile.css";
 import "./PopupUsername.css";
-import { useHttp } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useUpdateUserMutation } from "../../slices/usersApiSlice";
+import { setCredentials } from "../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const PopupUsername = (props) => {
   const [newUsername, setNewUsername] = useState("");
-  const { isLoading, error, sendRequest, clearError } = useHttp();
+
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+  const [updateProfile, { isLoading }] = useUpdateUserMutation();
+
+  useEffect(() => {
+    setNewUsername(userInfo.username);
+  }, [userInfo.username]);
 
   const SubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      await sendRequest(
-        `http://localhost:8000/api/user/settings/username/${props.userId}`,
-        "PATCH",
-        JSON.stringify({
-          username: newUsername,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-      props.changeUsername(newUsername);
+      const res = await updateProfile({
+        _id: userInfo._id,
+        username:newUsername,
+      }).unwrap();
+      console.log(res);
+      dispatch(setCredentials(res));
+      toast.success("Username updated successfully");
+      // props.changeUsername(newUsername);
       props.showChangeUsernameHandler();
-    } catch (e) {}
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   const handleInputChange = (event) => {
@@ -34,7 +42,6 @@ const PopupUsername = (props) => {
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
       <div className="loader">{isLoading && <LoadingSpinner />}</div>
       <div className="change">
         <div className="ch1user">
@@ -55,7 +62,7 @@ const PopupUsername = (props) => {
             <br />
             <input
               type="text"
-              placeholder={props.username}
+              placeholder={newUsername}
               className="inp_ch"
               value={newUsername}
               onChange={handleInputChange}

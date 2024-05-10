@@ -10,6 +10,9 @@ import Orders from "../Components/Orders.jsx";
 import SavedArtwork from "../Components/SavedArtwork.jsx";
 import PinnedMuseums from "../Components/PinnedMuseums.jsx";
 import Adem from "../../assets/images/Adem.jpg";
+import Popup_pw from "../Components/PopupPw.jsx";
+import PopupUsername from "../Components/PopupUsername.jsx";
+import PopupEmail from "../Components/PopupEmail.jsx";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -19,6 +22,7 @@ const Profile = () => {
   const [showChangeEmail, setShowChangeEmail] = useState(false);
 
   const showChangePwHandler = () => {
+    console.log(" heyy ");
     setShowChangePw((prevMode) => !prevMode);
   };
   const showChangeUsernameHandler = () => {
@@ -129,10 +133,9 @@ const Profile = () => {
                     <h2 className="ch">Change Password</h2>
                   </button>
                   {showChangePw && (
-                    <PopupPw
+                    <Popup_pw
                       showChangePwHandler={showChangePwHandler}
                       // onPasswordChangeSuccess={handlePasswordChangeSuccess}
-                      userId={auth.userId}
                     />
                   )}
                   <button className="btn2" onClick={showChangeUsernameHandler}>
@@ -144,9 +147,7 @@ const Profile = () => {
                   {showChangeUsername && (
                     <PopupUsername
                       showChangeUsernameHandler={showChangeUsernameHandler}
-                      changeUsername={changeUsernameHandler}
-                      username={auth.userName}
-                      userId={auth.userId}
+                      // changeUsername={changeUsernameHandler}
                     />
                   )}
                   <button className="btn23" onClick={showChangeEmailHandler}>
@@ -158,8 +159,6 @@ const Profile = () => {
                   {showChangeEmail && (
                     <PopupEmail
                       showChangeEmailHandler={showChangeEmailHandler}
-                      username={auth.userName}
-                      userId={auth.userId}
                     />
                   )}
                 </div>

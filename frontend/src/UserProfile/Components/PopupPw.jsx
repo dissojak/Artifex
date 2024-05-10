@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 // import "../Pages/style_profile.css";
-import '../Pages/Profile.css';
+import "../Pages/Profile.css";
 import "./Popup_Profile.css";
-import { useHttp } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useUpdateUserMutation } from "../../slices/usersApiSlice";
+import { setCredentials } from "../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const Popup_pw = (props) => {
-  const [err, setErr] = useState();
   const [formState, setFormState] = useState({
     oldPw: "",
     newPw: "",
     newPwSec: "",
   });
 
-  const { isLoading, error, sendRequest, clearError } = useHttp();
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+  const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
   const inputChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -27,29 +30,27 @@ const Popup_pw = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
     if (formState.newPw !== formState.newPwSec) {
-      setErr("NEW Passwords do not match.");
-      return;
-    }
-    try {
-      await sendRequest(
-        `http://localhost:8000/api/user/settings/password/${props.userId}`,
-        "PATCH",
-        JSON.stringify({
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const res = await updateProfile({
+          _id: userInfo._id,
           oldPw: formState.oldPw,
           newPw: formState.newPw,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-      props.onPasswordChangeSuccess();
-      props.showChangePwHandler();
-    } catch (e) {}
+        }).unwrap();
+        console.log(res);
+        dispatch(setCredentials(res));
+        console.log("Updated");
+        toast.success("Password updated successfully");
+        props.showChangePwHandler();
+      } catch (e) {
+        toast.error(e?.data?.message || e.error);
+      }
+    }
   };
 
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
       <div className="loader">{isLoading && <LoadingSpinner />}</div>
       <div className="change">
         <div className="ch1">
@@ -102,11 +103,11 @@ const Popup_pw = (props) => {
               className="inp_ch"
               onChange={inputChangeHandler}
             />
-            <br />
+            {/* <br />
             <label htmlFor="" style={{ color: "red" }}>
               {err}
             </label>
-            <br />
+            <br /> */}
             <button
               className="btn_ch"
               disabled={isLoading}
