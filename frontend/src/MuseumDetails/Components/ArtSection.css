@@ -2,21 +2,12 @@
     width: 99.3vw;
     height: 130vh;
 }
-.ArtSection-Section2 {
-    width: 50vw;
-    height: 100vh;
-    background-color: rgb(255, 255, 255);
-    position: absolute;
-    left: 0;
-    top: 0;
-    
-  
-  }
+
   .ArtSection-containertest {
-    width: 90%;
-    height: 63vh;
+    width: 705px;
+    height: 474px;
     position: absolute;
-    top: 100px;
+    top: 30px;
     left: 60px;
     border: 5px solid #9866FF;
     margin: 5vh auto;
@@ -25,4 +16,130 @@
     justify-content: center;
     padding: 0.75rem;
   }
+  .Artsandbar-container{
+    width: 50vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  top: 100px;
+  }
   
+  .range-content{
+    width: 680px;
+    height: 13px;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    position: relative;
+  }
+  .slider-range{
+    position: absolute;
+    width: 76%;
+    height: 13px;
+    background-color:#7e3fff;
+    border-radius: 10px;
+  }
+  .range-nmr{
+    font-family: 'Roboto-Bold';
+    font-size: 24px;
+    padding-left: 30px;
+    position: relative;
+    top: -8px;
+  }
+  .range_container{
+    width:680px;
+    position: relative;
+    top: 530px;
+    left: 25px;
+    display: flex;
+justify-content: space-between;
+    padding-top:26px;
+  }
+  .getyourpass-container{
+    width: 48vw;
+    height: 100vh;
+    background-color: white;
+    position: relative;
+    right: -51vw;
+    top: -85vh;
+    padding: 72px;
+    padding-top: 40px;
+  }
+
+
+
+  .getyourpass-details {
+    transform: scale(1.1);
+    margin: 20px auto; 
+    margin-top: 0;
+    padding: 20px;
+    color: #292929;
+  }
+  
+  .getyourpass-details h1 {
+    font-size: 2.5rem;
+    font-family: 'RalewayEB','Raleway-extrabold' ;
+  }
+
+  .getyourpass-ratingArtworkDetailsContainer{
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 8px;
+  }
+  
+  .getyourpass-price {
+    font-size: 1.5rem;
+    margin-top: 0px;
+    font-family: 'DubaiB','Dubai-bold' ;
+
+  }
+  
+  .getyourpass-date {
+    font-size: 24px;
+    color: #7e3fff;
+    margin-top: 7px;
+    font-family: 'Raleway-Bold' ;
+
+  }
+  
+  .stars {
+    color: #ffc107; 
+  }
+  
+  .getyourpass-description {
+    margin-top: 10px;
+    /* line-height: 1.5; */
+    font-family: 'Raleway','Raleway-Regular' ;
+    font-size: 18px;
+  }
+  
+  .getyourpass-category {
+    margin-top: 15px;
+  }
+  .dateLabel-Start {
+    display: inline-block;
+    width:113px;
+    height: 40px;
+    padding: 10px; 
+ text-align: center;
+    background-color: #7e3fff; 
+    color: white; 
+    border-radius: 20px; 
+    font-size: 18px; 
+    font-family: "Roboto";
+  }
+  .dateLabel-End {
+    display: inline-block;
+    width:113px;
+    height: 40px;
+    padding: 10px; 
+ text-align: center;
+    background-color: #EBEBEB; 
+    color: rgb(0, 0, 0); 
+    border-radius: 20px; 
+    font-size: 18px; 
+    font-family: "Roboto";
+  }
