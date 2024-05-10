@@ -60,7 +60,11 @@
   src: url("fonts/Raleway-ExtraBold.ttf");
   font-weight: 700;
 }
-
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("fonts/Roboto-Medium.ttf");
+  font-weight: 700;
+}
 @font-face {
   font-family: "Montserrat-bold";
   src: url("fonts/Montserrat-Bold.ttf");

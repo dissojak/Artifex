@@ -3,7 +3,7 @@
     height: 130vh;
     background-image: url("../../assets/images/linemuseum.svg");
     background-repeat: no-repeat;
-    background-size: 220vh;
+  
     background-position: -10vh 10vh;
     
     
@@ -22,3 +22,217 @@
     padding: 109px;
     padding-top: 24px;
   }
+
+
+
+
+
+
+  .event-card11{
+    padding: 6px;
+    width: 316px;
+    height: 383px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+      box-shadow: 0px 2px 25px rgb(0, 0, 0, 0.16);
+      
+ 
+  }
+
+  .event-image11{
+      position: relative;
+      width: 306px;
+      height: 189px;
+      border-radius:15px ;
+
+  }
+
+ .event-overlay11{
+ 
+  width: 306px;
+      height: 189px;
+  position: absolute;
+  bottom: 0;
+ } 
+  .event-price11{
+      width:49px;
+      height: 22px;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.20) ;
+  
+    height: 22px;
+  border-radius: 25px;
+ 
+  font-family:'Roboto-Medium';
+  font-size: 12px;
+  text-align: center;
+  padding-top: 4px;
+  box-sizing: border-box;
+  }
+ .event-debut-date11{
+  width:max-content;
+  height: 22px;
+  border-radius: 25px;
+  background-color:#8D3DFF ;
+  font-family:'Roboto-Medium';
+  font-size: 12px;
+  color: #FFFFFF;
+  text-align: center;
+
+ padding-top:4px ;
+ padding-left: 10px;
+ padding-right: 10px;
+  box-sizing: border-box;
+ }
+ .event-end-date11{
+
+  width: max-content;
+  height: 22px;
+  border-radius: 25px;
+  background-color:#FFFFFF ;
+  font-family:"Roboto-Medium";
+  font-size: 12px;
+  text-align: center;
+  padding-top:4px ;
+ padding-left: 10px;
+ padding-right: 10px;
+  box-sizing: border-box;
+ }
+
+ .event-date11{
+  width: 156px;
+  height: 22px;
+  display: flex;
+
+  justify-content: space-between;
+ }
+ .event-overlay-top11{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+ }
+ .btn-pass11{
+  overflow: hidden;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 110px;
+  height: 34px;
+  background-color: #8D3DFF;
+  color: #FFFFFF;
+  border:none;
+ border-top-left-radius:15px ;
+  border-bottom-right-radius:15px ;
+ }
+ .btn-pass11 span{
+  transition: top 0.5s;
+ }
+ .btn-pass11:hover .btn-text-one11 {
+  top: -100%;
+}
+
+.btn-pass11:hover .btn-text-two11 {
+  top: 50%;
+}
+
+
+.btn-text-one11 {
+position: absolute;
+width: 100%;
+top: 50%;
+font-family:"Roboto-Medium";
+left: 0;
+transform: translateY(-50%);
+padding-bottom: 9px;
+}
+
+.btn-text-two11 {
+position: absolute;
+width: 100%;
+top: 150%;
+left: 0;
+transform: translateY(-50%);
+}
+ .btn-311{
+  bottom: 0;
+  position: absolute;
+  width:40px;
+  height: 34px;
+  background-color: #8D3DFF;
+  color: #FFFFFF;
+border:none;
+border-top-right-radius:15px ;
+border-bottom-left-radius:15px ;
+ }
+ .cc11{
+  font-family: 'Raleway-SemiBold';
+  font-size: 24px;
+ }
+ .ccp11{
+  font-family: 'Raleway-Regular';
+  font-size: 16px;
+ }
+ .btn-da11{
+  width: 88px;
+  height: 27px;
+  border-radius: 4px;
+  color: #A6A7A8;
+  border: 2px #A6A7A8 solid;
+  background-color: #FFFFFF;
+ }
+ .profile-image11 {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+
+  
+}
+.profile-container11{
+  position: relative;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 96px;
+    left: 186px;
+    top: -29px;
+    margin-right: 9px;
+}
+.div_buttom11{
+
+  width: 295px;
+  display: flex;
+  justify-content:space-between;
+}
+.range-content11{
+  width: 230px;
+  height: 10px;
+  background-color: #EBEBEB;
+  border-radius: 10px;
+  position: relative;
+  top: 24px;
+}
+.slider-range11{
+  position: absolute;
+  width: 76%;
+  height: 10px;
+  background-color:#5BD6FF;
+  border-radius: 10px;
+}
+.range-nmr11{
+  font-family: 'Roboto-Bold';
+  font-size: 12px;
+  position: relative;
+  left: 256px;
+  top: 11px;
+  width: 1px;
+}
+.range_container11{
+  width: 295px;
+  display: flex;
+justify-content: space-between;
+  padding-top:26px;
+}
