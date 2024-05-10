@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import "../Pages/style_profile.css";
 import "../Pages/Profile.css";
 import "./Popup_Profile.css";
@@ -7,12 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useUpdateUserMutation } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
+// import { AuthContext } from "../../shared/context/auth-context";
 
 const PopupUsername = (props) => {
-  const [newUsername, setNewUsername] = useState("");
+  // const auth = useContext(AuthContext);
+  const [newUsername, setNewUsername] = useState();
 
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
+  // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo);
   const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
   useEffect(() => {
@@ -27,7 +31,7 @@ const PopupUsername = (props) => {
         username:newUsername,
       }).unwrap();
       console.log(res);
-      dispatch(setCredentials(res));
+      dispatch(setCredentials(...res));
       toast.success("Username updated successfully");
       // props.changeUsername(newUsername);
       props.showChangeUsernameHandler();
@@ -62,7 +66,7 @@ const PopupUsername = (props) => {
             <br />
             <input
               type="text"
-              placeholder={newUsername}
+              placeholder={newUsername||"Please enter username"}
               className="inp_ch"
               name="usernameProfile"
               value={newUsername}

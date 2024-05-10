@@ -20,6 +20,7 @@ const PopupEmail = (props) => {
 
   const SubmitHandler = async (event) => {
     event.preventDefault();
+    console.log(newEmail);
     try {
       const res = await updateProfile({
         _id: userInfo._id,
@@ -56,7 +57,7 @@ const PopupEmail = (props) => {
             <br />
             <input
               type="text"
-              placeholder={setNewEmail}
+              placeholder={newEmail}
               className="inp_ch"
               name="emailProfile"
               value={newEmail}

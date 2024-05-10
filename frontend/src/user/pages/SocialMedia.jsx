@@ -81,6 +81,11 @@ const SocialMedia = () => {
         console.log(rep2);
         console.log(rep3);
 
+        localStorage.removeItem("userData");
+        localStorage.removeItem("newArtworkData1");
+        localStorage.removeItem("newArtworkData2");
+        localStorage.removeItem("newArtworkData3");
+        
       navigate("/home");
     } catch (err) {
       setIsLoading(false);

@@ -22,7 +22,6 @@ const Profile = () => {
   const [showChangeEmail, setShowChangeEmail] = useState(false);
 
   const showChangePwHandler = () => {
-    console.log(" heyy ");
     setShowChangePw((prevMode) => !prevMode);
   };
   const showChangeUsernameHandler = () => {
