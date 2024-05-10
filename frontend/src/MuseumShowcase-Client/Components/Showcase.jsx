@@ -12,9 +12,6 @@ const Showcase = () => {
           <h1 className="ShowcaseMus-title">Museum Showcase</h1>
           <p className="ShowcaseMus-details">Special Artworks Only On Our Museums</p>
         </div>
-      
-      
-    
     </>
   );
 };
