@@ -13,7 +13,7 @@ import OrdersList from "../Components/OrdersList";
 // ];
 
 const Orders = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [clientOrders, { isLoading }] = useGetClientOrdersMutation();
   const [orders, setOrders] = useState();
 
@@ -21,7 +21,7 @@ const Orders = () => {
     const req = async () => {
       try {
         const res = await clientOrders();
-        dispatch(setCredentials(res));
+        // dispatch(setCredentials(res));
         console.log(res.data.orders);
         setOrders(res.data.orders);
       } catch (err) {

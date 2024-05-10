@@ -60,6 +60,8 @@ function Auth() {
         pw: password,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
+      console.log(res);
+      auth.updateUsername(email)
       navigate("/home");
     } catch (err) {
       console.log(err);
