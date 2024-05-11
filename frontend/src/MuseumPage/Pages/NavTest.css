@@ -1,0 +1,101 @@
+.header {
+    background-color: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* hedhy men andy , khter el nav eli amelha ena el oroginal 
+    z-index mta7a 100000 haja haka so base mech bech todhher 
+    wala elements fiha mech bech yodhhrou bel mrigel  */
+    z-index: 10000000; 
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 49px;
+    margin-right: auto;
+  
+    margin-left: -4px;
+    margin-top: -4px;
+}
+
+.search-container {
+   /* display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    flex-grow: 1;
+    margin: 0 20px;*/
+    display: block;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    flex-grow: -1;
+    margin: 0px 20px;
+    margin-left: 900px;
+    width: 160px;
+   
+}
+
+.search-category {
+    background: transparent;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+}
+
+.search-input {
+    border: none;
+    padding: 8px;
+    flex-grow: 1;
+}
+
+.search-icon {
+    padding: 8px;
+    color: #888;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.phone-number {
+    font-weight: bold;
+}
+
+.support-text {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    padding: 0 10px;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-info span:first-child {
+    font-size: 12px;
+    color: #aaa;
+}

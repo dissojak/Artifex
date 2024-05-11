@@ -1,0 +1,142 @@
+/* style.css */
+.card-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    margin: 42px;
+    padding-top: 20px;
+  }
+  
+  .image-container {
+    flex: 1 1 50%;
+    height: auto; /* Adjust height as needed */
+  }
+  
+  .Wallpaper {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the element without distorting aspect ratio */
+  }
+  
+  .info-container {
+    flex: 1 1 50%;
+    padding: 20px;
+    position: relative;
+    right: 748px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .info-container h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px; /* Adjust space between header and text */
+  }
+  
+  .info-container p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card-container {
+      flex-direction: column;
+    }
+  
+    .image-container, .info-container {
+      flex: 1 1 100%;
+    }
+  }
+  special-wrapper {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .special-box {
+       width: 699px;
+    height: 378px;
+    position: relative;
+    right: -709px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 10px 5px;
+  }
+  
+  .special-box img {
+    width: 105%;
+    height: 105%;
+    object-fit: cover;
+  }
+  
+  .special-info {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;    
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    transition: all 0.5s linear;
+    clip-path: circle(0% at 50% 50%);
+  }
+  
+
+  
+  .special-box:hover .special-info {
+    clip-path: circle(70% at 50% 50%);
+  }
+  
+  .special-rating {
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .special-rating input {
+    display: none;
+  }
+  
+  .special-rating label {
+    float: right;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s;
+  }
+  
+  .special-rating label:before {
+    content: '\2605';
+    font-size: 30px;
+  }
+  
+  .special-rating input:checked ~ label,
+  .special-rating label:hover,
+  .special-rating label:hover ~ label {
+    color:#FFCB37 ;
+    transition: color 0.3s;
+  }
+  .content .info {
+    position: absolute;
+ 
+    left: 7%;
+    z-index: 100;
+}
+
+
+
+
+
+

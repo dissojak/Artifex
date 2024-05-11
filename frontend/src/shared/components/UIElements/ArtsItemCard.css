@@ -1,0 +1,219 @@
+#homearts {
+    width: 99.55vw;
+    height: 130vh;
+    background-image: url("../assets/images/line.svg");
+    background-repeat: no-repeat;
+    background-size: 220vh;
+    background-position: -10vh 10vh;
+    
+  }
+  .auth-section2 {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+  .gallery-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px; /* Adjust space between cards */
+    padding: 20px; /* Padding around the gallery container */
+  }
+  
+  .cardd {
+    width: 293px; /* Width of each card */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 186px; /* Fixed height for image */
+    object-fit: cover; /* Ensures the image covers the area */
+  }
+  
+  .card-body {
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .btn-add {
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f8f9fa;
+    font-size
+  : 12px;
+  color: #333;
+  }
+  
+  .author, .likes, .views {
+  font-weight: bold;
+  }
+  
+  /* Hover effects for the card */
+  .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card:hover .btn-add {
+  background-color: #0056b3;
+  }
+
+  .CartBtn {
+    width: 140px;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(255, 208, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: .5s;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+    position: relative;
+  }
+  
+  .IconContainer {
+    position: absolute;
+    left: -50px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: .5s;
+  }
+  
+  .icon {
+    border-radius: 1px;
+  }
+  
+  .text {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(17, 17, 17);
+    z-index: 1;
+    transition-duration: .5s;
+    font-size: 1.04em;
+    font-weight: 600;
+  }
+  
+  .CartBtn:hover .IconContainer {
+    transform: translateX(58px);
+    border-radius: 40px;
+    transition-duration: .5s;
+  }
+  
+  .CartBtn:hover .text {
+    transform: translate(10px,0px);
+    transition-duration: .5s;
+  }
+  
+  .CartBtn:active {
+    transform: scale(0.95);
+    transition-duration: .5s;
+  }
+
+
+  .bookmark {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .checkbox-input[type="checkbox"] {
+    display: none;
+  }
+  
+  .svgIcon {
+    height: 30px;
+  }
+  
+  .svgIcon path {
+    fill: rgb(153, 153, 153);
+  }
+  
+  .bookmark::before {
+    content: "\002B";
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    top: 1px;
+  }
+  
+  .checkbox-input[type="checkbox"]:checked + .bookmark::before {
+    content: "\2713";
+    font-size: 0.70em;
+    top: 5px;
+  }
+  
+  .checkbox-input[type="checkbox"]:checked + .bookmark .svgIcon path {
+    fill: rgb(121, 199, 3);
+  }
+  
+  #checkboxInput:active + .bookmark .svgIcon path {
+    fill: rgb(204, 204, 204);
+  }
+  
+  .bookmark::after {
+    content: "";
+    background-color: rgba(56, 105, 0, 0.342);
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .checkbox-input[type="checkbox"]:checked + .bookmark::after {
+    animation: puff-out-center .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+  }
+  
+  @keyframes puff-out-center {
+    0% {
+      transform: scale(1);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: scale(9);
+      filter: blur(1px);
+      opacity: 0;
+    }
+  }
+  

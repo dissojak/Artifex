@@ -55,7 +55,7 @@ router.patch(
 
 router.get("/museums", MW.protect, MC.getMuseums);
 
-router.get("/participantArtists", MW.protect, MC.getParticipantArtists);
+router.get("/participantArtists/:museumId", MW.protect, MC.getParticipantArtists);
 
 router.get("/participantClients", MW.protect, MC.getParticipantClients);
 

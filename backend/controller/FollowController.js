@@ -3,11 +3,12 @@ const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const Follow = require("../models/follow");
 const User = require("../models/user");
+const mongoose = require("mongoose");
 
 /**
  * @desc    Check if the Client Following the given Artist
  * @route   GET /api/follow/isFollowing
- * @access  Privateq
+ * @access  Private
  */
 exports.isFollowing = asyncHandler(async (req, res, next) => {
   const clientId = req.user._id;
@@ -38,17 +39,32 @@ exports.followArtist = async (req, res, next) => {
     // Check if the client is already following the artist
     const isFollowing = await Follow.findOne({ clientId, artistId });
     if (isFollowing) {
-      return next(new HttpError('You are already following this artist', 400));
+      return next(new HttpError("You are already following this artist", 400));
     }
     const follow = new Follow({
       clientId,
       artistId,
     });
-    await follow.save();
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    const Artist = await User.findByIdAndUpdate(
+      artistId,
+      { $inc: { numberOfFollowers: 1 } },
+      { new: true, session }
+    );
 
-    res.status(201).json({ message: `You are now following artist ${artistId}` });
+    if (!Artist) {
+      return next(new HttpError("Order not found", 404));
+    }
+    await follow.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+
+    res
+      .status(201)
+      .json({ message: `You are now following artist ${artistId}` });
   } catch (err) {
-    return next(new HttpError('Failed to follow the artist', 500));
+    return next(new HttpError("Failed to follow the artist", 500));
   }
 };
 
@@ -65,15 +81,29 @@ exports.unfollowArtist = async (req, res, next) => {
     // Check if the client is currently following the artist
     const isFollowing = await Follow.findOne({ clientId, artistId });
     if (!isFollowing) {
-      return next(new HttpError('You are not currently following this artist', 400));
+      return next(
+        new HttpError("You are not currently following this artist", 400)
+      );
     }
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    const Artist = await User.findByIdAndUpdate(
+      artistId,
+      { $inc: { numberOfFollowers: -1 } },
+      { new: true, session }
+    );
 
+    if (!Artist) {
+      return next(new HttpError("Order not found", 404));
+    }
+    await Follow.findOneAndDelete({ clientId, artistId }, { session });
+    await session.commitTransaction();
+    session.endSession();
     // Delete the follow document
-    await Follow.findOneAndDelete({ clientId, artistId });
 
     res.status(200).json({ message: `You have unfollowed artist ${artistId}` });
   } catch (err) {
-    return next(new HttpError('Failed to unfollow the artist', 500));
+    return next(new HttpError("Failed to unfollow the artist", 500));
   }
 };
 
@@ -87,7 +117,10 @@ exports.getFollowers = asyncHandler(async (req, res, next) => {
 
   try {
     // Find all followers of the artist
-    const followers = await Follow.find({ artistId }).populate('clientId', 'username profileImage');
+    const followers = await Follow.find({ artistId }).populate(
+      "clientId",
+      "username profileImage"
+    );
 
     if (!followers || followers.length === 0) {
       return res.json({ msg: "No followers found", followers: [] });
@@ -107,12 +140,15 @@ exports.getFollowers = asyncHandler(async (req, res, next) => {
  * @route   GET /api/follow/FollowedArtists
  * @access  Private
  */
-exports.getFollowedArtists= asyncHandler(async (req, res, next) => {
+exports.getFollowedArtists = asyncHandler(async (req, res, next) => {
   const clientId = req.user._id;
 
   try {
     // Find all followers of the artist
-    const followed = await Follow.find({ clientId }).populate('artistId', 'username profileImage');
+    const followed = await Follow.find({ clientId }).populate(
+      "artistId",
+      "username profileImage"
+    );
 
     if (!followed || followed.length === 0) {
       return res.json({ msg: "No followed artists are found", followed: [] });
@@ -139,13 +175,18 @@ exports.removeFollower = async (req, res, next) => {
   try {
     const isFollowing = await Follow.findOne({ clientId, artistId });
     if (!isFollowing) {
-      return next(new HttpError('You are not currently following this artist', 400));
+      return next(
+        new HttpError("You are not currently following this artist", 400)
+      );
     }
     await Follow.findOneAndDelete({ clientId, artistId });
     res.status(200).json({ message: `You have unfollowed artist ${artistId}` });
   } catch (err) {
-    return next(new HttpError('Failed to unfollow the artist', 500));
+    return next(new HttpError("Failed to unfollow the artist", 500));
   }
 };
 
-
+exports.isFollowingCheck = async (artistId, clientId) => {
+  const isFollowing = await Follow.findOne({ clientId, artistId });
+  return !!isFollowing; // Convert to boolean
+};

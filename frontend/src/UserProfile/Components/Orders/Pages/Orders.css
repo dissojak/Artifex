@@ -1,0 +1,60 @@
+.orders-container {
+   position: relative;
+    width: 124%;
+    overflow-x: auto;
+    /* margin-left: -211px; */
+    right: 13.74vw;
+  }
+
+  .noOrdersContainer {
+    position:absolute; /* or 'absolute' depending on the context */
+    /* z-index: 1; */
+    top: 130%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Optional, depends on the desired width */
+    text-align: center; /* Center the text inside the container */
+  }
+  .noOrdersContainer h1{
+    color: #ff5757;
+    position: relative;
+    font-family: 'ptsimple';
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 800px;
+  }
+  
+  th, td {
+    padding: 12px;
+    /*border: 1px solid #ccc;*/
+  }
+  
+  th {
+    background-color: #F8F9FB;
+    color: #A6A7A8;
+    border: 1px solid #707070;
+  }
+ 
+  .status.pending {
+    color: #FFBF09;
+    background-color:#FFF7E6 ;
+  }
+  
+  .status.completed {
+    color: #55BF9A;
+    background-color: #E9F9F2;
+  }
+  
+  .status.rejected {
+    color: #E36281;
+    background-color:#FDF4F6 ;
+  }
+  
+  .status.accepted{
+    color:#096BFF;
+    background-color: #E6EEFF;
+  }

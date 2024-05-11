@@ -1,0 +1,22 @@
+.landing-container > * {
+  margin-bottom: 100px; /* Adjust the space as needed */
+}
+
+/* Landing.css */
+.landing-container {
+  /* position:static; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 1200px;
+  margin-top: 5546px;
+  /* margin-top: 780vh; */
+  /* active this only when using NavArt as nav barre  */
+  /* margin-top: 760vh; */
+  margin-bottom: 30vh;
+  background-color: white;
+}
+
+.landing-container > *:last-child {
+  margin-bottom: 0;
+}

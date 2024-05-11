@@ -1,0 +1,26 @@
+.contact-us-section {
+    display: flex;
+    align-items: center;
+    width: 1529px;
+    padding: 30px;
+    background-color: #E1D2FF; /* Change color according to your design */
+  }
+  
+  .contact-us-content {
+    text-align: left;
+  }
+  
+  .contact-us-button {
+    background-color: #6c63ff; /* Change button color according to your design */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-us-button:hover {
+    background-color: #5a52d5; /* Darken button on hover */
+  }
+  

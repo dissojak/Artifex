@@ -4,6 +4,9 @@ const MW = require("../middleware/authMiddleware");
 const { check } = require("express-validator");
 const router = express.Router();
 
+router.get("/client",MW.protect,OC. getClientOrders);
+router.get("/artist",MW.protect,OC.getArtistOrders);
+
 router.post(
   "/new",
   [

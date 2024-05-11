@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Auth_new.css";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { AuthContext } from "../../shared/context/auth-context";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
 
 import { toast } from "react-toastify";
@@ -12,14 +12,26 @@ import {
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
 
+
+
+
 function Auth() {
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const signup = queryParams.get('signup') === 'true';
+  // console.log(signup||"there is no signup");
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   // const [isLoading, setIsLoading] = useState(true);
+
+  const [userType, setUserType] = useState("customer");
+  // console.log("user: ",userType);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +43,7 @@ function Auth() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/home");
     }
   }, [navigate, userInfo]);
 
@@ -43,9 +55,14 @@ function Auth() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await login({ username:email, email, pw:password }).unwrap();
+      const res = await login({
+        login: email,
+        pw: password,
+      }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      console.log(res);
+      auth.updateUsername(email)
+      navigate("/home");
     } catch (err) {
       console.log(err);
       if (err?.data?.message || err.error) {
@@ -67,17 +84,36 @@ function Auth() {
     //   setIsLoading(false);
     //   toast.error("Passwords do not match");
     // } else {
+    if (userType === "customer") {
       try {
-        const res = await register({ username:name, email, pw:password }).unwrap();
+        const res = await register({
+          username: name,
+          email,
+          pw: password,
+        }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/");
+        navigate("/home");
       } catch (err) {
         setIsLoading(false);
         toast.error(err?.data?.message || err.error);
       } finally {
         setIsLoading(false);
       }
+    } else {
+      const userData = {
+        username: name,
+        email: email,
+        userType: userType,
+        pw: password,
+      };
+      // Convert the userData object into a string
+      const userDataString = JSON.stringify(userData);
+      // Save the stringified user data to localStorage
+      localStorage.setItem("userData", userDataString);
+      setIsLoading(false);
+      navigate("/addArtwork");
     }
+  };
   // };
 
   useEffect(() => {
@@ -98,32 +134,53 @@ function Auth() {
 
   return (
     <>
+      <div
+        className="auth-background"
+        style={{ backgroundImage: `url(${"./elements/background_shape_Auth.svg"})` }}
+      ></div>
       <div className="container" id="container">
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>
             {isLoading && <LoadingSpinner asOverlay />}
             <h1 className="login-signup">Create Account</h1>
-            <div className="social-icons">
-              <Link to="#" className="icon">
-                <i className="fab fa-google-plus-g">G</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-facebook-f">F</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-github">Git</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-linkedin-in">LIn</i>
-              </Link>
+            <div className="radio-button-container">
+              <div className="radio-button">
+                <input
+                  type="radio"
+                  className="radio-button__input"
+                  id="customer"
+                  checked={userType === "customer"}
+                  name="userType"
+                  onChange={() => setUserType("customer")}
+                />
+                <label className="radio-button__label" htmlFor="customer">
+                  <span className="radio-button__custom"></span>
+                  Customer
+                </label>
+              </div>
+              <div className="radio-button">
+                <input
+                  type="radio"
+                  className="radio-button__input"
+                  id="artist"
+                  name="userType"
+                  onChange={() => setUserType("artist")}
+                />
+                <label className="radio-button__label" htmlFor="artist">
+                  <span className="radio-button__custom"></span>
+                  Artist
+                </label>
+              </div>
             </div>
-            <span className="login-signup">
+
+            <span className="use-your-email-for-registration">
               or use your email for registration
             </span>
             <input
-              type="text"
+              type="name"
               placeholder="Name"
               value={name}
+              className="input_login"
               onChange={(e) => setName(e.target.value)}
             />
             <input
@@ -159,17 +216,21 @@ function Auth() {
                 <i className="fab fa-linkedin-in">LIn</i>
               </Link>
             </div>
-            <span className="login-signup">or use your email password</span>
+            <span className="use-your-email-for-registration">
+              or use your email password
+            </span>
             <input
-              type="text"
-              placeholder="Email"
+              type="username-email"
+              placeholder="Email or Username"
               value={email}
+              name="email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
+              name="password"
               onChange={(e) => setPassword(e.target.value)}
             />
             <Link to="#">Forget Your Password?</Link>

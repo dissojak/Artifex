@@ -1,0 +1,46 @@
+
+/* UserProfile.css */
+.user-profile2 {
+    display: flex;
+  
+    position: relative;
+    left: -207px;
+    top: -128px;
+  
+    color: white;
+   
+  }
+  
+  
+  
+  .profile-image2 {
+    border-radius: 50%;
+    object-fit: cover;
+    width:60px;
+    height:60px;
+  }
+  
+  .profile-info2 {
+    margin-left: 10px;
+  }
+  
+  .profile-name2 {
+    font-size: 18px; /* Adjust based on your design */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .verified-icon2 {
+    width: 5px;
+    height: 5px;
+    margin-left: 5px;
+  }
+  
+  .profile-description2 {
+    font-size: 7px;
+    font-weight: bold;
+    opacity: 0.8;
+  }
+  

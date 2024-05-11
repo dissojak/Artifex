@@ -3,11 +3,12 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation,
   // Redirect,
   //  Switch,
 } from "react-router-dom";
 
-import Home from "./home/Home.jsx";
+import Home from "./home/Page/HomePage.jsx";
 import Ban from "./shared/components/Pages/Ban";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
@@ -23,15 +24,23 @@ import Profile from "./profile/Pages/Profile.jsx";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
-import Header from "./components/Header";
 import store from "./store";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./BuildKite/PrivateRoute.jsx";
+
+import Landing from "./landing/pages/Landing.jsx";
+import NewArtwork from "./artwork/pages/NewArtwork.jsx";
+import Artists from "./ArtistsPage/Pages/ArtistPage.jsx";
+import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
+import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
+import SocialMedia from "./user/pages/SocialMedia.jsx";
+import ArtworkDetails from "./ArtworkDetails/Pages/ArtworkDetails.jsx";
+import ArtistProfileForUser from "./ArtistProfileForUser/Pages/ArtistProfileForUser.jsx";
+import MuseumShowcase from "./MuseumShowcase-Client/Pages/MuseumShowcase-Client.jsx";
+import MuseumDetails from "./MuseumDetails/Pages/MuseumDetails.jsx";
+import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
+import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,6 +80,12 @@ const App = () => {
     setBan(null);
   }, []);
 
+  // const location = useLocation();
+  // const publicPaths = ["/login", ];
+
+  // // Check if the current path is one of the protected paths
+  // const showMainNavigation = publicPaths.includes(location.pathname);
+
   let routes;
 
   if (isLoggedIn && !isAdmin && !ban) {
@@ -102,17 +117,26 @@ const App = () => {
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/museums" element={<Museums />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
+          <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
+          <Route path="/artistprofile" element={<ArtistProfileForUser />} />
+          <Route path="/museumshowcase" element={<MuseumShowcase />} />
+          <Route path="/museumdetails" element={<MuseumDetails />} />
+        </Route>
+        <Route path="/login" element={<Auth />} />
+        {/* <Route path="/auth" element={<Auth />} /> */}
         <Route path="/:userId/places" element={<UserPlaces />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/home" element={<HomeScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
-        <Route path="" element={<PrivateRoute />}>
-          <Route path="/profile" element={<ProfileScreen />} />
-        </Route>
         {/* Add more routes as needed */}
+        <Route path="/AddArtwork" element={<NewArtwork />} />
+        <Route path="/socialMedia" element={<SocialMedia />} />
       </Routes>
     );
   }
@@ -137,8 +161,11 @@ const App = () => {
         <Router>
           {/* <Header /> */}
           <ToastContainer />
-            {/* <MainNavigation /> */}
-            <main style={{ marginTop: 0 }}>{routes}</main>
+          <NavigationWrapper>
+            {/*this is sent as a children to navigation 
+            warpper that will handel rundering it */}
+            {routes}
+          </NavigationWrapper>
         </Router>
       </AuthContext.Provider>
     </Provider>

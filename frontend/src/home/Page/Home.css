@@ -1,8 +1,8 @@
 #home1 {
+  margin-top:20vh;
   width: 99.55vw;
   height: 100vh;
-  background-image: url("/elements/Capture_HAckathon_wordpress.jpg.png");
-
+  background-image: url("../../assets/images/HomePage.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -17,7 +17,7 @@
 #home2 {
   width: 99.55vw;
   height: 100vh;
-  background-color: rgba(210, 166, 122, 0.65);
+  background-color: rgba(106, 90, 205, 0.8);
   box-sizing: border-box;
   position: relative;
 }
@@ -26,7 +26,7 @@
   text-transform: uppercase;
   font-family: "Raleway-semibold";
   font-size: 53px;
-  color: #ffdcba;
+  color: #5BD6FF;
   margin-left: 6vw;
   position: absolute;
 }
@@ -97,14 +97,14 @@
   display: flex;
   list-style: none;
   justify-content: space-between;
-  position: absolute;
+  position: relative;
   bottom: 24px;
 }
 
 .Logowhite {
   margin-top: 21px;
   margin-left: 20px;
-  z-index: 1000;
+  z-index: 100000;
   /* position: fixed; */
   /* position: relative; */
   position: absolute;
@@ -145,19 +145,37 @@ width: 3.5vh;
 height: auto;
 }
 
-.signupBtn {
-  width: 120px;
-  height: 40px;
+.LogoutBtn {
+  width: 150px;
+  height: 50px;
   border-radius: 4px;
+  font-weight: bold;
   border: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 20px;
+  padding-left: 50px;
   gap: 9px;
+  left: 88vw;
   color: white;
-  background: #7738c7;
-  position: relative;
+  background: #7E3FFF;
+  position: absolute;
   cursor: pointer;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  z-index: 100000;
+}
+.LogoutBtn:hover {
+  background-color: #9866ff;
+}
+
+.social-links2 {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  bottom: 8vh;
+  left: 8vh;
+} 
+.social-links2 img {
+  width: 30px;
+  height: 30px;
 }

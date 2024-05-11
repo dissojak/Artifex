@@ -1,0 +1,10 @@
+
+
+.MuseumShowcaseclient-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 70vh;  
+    background-color: white;
+  }
+  

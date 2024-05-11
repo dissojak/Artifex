@@ -28,6 +28,7 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
   const {
     title,
     description,
+    museumImage,
     numberMaxArtists,
     numberMaxClients,
     priceClient,
@@ -49,6 +50,7 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
   const museum = new Museum({
     title,
     description,
+    museumImage,
     numberMaxArtists,
     numberMaxClients,
     priceClient,
@@ -70,7 +72,7 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
 });
 
 exports.getMuseums = asyncHandler(async (req, res, next) => {
-  const museums = await Museum.find();
+  const museums = await Museum.find().populate("idCategory");
 
   if (!museums || museums.length === 0) {
     return next(new HttpError("No museums found", 404));
@@ -83,7 +85,8 @@ exports.getMuseums = asyncHandler(async (req, res, next) => {
 });
 
 exports.getParticipantArtists = asyncHandler(async (req, res, next) => {
-  const museumId = req.body.museumId;
+  const museumId = req.params.museumId;
+  // console.log(museumId);
 
   const participantArtists = await Participant.find({
     museumId,

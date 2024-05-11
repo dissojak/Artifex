@@ -38,14 +38,14 @@ exports.signupAdmin = async (req, res, next) => {
  * @access  Public
  */
 exports.authUser = asyncHandler(async (req, res, next) => {
-  const { username, email, pw } = req.body;
+  const { login, pw } = req.body;
   let user;
-  if (username) {
-    const name = username.toLowerCase();
+
+  if (login.includes("@")) {
+    user = await User.findOne({ email: login }).select("+pw");
+  } else {
+    const name = login.toLowerCase();
     user = await User.findOne({ username: name }).select("+pw");
-  } else if (email) {
-    console.log(email);
-    user = await User.findOne({ email }).select("+pw");
   }
 
   if (user && (await user.matchPassword(pw))) {
@@ -64,7 +64,7 @@ exports.authUser = asyncHandler(async (req, res, next) => {
 /**
  * @desc    Register a new user
  * @route   POST /api/user/signup
- * @params  username,email,pw(password),userType,phone_number 
+ * @params  username,email,pw(password),userType,phone_number
  *          instagram,facebook,twitter,linked (optional)
  * @access  Public
  */
@@ -74,7 +74,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     return next(new HttpError("Invalid Inputs, check your data", 422));
   }
 
-  const { username, email, pw, userType,phone_number } = req.body;
+  const { username, email, pw, userType, phone_number } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -95,6 +95,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   if (userType === "artist") {
     userData = {
       ...userData,
+      numberOfFollowers:0,
       phone_number,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
@@ -145,7 +146,6 @@ exports.logoutUser = (req, res) => {
  * @access  Private
  */
 exports.getUserProfile = asyncHandler(async (req, res, next) => {
-  
   const user = await User.findById(req.user._id);
 
   if (user) {

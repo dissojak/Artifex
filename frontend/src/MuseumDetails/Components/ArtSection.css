@@ -1,0 +1,315 @@
+#ArtSection-Section {
+    width: 99.3vw;
+    height: 110vh;
+}
+
+  .ArtSection-containertest {
+    width: 705px;
+    height: 474px;
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    border: 5px solid #9866FF;
+    margin: 5vh auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+  .Artsandbar-container{
+    width: 50vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  top: 100px;
+  }
+  
+  .range-content{
+    width: 680px;
+    height: 13px;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    position: relative;
+  }
+  .slider-range{
+    position: absolute;
+    width: 76%;
+    height: 13px;
+    background-color:#9866FF;
+    border-radius: 10px;
+  }
+  .range-nmr{
+    font-family: 'Roboto-Bold';
+    font-size: 24px;
+    padding-left: 30px;
+    position: relative;
+    top: -8px;
+  }
+  .range_container{
+    width:680px;
+    position: relative;
+    top: 530px;
+    left: 25px;
+    display: flex;
+justify-content: space-between;
+    padding-top:26px;
+  }
+  .getyourpass-container{
+    width: 48vw;
+    height: 100vh;
+    background-color: white;
+    position: relative;
+    right: -51vw;
+    top: -85vh;
+    padding: 72px;
+    padding-top: 40px;
+  }
+
+  .getyourpass-details {
+    transform: scale(1.1);
+    margin: 20px auto; 
+    margin-top: 0;
+    padding: 20px;
+    color: #292929;
+  }
+  
+  .getyourpass-details h1 {
+    font-size: 2.5rem;
+    font-family: 'RalewayEB','Raleway-extrabold' ;
+  }
+
+  .getyourpass-ratingArtworkDetailsContainer{
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 8px;
+  }
+  
+  .getyourpass-price {
+    font-size: 1.5rem;
+    margin-top: 0px;
+    font-family: 'DubaiB','Dubai-bold' ;
+
+  }
+  
+  .getyourpass-date {
+    font-size: 24px;
+    color: #7e3fff;
+    margin-top: 7px;
+    font-family: 'Raleway-Bold' ;
+
+  }
+  
+  .stars {
+    color: #ffc107; 
+  }
+  
+  .getyourpass-description {
+    margin-top: 10px;
+    /* line-height: 1.5; */
+    font-family: 'Raleway','Raleway-Regular' ;
+    font-size: 18px;
+  }
+  
+  .getyourpass-category {
+    margin-top: 15px;
+  }
+  .dateLabel-Start {
+    display: inline-block;
+    width:113px;
+    height: 40px;
+    padding: 10px; 
+ text-align: center;
+    background-color: #7e3fff; 
+    color: white; 
+    border-radius: 20px; 
+    font-size: 18px; 
+    font-family: "Roboto";
+  }
+  .dateLabel-End {
+    display: inline-block;
+    width:113px;
+    height: 40px;
+    padding: 10px; 
+ text-align: center;
+    background-color: #EBEBEB; 
+    color: rgb(0, 0, 0); 
+    border-radius: 20px; 
+    font-size: 18px; 
+    font-family: "Roboto";
+  }
+
+
+  
+  .buttonsartsection8 {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .add-to-cart8  {
+    background-color: #7E3FFF; 
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; 
+    
+  }
+  
+
+  .buttoncart8 {
+    cursor: pointer;
+    --width: 560px;
+    --height: 55px;
+    --tooltip-height: 35px;
+    --tooltip-width: 90px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: #7e3fff;
+    --tooltip-color: #fff;
+    border: 2px solid #7e3fff;
+    width: var(--width);
+    height: var(--height);
+    background: var(--button-color);
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    font-family: "Arial";
+    transition: background 0.3s;
+  }
+ 
+  .buttoncart8::after,
+  .buttoncart8::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+  }
+  
+  .textcart8 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-wrappercart8,
+  .textcart8,
+  .iconcart8 {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+  }
+  
+  .textcart8 {
+    top: 0;
+    color: #ffffff;
+  }
+  
+  .textcart8,
+  .iconcart8 {
+    transition: top 0.5s;
+  }
+  
+  .iconcart8 {
+    color: #fff;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iconcart8 img {
+    width: 24px;
+    height: 24px;
+  }
+  .textcart8 img {
+    width: 24px;
+    height: 24px;
+    padding-left: 15px;
+  }
+  
+  .buttoncart8:hover {
+    background: #7e3fff;
+  }
+  
+  .buttoncart8:hover .textcart8 {
+    top: -100%;
+  }
+  
+  .buttoncart8:hover .iconcart8 {
+    top: 0;
+  }
+  
+  .buttoncart8:hover:before,
+  .buttoncart8:hover:after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .buttoncart8:hover:after {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+  }
+  
+  .buttoncart8:hover:before {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+  }
+
+  .titleAndPin{
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 8px;
+  }
+
+  .pinButton input {
+    display: none;
+  }
+  .pin {
+    width: 15px;
+    height: auto;
+    transform: rotate(35deg);
+  }
+  .pinButton {
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+  }
+  .pinButton input:checked ~ .pin {
+    fill: #9866FF;
+    stroke: white;
+  }
+  .pinButton input:checked ~ .pin line {
+    stroke: #9866FF;
+  }
+  .pinButton input:checked ~ .pin path {
+    stroke: #9866FF;
+  }
+  /* .pinButton:hover {
+    background-color: rgb(244, 238, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.041);
+  } */
+  .pinButton:active {
+    transform: scale(0.8);
+  }
+  
+  .rightContainerMuseum{
+    width: 5%;
+  }
+  .wrongContainerMuseum{
+    width: 8%;
+  }

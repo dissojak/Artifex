@@ -1,0 +1,73 @@
+#ArtImgSection {
+  width: 50vw;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Artist-container-ArtImg {
+  position: relative;
+  bottom: 25vh;
+  right: 11.4vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Artist-image-ArtImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-right: 1.5vw;
+}
+
+.Artist-info-ArtImg {
+  position: relative;
+}
+
+.Artist-name-ArtImg {
+  font-size: 28px;
+  font-family: "DubaiB", "Dubai-Bold";
+}
+
+.Artist-Type-ArtImg {
+  font-size: 20px;
+  color: #7e3fff;
+  font-family: "Dubai", "Dubai";
+  margin-top: -2vh;
+}
+
+@media (max-width: 600px) {
+  .Artist-container-ArtImg {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .Artist-info-ArtImg {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+.image-containertest {
+  width: 90%;
+  height: 63vh;
+  position: absolute;
+  top: 200px;
+  left: 60px;
+  border: 5px solid #9866FF;
+  margin: 5vh auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}

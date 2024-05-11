@@ -299,3 +299,12 @@ exports.addRating = async (req, res, next) => {
     return next(new HttpError("Failed to add or update rating", 500));
   }
 };
+
+exports.calculatViews = async (req, res, next) => {
+  const { artworkId } = req.params;
+  const views = await Review.countDocuments({ artworkId, view: true });
+  // console.log('those are views : ',views);
+  res.json({
+    views,
+  });
+};

@@ -1,88 +1,115 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 @font-face {
-  font-family: 'BebasNeue-Regular';
-  src: url('./fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-family: "BebasNeue-Regular";
+  src: url("./fonts/BebasNeue-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto-Bold';
-  src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+  font-family: "Roboto-Bold";
+  src: url("./fonts/Roboto-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Arimo-Bold';
-  src: url('./fonts/Arimo-Bold.ttf') format('truetype');
+  font-family: "Arimo-Bold";
+  src: url("./fonts/Arimo-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Arimo-Regular';
-  src: url('./fonts/Arimo-Regular.ttf') format('truetype');
+  font-family: "Arimo-Regular";
+  src: url("./fonts/Arimo-Regular.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ptsimple';
-  src: url('./fonts/Ubuntu-Bold.ttf');
+  font-family: "ptsimple";
+  src: url("./fonts/Ubuntu-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'Raleway-SemiBold';
-  src: url('./fonts/Raleway-SemiBold.ttf');
+  font-family: "Raleway-SemiBold";
+  src: url("./fonts/Raleway-SemiBold.ttf");
   font-weight: 700;
 }
-@font-face{
-  font-family: 'Raleway-Regular';
-  src : url('./fonts/Raleway-Regular.ttf');
+@font-face {
+  font-family: "Raleway-Bold";
+  src: url("./fonts/Raleway-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Raleway-Regular";
+  src: url("./fonts/Raleway-Regular.ttf");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Raleway-extrabold';
-  src: url('fonts/Raleway-ExtraBold.ttf');
+  font-family: "Raleway-extrabold";
+  src: url("fonts/Raleway-ExtraBold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("fonts/Roboto-Medium.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Montserrat-bold";
+  src: url("fonts/Montserrat-Bold.ttf");
   font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Montserrat-bold';
-    src: url('fonts/Montserrat-Bold.ttf');
-    font-weight: 700;
-  }
+  font-family: "Montserrat-Regular";
+  src: url("fonts/Montserrat-Regular.ttf");
+  font-weight: 700;
+}
 
-  @font-face {
-    font-family: 'Montserrat-Regular';
-    src: url('fonts/Montserrat-Regular.ttf');
-    font-weight: 700;
-  }
+@font-face {
+  font-family: "Dubai-Bold";
+  src: url("fonts/Dubai-Bold.ttf");
+}
 
+@font-face {
+  font-family: "Dubai";
+  src: url("fonts/Dubai-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Dubai-Light";
+  src: url("fonts/Dubai-Light.ttf");
+}
+
+@font-face {
+  font-family: "Dubai-Medium";
+  src: url("fonts/Dubai-Medium.ttf");
+}
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
   margin: 0;
   /* background: #4d4d4d; */
   /* background-color: #F6F7F9; */
-  background-color: #ffff;
+  /* background-color: #F2F3F9; */
 }
 
 .slide-in-left-enter {
@@ -113,18 +140,22 @@ body {
   align-items: center;
 }
 
+.text-decoration-link {
+  text-decoration: none;
+}
+
 /* For Webkit Browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 7.5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #C99C6E;
+  background-color: #9866ff;
   /* border-radius: 50px; */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #d4bfff;
 }
 
 a:-webkit-any-link {

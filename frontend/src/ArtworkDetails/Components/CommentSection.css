@@ -1,0 +1,123 @@
+
+  .comments-section {
+    margin-top: 20px; 
+    padding: 20px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment {
+    display: flex;
+    align-items: flex-start; 
+    margin-bottom: 6vh;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px; 
+    border-radius: 50%; 
+    margin-right: 15px; 
+  }
+  
+  .comment-content {
+    flex-grow: 1; 
+  }
+  
+  .comment-content h2 {
+    margin: 10px 0 10px 0; 
+    color: #333; 
+    font-family: 'RalewaySB', 'Raleway-SemiBold';
+  }
+  
+  .comment-content p {
+    position: relative;
+    right:3.5vw; 
+    top: 2.5vh;
+    margin: 0; 
+    color: #666; 
+    font-family: 'Raleway', 'Raleway-Regular';
+  }
+  
+  .comment-input-container {
+    display: flex;
+    align-items: center;
+    background-color: #E0E0E0; 
+    border-radius: 8px; 
+    margin-bottom: 2.5vh;
+    padding: 8px 16px;
+    width: 100%; 
+  }
+  
+  .user-avatar {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-right: 10px; 
+  }
+  
+  .comment-input {
+    border: none;
+    outline: none;
+    background-color: transparent; 
+    color: #333;
+    font-size: 16px; 
+    width: 100%; 
+    height: 4vh;
+    font-family: 'Raleway', 'Raleway-Regular';
+  }
+  
+  .comment-input::placeholder {
+    color: #666;
+  }
+  
+
+
+  .comment-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Ensure the relative positioning for absolute positioning of the menu */
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9866FF;
+    outline: none; /* Remove focus outline for aesthetics */
+    font-size: 24px; /* Adjust size as needed */
+  }
+  
+  .comment-menu {
+    position: absolute;
+    top: 60%;  /* Position directly below the button */
+    left: 57.5%;    /* Align to the left of the button */
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 200px; /* Adjust width as necessary */
+    z-index: 1000; /* High z-index to ensure it's on top of other content */
+    display: block; /* Ensures that ul is not inline */
+  }
+  
+  .comment-menu li {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    border-bottom: 1px solid #eee; /* Visual separation of items */
+    background: #fff; /* Background color needed to block underlying content */
+    display: block; /* Ensures that li is not inline */
+  }
+  
+  .comment-menu li:last-child {
+    border-bottom: none; /* No border for the last item */
+  }
+  
+  .comment-menu li:hover {
+    background-color: #E1D2FF;
+  }

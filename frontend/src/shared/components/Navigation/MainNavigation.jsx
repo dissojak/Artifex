@@ -13,6 +13,9 @@ import { useHttp } from "../../hooks/http-hook";
 
 import "./MainNavigation.css";
 import "./ProfileNav.css";
+// import NavArtifex from "../Nav/NavArtifex";
+import NavArt from "../Nav/NavArt";
+
 
 const MainNavigation = (props) => {
   const auth = useContext(AuthContext);
@@ -55,11 +58,14 @@ const MainNavigation = (props) => {
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
         <nav>
           {/* <NavLinks /> */}
-          <Nav />
+          {/* <Nav /> */}
+          {/* <NavArtifex/> */}
+        <NavArt/>
         </nav>
       </SideDrawer>
 
       <MainHeader>
+        <div className="navMargin">
         <button
           className="main-navigation__menu-btn"
           onClick={openDrawerHandler}
@@ -68,7 +74,9 @@ const MainNavigation = (props) => {
           <img src="elements/logo.svg" alt="" className="img_header" />
         </Link>
         {/* <NavLinks /> */}
-        <Nav />
+        {/* <Nav /> */}
+        {/* <NavArtifex/> */}
+        <NavArt/>
         {auth.isLoggedIn && (
           <>
             <div id="header_right">
@@ -87,6 +95,7 @@ const MainNavigation = (props) => {
             </div>
           </>
         )}
+        </div>
       </MainHeader>
     </React.Fragment>
   );

@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./Home.css";
-import Hackatons from "../hackaton/Pages/Hacktons";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/auth-context";
 
-
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../slices/usersApiSlice';
-import { logout } from '../slices/authSlice';
-
+import Facebook from "../../assets/images/Facebook.svg";
+import Instagram from "../../assets/images/Instagram.svg";
+import Twitter from "../../assets/images/Tracé 2.svg";
+import Youtube from "../../assets/images/youtube.svg";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "../../slices/usersApiSlice";
+import { logout } from "../../slices/authSlice";
+import Logo from "../../assets/images/Logo_Artifex.svg";
 
 const Home = () => {
   const auth = useContext(AuthContext);
@@ -25,20 +27,20 @@ const Home = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/auth');
+      navigate("/login");
     } catch (err) {
       console.error(err);
     }
   };
-
 
   //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
 
   return (
     <>
       <Link to="/">
-        <img src="elements/logo_white.svg" alt="" className="Logowhite" />
+        <img src={Logo} alt="" className="Logowhite" />
       </Link>
+
       {auth.isLoggedIn && (
         <>
           <div id="header_right_home">
@@ -55,18 +57,19 @@ const Home = () => {
         <div id={auth.isAdmin ? "home2-admin" : "home2"}>
           <h1
             className="where"
-            style={!auth.isAdmin ? { color: "#FFDCBA" } : { color: "#00A8E8" }}
+            style={!auth.isAdmin ? { color: "#5BD6FF" } : { color: "#5BD6FF" }}
           >
-            Where Innovation{" "}
+            WHERE CREATIVITY{" "}
           </h1>
-          <h1 className="meets">Meets Determination</h1>
+          <h1 className="meets">UNLEASHES POSSIBILITIES</h1>
           <p className="p1">
-            "Join a Global Community of Innovators. SaharaBytes hosts hackathons
-            that ignite creativity,
-          <br/>
-            foster collaboration, and drive real-world solutions. Dive in,
-            compete, and shape the future with us."
+            "Embark on a journey of innovation. At Artifex, we cultivate a
+            community where creativity thrives, collaboration flourishes, and
+            <br />
+            groundbreaking solutions take flight. Join us, explore, and shape
+            the landscape of tomorrow."
           </p>
+
           <button
             className="button_home"
             onClick={() =>
@@ -75,9 +78,7 @@ const Home = () => {
           >
             <h2
               className="button_home_1"
-              style={
-                !auth.isAdmin ? { color: "#4D3223" } : { color: "#0185B7" }
-              }
+              style={!auth.isAdmin ? { color: "black" } : { color: "#0185B7" }}
             >
               For Hosting
             </h2>
@@ -85,26 +86,42 @@ const Home = () => {
               className="button_home_2"
               style={
                 !auth.isAdmin
-                  ? { color: "#4D3223", backgroundColor: "#FFDCBA" }
-                  : { color: "#0185B7", backgroundColor: "#87CEEB" }
+                  ? { color: "#ffff", backgroundColor: "#5BD6FF" }
+                  : { color: "#ffff", backgroundColor: "#5BD6FF" }
               }
             >
               Contact us
             </h2>
             {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
             <img
-              src={
-                !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow_bleu.svg"
-              }
+              src={!auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"}
               alt=""
               className="arrow"
+              style={{ padding: "9px 0", color: "black" }}
             />
           </button>
-
+          <div className="social-links2">
+            <Link to="#">
+              {" "}
+              <img src={Facebook} alt="Facebook" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Instagram} alt="Instagram" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Twitter} alt="FaceTwitterbook" />
+            </Link>
+            <Link to="#">
+              {" "}
+              <img src={Youtube} alt="Youtube" />
+            </Link>
+          </div>
           <ul className="icons_home">
             <li>
               {" "}
-              <img src="elements/home/Instagram.svg" alt="" />
+              <img src="../assets/images/Logo_Artifex.svg" alt="" />
             </li>
 
             <li>
@@ -116,13 +133,11 @@ const Home = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button className="signupBtn" onClick={logoutHandler}></button>
+          <button className="LogoutBtn" onClick={logoutHandler}>
+            Logout
+          </button>
         </div>
       </div>
-      <div className="article_index">
-        <div id="sahara">sahara</div>
-      </div>
-      {auth.isLoggedIn && <Hackatons />}
     </>
   );
 };

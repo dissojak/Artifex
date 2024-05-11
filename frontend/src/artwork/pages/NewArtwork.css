@@ -1,0 +1,211 @@
+.art-form-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  /* height: 477px; */
+  height:67.5vh;
+  margin-top: 14.3rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; 
+}
+
+.art-signin-form-container {
+  transform: scale(0.65);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 77vw;
+  height:min-content;
+  position:fixed;
+  top: -18vh; 
+  left: 11.5vw;
+}
+
+.art-signin-header {
+  font-size: 28px; /* Adjust font size as needed */
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 20px; /* Adds padding on the left side */
+}
+
+.art-signin-step {
+  display: flex;
+  flex-direction: column;
+}
+
+.art-signin-step > * {
+  margin-bottom: 15px;
+}
+
+.newArtworkInputs{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+select,
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.art-signin-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  gap: 13px;
+  right: 32px;
+  padding: 4px;
+  display: flex;
+}
+
+.art-signin-button {
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: auto;
+  text-align: center;
+}
+
+.arrow{
+  margin-left: 15px;
+}
+.arrow_inverse{
+  margin-right: 15px;
+}
+
+.art-signin-next {
+  background-color: #5bd6ff;
+  color: white;
+  border: none;
+}
+
+.art-signin-next:hover {
+  background-color: #96e3fd;
+}
+
+.art-signin-prev {
+  background-color: #ff2987;
+  color: white;
+  border: none;
+}
+
+.art-signin-prev:hover {
+  background-color: #ff81b8;
+}
+
+.art-signin-create {
+  background-color: #5bd6ff;
+  color: white;
+  border: none;
+}
+
+.art-signin-create:hover {
+  background-color: #96e3fd;
+}
+
+@media (max-width: 768px) {
+  .art-signin-form-container {
+    width: auto;
+    padding: 20px;
+    border-top: none; /* Remove green border on small screens for better aesthetics */
+  }
+
+  .art-signin-button-container {
+    position: static;
+    margin-top: 20px;
+  }
+}
+.image-uploader {
+  display: block;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  width: 250px;
+  height: 250px;
+  margin: 30px auto;
+  cursor: pointer;
+  text-align: center;
+}
+
+.image-uploader-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-uploader-icon {
+  font-size: 24px;
+  color: #aaa;
+}
+
+.image-uploader-text {
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* Hover state styling */
+.image-uploader:hover {
+  border-color: #00a4ff;
+}
+
+.image-uploader:hover .image-uploader-icon,
+.image-uploader:hover .image-uploader-text {
+  color: #00a4ff;
+}
+
+.art-dimension-group {
+  display: flex;
+  justify-content: space-between; /* Space out the input fields */
+  gap: 20px; /* Adjust gap size to increase space between inputs */
+  margin: 20px 0; /* Vertical spacing for the entire group */
+}
+
+.art-dimension-input {
+  flex: 1; /* Allows each input to take equal width */
+  display: flex;
+  flex-direction: column; /* Stack label and input vertically */
+  margin-right: 10px; /* Adds right margin to each input group */
+}
+
+.art-dimension-input:last-child {
+  margin-right: 0; /* Removes right margin from the last input group */
+}
+
+/* Other styles remain unchanged */
+
+@media (max-width: 768px) {
+  .art-dimension-group {
+    flex-direction: column;
+    gap: 0; /* Reset gap for vertical stacking on smaller screens */
+  }
+
+  .art-dimension-input {
+    width: 100%; /* Full width on smaller screens */
+    margin-right: 0; /* Reset right margin for smaller screens */
+    margin-bottom: 15px; /* Increase space between stacked inputs */
+  }
+
+  .art-dimension-input:last-child {
+    margin-bottom: 0; /* Removes bottom margin from the last input group */
+  }
+}

@@ -1,0 +1,57 @@
+/* FAQs.css */
+.faqs {
+    background: #FFF5B8;
+    padding: 20px;
+    width: 1529px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+  }
+  
+  .faq-question {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .faq-question:hover {
+    color: #6216FC; /* or any other highlight color */
+  }
+  
+  .faq-toggle {
+    margin-left: 15px;
+  }
+  
+  .faq-answer {
+    display: none;
+    padding-top: 8px;
+  }
+  
+  /* Adjustments when faq item is open */
+  .faq-item.open .faq-answer {
+    display: block;
+  }
+  
+  .faq-item.open .faq-toggle {
+    transform: rotate(180deg);
+  }
+  
+  .faqs h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .faqs p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .faq-item.open .faq-answer {
+    display: block; /* This ensures that the answer is shown when the item is open */
+  }
+  

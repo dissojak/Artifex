@@ -1,0 +1,181 @@
+#museum {
+    width: 99.55vw;
+    height: 100vh;
+    background-image: url("../../assets/images/sannikova.png");
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #home2-admin {
+    width: 99.55vw;
+    height: 100vh;
+    background-color: rgba(122, 148, 210, 0.65);
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  #home2 {
+    width: 99.55vw;
+    height: 100vh;
+    background-color: rgba(106, 90, 205, 0.8);
+    box-sizing: border-box;
+    position: relative;
+  }
+  .where {
+    padding-top: 26vh;
+    text-transform: uppercase;
+    font-family: "Raleway-semibold";
+    font-size: 53px;
+    color: #5BD6FF;
+    margin-left: 6vw;
+    position: absolute;
+  }
+  
+  .meets {
+    top: 35vh;
+    text-transform: uppercase;
+    font-family: "Raleway-semibold";
+    font-size: 53px;
+    color: #ffffff;
+    margin-left: 6.5vw;
+    position: absolute;
+  }
+  
+  .p1 {
+    font-family: "Raleway-regular";
+    font-size: 18px;
+    color: #ffffff;
+    /* right:26.5vw; */
+    justify-content: center;
+    transform: translateX(-45%);
+    left: 46%;
+    bottom: 25vh;
+    position: absolute;
+    text-align: center;
+  }
+  
+  .button_home {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    position: absolute;
+    right: 5vw;
+    bottom: 11vh;
+    cursor: pointer;
+  }
+  
+  .button_home_1 {
+    width: 153px;
+    height: 36px;
+    background-color: #ffffff;
+    font-family: "Raleway-extrabold";
+    font-size: 10px;
+    box-sizing: border-box;
+    padding-top: 11px;
+  }
+  
+  .button_home_2 {
+    width: 260px;
+    height: 36px;
+    font-family: "Raleway-extrabold";
+    font-size: 10px;
+    box-sizing: border-box;
+    padding-right: 100px;
+    padding-top: 11px;
+  }
+  
+  .arrow {
+    position: absolute;
+    /* top:2.7vh; */
+    padding: 18px 0;
+    right: 2.5vw;
+  }
+  
+  .icons_home {
+    width: 131px;
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    position: relative;
+    bottom: 24px;
+  }
+  
+  .Logowhite {
+    margin-top: 21px;
+    margin-left: 20px;
+    z-index: 1000;
+    /* position: fixed; */
+    /* position: relative; */
+    position: absolute;
+    top: 0;
+    width: 10.5vw;
+  }
+  
+  /* ----------------------------- just for username color ------------ */
+  #header_right_home {
+    right: 5.1vw;
+    justify-content: space-around;
+    display: flex;
+    width: fit-content;
+    margin-top: 1vh;
+    position: absolute;
+    z-index: 1000;
+    gap: 15px;
+  }
+  
+  .button_header_right_home {
+    width: 20px;
+    margin-top: 1.5vh;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .username {
+    width: fit-content;
+    font-family: "Raleway-regular";
+    font-size: 24px;
+    color: #ffffff;
+  }
+  
+  .pol {
+  width: 3.5vh;
+  height: auto;
+  }
+  
+  .LogoutBtn {
+    width: 150px;
+    height: 50px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 50px;
+    gap: 9px;
+    right:-1355px;
+    color: white;
+    background: #7E3FFF;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+  }
+  .LogoutBtn:hover {
+    background-color: #9866ff;
+  }
+  
+  .social-links2 {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    bottom: 8vh;
+    left: 8vh;
+  } 
+  .social-links2 img {
+    width: 30px;
+    height: 30px;
+  }
+  

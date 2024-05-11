@@ -1,0 +1,303 @@
+#Profile-section {
+  width: 99.3vw;
+  height: 100vh;
+  margin-left: 4px;
+  position: relative;
+}
+
+
+.leftImage{
+  position: fixed;
+  /* top :258px; */
+  top: 33vh;
+  right :0;
+  width: 14.6vw;
+}
+.rightImage{
+  position: fixed; 
+  top:44vh;
+  width: 13.95vw;
+  left: 0;
+}
+.Profile-section2 {
+  position: relative;
+  width: 71vw;
+  left: 13.7vw;
+  height: fit-content;
+  padding-left: 13.7vw;
+}
+.profile-cover, .settingsClinetProfile {
+  position: relative;
+  width: 71vw;
+  right: 13.7vw;
+  background-color: #9866FF;
+  padding-left: 6.5vw;
+  padding-top: 17vh;
+  display: flex;
+  align-items: center;
+  transition: height 0.3s ease; /* Animate height changes */
+}
+
+.profile-cover {
+  height: 30vh; /* Initial height */
+}
+
+.settingsClinetProfile {
+  height: 100vh; /* Expanded height when settings are clicked */
+}
+
+.profileInfoContainer, .profileInfoContainerSettings {
+  width: 65vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: bottom 0.3s ease; /* Animate bottom changes */
+}
+
+.profileInfoContainer {
+  bottom: 0; /* Initial bottom position */
+}
+
+.profileInfoContainerSettings {
+  bottom: 35vh; /* Adjusted position when settings are clicked */
+}
+
+#SettingsContainerCard {
+  position: relative;
+  top: 5vh;
+  margin: -22.5vw;
+  right:26vw;
+  width: 68.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.l {
+  box-sizing: border-box;
+  padding-top: 4.3vh;
+  width: 35.4vh;
+  height: 35.4vh;
+  background-color: #ffff;
+  border-radius: 20px;
+  box-shadow: -25px 25px 50px rgba(0, 0, 0, 0.16);
+
+  text-align: center; /* Center the content horizontally */
+  margin-bottom: 5px; /* Add space between image and text */
+}
+
+.ch {
+  font-family: "Raleway-SemiBold";
+  /* font-size: 27px; */
+  font-size: 1.75vw;
+  color: #fffFFF;
+}
+.btn2 img {
+  width: 27.5vh;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure images are block elements */
+  margin: 0 auto; /* Center the images horizontally */
+}
+
+.btn23 img {
+  width: 27vh;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure images are block elements */
+  margin: 0 auto; /* Center the images horizontally */
+  margin-top: -0.5vh;
+}
+
+
+.Buttons-section3 {
+  text-align: left;
+  padding-left: 135px;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+
+/*buttons*/
+/* Remove this container when use*/
+
+.tab-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  padding: 2px;
+  width: 394px;
+  background-color: transparent;
+  border-radius: 9px;
+}
+
+.indicator {
+  content: "";
+  width: 130px;
+  height: 28px;
+  background: #e1d2ff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 9;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12), 0px 3px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 7px;
+  transition: all 0.2s ease-out;
+}
+
+.tab {
+  width: 130px;
+  height: 28px;
+  position: absolute;
+  z-index: 99;
+  outline: none;
+  opacity: 0;
+}
+
+.tab_label {
+  width: 130px;
+  height: 28px;
+  color: #292929;
+  position: relative;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.tab_label.active {
+  color: #9866ff;
+}
+
+.tab--1:checked ~ .indicator {
+  left: 2px;
+}
+
+.tab--2:checked ~ .indicator {
+  left: calc(130px + 2px);
+}
+
+.tab--3:checked ~ .indicator {
+  left: calc(130px * 2 + 2px);
+}
+
+.profile-image-container {
+  width: 150px; /* Size of the white circle */
+  height: 150px;
+  background-color: white; /* White background for the circle */
+  border-radius: 50%; /* Makes the div a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  z-index: 1;
+  width: 140px; /* Actual image size */
+  height: 140px;
+  border-radius: 50%; /* Makes the image rounded */
+  border: 3px solid white; /* Optional: Adds a white border around the image */
+}
+
+.profile-info {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px; /* Space between image and text */
+  color: white; /* Text color */
+}
+
+.profile-name {
+  z-index: 1;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.profile-email {
+  z-index: 1;
+  font-size: 16px;
+}
+
+/* Optionally you can add responsiveness */
+@media (max-width: 600px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .profile-info {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+
+.button-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+ 
+  height: 36px;
+  width: 120px;
+  border: none;
+  background: #D4BFFF;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.button-profile-following {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+ 
+  height: 36px;
+  width: 130px;
+  border: none;
+  background: #D4BFFF;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.cover-buttons-container{
+  z-index: 1;
+  position:relative;
+  display: flex;
+  gap :8px;
+  left:240px;
+  top:15px;
+}
+
+.lable-profile {
+  line-height: 20px;
+  font-size: 17px;
+  color: #5D41DE;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button-profile:hover {
+  background: #B38EFF;
+}
+.button-profile-following:hover {
+  background: #B38EFF;
+}
+.button-profile:hover .svg-icon-profile {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

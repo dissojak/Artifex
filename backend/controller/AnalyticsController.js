@@ -29,14 +29,23 @@ exports.getAnalytics = asyncHandler(async (req, res, next) => {
 const artistAnalytics = async (artistId) => {
   const analytics = await Analytics.findOne({ artistId });
   if (!analytics) {
-    console.log("Analytics not found");
+    // console.log("Analytics not found");
   }
   console.log(analytics);
   return analytics;
 };
 
+exports.artistRating = async (artistId) => {
+  const analytics = await Analytics.findOne({ artistId });
+  if (!analytics) {
+    return 0;
+  }
+  const rating= analytics.ratingAnalytics/analytics.totaleReviews;
+  return {rating,nbReviews:analytics.totaleReviews};
+};
+
 exports.calculateScore = async (id) => {
-  // on the top ( artistAnalytics )
+  // Function on the top ( artistAnalytics() )
   const analytics = await artistAnalytics(id); // JSON object
   let total;
   if (!analytics) {
@@ -60,7 +69,6 @@ exports.calculateScore = async (id) => {
       analytics.likesAnalytics * 20 +
       analytics.viewsAnalytics * 10;
   }
-
   // check plan controller for checkPlan
   const plan = await checkPlan(id); // String
   let bonus = 0;

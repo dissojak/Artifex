@@ -1,0 +1,53 @@
+import React from 'react';
+import './imagestars2.css';
+import Banner3 from '../../assets/images/image 2.png'; // Ensure the path is correct
+import UserProfile from './UserProfile.jsx'
+function imagestars2() {
+  return (
+    <div className="card-container">
+      <div className="image-container">
+      <div className="special-wrapper">
+      <div className="special-box">
+        <img src={Banner3} alt="" /> 
+        <div className="special-info">
+          <UserProfile />
+          <p></p>
+          <div className="special-rating2">
+            <input value="star5" name="rating" id="star5" type="radio" />
+            <label htmlFor="star5"></label>
+            <input value="star4" name="rating" id="star4" type="radio" />
+            <label htmlFor="star4"></label>
+            <input value="star3" name="rating" id="star3" type="radio" />
+            <label htmlFor="star3"></label>
+            <input value="star2" name="rating" id="star2" type="radio" />
+            <label htmlFor="star2"></label>
+            <input value="star1" name="rating" id="star1" type="radio" />
+            <label htmlFor="star1"></label>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+      </div>
+      <div className='info-container'>
+        <h2>Discover Unique Artwork Online</h2>
+        <p>Explore curated collections and find the perfect piece for your home or office. Our marketplace connects you with talented artists from around the world.</p>
+       
+        <div className="containerr">
+     <div className="row">
+        <div className="column">
+          <h2 className="section-title">Featured Artworks</h2>
+          <p>Browse through our selection of handpicked artworks, showcasing diverse styles and mediums.</p>
+        </div>
+        <div className="column">
+          <h2 className="section-title">Bestsellers</h2>
+          <p>Discover the most popular artworks loved by our community of art enthusiasts.</p>
+        </div>
+        </div>
+  </div>
+      </div>
+    </div>
+  );
+}
+
+export default imagestars2;
