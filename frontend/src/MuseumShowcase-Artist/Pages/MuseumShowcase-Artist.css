@@ -1,0 +1,17 @@
+
+
+.MuseumShowcaseartist-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 70vh;  
+    background-color: white;
+  }
+  #MuseumShowcaseartist-section {
+    width: 99.3vw;
+    height: 200vh;
+    background-image: url("../../assets/images/line2.svg");
+    background-repeat: no-repeat;
+    /* background-size: 250vh ; */
+    background-position: -10vh 80vh;
+}
