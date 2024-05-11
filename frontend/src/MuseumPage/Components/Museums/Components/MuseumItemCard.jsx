@@ -11,6 +11,8 @@ const MuseumItemCard = (props) => {
         return new Date(dateString).toLocaleDateString("en-GB", options); // Adjusted for day and full month name
     }    
   
+    const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
+    console.log(percentage);
   return (
     <>
      <div className="event-card11">
@@ -84,9 +86,9 @@ const MuseumItemCard = (props) => {
       </div>
       <div className="range-container11">
         <div className="range-content11">
-          <div className="slider-range11"></div>
+          <div className="slider-range11" style={{width:`${percentage}%`}}></div>
         </div>
-        <div className="range-nmr11">{props.Range}/100</div>
+        <div className="range-nmr11" >{props.clientsEntered}/{props.numberMaxClients}</div>
       </div>
     </div>
     </>

@@ -209,7 +209,7 @@
 }
 .slider-range11 {
   position: absolute;
-  width: 76%;
+  /* width: 76%; */
   height: 10px;
   background-color: #5bd6ff;
   border-radius: 10px;
