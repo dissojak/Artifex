@@ -314,6 +314,7 @@
   height: 20px;
   display: grid;
   border-radius: 50%;
+  mask: radial-gradient(farthest-side, transparent 40%, black 41%);
   -webkit-mask: radial-gradient(farthest-side, #0000 40%, #000 41%);
   background: linear-gradient(0deg, #FFFFFF80 50%, #FFFFFF 0) center/1.5px 100%,
               linear-gradient(90deg, #FFFFFF40 50%, #FFFFFFBF 0) center/100% 1.5px;
