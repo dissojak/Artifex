@@ -131,7 +131,7 @@ const App = () => {
           <Route path="/artistprofile" element={<ArtistProfileForUser />} />
           <Route path="/museumshowcase" element={<MuseumShowcase />} />
           <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
-          <Route path="/PricingOptions" element={<PricingOptions />} />
+          <Route path="/Plans" element={<PricingOptions />} />
           <Route path="/PlansHistory" element={<PlansHistory />} />
           <Route path="/museumdetails" element={<MuseumDetails />} />
         </Route>
