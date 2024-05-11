@@ -38,6 +38,7 @@ import SocialMedia from "./user/pages/SocialMedia.jsx";
 import ArtworkDetails from "./ArtworkDetails/Pages/ArtworkDetails.jsx";
 import ArtistProfileForUser from "./ArtistProfileForUser/Pages/ArtistProfileForUser.jsx";
 import MuseumShowcase from "./MuseumShowcase-Client/Pages/MuseumShowcase-Client.jsx";
+import MuseumShowcaseArtist from "./MuseumShowcase-Artist/Pages/MuseumShowcase-Artist.jsx";
 import MuseumDetails from "./MuseumDetails/Pages/MuseumDetails.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
@@ -126,7 +127,8 @@ const App = () => {
           <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
           <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
           <Route path="/artistprofile" element={<ArtistProfileForUser />} />
-          <Route path="/museumshowcase" element={<MuseumShowcase />} />
+          <Route path="/museumshowcase" element={<MuseumShowcase />} />MuseumShowcaseArtist
+          <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
           <Route path="/museumdetails" element={<MuseumDetails />} />
         </Route>
         <Route path="/login" element={<Auth />} />
