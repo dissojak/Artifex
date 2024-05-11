@@ -11,6 +11,7 @@ import {
   usePinMutation,
   useUnpinMutation,
 } from "../../../../slices/museumsSlice";
+import { Link } from "react-router-dom";
 const MuseumItemCard = (props) => {
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "long" }; // Use 'long' to get the full month name
@@ -73,7 +74,7 @@ const MuseumItemCard = (props) => {
         museumId: props.id,
       }).unwrap();
       setIsPinned(true);
-    //   console.log(res);
+      //   console.log(res);
       setIsLoading(false);
     } catch (err) {
       setIsPinned(false);
@@ -90,7 +91,7 @@ const MuseumItemCard = (props) => {
         museumId: props.id,
       }).unwrap();
       setIsPinned(false);
-    //   console.log(res);
+      //   console.log(res);
       setIsLoading(false);
     } catch (err) {
       setIsPinned(true);
@@ -100,6 +101,7 @@ const MuseumItemCard = (props) => {
   };
 
   const handlePinChange = (event) => {
+    event.stopPropagation();
     if (event.target.checked) {
       PinMuseums();
     } else {
@@ -121,12 +123,13 @@ const MuseumItemCard = (props) => {
         //     : "0px 2px 25px rgba(0, 0, 0, 0.16)",
         // }}
       >
+          <Link to="/museumDetails" style={{cursor:'pointer'}}>
         <div className="event-image11">
-          <img
-            src={props.Image}
-            alt="Event Image11"
-            className="event-image11"
-          />
+            <img
+              src={props.Image}
+              alt="Event Image11"
+              className="event-image11"
+            />
           <div className="event-overlay11">
             <div className="event-overlay-top11">
               <div className="event-date11">
@@ -138,7 +141,7 @@ const MuseumItemCard = (props) => {
               <div className="event-price11">{props.priceClient} DT</div>
             </div>
             <div className="event-overlay-bottom11">
-              <button className="btn-311">
+              <button className="btn-311" onClick={(e) => e.stopPropagation()}>
                 {isLoading ? (
                   <div className="loaderPinContainer">
                     <div className="custom-loader"></div>
@@ -191,6 +194,8 @@ const MuseumItemCard = (props) => {
             </div>
           </div>
         </div>
+        </Link>
+
         <div>
           <h1
             className="cc11"
@@ -201,7 +206,8 @@ const MuseumItemCard = (props) => {
             <div className="museumNameContainer">
               {props.name}
               {props.isExclusive && (
-                <p className="exclusiveMuseumCard"> (Exclusive)</p>
+                <img src="./elements/exclusive.svg" className="exclusiveMuseumCardImg" alt="exclusive"/>
+                // <p className="exclusiveMuseumCard"> (Exclusive)</p>
               )}
             </div>
           </h1>

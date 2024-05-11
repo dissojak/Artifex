@@ -37,6 +37,30 @@
   width: 100%;
   height: 189px;
   border-radius: 12px;
+  cursor:pointer;
+  text-decoration: none;
+}
+
+.event-card11 a,
+.event-card11 a:hover,
+.event-card11 a:focus,
+.event-card11 a:active {
+  color: #000; /* or any specific color you used */
+  background-color: transparent; /* reset background changes if any */
+  outline: none;
+}
+
+/* .event-image11 img {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.event-image11 img:hover {
+  transform: scale(1.05); 
+} */
+
+.exclusiveMuseumCardImg{
+  width: 10%;
 }
 
 .event-overlay11 {
@@ -119,6 +143,7 @@
   border: none;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 12px;
+  cursor: pointer;
 }
 .btn-pass11 span {
   transition: top 0.5s;
