@@ -5,40 +5,37 @@ import Diamond from "../../assets/images/platinumBadge2.svg";
 import PlatinumBadge from "../../assets/images/diamant.svg";
 import Footer from "../../shared/components/UIElements/Footer";
 const Options = [
-  { Image: Crown, Type: "Gold", Price: "20", Monetize: "20%" },
-  { Image: PlatinumBadge, Type: "Platinum", Price: "35", Monetize: "40%" },
-  { Image: Diamond, Type: "Diamond", Price: "50", Monetize: "60%" },
+  { Image: Crown, Type: "Gold", Start: "12 August",Ends:"18 August", Monetize: "20%" },
+  { Image: PlatinumBadge, Type: "Platinum", Start: "12 August",Ends:"18 August", Monetize: "40%" },
+  { Image: Diamond, Type: "Diamond", Start: "12 August",Ends:"18 August", Monetize: "60%" },
+  { Image: Crown, Type: "Gold", Start: "12 August",Ends:"18 August", Monetize: "20%" },
+  { Image: PlatinumBadge, Type: "Platinum", Start: "12 August",Ends:"18 August", Monetize: "40%" },
+  { Image: Diamond, Type: "Diamond", Start: "12 August",Ends:"18 August", Monetize: "60%" },
+  { Image: Crown, Type: "Gold", Start: "12 August",Ends:"18 August", Monetize: "20%" },
+  { Image: PlatinumBadge, Type: "Platinum", Start: "12 August",Ends:"18 August", Monetize: "40%" },
+  { Image: Diamond, Type: "Diamond", Start: "12 August",Ends:"18 August", Monetize: "60%" },
 ];
 const PlansHistorySection = () => {
   return (
     <>
-      <div id="PricingSection-section">
-        <div className="PricingSection-container7">
-          <p
-            className="PricingSection-details7"
-            style={{
-              fontSize: "12px",
-              color: "#5bd6ff",
-              fontFamily: "Raleway-Bold",
-            }}
-          >
-            Discover
-          </p>
-          <h1 className="PricingSection-name7">Pricing Options</h1>
-          <p className="PricingSection-details7">
-            Choose the plan that suits your needs
+      <div id="PlansHistorySection-section"> 
+        <div className="PlansHistorySection-container7">
+       
+          <h1 className="PlansHistorySection-name7">Plans History</h1>
+          <p className="PlansHistorySection-details7">
+          Your recent plans you were subscribed in.
           </p>
           {/*cards start  */}
-          <div className="OptionsCards-container">
+          <div className="PlansHistorySection-container">
             {Options.map((Option) => (
-              <div className="planCard">
-                <div className="planContent">
-                  <div className="planHeader">{Option.Type}</div>
-                  <div className="planPrice">
+              <div className="planCardHistory">
+                <div className="planContentHistory">
+                  <div className="planHeaderHistory">{Option.Type}</div>
+                  <div className="planPriceHistory">
                     <img
                       src={Option.Image}
                       alt="Options"
-                      className="OptionsIcons"
+                      className="OptionsIconsHistory"
                       style={
                         Option.Type === "Diamond"
                           ? { width: "55px", height: "55px" }
@@ -46,22 +43,19 @@ const PlansHistorySection = () => {
                       }
                     />
                     <span style={{ fontFamily: "Dubai-Bold" }}>
-                      {Option.Price}DT
+                    <div className="dateLabel-Start-PlansHistory">{Option.Start}</div>
+            <div className="dateLabel-End-PlansHistory">{Option.Ends}</div>
                     </span>
                   </div>
-                  <div className="planFeatures">
+                  <div className="planFeaturesHistory">
                     <p>{Option.Monetize} Monetize</p>
                   </div>
                 </div>
-                <button className="planButton">Get Plan</button>
               </div>
             ))}
           </div>
           {/*cards ends */}
         </div>
-      </div>
-      <div className="footerContainerPricingSection">
-        <Footer width={99.4} />
       </div>
     </>
   );

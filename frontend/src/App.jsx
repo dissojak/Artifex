@@ -41,6 +41,7 @@ import MuseumShowcase from "./MuseumShowcase-Client/Pages/MuseumShowcase-Client.
 import MuseumShowcaseArtist from "./MuseumShowcase-Artist/Pages/MuseumShowcase-Artist.jsx";
 import MuseumDetails from "./MuseumDetails/Pages/MuseumDetails.jsx";
 import PricingOptions from "./PricingOptions/Pages/PricingOptions.jsx";
+import PlansHistory from "./PlansHistory/Pages/PlansHistory.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
 
@@ -131,6 +132,7 @@ const App = () => {
           <Route path="/museumshowcase" element={<MuseumShowcase />} />
           <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
           <Route path="/PricingOptions" element={<PricingOptions />} />
+          <Route path="/PlansHistory" element={<PlansHistory />} />
           <Route path="/museumdetails" element={<MuseumDetails />} />
         </Route>
         <Route path="/login" element={<Auth />} />
