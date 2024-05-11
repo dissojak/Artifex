@@ -5,11 +5,27 @@ import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update
 import ProfileImage from "../../../../assets/images/Adem.jpg";
 import "../Pages/Museums.css";
 import { toast } from "react-toastify";
+import { useParticipantArtistsMutation } from "../../../../slices/museumsSlice";
 const MuseumItemCard = (props) => {
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "long" }; // Use 'long' to get the full month name
     return new Date(dateString).toLocaleDateString("en-GB", options); // Adjusted for day and full month name
   }
+
+  const [getParticipantArtists, { isLoading }] = useParticipantArtistsMutation();
+  const [artists, setArtists] = useState();
+  useEffect(() => {
+    const req = async () => {
+      try {
+        const res = await getParticipantArtists(props.id);
+        console.log(res.data);
+        setArtists(res.data);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    req();
+  }, []);
 
   const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
   console.log(percentage);
@@ -92,7 +108,9 @@ const MuseumItemCard = (props) => {
             }}
           >
             {props.name}
-            {props.isExclusive && (<h7 className="exclusiveMuseumCard"> (Exclusive)</h7>)}
+            {props.isExclusive && (
+              <h4 className="exclusiveMuseumCard"> (Exclusive)</h4>
+            )}
           </h1>
           <p className="ccp11">{props.Description}</p>
         </div>

@@ -22,7 +22,7 @@ const MuseumList = (props) => {
             Categorie={museum.idCategory.name}
             artistsEntered={museum.artistsEntered}
             clientsEntered={museum.clientsEntered}
-
+            artworkIds={museum.artworkIds}
             //   rating={museum.rating.rating||0}
 
             // Image: MuseumImage,
