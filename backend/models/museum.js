@@ -12,7 +12,11 @@ const museumSchema = new mongoose.Schema({
   // Description of the museum
   description: {
     type: String,
-    maxLength:50,
+    maxLength: 50,
+    required: true,
+  },
+  museumImage: {
+    type: String,
     required: true,
   },
   // Maximum number of artists allowed
