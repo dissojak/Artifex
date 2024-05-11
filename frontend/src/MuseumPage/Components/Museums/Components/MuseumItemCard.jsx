@@ -206,7 +206,7 @@ const MuseumItemCard = (props) => {
             <div className="museumNameContainer">
               {props.name}
               {props.isExclusive && (
-                <img src="./elements/exclusive.svg" className="exclusiveMuseumCardImg" alt="exclusive"/>
+                <img src="./elements/exclusiveButton.svg" className="exclusiveMuseumCardImg" alt="exclusive"/>
                 // <p className="exclusiveMuseumCard"> (Exclusive)</p>
               )}
             </div>
