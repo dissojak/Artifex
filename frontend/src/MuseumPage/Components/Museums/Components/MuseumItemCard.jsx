@@ -107,11 +107,11 @@ const MuseumItemCard = (props) => {
             style={{
               color: props.isExclusive ? "#8d3dff" : "",
             }}
-          >
+          ><div className="museumNameContainer">
             {props.name}
             {props.isExclusive && (
               <p className="exclusiveMuseumCard"> (Exclusive)</p>
-            )}
+            )}</div>
           </h1>
           <p className="ccp11">{props.Description}</p>
         </div>

@@ -87,6 +87,12 @@
   box-sizing: border-box;
 }
 
+.museumNameContainer{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .event-date11 {
   width: 75%;
   height: 22px;
