@@ -13,9 +13,11 @@
   padding-bottom: 40px;
 }
 .museum-container {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px; /* Adjust space between cards */
   padding: 109px;
   padding-top: 24px;
@@ -32,9 +34,9 @@
 
 .event-image11 {
   position: relative;
-  width: 306px;
+  width: 100%;
   height: 189px;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 
 .event-overlay11 {
@@ -104,7 +106,7 @@
 .btn-pass11 {
   overflow: hidden;
   bottom: 0;
-  right: 0;
+  right: 0.75%;
   position: absolute;
   width: 110px;
   height: 34px;
@@ -112,7 +114,7 @@
   color: #ffffff;
   border: none;
   border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 12px;
 }
 .btn-pass11 span {
   transition: top 0.5s;
