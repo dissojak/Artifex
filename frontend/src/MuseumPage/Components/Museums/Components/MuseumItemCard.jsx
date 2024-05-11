@@ -66,7 +66,12 @@ const MuseumItemCard = (props) => {
                   </svg>
                 </label>
               </button>
-              <button className="btn-pass11">
+              <button
+                className="btn-pass11"
+                style={{
+                    right: props.isExclusive ? "1.5%" : "0.6%",
+                }}
+              >
                 <span className="btn-text-one11">
                   Get Your Pass <img src={TraceImage} alt="" />
                 </span>

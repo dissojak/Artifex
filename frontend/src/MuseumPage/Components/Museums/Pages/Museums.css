@@ -107,7 +107,7 @@
 .btn-pass11 {
   overflow: hidden;
   bottom: 0;
-  right: 0.75%;
+  /* right: 0.75%; */
   position: absolute;
   width: 110px;
   height: 34px;
