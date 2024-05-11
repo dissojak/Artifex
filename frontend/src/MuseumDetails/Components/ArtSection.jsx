@@ -77,8 +77,8 @@ const ArtSection = () => {
             >
               Exclusive:{" "}
             </p>
-            {/* <p className="getyourpass-category"><img src="./elements/right.svg" alt="" className="rightContainerMuseum" /></p> */}
             <p className="getyourpass-category">
+              {/* <img src="./elements/right.svg" alt="" className="rightContainerMuseum" /> */}
               <img
                 src="./elements/wrong.svg"
                 alt=""
