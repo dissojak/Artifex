@@ -109,6 +109,22 @@ const MuseumItemCard = (props) => {
     }
   };
 
+  const [description,setDescription]=useState(props.Description)
+  useEffect(() => {
+    function truncateDescription() {
+      console.log(props.Description);
+      if (props.Description.length > 120) {
+        let str = props.Description.substring(0, 120);
+        if (str.endsWith(" ")) {
+          str = str.slice(0, -1); // Remove the last character if it's a space
+          return setDescription(str + "..");
+        } else return setDescription(str + "...");
+      }
+      return props.Description;
+    }
+    truncateDescription();
+  }, [props.Description]);
+
   const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
   // console.log(percentage);
   return (
@@ -123,77 +139,82 @@ const MuseumItemCard = (props) => {
         //     : "0px 2px 25px rgba(0, 0, 0, 0.16)",
         // }}
       >
-          <Link to="/museumDetails" style={{cursor:'pointer'}}>
-        <div className="event-image11">
+        <Link to="/museumDetails" style={{ cursor: "pointer" }}>
+          <div className="event-image11">
             <img
               src={props.Image}
               alt="Event Image11"
               className="event-image11"
             />
-          <div className="event-overlay11">
-            <div className="event-overlay-top11">
-              <div className="event-date11">
-                <div className="event-debut-date11">
-                  {formatDate(props.Start)}
-                </div>
-                <div className="event-end-date11">{formatDate(props.Ends)}</div>
-              </div>
-              <div className="event-price11">{props.priceClient} DT</div>
-            </div>
-            <div className="event-overlay-bottom11">
-              <button className="btn-311" onClick={(e) => e.stopPropagation()}>
-                {isLoading ? (
-                  <div className="loaderPinContainer">
-                    <div className="custom-loader"></div>
+            <div className="event-overlay11">
+              <div className="event-overlay-top11">
+                <div className="event-date11">
+                  <div className="event-debut-date11">
+                    {formatDate(props.Start)}
                   </div>
-                ) : (
-                  <label className="pinButton33">
-                    <input
-                      type="checkbox"
-                      checked={isPinned}
-                      onChange={handlePinChange}
+                  <div className="event-end-date11">
+                    {formatDate(props.Ends)}
+                  </div>
+                </div>
+                <div className="event-price11">{props.priceClient} DT</div>
+              </div>
+              <div className="event-overlay-bottom11">
+                <button
+                  className="btn-311"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {isLoading ? (
+                    <div className="loaderPinContainer">
+                      <div className="custom-loader"></div>
+                    </div>
+                  ) : (
+                    <label className="pinButton33">
+                      <input
+                        type="checkbox"
+                        checked={isPinned}
+                        onChange={handlePinChange}
+                      />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 75 100"
+                        className="pin33"
+                      >
+                        <line
+                          strokeWidth="12"
+                          stroke="white"
+                          y2="100"
+                          x2="37"
+                          y1="64"
+                          x1="37"
+                        ></line>
+                        <path
+                          strokeWidth="10"
+                          stroke="white"
+                          d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"
+                        ></path>
+                      </svg>
+                    </label>
+                  )}
+                </button>
+                <button className="btn-pass11">
+                  <span className="btn-text-one11">
+                    Get Your Pass <img src={TraceImage} alt="" />
+                  </span>
+                  <span className="btn-text-two11">
+                    <img
+                      src={
+                        props.isExclusive
+                          ? "./elements/exclusive_event_pass.svg"
+                          : EventPassImage
+                      }
+                      alt=""
                     />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 75 100"
-                      className="pin33"
-                    >
-                      <line
-                        strokeWidth="12"
-                        stroke="white"
-                        y2="100"
-                        x2="37"
-                        y1="64"
-                        x1="37"
-                      ></line>
-                      <path
-                        strokeWidth="10"
-                        stroke="white"
-                        d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"
-                      ></path>
-                    </svg>
-                  </label>
-                )}
-              </button>
-              <button className="btn-pass11">
-                <span className="btn-text-one11">
-                  Get Your Pass <img src={TraceImage} alt="" />
-                </span>
-                <span className="btn-text-two11">
-                  <img
-                    src={
-                      props.isExclusive
-                        ? "./elements/exclusive_event_pass.svg"
-                        : EventPassImage
-                    }
-                    alt=""
-                  />
-                </span>
-              </button>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         </Link>
 
         <div>
@@ -206,12 +227,16 @@ const MuseumItemCard = (props) => {
             <div className="museumNameContainer">
               {props.name}
               {props.isExclusive && (
-                <img src="./elements/exclusiveButton.svg" className="exclusiveMuseumCardImg" alt="exclusive"/>
+                <img
+                  src="./elements/exclusiveButton.svg"
+                  className="exclusiveMuseumCardImg"
+                  alt="exclusive"
+                />
                 // <p className="exclusiveMuseumCard"> (Exclusive)</p>
               )}
             </div>
           </h1>
-          <p className="ccp11">{props.Description}</p>
+          <p className="ccp11">{description}</p>
         </div>
         <div className="div-bottom11">
           <div className="btn-da11">{props.Categorie}</div>

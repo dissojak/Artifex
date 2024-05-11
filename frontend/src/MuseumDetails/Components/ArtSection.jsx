@@ -94,7 +94,7 @@ const ArtSection = () => {
                   Get Your Pass <img src={Ticket} alt="Ticket" />
                 </div>
                 <span className="iconcart8">
-                  <img src={Pass} alt="Ticket" className="bi bi-cart2" />
+                  <img src={Pass} alt="Ticket"/>
                 </span>
               </div>
             </div>
