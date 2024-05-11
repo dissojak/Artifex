@@ -39,7 +39,7 @@
     position: absolute;
     width: 76%;
     height: 13px;
-    background-color:#7e3fff;
+    background-color:#9866FF;
     border-radius: 10px;
   }
   .range-nmr{
@@ -68,8 +68,6 @@ justify-content: space-between;
     padding: 72px;
     padding-top: 40px;
   }
-
-
 
   .getyourpass-details {
     transform: scale(1.1);
@@ -264,4 +262,54 @@ justify-content: space-between;
   
   .buttoncart8:hover:before {
     bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+  }
+
+  .titleAndPin{
+    display: flex; /* Uses flexbox to align children side by side */
+    align-items: center; /* Vertically center aligns the items */
+    gap: 8px;
+  }
+
+  .pinButton input {
+    display: none;
+  }
+  .pin {
+    width: 15px;
+    height: auto;
+    transform: rotate(35deg);
+  }
+  .pinButton {
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+  }
+  .pinButton input:checked ~ .pin {
+    fill: #9866FF;
+    stroke: white;
+  }
+  .pinButton input:checked ~ .pin line {
+    stroke: #9866FF;
+  }
+  .pinButton input:checked ~ .pin path {
+    stroke: #9866FF;
+  }
+  /* .pinButton:hover {
+    background-color: rgb(244, 238, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.041);
+  } */
+  .pinButton:active {
+    transform: scale(0.8);
+  }
+  
+  .rightContainerMuseum{
+    width: 5%;
+  }
+  .wrongContainerMuseum{
+    width: 8%;
   }
