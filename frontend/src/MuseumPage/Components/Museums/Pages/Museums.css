@@ -55,7 +55,7 @@
   font-size: 12px;
   text-align: center;
   padding-top: 4px;
-  /* margin-right: 4px; */
+  margin-right: 0.5%;
   box-sizing: border-box;
 }
 .event-debut-date11 {
@@ -104,7 +104,7 @@
 .btn-pass11 {
   overflow: hidden;
   bottom: 0;
-  /* right: 0.75%; */
+  right: 0.6%;
   position: absolute;
   width: 110px;
   height: 34px;
@@ -132,7 +132,12 @@
   font-family: "Roboto-Medium";
   left: 0;
   transform: translateY(-50%);
-  padding-bottom: 9px;
+  /* padding-bottom: 9px; */
+  font-size: 12px;
+  padding: 4px 0 12px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .btn-text-two11 {
@@ -156,6 +161,12 @@
 .cc11 {
   font-family: "Raleway-SemiBold";
   font-size: 24px;
+}
+.exclusiveMuseumCard {
+  font-family: "Raleway-SemiBold";
+  font-size: 12px;
+  align-items: center;
+  color:rgb(255, 196, 48);
 }
 .ccp11 {
   font-family: "Raleway-Regular";

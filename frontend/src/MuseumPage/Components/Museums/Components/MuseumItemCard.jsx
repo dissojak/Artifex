@@ -5,11 +5,27 @@ import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update
 import ProfileImage from "../../../../assets/images/Adem.jpg";
 import "../Pages/Museums.css";
 import { toast } from "react-toastify";
+import { useParticipantArtistsMutation } from "../../../../slices/museumsSlice";
 const MuseumItemCard = (props) => {
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "long" }; // Use 'long' to get the full month name
     return new Date(dateString).toLocaleDateString("en-GB", options); // Adjusted for day and full month name
   }
+
+  const [getParticipantArtists, { isLoading }] = useParticipantArtistsMutation();
+  const [artists, setArtists] = useState();
+  useEffect(() => {
+    const req = async () => {
+      try {
+        const res = await getParticipantArtists(props.id);
+        console.log(res.data);
+        setArtists(res.data);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    req();
+  }, []);
 
   const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
   console.log(percentage);
@@ -17,12 +33,12 @@ const MuseumItemCard = (props) => {
     <>
       <div
         className="event-card11"
-        style={{
-          border: props.isExclusive ? "2px solid #FFD123" : "none",
-          boxShadow: props.isExclusive
-            ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
-            : "0px 2px 25px rgba(0, 0, 0, 0.16)",
-        }}
+        // style={{
+        //   border: props.isExclusive ? "2px solid #FFD123" : "none",
+        //   boxShadow: props.isExclusive
+        //     ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
+        //     : "0px 2px 25px rgba(0, 0, 0, 0.16)",
+        // }}
       >
         <div className="event-image11">
           <img
@@ -38,9 +54,7 @@ const MuseumItemCard = (props) => {
                 </div>
                 <div className="event-end-date11">{formatDate(props.Ends)}</div>
               </div>
-              <div className="event-price11" style={{
-                    marginRight: props.isExclusive ? "2%" : "0.5%",
-                }}>{props.priceClient} DT</div>
+              <div className="event-price11">{props.priceClient} DT</div>
             </div>
             <div className="event-overlay-bottom11">
               <button className="btn-311">
@@ -68,24 +82,36 @@ const MuseumItemCard = (props) => {
                   </svg>
                 </label>
               </button>
-              <button
-                className="btn-pass11"
-                style={{
-                    right: props.isExclusive ? "1.5%" : "0.6%",
-                }}
-              >
+              <button className="btn-pass11">
                 <span className="btn-text-one11">
                   Get Your Pass <img src={TraceImage} alt="" />
                 </span>
                 <span className="btn-text-two11">
-                  <img src={props.isExclusive ? EventPassImage:"./elements/exclusive_event_pass.svg"} alt="" />
+                  <img
+                    src={
+                      props.isExclusive
+                        ? "./elements/exclusive_event_pass.svg"
+                        : EventPassImage
+                    }
+                    alt=""
+                  />
                 </span>
               </button>
             </div>
           </div>
         </div>
         <div>
-          <h1 className="cc11">{props.name}</h1>
+          <h1
+            className="cc11"
+            style={{
+              color: props.isExclusive ? "#8d3dff" : "",
+            }}
+          >
+            {props.name}
+            {props.isExclusive && (
+              <h4 className="exclusiveMuseumCard"> (Exclusive)</h4>
+            )}
+          </h1>
           <p className="ccp11">{props.Description}</p>
         </div>
         <div className="div-bottom11">
