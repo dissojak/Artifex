@@ -58,6 +58,22 @@ exports.unPinMuseum = async (req, res, next) => {
   res.status(201).json({ message: "Museum unpinned successfully." });
 };
 
+exports.isPinned = async (req, res) => {
+  const { museumId } = req.body; 
+  const userId = req.user._id;
+
+  try {
+      const result = await MuseumPinned.findOne({ userId, museumId });
+      if (result) {
+          return res.status(200).json({ isPinned: true, message: "Museum is pinned." });
+      } else {
+          return res.status(200).json({ isPinned: false, message: "Museum is not pinned." });
+      }
+  } catch (error) {
+      return res.status(500).json({ message: "Error checking pin status.", error: error.message });
+  }
+};
+
 /**
  * @desc    Fetches all museums pinned by the user.
  * @route   GET /api/museum/PinnedMuseums

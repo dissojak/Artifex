@@ -169,8 +169,8 @@
   font-size: 24px;
 }
 .exclusiveMuseumCard {
-  font-family: "Raleway-SemiBold";
-  font-size: 12px;
+  font-family: "Raleway-Bold";
+  font-size: 13px;
   align-items: center;
   color:rgb(255, 196, 48);
 }
@@ -192,6 +192,7 @@
   border: 2px #a6a7a8 solid;
   background-color: #ffffff;
 }
+
 .profile-image11 {
   width: 32px;
   height: 32px;
@@ -199,6 +200,7 @@
   border: 2px solid white;
   position: absolute;
 }
+
 .profile-image11NOIMAGE{
   width: 32px;
   height: 32px;
@@ -208,13 +210,23 @@
   background-color: rgb(148, 8, 255);
   color: white;
 }
+
+.container9{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5%;
+  font-family: 'roboto';
+}
+
 .profile-container11 {
   position: relative;
   list-style: none;
   display: flex;
   justify-content: space-evenly;
-  width: 96px;
-  left: 186px;
+  width: 66px;
+  /* right:0rem; */
+  left: 220px;
   top: -29px;
   margin-right: 9px;
 }
@@ -290,4 +302,43 @@
 } */
 .pinButton33:active {
   transform: scale(0.8);
+}
+
+.loaderPinContainer{
+  position: relative;
+  left:25%
+}
+
+.custom-loader {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 40%, #000 41%);
+  background: linear-gradient(0deg, #FFFFFF80 50%, #FFFFFF 0) center/1.5px 100%,
+              linear-gradient(90deg, #FFFFFF40 50%, #FFFFFFBF 0) center/100% 1.5px;
+  background-repeat: no-repeat;
+  animation: s3 1s infinite steps(12);
+}
+
+
+.custom-loader::before,
+.custom-loader::after {
+  content: "";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+
+.custom-loader::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn)
+  }
 }

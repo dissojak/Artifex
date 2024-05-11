@@ -16,9 +16,35 @@ export const museumApiSlice = apiSlice.injectEndpoints({
         // body: museumId,
       }),
     }),
+    pin: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/pin`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    unpin: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/unpin`,
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+    isPinned: builder.mutation({
+        query: (data) => ({
+          url: `${MUSEUMS_URL}/isPinned`,
+          method: "POST",
+          body: data,
+        }),
+      }),
     //new function
   }),
 });
 
-export const { useGetClientMuseumsMutation, useParticipantArtistsMutation } =
-  museumApiSlice;
+export const {
+  useGetClientMuseumsMutation,
+  useParticipantArtistsMutation,
+  usePinMutation,
+  useUnpinMutation,
+  useIsPinnedMutation,
+} = museumApiSlice;

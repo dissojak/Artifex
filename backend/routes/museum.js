@@ -1,6 +1,6 @@
 const express = require("express");
 const MC = require("../controller/MuseumController");
-const MPC =require("../controller/MuseumPinnedController");
+const MPC = require("../controller/MuseumPinnedController");
 const MW = require("../middleware/authMiddleware");
 const { check } = require("express-validator");
 const router = express.Router();
@@ -44,10 +44,18 @@ router.patch(
   MW.protect,
   [
     check("title").notEmpty().withMessage("Title cannot be empty"),
-    check("description").isLength({ max: 500 }).withMessage("Description must be less than 500 characters"),
-    check("priceClient").isNumeric().withMessage("Client price must be a positive number"),
-    check("priceArtist").isNumeric().withMessage("Artist price must be a positive number"),
-    check("dateStart").isISO8601().withMessage("Start date must be a valid date"),
+    check("description")
+      .isLength({ max: 500 })
+      .withMessage("Description must be less than 500 characters"),
+    check("priceClient")
+      .isNumeric()
+      .withMessage("Client price must be a positive number"),
+    check("priceArtist")
+      .isNumeric()
+      .withMessage("Artist price must be a positive number"),
+    check("dateStart")
+      .isISO8601()
+      .withMessage("Start date must be a valid date"),
     check("dateEnd").isISO8601().withMessage("End date must be a valid date"),
   ],
   MC.editMuseum
@@ -55,7 +63,11 @@ router.patch(
 
 router.get("/museums", MW.protect, MC.getMuseums);
 
-router.get("/participantArtists/:museumId", MW.protect, MC.getParticipantArtists);
+router.get(
+  "/participantArtists/:museumId",
+  MW.protect,
+  MC.getParticipantArtists
+);
 
 router.get("/participantClients", MW.protect, MC.getParticipantClients);
 
@@ -65,27 +77,31 @@ router.post("/clientJoin", MW.protect, MC.clientJoin);
 
 router.post("/addArtworks", MW.protect, MC.addArtworksToMuseum);
 
-router.post("/addExclusiveArtwork", MW.protect,
-[
-  check("title")
-    .isLength({ min: 2, max: 15 })
-    .withMessage("Title must be at least 2 characters long"),
-  check("description")
-    .isLength({ min: 10, max: 100 })
-    .withMessage("Description must be between 10 and 100 characters long"),
-  check("price").isNumeric().withMessage("Price must be a number"),
-  check("imageArtwork")
-    .isURL()
-    .withMessage("ImageArtwork must be a valid URL"),
-  check("id_category")
-    .notEmpty()
-    .withMessage("Category ID must be a valid MongoDB ID"),
-],
-MC.addExclusiveArtwork);
+router.post(
+  "/addExclusiveArtwork",
+  MW.protect,
+  [
+    check("title")
+      .isLength({ min: 2, max: 15 })
+      .withMessage("Title must be at least 2 characters long"),
+    check("description")
+      .isLength({ min: 10, max: 100 })
+      .withMessage("Description must be between 10 and 100 characters long"),
+    check("price").isNumeric().withMessage("Price must be a number"),
+    check("imageArtwork")
+      .isURL()
+      .withMessage("ImageArtwork must be a valid URL"),
+    check("id_category")
+      .notEmpty()
+      .withMessage("Category ID must be a valid MongoDB ID"),
+  ],
+  MC.addExclusiveArtwork
+);
 
-router.get('/byDate',MW.protect, MC.getMuseumsByDates);
-router.post('/pin',MW.protect,MPC.pinMuseum); 
-router.delete("/unpin",MW.protect,MPC.unPinMuseum);
-router.get('/PinnedMuseums',MW.protect,MPC.getPinnedMuseum);
+router.get("/byDate", MW.protect, MC.getMuseumsByDates);
+router.post("/pin", MW.protect, MPC.pinMuseum);
+router.delete("/unpin", MW.protect, MPC.unPinMuseum);
+router.post("/isPinned", MW.protect, MPC.isPinned);
+router.get("/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
 
 module.exports = router;

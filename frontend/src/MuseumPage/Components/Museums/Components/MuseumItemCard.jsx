@@ -5,34 +5,114 @@ import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update
 import ProfileImage from "../../../../assets/images/Adem.jpg";
 import "../Pages/Museums.css";
 import { toast } from "react-toastify";
-import { useParticipantArtistsMutation } from "../../../../slices/museumsSlice";
+import {
+  useIsPinnedMutation,
+  useParticipantArtistsMutation,
+  usePinMutation,
+  useUnpinMutation,
+} from "../../../../slices/museumsSlice";
 const MuseumItemCard = (props) => {
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "long" }; // Use 'long' to get the full month name
     return new Date(dateString).toLocaleDateString("en-GB", options); // Adjusted for day and full month name
   }
 
-  const [getParticipantArtists, { isLoading }] = useParticipantArtistsMutation();
+  const [getParticipantArtists] = useParticipantArtistsMutation();
   const [artists, setArtists] = useState();
-  if ( props.artistsEntered>0){
+  useEffect(() => {
+    if (props.artistsEntered > 0) {
+      const req = async () => {
+        try {
+          const res = await getParticipantArtists(props.id);
+          //   console.log(res.data.participantArtists);
+          setArtists(res.data.participantArtists);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
+      };
+      req();
+    }
+  }, [props.id, props.artistsEntered, getParticipantArtists]);
+
+  let add9;
+  let is3 = false;
+  if (artists && artists.length > 3) {
+    is3 = true;
+    if (artists.length - 2 < 9) {
+      add9 = artists.length - 2;
+    } else {
+      add9 = 9;
+    }
+  }
+  const [isLoading, setIsLoading] = useState();
+  const [isPinned, setIsPinned] = useState();
+  const [checkisPinned] = useIsPinnedMutation();
   useEffect(() => {
     const req = async () => {
+      setIsLoading(true);
       try {
-        const res = await getParticipantArtists(props.id);
-        console.log(res.data.participantArtists);
-        setArtists(res.data.participantArtists);
+        const res = await checkisPinned({
+          museumId: props.id,
+        }).unwrap();
+        setIsPinned(res.isPinned);
+        // console.log(res);
+        setIsLoading(false);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
+        setIsLoading(false);
       }
     };
     req();
   }, []);
-  }
+
+  const [pin, { isLoadinPin }] = usePinMutation();
+  const PinMuseums = async () => {
+    setIsLoading(true);
+    try {
+      const res = await pin({
+        museumId: props.id,
+      }).unwrap();
+      setIsPinned(true);
+    //   console.log(res);
+      setIsLoading(false);
+    } catch (err) {
+      setIsPinned(false);
+      setIsLoading(false);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const [unpin] = useUnpinMutation();
+  const unPinMuseums = async () => {
+    setIsLoading(true);
+    try {
+      const res = await unpin({
+        museumId: props.id,
+      }).unwrap();
+      setIsPinned(false);
+    //   console.log(res);
+      setIsLoading(false);
+    } catch (err) {
+      setIsPinned(true);
+      setIsLoading(false);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const handlePinChange = (event) => {
+    if (event.target.checked) {
+      PinMuseums();
+    } else {
+      unPinMuseums();
+    }
+  };
+
   const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
   // console.log(percentage);
   return (
     <>
       <div
+        key={props.id}
         className="event-card11"
         // style={{
         //   border: props.isExclusive ? "2px solid #FFD123" : "none",
@@ -59,29 +139,39 @@ const MuseumItemCard = (props) => {
             </div>
             <div className="event-overlay-bottom11">
               <button className="btn-311">
-                <label className="pinButton33">
-                  <input type="checkbox" />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 75 100"
-                    className="pin33"
-                  >
-                    <line
-                      strokeWidth="12"
-                      stroke="white"
-                      y2="100"
-                      x2="37"
-                      y1="64"
-                      x1="37"
-                    ></line>
-                    <path
-                      strokeWidth="10"
-                      stroke="white"
-                      d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"
-                    ></path>
-                  </svg>
-                </label>
+                {isLoading ? (
+                  <div className="loaderPinContainer">
+                    <div className="custom-loader"></div>
+                  </div>
+                ) : (
+                  <label className="pinButton33">
+                    <input
+                      type="checkbox"
+                      checked={isPinned}
+                      onChange={handlePinChange}
+                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 75 100"
+                      className="pin33"
+                    >
+                      <line
+                        strokeWidth="12"
+                        stroke="white"
+                        y2="100"
+                        x2="37"
+                        y1="64"
+                        x1="37"
+                      ></line>
+                      <path
+                        strokeWidth="10"
+                        stroke="white"
+                        d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"
+                      ></path>
+                    </svg>
+                  </label>
+                )}
               </button>
               <button className="btn-pass11">
                 <span className="btn-text-one11">
@@ -107,33 +197,44 @@ const MuseumItemCard = (props) => {
             style={{
               color: props.isExclusive ? "#8d3dff" : "",
             }}
-          ><div className="museumNameContainer">
-            {props.name}
-            {props.isExclusive && (
-              <p className="exclusiveMuseumCard"> (Exclusive)</p>
-            )}</div>
+          >
+            <div className="museumNameContainer">
+              {props.name}
+              {props.isExclusive && (
+                <p className="exclusiveMuseumCard"> (Exclusive)</p>
+              )}
+            </div>
           </h1>
           <p className="ccp11">{props.Description}</p>
         </div>
         <div className="div-bottom11">
           <div className="btn-da11">{props.Categorie}</div>
-          <div className="profile-container11">
-            {artists ? (<>
-            <li>
-              <img src={ProfileImage} alt="" className="profile-image11" />
-            </li>
-            <li>
-              <img src={ProfileImage} alt="" className="profile-image11" />
-            </li>
-            <li>
-              <img src={ProfileImage} alt="" className="profile-image11" />
-            </li>
-            <li>
-              <img src={ProfileImage} alt="" className="profile-image11" />
-            </li>
-            </>):(<li>
-              <div className="profile-image11NOIMAGE" >0</div>
-            </li>)}
+          <div
+            className="profile-container11"
+            // style={{
+            //   width: is2 ? "96px" : "50px",
+            // }}
+          >
+            {artists && (
+              <>
+                {artists.slice(0, is3 ? 2 : 3).map((artist) => (
+                  <li key={artist.participantId._id}>
+                    <img
+                      src={artist.participantId.profileImage}
+                      alt={artist.participantId.username || "Artist"} // It's good practice to provide meaningful alt text
+                      className="profile-image11"
+                    />
+                  </li>
+                ))}
+                {is3 && (
+                  <li key="extra-artists">
+                    <div className="profile-image11NOIMAGE">
+                      <p className="container9">+{add9}</p>
+                    </div>
+                  </li>
+                )}
+              </>
+            )}
           </div>
         </div>
         <div className="range-container11">
