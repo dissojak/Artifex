@@ -17,12 +17,12 @@ const MuseumItemCard = (props) => {
     <>
       <div
         className="event-card11"
-        style={{
-          border: props.isExclusive ? "2px solid #FFD123" : "none",
-          boxShadow: props.isExclusive
-            ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
-            : "0px 2px 25px rgba(0, 0, 0, 0.16)",
-        }}
+        // style={{
+        //   border: props.isExclusive ? "2px solid #FFD123" : "none",
+        //   boxShadow: props.isExclusive
+        //     ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
+        //     : "0px 2px 25px rgba(0, 0, 0, 0.16)",
+        // }}
       >
         <div className="event-image11">
           <img
@@ -38,9 +38,7 @@ const MuseumItemCard = (props) => {
                 </div>
                 <div className="event-end-date11">{formatDate(props.Ends)}</div>
               </div>
-              <div className="event-price11" style={{
-                    marginRight: props.isExclusive ? "2%" : "0.5%",
-                }}>{props.priceClient} DT</div>
+              <div className="event-price11">{props.priceClient} DT</div>
             </div>
             <div className="event-overlay-bottom11">
               <button className="btn-311">
@@ -68,24 +66,34 @@ const MuseumItemCard = (props) => {
                   </svg>
                 </label>
               </button>
-              <button
-                className="btn-pass11"
-                style={{
-                    right: props.isExclusive ? "1.5%" : "0.6%",
-                }}
-              >
+              <button className="btn-pass11">
                 <span className="btn-text-one11">
                   Get Your Pass <img src={TraceImage} alt="" />
                 </span>
                 <span className="btn-text-two11">
-                  <img src={props.isExclusive ? EventPassImage:"./elements/exclusive_event_pass.svg"} alt="" />
+                  <img
+                    src={
+                      props.isExclusive
+                        ? "./elements/exclusive_event_pass.svg"
+                        : EventPassImage
+                    }
+                    alt=""
+                  />
                 </span>
               </button>
             </div>
           </div>
         </div>
         <div>
-          <h1 className="cc11">{props.name}</h1>
+          <h1
+            className="cc11"
+            style={{
+              color: props.isExclusive ? "#8d3dff" : "",
+            }}
+          >
+            {props.name}
+            {props.isExclusive && (<h7 className="exclusiveMuseumCard"> (Exclusive)</h7>)}
+          </h1>
           <p className="ccp11">{props.Description}</p>
         </div>
         <div className="div-bottom11">
