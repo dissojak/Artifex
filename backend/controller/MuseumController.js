@@ -28,6 +28,7 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
   const {
     title,
     description,
+    museumImage,
     numberMaxArtists,
     numberMaxClients,
     priceClient,
@@ -49,6 +50,7 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
   const museum = new Museum({
     title,
     description,
+    museumImage,
     numberMaxArtists,
     numberMaxClients,
     priceClient,
