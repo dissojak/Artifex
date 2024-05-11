@@ -18,7 +18,7 @@ const PricingSection = () => {
           </p>
           <h1 className="PricingSection-name7">Pricing Options</h1>
           <p className="PricingSection-details7">Choose the plan that suits your needs</p>
-          {/*cards start */}
+          {/*cards start  */}
           <div className="OptionsCards-container">
           {Options.map((Option) => (
           <div className="planCard">
