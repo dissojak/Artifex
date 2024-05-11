@@ -20,7 +20,7 @@ const MuseumItemCard = (props) => {
         style={{
           border: props.isExclusive ? "2px solid #FFD123" : "none",
           boxShadow: props.isExclusive
-            ? "0px 2px 25px rgba(255, 209, 35, 0.20)"
+            ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
             : "0px 2px 25px rgba(0, 0, 0, 0.16)",
         }}
       >
