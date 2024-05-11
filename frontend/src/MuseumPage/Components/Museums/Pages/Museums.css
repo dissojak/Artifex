@@ -30,7 +30,6 @@
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0px 2px 25px rgb(0, 0, 0, 0.16);
-  
 }
 
 .event-image11 {
@@ -47,18 +46,16 @@
   bottom: 0;
 }
 .event-price11 {
-  width: 49px;
-  height: 22px;
+  width: fit-content;
+  padding: 8px 12px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.2);
-
   height: 22px;
-  border-radius: 25px;
-
   font-family: "Roboto-Medium";
   font-size: 12px;
   text-align: center;
   padding-top: 4px;
+  /* margin-right: 4px; */
   box-sizing: border-box;
 }
 .event-debut-date11 {
@@ -94,7 +91,7 @@
   width: 75%;
   height: 22px;
   display: flex;
-  gap:8px
+  gap: 8px;
   /* justify-content: space-between; */
 }
 .event-overlay-top11 {
@@ -125,7 +122,7 @@
 }
 
 .btn-pass11:hover .btn-text-two11 {
-  top: 50%;
+  top: 43%;
 }
 
 .btn-text-one11 {
@@ -167,10 +164,10 @@
 }
 .btn-da11 {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   width: fit-content;
-  padding:  0 8px;
+  padding: 0 8px;
   height: 28px;
   font-size: 12px;
   border-radius: 4px;
@@ -242,7 +239,7 @@
   width: 45px;
   height: 45px;
   padding-right: 6px;
-    padding-bottom: 9px;
+  padding-bottom: 9px;
   background-color: transparent;
   display: flex;
   align-items: center;

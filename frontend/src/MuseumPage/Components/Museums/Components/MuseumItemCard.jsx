@@ -38,7 +38,9 @@ const MuseumItemCard = (props) => {
                 </div>
                 <div className="event-end-date11">{formatDate(props.Ends)}</div>
               </div>
-              <div className="event-price11">{props.priceClient} DT</div>
+              <div className="event-price11" style={{
+                    marginRight: props.isExclusive ? "2%" : "0.5%",
+                }}>{props.priceClient} DT</div>
             </div>
             <div className="event-overlay-bottom11">
               <button className="btn-311">
@@ -76,7 +78,7 @@ const MuseumItemCard = (props) => {
                   Get Your Pass <img src={TraceImage} alt="" />
                 </span>
                 <span className="btn-text-two11">
-                  <img src={EventPassImage} alt="" />
+                  <img src={props.isExclusive ? EventPassImage:"./elements/exclusive_event_pass.svg"} alt="" />
                 </span>
               </button>
             </div>
