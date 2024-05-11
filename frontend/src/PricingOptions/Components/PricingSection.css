@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     background-color: transparent;
-    margin-top: 140px;
+    margin-top: 110px;
     padding: 20px;
     position: relative;  /* Set position to relative, absolute, or fixed as needed */
     z-index: 1;
@@ -17,14 +17,14 @@
   .PricingSection-name7 {
     color: rgb(0, 0, 0);
     font-size: 40px;
-    margin-top: 10px;
-    font-family: "Dubai";
+    margin-top: 5px;
+    font-family: "DubaiBold","Dubai-Bold";
   }
   
   .PricingSection-details7 {
     color: rgb(0, 0, 0);
     font-size: 12px;
-    margin: 5px 0;
+    margin: 0;
     font-family: "Raleway-Regular";
   }
   
@@ -49,7 +49,7 @@
     text-align: center;
     border-bottom: 1px solid #eee;
     padding-bottom: 20px; 
-    margin-bottom: 10px; 
+    /* margin-bottom: 10px;  */
     width: 383px;
     height: 369px;
     background-color: white;
@@ -59,7 +59,7 @@
   }
   
   .planHeader {
-    background-color: #7e3fff; /* A purple color */
+    background-color: #9866FF; /* A purple color */
     color: white;
     height: 121px;
     padding: 35px;
@@ -71,7 +71,7 @@
   .planPrice {
     margin: 5px 0;
     font-size: 56px;
-    color: #7e3fff;
+    color: #9866FF;
     margin-bottom: -11px;
     display: flex;
     flex-direction: column;
@@ -97,7 +97,7 @@
   }
   
   .planButton {
-    background-color: #7e3fff;
+    background-color: #9866FF;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -115,3 +115,8 @@
     background-color: #9866ff; /* Darker purple on hover */
   }
   
+  .footerContainerPricingSection{
+    position:relative;
+    bottom:1070vh;
+    width:500px;
+  }

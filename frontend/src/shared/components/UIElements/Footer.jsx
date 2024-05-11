@@ -9,10 +9,10 @@ import Twitter from "../../../assets/images/Tracé 2.svg";
 // import Location from "../../../assets/images/location.png";
 // import Telephone from "../../../assets/images/telephone.png";
 // import Mail from "../../../assets/images/mail.png";
-const Footer = () => {
+const Footer = (props) => {
   return (
     <>
-      <div className="footer-container">
+      <div className="footer-container" style={{width:`${props.width||99.55}vw`}}>
         <footer>
           <div className="background">
             <svg
