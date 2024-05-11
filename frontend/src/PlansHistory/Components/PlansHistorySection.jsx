@@ -14,7 +14,7 @@ const Options = [
   { Image: Crown, Type: "Gold", Start: "12 August",Ends:"18 August", Monetize: "20%" },
   { Image: PlatinumBadge, Type: "Platinum", Start: "12 August",Ends:"18 August", Monetize: "40%" },
   { Image: Diamond, Type: "Diamond", Start: "12 August",Ends:"18 August", Monetize: "60%" },
-];
+]; 
 const PlansHistorySection = () => {
   return (
     <>
