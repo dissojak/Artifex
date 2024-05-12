@@ -22,7 +22,7 @@ exports.addArtwork = asyncHandler(async (req, res, next) => {
   const io = req.app.io;
   const socketIds = req.app.socketIds;
   const artistId = req.user._id;
-  console.log("artist id is : ",artistId);
+  console.log("artist id is : ", artistId);
   const { title, description, price, imageArtwork, id_category, exclusive } =
     req.body;
 
@@ -121,16 +121,22 @@ exports.getArtworks = asyncHandler(async (req, res, next) => {
     }
 
     // Fetch scores for all artists
-    const scores = await Promise.all(artworks.map(async artwork => ({
-      artworkId: artwork._id,
-      // check analytic controller for calculateScore
-      score: await calculateScore(artwork.id_artist._id),
-    })));
+    const scores = await Promise.all(
+      artworks.map(async (artwork) => ({
+        artworkId: artwork._id,
+        // check analytic controller for calculateScore
+        score: await calculateScore(artwork.id_artist._id),
+      }))
+    );
 
     // Sort artworks based on the fetched scores
     artworks.sort((a, b) => {
-      const scoreA = scores.find(score => score.artworkId.equals(a._id)).score;
-      const scoreB = scores.find(score => score.artworkId.equals(b._id)).score;
+      const scoreA = scores.find((score) =>
+        score.artworkId.equals(a._id)
+      ).score;
+      const scoreB = scores.find((score) =>
+        score.artworkId.equals(b._id)
+      ).score;
       return scoreB - scoreA;
     });
 
@@ -364,9 +370,10 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
     const artworks = await Artwork.find({ id_artist: artistId });
 
     if (!artworks || artworks.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No artworks found for this artist" });
+      return res.status(200).json({
+        message: "No artworks found for this artist",
+        artworks: [],
+      });
     }
 
     res.status(200).json({
@@ -412,7 +419,7 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
   }
 
   const artistId = req.user._id;
-  console.log("artist id is : ",artistId);
+  console.log("artist id is : ", artistId);
   const { title, description, price, imageArtwork, id_category, exclusive } =
     req.body;
 
@@ -435,8 +442,10 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
   } catch (e) {
     return next(new HttpError("artwork not saved , error hapnned :", e, 500));
   }
-  next(res.json({
-    msg: "Artwork added successfully",
-    artwork,
-  }));
+  next(
+    res.json({
+      msg: "Artwork added successfully",
+      artwork,
+    })
+  );
 });

@@ -8,8 +8,8 @@ const ArtsItem = (props) => {
   const checkBoxId = `checkboxInput-${props.id}`;
   const [getViews, { isLoading }] = useGetViewsMutation();
   const [views, setViews] = useState(props.Views);
-  if (props.passKey) {
-    useEffect(() => {
+  useEffect(() => {
+      if (props.passKey) {
       const req = async () => {
         try {
           const res = await getViews(props.id);
@@ -20,8 +20,8 @@ const ArtsItem = (props) => {
         }
       };
       req();
+    }
     }, []);
-  }
   return (
     <>
       {!isLoading && (

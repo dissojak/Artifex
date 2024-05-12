@@ -28,12 +28,12 @@ exports.isFollowing = asyncHandler(async (req, res, next) => {
 
 /**
  * @desc    Follow an artist
- * @route   POST /api/follow/followArtist/:artistId
+ * @route   PUT /api/follow/followArtist/:artistId
  * @access  Private
  */
 exports.followArtist = async (req, res, next) => {
   const clientId = req.user._id;
-  const artistId = req.params.artistId;
+  const artistId = req.body.artistId;
 
   try {
     // Check if the client is already following the artist
@@ -75,7 +75,7 @@ exports.followArtist = async (req, res, next) => {
  */
 exports.unfollowArtist = async (req, res, next) => {
   const clientId = req.user._id;
-  const artistId = req.params.artistId; // Extract artistId from URL parameter
+  const artistId = req.body.artistId; // Extract artistId from URL parameter
 
   try {
     // Check if the client is currently following the artist

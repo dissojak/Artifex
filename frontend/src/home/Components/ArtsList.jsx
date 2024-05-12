@@ -2,6 +2,7 @@ import React from "react";
 import "./Arts.css";
 import ArtsItem from "../../shared/components/UIElements/ArtsItemCard";
 const ArtsList = (props) => {
+  console.log(props.items);
   return (
     <>
       <div className="gallery-container2">
