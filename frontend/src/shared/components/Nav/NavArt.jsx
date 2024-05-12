@@ -1,25 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./NavArt.css";
-import HomeIcon1 from "../../../assets/images/saveblack.svg";
-import ArtistsIcon1 from "../../../assets/images/orderblack.svg";
-import MuseumIcon1 from "../../../assets/images/Pinblack.svg";
-import HomeIconActive1 from "../../../assets/images/savepurple.svg";
-import MuseumIconActive1 from "../../../assets/images/Pinpurple.svg";
-import ArtistsIconActive1 from "../../../assets/images/orderpurple.svg";
+import HomeIcon from "../../../assets/images/homexs.svg";
+import HomeIconActive from "../../../assets/images/home_m3ebixs.svg";
+import MuseumIcon from "../../../assets/images/museumxs.svg";
+import MuseumIconActive from "../../../assets/images/museum_m3ebyxs.svg";
+import ArtistsIcon from "../../../assets/images/artistxs.svg";
+import ArtistsIconActive from "../../../assets/images/artist_m3ebyxs.svg";
 import Logo1 from "../../../assets/images/Logo_Artifex.svg";
 import HEART from "../../../assets/images/HEART.svg";
 import notification from "../../../assets/images/notification.svg";
 import Cart from "../../../assets/images/chariot_feragh.svg";
 import MenuDropdown from "./MenuDropdown.jsx";
 import Logo from "../../../assets/images/Logo_Artifex.svg";
-
-const HomeIcon = "./elements/home.svg";
-const HomeIconActive = "./elements/home_m3ebi.svg";
-const MuseumIcon = "./elements/museum.svg";
-const MuseumIconActive = "./elements/museum_m3eby.svg";
-const ArtistsIcon = "./elements/artist.svg";
-const ArtistsIconActive = "./elements/artist_m3eby.svg";
 
 const NavArtifex = () => {
   const location = useLocation();
@@ -107,7 +100,9 @@ const NavArtifex = () => {
             </span>
           </NavLink>
           <div className="indicatorNav" ref={indicatorRef}></div>
-          <div className="iconsRow">
+         
+        </div>
+        <div className="iconsRow">
             <div className="div_hw">
               <img src={notification} alt="Heart" className="im_hw" />
               <div className="nmrywgreen"></div>
@@ -121,8 +116,6 @@ const NavArtifex = () => {
               <div className="nmryw">12</div>
             </div>
           </div>
-        </div>
-
         <MenuDropdown />
       </div>
     </>
