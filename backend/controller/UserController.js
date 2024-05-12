@@ -50,11 +50,15 @@ exports.authUser = asyncHandler(async (req, res, next) => {
 
   if (user && (await user.matchPassword(pw))) {
     GT.generateToken(res, user._id);
-
+    console.log(user);
     res.json({
       _id: user._id,
       username: user.username,
       email: user.email,
+      image:user.profileImage,
+      orderStatus:user.orderStatus,
+      banned:user.banned,
+      userType:user.userType,
     });
   } else {
     return next(new HttpError("Invalid (username|email) ,password", 401));

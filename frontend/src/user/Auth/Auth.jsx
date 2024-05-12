@@ -12,9 +12,6 @@ import {
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
 
-
-
-
 function Auth() {
   // const location = useLocation();
   // const queryParams = new URLSearchParams(location.search);
@@ -43,7 +40,8 @@ function Auth() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/home");
+      if (userInfo.userType==='client'){
+      navigate("/home");}else{navigate("/museums");}
     }
   }, [navigate, userInfo]);
 
@@ -60,9 +58,13 @@ function Auth() {
         pw: password,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
-      console.log(res);
-      auth.updateUsername(email)
-      navigate("/home");
+      if (res.userType === "client") {
+        history.go(0);
+        navigate("/home");
+      } else {
+        history.go(0);
+        navigate("/museums");
+      }
     } catch (err) {
       console.log(err);
       if (err?.data?.message || err.error) {
@@ -136,7 +138,9 @@ function Auth() {
     <>
       <div
         className="auth-background"
-        style={{ backgroundImage: `url(${"./elements/background_shape_Auth.svg"})` }}
+        style={{
+          backgroundImage: `url(${"./elements/background_shape_Auth.svg"})`,
+        }}
       ></div>
       <div className="container" id="container">
         <div className="form-container sign-up">
