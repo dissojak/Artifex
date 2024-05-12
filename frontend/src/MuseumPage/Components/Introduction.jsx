@@ -39,9 +39,7 @@ const Introduction = () => {
 
   return (
     <>
-      <Link to="/">
-        <img src={Logo} alt="" className="Logowhite" />
-      </Link>
+     
       
       {auth.isLoggedIn && (
         <>
@@ -123,7 +121,7 @@ const Introduction = () => {
               <img src="elements/home/Facebook.svg" alt="" />
             </li>
           </ul>
-          <button className="LogoutBtn" onClick={logoutHandler}>Logout</button>
+         {/* <button className="LogoutBtn" onClick={logoutHandler}>Logout</button>*/}
         </div>
       </div>
      

@@ -46,7 +46,7 @@ const NavArtifex = () => {
   return (
     <>
       <div className="navbarArt">
-        <Link to="/">
+        <Link to="/home">
           <img src={Logo} alt="Artifex Logo" className="logoNavArt" />
         </Link>
       </div>
