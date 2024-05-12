@@ -1,0 +1,87 @@
+.profile-dropdown-container{
+    text-align: left;
+    position: fixed;
+    align-items: center;
+    top: 1rem;
+    right:10rem;
+    padding-left: 5rem;
+    z-index: 10000;
+}
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+.profile-trigger img {
+    width: 50px; /* Adjust size as needed */
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.check-icon {
+    background-color: yellow; /* Use CSS to style this as needed */
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    width: 16rem; /* Adjust width as needed */
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    right: -10%; /* Adjust according to your needs */
+    top: 4rem; /* Adjust according to your needs */
+    
+}
+
+.dropdown-menu .user-info {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.user-info p{
+    font-family: 'RalewayBold','Raleway-Bold';
+    font-size: 18px;
+}
+
+.user-info span{
+    font-family: 'RalewayBold','Raleway-Bold';
+    font-size: 18px;
+    color: #A6A7A8;
+}
+
+.dropdown-menu ul {
+    list-style: none; /* Removes bullets */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: block;
+}
+
+.dropdown-menu ul li {
+    padding: 12px 16px; /* Adequate padding for touch targets */
+    cursor: pointer; /* Indicates an interactive element */
+    font-size: 18px; /* Adequate font size for readability */
+    color: #333; /* Slightly darker color for text */
+    font-family: 'RalewayBold','Raleway-Bold';
+
+}
+
+.dropdown-menu ul li:not(:last-child) {
+    border-bottom: 1px solid #eee; /* Subtle separator between items */
+}
+
+.dropdown-menu ul li:hover {
+    border-radius: 8px;
+    background-color: #D4BFFF; /* Very light background on hover */
+}

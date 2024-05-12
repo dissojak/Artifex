@@ -15,8 +15,8 @@ const Arts = () => {
     const req = async () => {
       try {
         const responseData = await getArtworks();
-        console.log("adem");
-        console.log(responseData);
+        // console.log("adem");
+        // console.log(responseData);
         setArtworks(responseData.data.artworks);
       } catch (err) {
         toast.error(err?.data?.message || err.error);

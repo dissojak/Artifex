@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { useHttp } from "../../shared/hooks/http-hook";
-import { AuthContext } from "../../shared/context/auth-context";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import "../Pages/Artists.css";
 import './SkeletonLoader.css';
+import { useGetUserMutation } from "../../slices/usersApiSlice";
 
 const ArtistCardItem = (props) => {
   const rating = Math.round(props.rating);
@@ -31,57 +29,8 @@ const ArtistCardItem = (props) => {
     socialMedia = `${socialMediaCSS - totalSocialMedia}rem`;
   }
 
-  const auth = useContext(AuthContext);
-  // eslint-disable-next-line
-  const { isLoading, error, sendRequest, clearError } = useHttp();
-
-  const registerInHackatonHandeler = async () => {
-    try {
-      setIsRegistered((prevMode) => !prevMode);
-      setNumberParticipants(numberParticipants + 1);
-      await sendRequest(
-        "http://localhost:8000/api/hackaton/inscritTeamToHackaton",
-        "POST",
-        JSON.stringify({
-          hackatonId: props.id,
-          userId: auth.userId,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-    } catch (e) {
-      setIsRegistered((prevMode) => !prevMode);
-      setNumberParticipants(numberParticipants);
-    }
-  };
-
-  const unregisterInHackatonHandeler = async () => {
-    try {
-      setIsRegistered((prevMode) => !prevMode);
-      setNumberParticipants(numberParticipants - 1);
-      await sendRequest(
-        "http://localhost:8000/api/hackaton/removeTeamIscriptionFromHackaton",
-        "DELETE",
-        JSON.stringify({
-          hackatonId: props.id,
-          userId: auth.userId,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-    } catch (e) {
-      setIsRegistered((prevMode) => !prevMode);
-      setNumberParticipants(numberParticipants);
-    }
-  };
-
-
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
-
       <div className="cardArtist9">
         <div className="infos9">
           <div className="image9">

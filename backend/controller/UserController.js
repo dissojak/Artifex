@@ -95,7 +95,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   if (userType === "artist") {
     userData = {
       ...userData,
-      numberOfFollowers:0,
+      numberOfFollowers: 0,
       phone_number,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
@@ -149,13 +149,19 @@ exports.getUserProfile = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    res.json({
-      msg: "User profile",
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-      createdAt: user.createdAt.toLocaleString(),
-      updatedAt: user.updatedAt.toLocaleString(),
+    res.json({ user });
+  } else {
+    return next(new HttpError("User not found", 404));
+  }
+});
+
+exports.getUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne({ username: req.params.username });
+
+  if (user) {
+    res.status(200).json({
+      msg: "Successfully",
+      user,
     });
   } else {
     return next(new HttpError("User not found", 404));

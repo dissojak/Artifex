@@ -112,7 +112,7 @@ const MuseumItemCard = (props) => {
   const [description,setDescription]=useState(props.Description)
   useEffect(() => {
     function truncateDescription() {
-      console.log(props.Description);
+      // console.log(props.Description);
       if (props.Description.length > 120) {
         let str = props.Description.substring(0, 120);
         if (str.endsWith(" ")) {

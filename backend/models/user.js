@@ -99,10 +99,6 @@ const userSchema = new mongoose.Schema(
     numberOfFollowers: {
       type: Number,
     },
-    idCategory: {
-      type: mongoose.Types.ObjectId,
-      ref: "Category", 
-    },
     // Creation timestamp
     createdAt: {
       type: Date,

@@ -17,6 +17,8 @@ router.post("/login", UC.authUser);
 router.post("/logout", UC.logoutUser);
 
 router.get("/getUser", MW.protect, UC.getUserProfile);
+router.get("/getUserData/:username", MW.protect, UC.getUser);
+
 router.put(
   "/settings",
   (req, res, next) => {

@@ -13,7 +13,7 @@ const ArtsItem = (props) => {
       const req = async () => {
         try {
           const res = await getViews(props.id);
-          console.log(res.data.views);
+          // console.log(res.data.views);
           setViews(res.data.views);
         } catch (err) {
           toast.error(err?.data?.message || err.error);
