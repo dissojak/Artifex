@@ -7,10 +7,10 @@ import MuseumIcon1 from "../../../assets/images/Pinblack.svg";
 import HomeIconActive1 from "../../../assets/images/savepurple.svg";
 import MuseumIconActive1 from "../../../assets/images/Pinpurple.svg";
 import ArtistsIconActive1 from "../../../assets/images/orderpurple.svg";
-import Logo1 from "../../../assets/images/Logo_Artifex.svg"; 
-import HEART from "../../../assets/images/HEART.svg"; 
-import notification from "../../../assets/images/notification.svg"; 
-import Cart from "../../../assets/images/chariot_feragh.svg"; 
+import Logo1 from "../../../assets/images/Logo_Artifex.svg";
+import HEART from "../../../assets/images/HEART.svg";
+import notification from "../../../assets/images/notification.svg";
+import Cart from "../../../assets/images/chariot_feragh.svg";
 import MenuDropdown from "./MenuDropdown.jsx";
 import Logo from "../../../assets/images/Logo_Artifex.svg";
 
@@ -37,7 +37,7 @@ const NavArtifex = () => {
 
   // Function to get the appropriate icon based on the active state
   const getIcon = (tabName) => {
-    const isActive = location.pathname === tabName;
+    const isActive = location.pathname.includes(tabName);
     switch (tabName) {
       case "/home":
         return isActive ? HomeIconActive : HomeIcon;
@@ -71,10 +71,9 @@ const NavArtifex = () => {
           </NavLink>
           <NavLink
             to="/artist"
-            exact="true"
-            id="artists-tab"
-            className="nav-item"
-            activeclassname="active"
+            className={({ isActive }) =>
+              isActive ? "nav-item active" : "nav-item"
+            }
           >
             <img
               src={getIcon("/artist")}
@@ -83,6 +82,7 @@ const NavArtifex = () => {
             />
             <span>Artist</span>
           </NavLink>
+
           <NavLink
             to="/museums"
             exact="true"
@@ -109,21 +109,20 @@ const NavArtifex = () => {
           <div className="indicatorNav" ref={indicatorRef}></div>
           <div className="iconsRow">
             <div className="div_hw">
-                <img src={notification} alt="Heart" className="im_hw" />
-                <div className="nmrywgreen"></div>
+              <img src={notification} alt="Heart" className="im_hw" />
+              <div className="nmrywgreen"></div>
             </div>
             <div className="div_hw">
-                <img src={HEART} alt="Heart" className="im_hw" />
-                <div className="nmryw">3</div>
+              <img src={HEART} alt="Heart" className="im_hw" />
+              <div className="nmryw">3</div>
             </div>
             <div className="div_hw">
-                <img src={Cart} alt="Heart" className="im_hw" />
-                <div className="nmryw">12</div>
+              <img src={Cart} alt="Heart" className="im_hw" />
+              <div className="nmryw">12</div>
             </div>
+          </div>
         </div>
-        </div>
-       
-       
+
         <MenuDropdown />
       </div>
     </>
