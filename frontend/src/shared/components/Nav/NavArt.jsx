@@ -37,7 +37,7 @@ const NavArtifex = () => {
       case "/artist":
         return isActive ? ArtistsIconActive : ArtistsIcon;
       case "/museums":
-        return isActive ? MuseumIconActive : MuseumIcon;
+        return isActive ? MuseumIconActive : MuseumIcon; 
       default:
         return HomeIcon; // Default icon in case of unmatched route
     }
