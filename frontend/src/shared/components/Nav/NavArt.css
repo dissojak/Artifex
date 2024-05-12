@@ -65,3 +65,49 @@
   
   /* Additional styles for responsive or specific adjustments */
   
+  .iconsRow {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 35px;  
+    padding-left: 390px;  
+    padding-top: 15px;
+  }
+  
+  .div_hw {
+    width: 31.05px;
+    height: 34.24px;  
+    position: relative;
+  }
+  
+  .im_hw {
+    display: block;  
+    width: 100%;  
+    height: auto;
+  }
+  
+  .nmryw {
+    position: absolute;
+    background-color: #FFCB37;
+    right: -10px; 
+    height: 20px;
+    top: -10px; 
+    border-radius: 2px;
+    padding: 1px 5px; 
+    font-size: 12px; 
+    color: #000;  
+    font-family: "Dubai-Bold";
+  }
+
+  .nmrywgreen {
+    position: absolute;
+    background-image: url("../../../assets/images/greenpoint.svg");
+    min-width: 10px; 
+    height: 10px; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    right: 1px; 
+    top: 2px; 
+  }

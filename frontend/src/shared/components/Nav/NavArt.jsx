@@ -8,6 +8,10 @@ import HomeIconActive from "../../../assets/images/savepurple.svg";
 import MuseumIconActive from "../../../assets/images/Pinpurple.svg";
 import ArtistsIconActive from "../../../assets/images/orderpurple.svg";
 import Logo from "../../../assets/images/Logo_Artifex.svg"; 
+import HEART from "../../../assets/images/HEART.svg"; 
+import notification from "../../../assets/images/notification.svg"; 
+import Cart from "../../../assets/images/chariot_feragh.svg"; 
+import MenuDropdown from "./MenuDropdown.jsx";
 
 const NavArtifex = () => {
   const location = useLocation();
@@ -78,7 +82,24 @@ const NavArtifex = () => {
             <span>Profile</span>
           </NavLink>
           <div className="indicatorNav" ref={indicatorRef}></div>
+          <div className="iconsRow">
+            <div className="div_hw">
+                <img src={notification} alt="Heart" className="im_hw" />
+                <div className="nmrywgreen"></div>
+            </div>
+            <div className="div_hw">
+                <img src={HEART} alt="Heart" className="im_hw" />
+                <div className="nmryw">3</div>
+            </div>
+            <div className="div_hw">
+                <img src={Cart} alt="Heart" className="im_hw" />
+                <div className="nmryw">12</div>
+            </div>
         </div>
+        </div>
+       
+       
+        <MenuDropdown />
       </div>
     </>
   );
