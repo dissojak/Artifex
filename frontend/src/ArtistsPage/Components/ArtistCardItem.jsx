@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Pages/Artists.css";
-import './SkeletonLoader.css';
+import "./SkeletonLoader.css";
 import { useGetUserMutation } from "../../slices/usersApiSlice";
 
 const ArtistCardItem = (props) => {
@@ -34,15 +34,17 @@ const ArtistCardItem = (props) => {
       <div className="cardArtist9">
         <div className="infos9">
           <div className="image9">
-            <img
-              style={{
-                height: "7.5rem",
-                width: "7.5rem",
-                borderRadius: "0.5rem",
-              }}
-              src={props.image || "elements/default_profile_img.jpg"}
-              alt="profile picture"
-            />
+            <Link to={`/artist/${props.username}`} style={{cursor:'pointer'}}>
+              <img
+                style={{
+                  height: "7.5rem",
+                  width: "7.5rem",
+                  borderRadius: "0.5rem",
+                }}
+                src={props.image || "elements/default_profile_img.jpg"}
+                alt="profile picture"
+              />
+            </Link>
           </div>
           <div className="info9">
             <div>
