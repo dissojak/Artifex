@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 20px 0px 20px;
+    padding: 10px 10px 0px 20px;
     text-decoration: none;
     color: black;  /* Text color */
     transition: color 0.3s ease;
@@ -49,7 +49,7 @@
   }
   
   .nav-item img {
-    margin-bottom: 5px;  /* Space between icon and text */
+    margin-bottom: 1px;  /* Space between icon and text */
   }
   .nav-item:hover img, .nav-item.active img {
     filter: brightness(0) saturate(100%) invert(40%) sepia(85%) saturate(3957%) hue-rotate(245deg) brightness(96%) contrast(104%);
@@ -58,10 +58,18 @@
   
   .indicatorNav {
     position: absolute;
-    bottom: 12px;
-    height: 4px;
+    bottom: 24px;
+    height: 6px;
     background-color: #9866ff;  /* Indicator color */
   }
   
   /* Additional styles for responsive or specific adjustments */
   
+  .iconTailleNav{
+    width: 1.66rem;
+  }
+
+  .nav-item span{
+    font-size: 16px;
+    font-family: 'dubaiBold','Dubai-Bold';
+  }
