@@ -5,16 +5,23 @@ import ArtworksSection from "./ArtworksSection.jsx";
 import Adem from "../../assets/images/Adem.jpg";
 import Logo from "../../assets/images/logo.svg";
 import ArtsList from "../../home/Components/ArtsList.jsx";
-import { useFollowArtistMutation, useUnFollowArtistMutation } from "../../slices/followSlice.js";
+import {
+  useFollowArtistMutation,
+  useUnFollowArtistMutation,
+} from "../../slices/followSlice.js";
 import { toast } from "react-toastify";
+import { useHttp } from "../../shared/hooks/http-hook.js";
 
 const ProfileSection = (props) => {
   const userData = props.user;
   const [activeTab, setActiveTab] = useState("artworks"); // Default to artworks tab
-  const [isFollowing,setIsFollowing]=useState(props.isFollowing); // Default to isFollowing
-  
-  const [followArtist]=useFollowArtistMutation();
-  const [UnfollowArtist]=useUnFollowArtistMutation();
+  const [isFollowing, setIsFollowing] = useState(props.isFollowing); // Default to isFollowing
+
+  const [categories, setCategories] = useState();
+  const {sendRequest} = useHttp();
+
+  const [followArtist] = useFollowArtistMutation();
+  const [UnfollowArtist] = useUnFollowArtistMutation();
 
   const follow = async () => {
     setIsFollowing(true);
@@ -47,6 +54,18 @@ const ProfileSection = (props) => {
       follow();
     }
   };
+
+  useEffect(() => {
+    const req = async () => {
+      try {
+        const responseData = await sendRequest(
+          "http://localhost:5000/api/category/getCategories"
+        );
+        setCategories(responseData.category);
+      } catch (e) {}
+    };
+    req();
+  }, [sendRequest]);
 
   return (
     <>
@@ -110,13 +129,17 @@ const ProfileSection = (props) => {
           </div>
         </div>
         {/* Conditionally render sections based on activeTab */}
-        {activeTab === "orders" && <OrderSection />}
+        {activeTab === "orders" && categories && <OrderSection image={userData.profileImage} categories={categories} id={userData._id}/>}
         {props.artworks.length > 0 ? (
           <>{activeTab === "artworks" && <ArtsList items={props.artworks} />}</>
         ) : (
-          <h1 className="no-artworks">
-            Yet, there is no artworks for this artist !
-          </h1>
+          <>
+            {activeTab === "artworks" && (
+              <h1 className="no-artworks">
+                Yet, there is no artworks for this artist !
+              </h1>
+            )}
+          </>
         )}
       </div>
     </>

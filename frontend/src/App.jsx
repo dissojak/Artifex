@@ -166,7 +166,7 @@ const App = () => {
       >
         <Router>
           {/* <Header /> */}
-          <ToastContainer />
+          <ToastContainer style={{marginTop:"80px"}}/>
           <NavigationWrapper>
             {/*this is sent as a children to navigation 
             warpper that will handel rundering it */}

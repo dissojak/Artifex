@@ -9,7 +9,7 @@ import questionIcon from "../../../assets/images/question.png";
 import logoutIcon from "../../../assets/images/log-out.png";
 import drop from "../../../assets/images/drop.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useLogoutMutation } from "../../../slices/usersApiSlice";
 import { logout } from "../../../slices/authSlice";
 import { toast } from "react-toastify";
@@ -17,6 +17,8 @@ import { toast } from "react-toastify";
 function MenuDropdown() {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef();
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   const menuToggle = () => {
     setIsActive(!isActive);
@@ -51,7 +53,7 @@ function MenuDropdown() {
   return (
     <div className="actionss" ref={menuRef}>
       <div className="profile" onClick={menuToggle}>
-        <img src={avatar} alt="Profile" />
+        <img src={userInfo.image} alt="Profile" />
       </div>
       <img
         src={drop}

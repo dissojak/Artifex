@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./ArtistPage.css";
 import "./Artists.css";
 import ListArtists from "../Components/ListArtists.jsx";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal.jsx";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner.jsx";
 import { useGetArtistsMutation } from '../../slices/artistsSlice.js';
 import { setCredentials } from '../../slices/authSlice.js';
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import loading from "../../assets/images/loadpurple.gif";
 
 const ArtistPage = () => {
   const [artists, setArtists] = useState();
-
-  const dispatch = useDispatch();
 
   // const { userInfo } = useSelector((state) => state.auth);
 
@@ -24,7 +19,6 @@ const ArtistPage = () => {
     const req = async () => {
       try {
         const responseData = await getArtists();
-        dispatch(setCredentials(responseData));
         setArtists(responseData.data.artists);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
