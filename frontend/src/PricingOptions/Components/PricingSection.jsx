@@ -58,7 +58,7 @@ const PricingSection = () => {
             ))}
           </div>
           {/*cards ends */}
-        </div>
+        </div>      
       </div>
       <div className="footerContainerPricingSection">
         <Footer width={99.4} />
