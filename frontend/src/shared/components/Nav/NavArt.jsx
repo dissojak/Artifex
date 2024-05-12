@@ -28,9 +28,9 @@ const NavArtifex = () => {
   const getIcon = (tabName) => {
     const isActive = location.pathname === tabName;
     switch (tabName) {
-      case "/":
+      case "/home":
         return isActive ? HomeIconActive : HomeIcon;
-      case "/artists":
+      case "/artist":
         return isActive ? ArtistsIconActive : ArtistsIcon;
       case "/museums":
         return isActive ? MuseumIconActive : MuseumIcon;
@@ -38,9 +38,6 @@ const NavArtifex = () => {
         return HomeIcon; // Default icon in case of unmatched route
     }
   };
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -58,22 +55,22 @@ const NavArtifex = () => {
             className="nav-item"
             activeclassname="active"
           >
-            <img src={getIcon("/")} alt="Home" className="iconTailleNav" />
+            <img src={getIcon("/home")} alt="Home" className="iconTailleNav" />
             <span>Home</span>
           </NavLink>
           <NavLink
-            to="/artists"
+            to="/artist"
             exact="true"
             id="artists-tab"
             className="nav-item"
             activeclassname="active"
           >
             <img
-              src={getIcon("/artists")}
+              src={getIcon("/artist")}
               alt="Artists"
               className="iconTailleNav"
             />
-            <span>Artists</span>
+            <span>Artist</span>
           </NavLink>
           <NavLink
             to="/museums"

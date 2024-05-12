@@ -123,12 +123,12 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/artists" element={<Artists />} />
+          <Route path="/artist" element={<Artists />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
           <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
-          <Route path="/artistprofile" element={<ArtistProfileForUser />} />
+          <Route path="/artist/:username" element={<ArtistProfileForUser />} />
           <Route path="/museumshowcase" element={<MuseumShowcase />} />
           <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
           <Route path="/Plans" element={<PricingOptions />} />

@@ -5,7 +5,7 @@ import ArtworksSection from "./ArtworksSection.jsx";
 import Adem from "../../assets/images/Adem.jpg";
 import Logo from "../../assets/images/logo.svg";
 
-const ProfileSection = () => {
+const ProfileSection = (props) => {
   const [activeTab, setActiveTab] = useState('artworks'); // Default to artworks tab
 
   return (
