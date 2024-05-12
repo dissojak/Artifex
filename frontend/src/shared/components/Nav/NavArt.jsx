@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./NavArt.css";
 import HomeIcon from "../../../assets/images/saveblack.svg";
@@ -12,6 +12,14 @@ import HEART from "../../../assets/images/HEART.svg";
 import notification from "../../../assets/images/notification.svg"; 
 import Cart from "../../../assets/images/chariot_feragh.svg"; 
 import MenuDropdown from "./MenuDropdown.jsx";
+import Logo from "../../../assets/images/Logo_Artifex.svg";
+
+const HomeIcon = "./elements/home.svg";
+const HomeIconActive = "./elements/home_m3ebi.svg";
+const MuseumIcon = "./elements/museum.svg";
+const MuseumIconActive = "./elements/museum_m3eby.svg";
+const ArtistsIcon = "./elements/artist.svg";
+const ArtistsIconActive = "./elements/artist_m3eby.svg";
 
 const NavArtifex = () => {
   const location = useLocation();
@@ -21,8 +29,8 @@ const NavArtifex = () => {
     const activeTab = document.querySelector(".nav-item.active");
     if (activeTab) {
       const { offsetLeft, clientWidth } = activeTab;
-      indicatorRef.current.style.width = `${clientWidth}px`;
-      indicatorRef.current.style.left = `${offsetLeft}px`;
+      indicatorRef.current.style.width = `${clientWidth - 5}px`;
+      indicatorRef.current.style.left = `${offsetLeft + 8}px`;
       indicatorRef.current.style.transition = "left 0.3s ease, width 0.3s ease";
     }
   }, [location]);
@@ -42,6 +50,9 @@ const NavArtifex = () => {
     }
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
   return (
     <>
       <div className="navbarArt">
@@ -52,13 +63,13 @@ const NavArtifex = () => {
       <div className="navInNavContainer">
         <div className="nav-container">
           <NavLink
-            to="/"
+            to="/home"
             exact="true"
             id="home-tab"
             className="nav-item"
             activeclassname="active"
           >
-            <img src={getIcon("/")} alt="Home" />
+            <img src={getIcon("/")} alt="Home" className="iconTailleNav" />
             <span>Home</span>
           </NavLink>
           <NavLink
@@ -68,18 +79,35 @@ const NavArtifex = () => {
             className="nav-item"
             activeclassname="active"
           >
-            <img src={getIcon("/artists")} alt="Artists" />
+            <img
+              src={getIcon("/artists")}
+              alt="Artists"
+              className="iconTailleNav"
+            />
             <span>Artists</span>
           </NavLink>
           <NavLink
-            to="/profile"
+            to="/museums"
             exact="true"
             id="museums-tab"
             className="nav-item"
             activeclassname="active"
           >
-            <img src={getIcon("/museums")} alt="Museums" />
-            <span>Profile</span>
+            <img
+              src={getIcon("/museums")}
+              alt="Museums"
+              className="iconTailleNav"
+            />
+            <span
+              style={{
+                position: "relative",
+                top: "-6px",
+                marginBottom: "-3px",
+                marginTop: "10px",
+              }}
+            >
+              Museum
+            </span>
           </NavLink>
           <div className="indicatorNav" ref={indicatorRef}></div>
           <div className="iconsRow">
