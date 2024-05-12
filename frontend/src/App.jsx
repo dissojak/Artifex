@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +21,7 @@ import Signup from "./user/pages/Signup.jsx";
 import RegisterHackatons from "./register/Page/RegisterHackatons.jsx";
 import Profile from "./profile/Pages/Profile.jsx";
 
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./store";
@@ -89,113 +89,52 @@ const App = () => {
   // // Check if the current path is one of the protected paths
   // const showMainNavigation = publicPaths.includes(location.pathname);
 
-  // const { userInfo } = useSelector((state) => state.auth);
-
-  // ---------------------------------------------------------
-
-  const [userInfo, setUserInfo] = useState(null);
-
-  useEffect(() => {
-    const loadUserInfo = () => {
-      const userInfoString = localStorage.getItem("userInfo");
-      if (userInfoString) {
-        try {
-          setUserInfo(JSON.parse(userInfoString));
-        } catch (error) {
-          console.error("Failed to parse userInfo from localStorage:", error);
-        }
-      } else {
-        console.log("No userInfo found in localStorage.");
-        setUserInfo(null);
-      }
-    };
-
-    console.log("adem");
-    loadUserInfo();
-
-    // Optionally, listen for changes in localStorage
-    window.addEventListener("focus", loadUserInfo);
-
-    // Clean up the listener
-    return () => window.removeEventListener("focus", loadUserInfo);
-  }, []);
-
-  // ________________________________________________________
-
   let routes;
 
-  // if (isLoggedIn && !isAdmin && !ban) {
-  //   routes = (
-  //     <Routes>
-  //       <Route path="/" element={<Home />} />
-  //       <Route path="/:userId/places" element={<UserPlaces />} />
-  //       <Route path="/places/new" element={<NewPlace />} />
-  //       <Route path="/profile" element={<Profile />} />
-  //       <Route path="/places/:placeId" element={<UpdatePlace />} />
-  //       <Route path="/registred-hackatons" element={<RegisterHackatons />} />
-  //       <Route path="/users" element={<Users />} />
-  //       {/* Add more routes as needed */}
-  //     </Routes>
-  //   );
-  // } else if (isLoggedIn && !isAdmin && ban) {
-  //   routes = (
-  //     <Routes>
-  //       <Route path="/" element={<Ban />} />
-  //     </Routes>
-  //   );
-  // } else if (isLoggedIn && isAdmin) {
-  //   routes = (
-  //     <Routes>
-  //       <Route path="/" element={<Home />} />
-  //       {/* Add more routes as needed */}
-  //     </Routes>
-  //   );
-  // }
-  if (userInfo) {
+  if (isLoggedIn && !isAdmin && !ban) {
     routes = (
       <Routes>
-        {userInfo.userType === "client" && (
-          <>
-            <Route path="" element={<PrivateRoute />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/artist" element={<Artists />} />
-              <Route path="/museums" element={<Museums />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
-              <Route
-                path="/artist/:username"
-                element={<ArtistProfileForUser />}
-              />
-              <Route path="/museumshowcase" element={<MuseumShowcase />} />
-              <Route path="/museumdetails" element={<MuseumDetails />} />
-            </Route>
-          </>
-        )}
-        {userInfo.userType === "artist" && (
-          <>
-            <Route path="" element={<PrivateRoute />}>
-              <Route path="/museums" element={<Museums />} />
-              <Route path="/Plans" element={<PricingOptions />} />
-              <Route path="/PlansHistory" element={<PlansHistory />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
-              <Route path="/museumshowcase" element={<MuseumShowcase />} />
-              <Route
-                path="/MuseumShowcaseArtist"
-                element={<MuseumShowcaseArtist />}
-              />
-              <Route path="/Plans" element={<PricingOptions />} />
-              <Route path="/PlansHistory" element={<PlansHistory />} />
-              <Route path="/museumdetails" element={<MuseumDetails />} />
-            </Route>
-          </>
-        )}
+        <Route path="/" element={<Home />} />
+        <Route path="/:userId/places" element={<UserPlaces />} />
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+        <Route path="/registred-hackatons" element={<RegisterHackatons />} />
+        <Route path="/users" element={<Users />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    );
+  } else if (isLoggedIn && !isAdmin && ban) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Ban />} />
+      </Routes>
+    );
+  } else if (isLoggedIn && isAdmin) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* Add more routes as needed */}
       </Routes>
     );
   } else {
     routes = (
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/artist" element={<Artists />} />
+          <Route path="/museums" element={<Museums />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
+          <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
+          <Route path="/artist/:username" element={<ArtistProfileForUser />} />
+          <Route path="/museumshowcase" element={<MuseumShowcase />} />
+          <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
+          <Route path="/Plans" element={<PricingOptions />} />
+          <Route path="/PlansHistory" element={<PlansHistory />} />
+          <Route path="/museumdetails" element={<MuseumDetails />} />
+        </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}
         <Route path="/:userId/places" element={<UserPlaces />} />

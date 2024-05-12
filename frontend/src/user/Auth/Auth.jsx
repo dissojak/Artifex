@@ -59,10 +59,8 @@ function Auth() {
       }).unwrap();
       dispatch(setCredentials({ ...res }));
       if (res.userType === "client") {
-        history.go(0);
         navigate("/home");
       } else {
-        history.go(0);
         navigate("/museums");
       }
     } catch (err) {
