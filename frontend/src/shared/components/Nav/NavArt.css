@@ -77,9 +77,9 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 35px;  
-    padding-left: 390px;  
-    padding-top: 15px;
+    gap: 40px;  
+    padding-left: 410px;  
+    padding-top: 5px;
   }
   
   .div_hw {
