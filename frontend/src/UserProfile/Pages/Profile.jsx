@@ -14,6 +14,7 @@ import Popup_pw from "../Components/PopupPw.jsx";
 import PopupUsername from "../Components/PopupUsername.jsx";
 import PopupEmail from "../Components/PopupEmail.jsx";
 import { useSelector } from "react-redux";
+import PopupFollowers from "../Components/PopupFollowers.jsx";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -48,7 +49,11 @@ const Profile = () => {
   const activeSettingsMode = () => {
     setIsSettings(!isSettings);
   };
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
       <div className="RightBacgroundProfileSvg">
@@ -88,14 +93,16 @@ const Profile = () => {
               </div>
               {/*button section start */}
               <div className="cover-buttons-container">
-                <button className="button-profile-following">
-                  <p
-                    className="label-profile"
-                    style={{ color: "#7E3FFF", fontWeight: "bold" }}
-                  >
-                    Following 700
-                  </p>
-                </button>
+              <button className="button-profile-following" onClick={toggleModal}>
+        <p className="label-profile" style={{ color: "#7E3FFF", fontWeight: "bold" }}>
+          Following 700
+        </p>
+      </button>
+      {isOpen && (
+        <div className="modal-backdrop">
+          <PopupFollowers onClose={toggleModal} />
+        </div>
+      )}
                 <button className="button-profile" onClick={activeSettingsMode}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -169,8 +176,9 @@ const Profile = () => {
             }
             {/*button section ending */}
           </div>
-          {!isSettings && (
+          {!isSettings && !isOpen && (
             <>
+            
               <div className="Buttons-section3">
                 <div className="tab-container">
                   <input
