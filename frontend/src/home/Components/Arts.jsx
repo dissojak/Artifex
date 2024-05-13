@@ -4,7 +4,7 @@ import "./Arts.css";
 
 import Art from "../../assets/images/image_artwork.png";
 import ArtsList from "./ArtsList";
-
+import loading from "../../assets/images/loadpurple.gif";
 import { toast } from "react-toastify";
 import { useGetArtworksMutation } from "../../slices/artworksSlice";
 
@@ -39,7 +39,7 @@ const Arts = () => {
         {isLoading && (
           <div className="center_spinner">
             {/* <LoadingSpinner /> */}
-            <img src="./elements/11a.gif" alt="" />
+            <img src={loading} alt="" />
           </div>
         )}
         {!isLoading && artworks && <ArtsList items={artworks} />}
