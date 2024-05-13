@@ -9,10 +9,11 @@ import OrderIconActive from "../../assets/images/orderpurple.svg";
 import Orders from "../Components/Orders/Pages/Orders.jsx";
 import SavedArtwork from "../Components/SavedArtwork.jsx";
 import PinnedMuseums from "../Components/PinnedMuseums.jsx";
-import Adem from "../../assets/images/Adem.jpg";
+import DefaultImg from "../../assets/images/default_profile_img.jpg";
 import Popup_pw from "../Components/PopupPw.jsx";
 import PopupUsername from "../Components/PopupUsername.jsx";
 import PopupEmail from "../Components/PopupEmail.jsx";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -20,6 +21,8 @@ const Profile = () => {
   const [showChangePw, setShowChangePw] = useState(false);
   const [showChangeUsername, setShowChangeUsername] = useState(false);
   const [showChangeEmail, setShowChangeEmail] = useState(false);
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   const showChangePwHandler = () => {
     setShowChangePw((prevMode) => !prevMode);
@@ -77,11 +80,11 @@ const Profile = () => {
               }`}
             >
               <div className="profile-image-container">
-                <img src={Adem} alt="Adem Ben Amor" className="profile-image" />
+                <img src={userInfo.image||DefaultImg} alt="Img-Profile" className="profile-image" />
               </div>
               <div className="profile-info">
-                <div className="profile-name">Adem Ben Amor</div>
-                <div className="profile-email">Dissojak@gmail.com</div>
+                <div className="profile-name">{userInfo.username}</div>
+                <div className="profile-email">{userInfo.email}</div>
               </div>
               {/*button section start */}
               <div className="cover-buttons-container">

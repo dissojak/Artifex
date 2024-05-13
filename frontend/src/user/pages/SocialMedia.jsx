@@ -23,6 +23,9 @@ const SocialMedia = () => {
       localStorage.removeItem("newArtworkData1");
       localStorage.removeItem("newArtworkData2");
       localStorage.removeItem("newArtworkData3");
+      localStorage.removeItem("artworkImage3");
+      localStorage.removeItem("artworkImage2");
+      localStorage.removeItem("artworkImage1");
       event.returnValue = ""; // Chrome requires returnValue to be set
     };
     window.addEventListener("beforeunload", handleUnload);
@@ -36,6 +39,9 @@ const SocialMedia = () => {
     const artwork1 = JSON.parse(localStorage.getItem("newArtworkData1"));
     const artwork2 = JSON.parse(localStorage.getItem("newArtworkData2"));
     const artwork3 = JSON.parse(localStorage.getItem("newArtworkData3"));
+    const artworkImg3 = JSON.parse(localStorage.getItem("artworkImage3"));
+    const artworkImg2 = JSON.parse(localStorage.getItem("artworkImage2"));
+    const artworkImg1 = JSON.parse(localStorage.getItem("artworkImage1"));
     try {
       const res = await register({
         username: userData.username,
@@ -53,8 +59,7 @@ const SocialMedia = () => {
           title: artwork1.title,
           description: artwork1.description,
           price: artwork1.price,
-          imageArtwork:
-            "https://images.pexels.com/photos/1677275/pexels-photo-1677275.jpeg",
+          imageArtwork:artworkImg1,
           id_category: artwork1.category,
         }).unwrap();
 
@@ -63,8 +68,7 @@ const SocialMedia = () => {
           title: artwork2.title,
           description: artwork2.description,
           price: artwork2.price,
-          imageArtwork:
-            "https://i.pinimg.com/564x/d1/53/9b/d1539bc17fcf7ca97103749d95c3c716.jpg",
+          imageArtwork:artworkImg2,
           id_category: artwork2.category,
         }).unwrap();
 
@@ -73,8 +77,7 @@ const SocialMedia = () => {
           title: artwork3.title,
           description: artwork3.description,
           price: artwork3.price,
-          imageArtwork:
-            "https://i.pinimg.com/736x/12/95/9a/12959ae6966821fb4f9e31dd6ec2f210.jpg",
+          imageArtwork:artworkImg3,
           id_category: artwork3.category,
         }).unwrap();
 

@@ -24,7 +24,7 @@ const MuseumItemCard = (props) => {
     if (props.artistsEntered > 0) {
       const req = async () => {
         try {
-          const res = await getParticipantArtists(props.id);
+          const res = await getParticipantArtists(props.id).unwrap();
           //   console.log(res.data.participantArtists);
           setArtists(res.data.participantArtists);
         } catch (err) {

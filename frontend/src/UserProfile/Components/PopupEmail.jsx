@@ -26,8 +26,9 @@ const PopupEmail = (props) => {
         _id: userInfo._id,
         email: newEmail,
       }).unwrap();
-      console.log(res);
-      dispatch(setCredentials(res));
+      let updateUserInfo={...userInfo};
+      updateUserInfo.email=newEmail;
+      dispatch(setCredentials(updateUserInfo));
       toast.success("Email updated successfully");
       props.showChangeEmailHandler();
     } catch (err) {

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./NewArtwork.css"; // Ensure this path is correct for your CSS file
-import { useHttp } from "../../shared/hooks/http-hook";
-import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import { useHttp } from "../../hooks/http-hook";
+import ErrorModal from "../UIElements/ErrorModal";
 import { useNavigate } from "react-router-dom";
+import UploadWidget from "./UploadWidget";
+import { useDispatch, useSelector } from "react-redux";
+import { setSignupRedux } from "../../../slices/authSlice";
 
 const NewArtwork = () => {
   const [categories, setCategories] = useState();
@@ -91,6 +94,23 @@ const NewArtwork = () => {
     }
   };
 
+  const [img1, setImg1] = useState("");
+  const [img2, setImg2] = useState("");
+  const [img3, setImg3] = useState("");
+
+  const saveDataImg = (url) => {
+    localStorage.setItem("artworkImage1", JSON.stringify(url));
+    setImg1(url);
+  };
+  const saveDataImg2 = (url) => {
+    localStorage.setItem("artworkImage2", JSON.stringify(url));
+    setImg2(url);
+  };
+  const saveDataImg3 = (url) => {
+    localStorage.setItem("artworkImage3", JSON.stringify(url));
+    setImg3(url);
+  };
+
   const nextStep = () => {
     saveData();
     if (step < 3) {
@@ -109,19 +129,7 @@ const NewArtwork = () => {
     navigate("/socialMedia");
   };
 
-  const handleImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        setFormData({
-          ...formData,
-          image: e.target.result,
-        });
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  };
-
+  const handleImageChange = () => {};
 
   return (
     <>
@@ -180,17 +188,23 @@ const NewArtwork = () => {
                   onChange={handleChange}
                 ></textarea>
                 <label className="image-uploader">
-                  <input
-                    type="file"
-                    onChange={handleImageChange}
-                    style={{ display: "none" }}
-                  />
+                  <UploadWidget onUploadSuccess={saveDataImg} />
                   <div className="image-uploader-content">
-                    <span className="image-uploader-icon">+</span>
-                    <span className="image-uploader-text">Main Image</span>
+                    {img1 === "" ? (
+                      <>
+                        <span className="image-uploader-icon">+</span>
+                        <span className="image-uploader-text">Main Image</span>
+                      </>
+                    ) : (
+                      <img
+                        className="image-uploader"
+                        // src="./Images/pdpWork.jpg"
+                        src={img1}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </label>
-
                 <div className="art-signin-button-container">
                   <button
                     className="art-signin-button art-signin-next"
@@ -240,51 +254,6 @@ const NewArtwork = () => {
                     </option>
                   ))}
                 </select>
-                <div className="art-dimension-group">
-                  <div className="art-dimension-input">
-                    <label htmlFor="height" className="art-dimension-label">
-                      Height
-                    </label>
-                    <input
-                      type="number"
-                      id="height"
-                      className="art-dimension newArtworkInputs"
-                      placeholder="4 m"
-                      name="height"
-                      value={formData2.height}
-                      onChange={handleChange2}
-                    />
-                  </div>
-
-                  <div className="art-dimension-input">
-                    <label htmlFor="width" className="art-dimension-label">
-                      Width
-                    </label>
-                    <input
-                      type="number"
-                      id="width"
-                      className="art-dimension newArtworkInputs"
-                      placeholder="3 m"
-                      name="width"
-                      value={formData2.width}
-                      onChange={handleChange2}
-                    />
-                  </div>
-                  <div className="art-dimension-input">
-                    <label htmlFor="year" className="art-dimension-label">
-                      Year
-                    </label>
-                    <input
-                      type="number"
-                      id="year"
-                      className="art-dimension newArtworkInputs"
-                      placeholder="2024"
-                      name="year"
-                      value={formData2.year}
-                      onChange={handleChange2}
-                    />
-                  </div>
-                </div>
                 <p style={{ color: "black" }}>Description</p>
                 <textarea
                   name="description"
@@ -292,16 +261,22 @@ const NewArtwork = () => {
                   value={formData2.description}
                   onChange={handleChange2}
                 ></textarea>
-
                 <label className="image-uploader">
-                  <input
-                    type="file"
-                    onChange={handleImageChange}
-                    style={{ display: "none" }}
-                  />
+                  <UploadWidget onUploadSuccess={saveDataImg2} />
                   <div className="image-uploader-content">
-                    <span className="image-uploader-icon">+</span>
-                    <span className="image-uploader-text">Main Image</span>
+                    {img2 === "" ? (
+                      <>
+                        <span className="image-uploader-icon">+</span>
+                        <span className="image-uploader-text">Main Image</span>
+                      </>
+                    ) : (
+                      <img
+                        className="image-uploader"
+                        // src="./Images/pdpWork.jpg"
+                        src={img2}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </label>
                 <div className="art-signin-button-container">
@@ -372,14 +347,21 @@ const NewArtwork = () => {
                   onChange={handleChange3}
                 ></textarea>
                 <label className="image-uploader">
-                  <input
-                    type="file"
-                    onChange={handleImageChange}
-                    style={{ display: "none" }}
-                  />
+                  <UploadWidget onUploadSuccess={saveDataImg3} />
                   <div className="image-uploader-content">
-                    <span className="image-uploader-icon">+</span>
-                    <span className="image-uploader-text">Main Image</span>
+                    {img3 === "" ? (
+                      <>
+                        <span className="image-uploader-icon">+</span>
+                        <span className="image-uploader-text">Main Image</span>
+                      </>
+                    ) : (
+                      <img
+                        className="image-uploader"
+                        // src="./Images/pdpWork.jpg"
+                        src={img3}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </label>
                 <div className="art-signin-button-container">

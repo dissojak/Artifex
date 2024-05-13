@@ -5,17 +5,16 @@
   position: relative;
 }
 
-
-.leftImage{
+.leftImage {
   position: fixed;
   /* top :258px; */
   top: 33vh;
-  right :0;
+  right: 0;
   width: 14.6vw;
 }
-.rightImage{
-  position: fixed; 
-  top:44vh;
+.rightImage {
+  position: fixed;
+  top: 44vh;
   width: 13.95vw;
   left: 0;
 }
@@ -26,11 +25,12 @@
   height: fit-content;
   padding-left: 13.7vw;
 }
-.profile-cover, .settingsClinetProfile {
+.profile-cover,
+.settingsClinetProfile {
   position: relative;
   width: 71vw;
   right: 13.7vw;
-  background-color: #9866FF;
+  background-color: #9866ff;
   padding-left: 6.5vw;
   padding-top: 17vh;
   display: flex;
@@ -46,7 +46,8 @@
   height: 100vh; /* Expanded height when settings are clicked */
 }
 
-.profileInfoContainer, .profileInfoContainerSettings {
+.profileInfoContainer,
+.profileInfoContainerSettings {
   width: 65vw;
   position: relative;
   display: flex;
@@ -66,12 +67,11 @@
   position: relative;
   top: 5vh;
   margin: -22.5vw;
-  right:26vw;
+  right: 26vw;
   width: 68.5vw;
   display: flex;
   justify-content: space-between;
 }
-
 
 .l {
   box-sizing: border-box;
@@ -90,7 +90,7 @@
   font-family: "Raleway-SemiBold";
   /* font-size: 27px; */
   font-size: 1.75vw;
-  color: #fffFFF;
+  color: #ffffff;
 }
 .btn2 img {
   width: 27.5vh;
@@ -106,7 +106,6 @@
   margin: 0 auto; /* Center the images horizontally */
   margin-top: -0.5vh;
 }
-
 
 .Buttons-section3 {
   text-align: left;
@@ -216,10 +215,16 @@
   font-size: 35px;
   font-weight: bold;
 }
+.profile-name::first-letter {
+  text-transform: uppercase;
+}
 
 .profile-email {
   z-index: 1;
   font-size: 16px;
+}
+.profile-email::first-letter {
+  text-transform: uppercase;
 }
 
 /* Optionally you can add responsiveness */
@@ -236,18 +241,17 @@
   }
 }
 
-
 .button-profile {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 6px 12px;
   gap: 8px;
- 
+
   height: 36px;
   width: 120px;
   border: none;
-  background: #D4BFFF;
+  background: #d4bfff;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -257,36 +261,36 @@
   align-items: center;
   padding: 6px 12px;
   gap: 8px;
- 
+
   height: 36px;
   width: 130px;
   border: none;
-  background: #D4BFFF;
+  background: #d4bfff;
   border-radius: 20px;
   cursor: pointer;
 }
-.cover-buttons-container{
+.cover-buttons-container {
   z-index: 1;
-  position:relative;
+  position: relative;
   display: flex;
-  gap :8px;
-  left:240px;
-  top:15px;
+  gap: 8px;
+  left: 240px;
+  top: 15px;
 }
 
 .lable-profile {
   line-height: 20px;
   font-size: 17px;
-  color: #5D41DE;
+  color: #5d41de;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
 
 .button-profile:hover {
-  background: #B38EFF;
+  background: #b38eff;
 }
 .button-profile-following:hover {
-  background: #B38EFF;
+  background: #b38eff;
 }
 .button-profile:hover .svg-icon-profile {
   animation: spin 2s linear infinite;

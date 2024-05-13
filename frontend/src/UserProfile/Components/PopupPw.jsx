@@ -37,9 +37,6 @@ const Popup_pw = (props) => {
           oldPw: formState.oldPw,
           newPw: formState.newPw,
         }).unwrap();
-        console.log(res);
-        dispatch(setCredentials(res));
-        console.log("Updated");
         toast.success("Password updated successfully");
         props.showChangePwHandler();
       } catch (e) {

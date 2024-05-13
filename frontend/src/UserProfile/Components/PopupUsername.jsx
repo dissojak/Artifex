@@ -25,8 +25,9 @@ const PopupUsername = (props) => {
         _id: userInfo._id,
         username: newUsername,
       }).unwrap();
-      console.log(res);
-      dispatch(setCredentials(res));
+      let updateUserInfo={...userInfo};
+      updateUserInfo.username=newUsername;
+      dispatch(setCredentials(updateUserInfo));
       toast.success("Username updated successfully");
       props.showChangeUsernameHandler();
     } catch (err) {

@@ -30,7 +30,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import PrivateRoute from "./BuildKite/PrivateRoute.jsx";
 
 import Landing from "./landing/pages/Landing.jsx";
-import NewArtwork from "./artwork/pages/NewArtwork.jsx";
+import NewArtwork from "./shared/components/FormElements/NewArtwork.jsx";
 import Artists from "./ArtistsPage/Pages/ArtistPage.jsx";
 import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
 import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
