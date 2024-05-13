@@ -19,7 +19,7 @@ const PopupFollowers = ({ onClose }) => {
               src="elements/X.svg"
               alt=""
               className="tit_ch_img_in_followers"
-              onClick={onClose}
+              onClick={onClose} 
             /></p>
      
       <div className="followers-list">
