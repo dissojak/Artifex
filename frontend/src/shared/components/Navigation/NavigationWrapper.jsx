@@ -4,7 +4,7 @@ import MainNavigation from './MainNavigation.jsx';
 
 const NavigationWrapper = ({ children }) => {
   const location = useLocation();
-  const publicPaths = ["/login", "/signup","/addArtwork","/socialMedia"]; // Adjust based on your public paths
+  const publicPaths = ["/login", "/signup","/addArtwork","/socialMedia","/"]; // Adjust based on your public paths
   const showMainNavigation = !publicPaths.includes(location.pathname);
 
   return (
