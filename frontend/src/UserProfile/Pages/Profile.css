@@ -271,11 +271,12 @@
 }
 .cover-buttons-container {
   z-index: 1;
-  position: relative;
+  position: absolute;
   display: flex;
   gap: 8px;
-  left: 240px;
-  top: 15px;
+  left: 46vw;
+    top: 10vh;
+  
 }
 
 .lable-profile {
