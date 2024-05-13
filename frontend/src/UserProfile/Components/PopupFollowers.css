@@ -35,15 +35,16 @@
     margin: 10px 0;
   }
   
-  .modal-content .follower-item img {
-    width: 40px;
-    height: 40px;
+  .modal-content .follower-item .follower-img-avatar img {
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     margin-right: 10px;
   }
   
   .modal-content .follower-item span {
     margin-right: 10px;
+    margin-top: -19px;
   }
   .modal-content .follower-info {
     display: flex;
@@ -52,18 +53,23 @@
   }
   
   .modal-content .follower-name {
-    font-weight: bold;
+   font-size: 28px;
+   font-family: "Dubai-Bold";
+   padding-top: 20px;
   }
   
   .modal-content .follower-title {
-    font-size: 0.8em;
-    color: grey;
+    font-size: 20px;
+    color: #7e3fff;
+    font-family: "Dubai";
+    margin-bottom: 10px;
   }
   
   .modal-content .status-icon {
-    width: 10px;
-    height: 10px;
+    width: 35px;
+    height: 35px;
     margin-left: auto; /* Push the icon to the far right */
+    padding-top: 5px;
   }
   
   .modal-content button {
@@ -76,3 +82,12 @@
     cursor: pointer;
   }
   
+
+  .tit_ch_img_in_followers{
+    position:relative;
+    width: 40px;
+    height: 40px;
+    top: -2vh;
+    right: -8vw;
+    cursor: pointer;
+}
