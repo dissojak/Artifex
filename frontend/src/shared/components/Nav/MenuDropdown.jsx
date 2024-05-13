@@ -7,9 +7,10 @@ import editIcon from "../../../assets/images/edit.png";
 import settingsIcon from "../../../assets/images/settings.png";
 import questionIcon from "../../../assets/images/question.png";
 import logoutIcon from "../../../assets/images/log-out.png";
+import logoutIconActive from "../../../assets/images/log-out_m3ebi.png";
 import drop from "../../../assets/images/drop.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../../../slices/usersApiSlice";
 import { logout } from "../../../slices/authSlice";
 import { toast } from "react-toastify";
@@ -17,6 +18,8 @@ import { toast } from "react-toastify";
 function MenuDropdown() {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef();
+
+  const [isLogoutHovered, setIsLogoutHovered] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -72,7 +75,9 @@ function MenuDropdown() {
         </h3>
         <div className="menu-item">
           <img src={userIcon} alt="My Profile" />
-          <Link to="/profile" onClick={() => setIsActive(false)}>My profile</Link>
+          <Link to="/profile" onClick={() => setIsActive(false)}>
+            My profile
+          </Link>
         </div>
         <div className="menu-item">
           <img src={editIcon} alt="Edit Profile" />
@@ -86,9 +91,23 @@ function MenuDropdown() {
           <img src={questionIcon} alt="Help" />
           <a href="#">Help</a>
         </div>
-        <div className="menu-item">
-          <img src={logoutIcon} alt="Logout" />
-          <a onClick={() => { logoutHandler(); setIsActive(false); }}>Logout</a>
+        <div
+          className="menu-item"
+          onMouseEnter={() => setIsLogoutHovered(true)}
+          onMouseLeave={() => setIsLogoutHovered(false)}
+        >
+          <img
+            src={isLogoutHovered ? logoutIconActive : logoutIcon}
+            alt="Logout"
+          />
+          <a
+            onClick={() => {
+              logoutHandler();
+              setIsActive(false);
+            }}
+          >
+            Logout
+          </a>
         </div>
       </div>
     </div>
