@@ -6,6 +6,7 @@ import { setCredentials } from "../../slices/authSlice";
 import { useAddArtworkSignupMutation } from "../../slices/artworksSlice";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { toast } from "react-toastify";
+import UploadWidget from "../../shared/components/FormElements/UploadWidget";
 
 const SocialMedia = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -102,6 +103,7 @@ const SocialMedia = () => {
       <button className="signupBtn" onClick={submitRegisterHandler}>
         sign me up
       </button>
+      <UploadWidget/>
     </>
   );
 };
