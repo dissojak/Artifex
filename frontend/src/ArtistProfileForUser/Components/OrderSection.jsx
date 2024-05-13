@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const OrderSection = (props) => {
   const [urgency, setUrgency] = useState("");
   const [details, setDetails] = useState("");
-  const [artType, setArtType] = useState("");  // Added state for artType
+  const [artType, setArtType] = useState(""); // Added state for artType
 
   const [makeOrder] = useMakeOrderMutation();
 
@@ -18,10 +18,10 @@ const OrderSection = (props) => {
       description: details,
       serviceType: urgency === "ASAP" ? "rapid" : "normal",
     };
-    
+
     try {
       const res = await makeOrder(formData).unwrap();
-      toast.success('Order placed successfully');
+      toast.success("Order placed successfully");
       // Reset the form state after successful submission
       setUrgency("");
       setDetails("");
@@ -31,7 +31,7 @@ const OrderSection = (props) => {
     }
   };
 
-  return (
+  return props.orderStatus ? (
     <form className="requestFormWrapper" onSubmit={handleSubmit}>
       <div className="requestForm">
         <div className="formSection left">
@@ -43,7 +43,9 @@ const OrderSection = (props) => {
             />
             <p>Let's get your request ready to send</p>
           </div>
-          <label htmlFor="artType">What's the type of art you are looking for?</label>
+          <label htmlFor="artType">
+            What's the type of art you are looking for?
+          </label>
           <div className="inputGroup">
             <input
               style={{ height: "70px", width: "543px" }}
@@ -87,7 +89,9 @@ const OrderSection = (props) => {
             className="inputGroup"
             style={{ height: "70px", width: "543px" }}
           >
-            <select id="category" onChange={e => console.log(e.target.value)}> {/* Added onChange */}
+            <select id="category" onChange={(e) => console.log(e.target.value)}>
+              {" "}
+              {/* Added onChange */}
               {props.categories.map((category) => (
                 <option key={category._id} value={category._id}>
                   {category.name}
@@ -107,8 +111,9 @@ const OrderSection = (props) => {
         </div>
       </div>
     </form>
+  ) : (
+    <h1 className="no-artworks">This Artist do not accept Orders Yet !</h1>
   );
 };
 
 export default OrderSection;
-

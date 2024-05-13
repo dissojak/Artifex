@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProfileSection.css";
 import OrderSection from "./OrderSection.jsx";
 import ArtworksSection from "./ArtworksSection.jsx";
-import Adem from "../../assets/images/Adem.jpg";
+import DefaultImg from "../../assets/images/default_profile_img.jpg";
 import Logo from "../../assets/images/logo.svg";
 import ArtsList from "../../home/Components/ArtsList.jsx";
 import {
@@ -74,7 +74,7 @@ const ProfileSection = (props) => {
         <div className="profile-container7">
           <img
             className="profile-image7"
-            src={userData.profileImage}
+            src={userData.profileImage||DefaultImg}
             alt="Artist Image"
           />
           <h1 className="profile-name7">{userData.username}</h1>
@@ -129,7 +129,7 @@ const ProfileSection = (props) => {
           </div>
         </div>
         {/* Conditionally render sections based on activeTab */}
-        {activeTab === "orders" && categories && <OrderSection image={userData.profileImage} categories={categories} id={userData._id}/>}
+        {activeTab === "orders" && categories && <OrderSection image={userData.profileImage} categories={categories} id={userData._id} orderStatus={userData.orderStatus}/>}
         {props.artworks.length > 0 ? (
           <>{activeTab === "artworks" && <ArtsList items={props.artworks} />}</>
         ) : (
