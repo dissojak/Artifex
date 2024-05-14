@@ -367,7 +367,10 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
   const artistId = req.body.artistId || req.user._id;
 
   try {
-    const artworks = await Artwork.find({ id_artist: artistId });
+    const artworks = await Artwork.find({
+      id_artist: artistId,
+      isDeletedByOwner: false,
+    });
 
     if (!artworks || artworks.length === 0) {
       return res.status(200).json({
@@ -420,8 +423,7 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
 
   const artistId = req.user._id;
   console.log("artist id is : ", artistId);
-  const { title, description, price, imageArtwork, id_category, exclusive } =
-    req.body;
+  const { title, description, price, imageArtwork, id_category } = req.body;
 
   // Create new artwork instance
   const newArtwork = new Artwork({
@@ -442,10 +444,33 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
   } catch (e) {
     return next(new HttpError("artwork not saved , error hapnned :", e, 500));
   }
-  next(
-    res.json({
-      msg: "Artwork added successfully",
-      artwork,
-    })
-  );
+  res.json({
+    msg: "Artwork added successfully",
+    artwork,
+  });
 });
+
+exports.getBoughtArtwork = async (req, res) => {
+  const userId = req.user._id; 
+
+  try {
+    const boughtArtworks = await Artwork.find({ Sold: true, Buyer: userId });
+
+    if (!boughtArtworks || boughtArtworks.length === 0) {
+      return res.status(200).json({
+        message: "You have not buy any artworks yet ",
+        artworks: [],
+      });
+    }
+
+    res.json({
+      message: "Retrieved bought artworks successfully.",
+      artworks: boughtArtworks,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to retrieve artworks.",
+      error: error.message || error,
+    });
+  }
+};

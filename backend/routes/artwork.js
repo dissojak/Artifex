@@ -73,8 +73,8 @@ router.delete(
   AWC.deleteArtworkByAdmin
 );
 router.delete("/deleteArtwork/:artworkId", MW.protect, AWC.deleteArtwork);
-router.post("/getArtworksByArtistId",MW.protect, AWC.getArtworksByArtistId)
-router.get("/getArtworksByCategory",MW.protect, AWC.getArtworksByCategory)
-
+router.post("/getArtworksByArtistId",MW.protect, AWC.getArtworksByArtistId);
+router.get("/getArtworksByCategory",MW.protect, AWC.getArtworksByCategory);
+router.get("/getBoughtArtwork",MW.protect, AWC.getBoughtArtwork);
 
 module.exports = router;

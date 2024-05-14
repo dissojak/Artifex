@@ -44,6 +44,7 @@ import PricingOptions from "./PricingOptions/Pages/PricingOptions.jsx";
 import PlansHistory from "./PlansHistory/Pages/PlansHistory.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
+import Purchases from "./Purchases/Pages/Purchases.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -134,6 +135,7 @@ const App = () => {
           <Route path="/Plans" element={<PricingOptions />} />
           <Route path="/PlansHistory" element={<PlansHistory />} />
           <Route path="/museumdetails" element={<MuseumDetails />} />
+          <Route path="/purchases" element={<Purchases />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

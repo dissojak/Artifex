@@ -7,6 +7,7 @@ import editIcon from "../../../assets/images/edit.png";
 import settingsIcon from "../../../assets/images/settings.png";
 import questionIcon from "../../../assets/images/question.png";
 import logoutIcon from "../../../assets/images/log-out.png";
+import purchasesIcon from "../../../assets/images/purchases.png";
 import logoutIconActive from "../../../assets/images/log-out_m3ebi.png";
 import drop from "../../../assets/images/drop.svg";
 import { useNavigate } from "react-router-dom";
@@ -56,7 +57,7 @@ function MenuDropdown() {
   return (
     <div className="actionss" ref={menuRef}>
       <div className="profile" onClick={menuToggle}>
-        <img src={userInfo.image||avatar} alt="Profile" />
+        <img src={userInfo.image || avatar} alt="Profile" />
       </div>
       <img
         src={drop}
@@ -77,6 +78,12 @@ function MenuDropdown() {
           <img src={userIcon} alt="My Profile" />
           <Link to="/profile" onClick={() => setIsActive(false)}>
             My profile
+          </Link>
+        </div>
+        <div className="menu-item">
+          <img src={purchasesIcon} alt="Edit Profile" />
+          <Link to="/purchases" onClick={() => setIsActive(false)}>
+            Purchases
           </Link>
         </div>
         <div className="menu-item">
