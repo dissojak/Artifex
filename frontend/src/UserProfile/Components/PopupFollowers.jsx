@@ -11,7 +11,7 @@ const Followers = [
   { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art" },
   { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art" },
   { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art" },
-  { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art" },
+  { Image: Tarek, Artist: "test", Category: "test" },
   
 ];
 

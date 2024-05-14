@@ -63,8 +63,18 @@
     align-items: flex-start;
   }
   
-  .follower-nameflw, .follower-titleflw {
+  .follower-nameflw{
     display: block; /* Ensure proper text wrapping */
+    font-size: 28px;
+    font-family: "Dubai-Bold";
+  }
+  .follower-titleflw{
+    display: block;
+    font-size: 20px;
+    font-family: "Dubai";
+    color:#7e3fff;
+    position: relative;
+    bottom: 18px;
   }
   
   .status-iconflw img {
