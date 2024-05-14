@@ -8,6 +8,9 @@ const Followers = [
     { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
     { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
     { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
+    { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
+    { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
+    { Image: Tarek, Artist: "Tarek Chebbi", Category: "Digital Art"},
   ];
 const PopupFollowers = ({ onClose }) => {
 
