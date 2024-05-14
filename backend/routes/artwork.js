@@ -77,4 +77,7 @@ router.post("/getArtworksByArtistId",MW.protect, AWC.getArtworksByArtistId);
 router.get("/getArtworksByCategory",MW.protect, AWC.getArtworksByCategory);
 router.get("/getBoughtArtwork",MW.protect, AWC.getBoughtArtwork);
 
+router.post("/buyArtwork",MW.protect, AWC.buyArtwork);
+router.post("/artworkPayment",MW.protect, AWC.artworkPayment);
+
 module.exports = router;

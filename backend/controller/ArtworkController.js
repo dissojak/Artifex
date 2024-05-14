@@ -5,6 +5,7 @@ const Artwork = require("../models/artwork");
 const mongoose = require("mongoose");
 const { getArtistById } = require("../controller/ArtistController");
 const { calculateScore } = require("./AnalyticsController");
+const axios = require("axios");
 
 /**
  * @desc    Add new artwork
@@ -451,7 +452,7 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
 });
 
 exports.getBoughtArtwork = async (req, res) => {
-  const userId = req.user._id; 
+  const userId = req.user._id;
 
   try {
     const boughtArtworks = await Artwork.find({ Sold: true, Buyer: userId });
@@ -471,6 +472,79 @@ exports.getBoughtArtwork = async (req, res) => {
     res.status(500).json({
       message: "Failed to retrieve artworks.",
       error: error.message || error,
+    });
+  }
+};
+
+exports.artworkPayment = async (req, res) => {
+  const userId = req.user._id;
+  const artworkId = req.body.artworkId;
+
+  const url = "https://developers.flouci.com/api/generate_payment";
+  const payload = {
+    app_token: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+    app_secret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    amount: req.body.amount,
+    accept_card: "true",
+    session_timeout_secs: 1200,
+    success_link: "http://localhost:5000/success",
+    fail_link: "http://localhost:5000/fail",
+    developer_tracking_id: "a702c74a-9a4d-4f36-b18d-b76f63b7bef8",
+  };
+
+  const response = await axios.post(url, payload);
+
+  if (response.data && response.data.result && response.data.result.success) {
+    const artwork = await Artwork.findById(artworkId);
+    if (!artwork) {
+      return res.status(404).send({ msg: "Artwork not found", faild: "vide" });
+    }
+    if (artwork.Sold) {
+      return res
+        .status(400)
+        .send({ msg: "Artwork already sold", faild: "sold" });
+    }
+    if (artwork) {
+      return res.status(200).send({
+        paymentInfo: response.data,
+      });
+    }
+  }
+};
+
+exports.buyArtwork = async (req, res, next) => {
+  const userId = req.user._id;
+  const artworkId = req.body.artworkId;
+
+  const payment_id = req.body.paymentId;
+  const url = `https://developers.flouci.com/api/verify_payment/${payment_id}`;
+
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      apppublic: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+      appsecret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    },
+  });
+
+  if (response.data && response.data.result.status === "SUCCESS") {
+    const artwork = await Artwork.findById(artworkId);
+
+    artwork.Buyer = userId;
+    artwork.Sold = true;
+    await artwork.save();
+
+    res.send({
+      message: "Artwork purchased successfully",
+      artwork,
+      success: true,
+      paymentVerif: response.data,
+    });
+  } else {
+    res.status(400).send({
+      message: "Payment verification failed",
+      success: false,
+      paymentVerif: response.data,
     });
   }
 };
