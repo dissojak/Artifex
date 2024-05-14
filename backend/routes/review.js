@@ -21,6 +21,8 @@ router.delete("/deleteComment", MW.protect, RC.deleteComment);
 // Add or update rating in a review
 router.patch("/addRating", MW.protect, RC.addRating);
 
-router.get('/views/:artworkId', MW.protect, RC.calculatViews)
+router.patch("/updateView", MW.protect, RC.updateView);
+
+router.get('/views/:artworkId', MW.protect, RC.calculatViews);
 
 module.exports = router;

@@ -41,6 +41,7 @@
     /* line-height: 1.5; */
     font-family: 'Raleway','Raleway-Regular' ;
     font-size: 18px;
+    height: 70px;
   }
   
   .category {
@@ -112,7 +113,7 @@
     --width: 560px;
     --height: 55px;
     --tooltip-height: 35px;
-    --tooltip-width: 90px;
+    --tooltip-width: 110px;
     --gap-between-tooltip-to-button: 18px;
     --button-color: #ffffff;
     --tooltip-color: #fff;

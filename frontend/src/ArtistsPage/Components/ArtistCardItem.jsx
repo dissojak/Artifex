@@ -101,7 +101,7 @@ const ArtistCardItem = (props) => {
                 />
                 <label htmlFor={star1}></label>
               </div>
-              <p className="function9">{props.rating}/5</p>
+              <p className="function9">{props.rating.toFixed(1)}/5</p>
               <p className="function8">|</p>
               <p className="function9">{props.reviews} Review</p>
             </div>

@@ -106,6 +106,7 @@ exports.getArtworks = asyncHandler(async (req, res, next) => {
       visibility: "public",
       exclusive: false,
       isDeletedByOwner: false,
+      Sold: false,
     })
       .populate({
         path: "id_category", // Populate the 'id_category' field
@@ -371,6 +372,7 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
     const artworks = await Artwork.find({
       id_artist: artistId,
       isDeletedByOwner: false,
+      Sold:false,
     });
 
     if (!artworks || artworks.length === 0) {
@@ -477,7 +479,6 @@ exports.getBoughtArtwork = async (req, res) => {
 };
 
 exports.artworkPayment = async (req, res) => {
-  const userId = req.user._id;
   const artworkId = req.body.artworkId;
 
   const url = "https://developers.flouci.com/api/generate_payment";
@@ -487,8 +488,8 @@ exports.artworkPayment = async (req, res) => {
     amount: req.body.amount,
     accept_card: "true",
     session_timeout_secs: 1200,
-    success_link: "http://localhost:5000/success",
-    fail_link: "http://localhost:5000/fail",
+    success_link: "http://localhost:3000/artwork/success",
+    fail_link: "http://localhost:3000/artwork/fail",
     developer_tracking_id: "a702c74a-9a4d-4f36-b18d-b76f63b7bef8",
   };
 
@@ -507,6 +508,7 @@ exports.artworkPayment = async (req, res) => {
     if (artwork) {
       return res.status(200).send({
         paymentInfo: response.data,
+        artwork,
       });
     }
   }
@@ -515,9 +517,8 @@ exports.artworkPayment = async (req, res) => {
 exports.buyArtwork = async (req, res, next) => {
   const userId = req.user._id;
   const artworkId = req.body.artworkId;
-
-  const payment_id = req.body.paymentId;
-  const url = `https://developers.flouci.com/api/verify_payment/${payment_id}`;
+  const paymentId = req.body.paymentId;
+  const url = `https://developers.flouci.com/api/verify_payment/${paymentId}`;
 
   const response = await axios.get(url, {
     headers: {
@@ -535,7 +536,6 @@ exports.buyArtwork = async (req, res, next) => {
     await artwork.save();
 
     res.send({
-      message: "Artwork purchased successfully",
       artwork,
       success: true,
       paymentVerif: response.data,
@@ -548,3 +548,35 @@ exports.buyArtwork = async (req, res, next) => {
     });
   }
 };
+
+/**
+ * @desc    Get an artwork by ID
+ * @route   GET /api/artwork/getArtwork/:artworkId
+ * @access  Private
+ */
+exports.getArtwork = asyncHandler(async (req, res, next) => {
+  const { artworkId } = req.params;
+  // console.log(artworkId);
+  try {
+    const artwork = await Artwork.findById(artworkId)
+      .populate({
+        path: "id_category", // Populate the 'id_category' field
+        select: "name", // Select the 'name'
+        // select: 'name -_id' // Select only the 'name' field and exclude the '_id' field
+      })
+      .populate({
+        path: "id_artist",
+        select: "username , profileImage",
+      });
+
+    if (!artwork) {
+      throw new HttpError("Artwork not found", 404);
+    }
+    res.status(200).json({
+      message: "Artwork retrieved successfully",
+      artwork,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to retrieve the artwork", 500));
+  }
+});

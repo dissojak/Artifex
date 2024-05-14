@@ -80,4 +80,6 @@ router.get("/getBoughtArtwork",MW.protect, AWC.getBoughtArtwork);
 router.post("/buyArtwork",MW.protect, AWC.buyArtwork);
 router.post("/artworkPayment",MW.protect, AWC.artworkPayment);
 
+router.get("/getArtwork/:artworkId",MW.protect, AWC.getArtwork);
+
 module.exports = router;

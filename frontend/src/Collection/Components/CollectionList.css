@@ -1,0 +1,7 @@
+.gallery-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px; /* Adjust space between cards */
+    padding: 20px; /* Padding around the gallery container */
+  }

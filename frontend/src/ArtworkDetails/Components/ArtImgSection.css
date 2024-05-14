@@ -36,7 +36,9 @@
 .Artist-name-ArtImg {
   font-size: 28px;
   font-family: "DubaiB", "Dubai-Bold";
+  text-transform: capitalize;
 }
+
 
 .Artist-Type-ArtImg {
   font-size: 20px;

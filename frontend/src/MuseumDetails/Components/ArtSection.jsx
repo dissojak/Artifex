@@ -5,6 +5,7 @@ import Ticket from "../../assets/images/Tracé 10.svg";
 import Pass from "../../assets/images/event_pass.svg";
 import Pin from "../../assets/images/Pinblack.svg";
 const ArtSection = () => {
+  const price=300;
   return (
     <div id="ArtSection-Section">
       <div className="Artsandbar-container">
@@ -47,7 +48,7 @@ const ArtSection = () => {
               </svg>
             </label>
           </div>
-          <p className="getyourpass-price">300 DT</p>
+          <p className="getyourpass-price">{price} DT</p>
           <div className="getyourpass-ratingArtworkDetailsContainer">
             <p className="getyourpass-date"> DATE :</p>
             <div className="dateLabel-Start">12 August</div>

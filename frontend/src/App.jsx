@@ -45,6 +45,8 @@ import PlansHistory from "./PlansHistory/Pages/PlansHistory.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
 import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
 import Collection from "./Collection/Pages/Collection.jsx";
+import Success from "./shared/components/Pages/successPayments/Success.jsx";
+import Fail from "./shared/components/Pages/failPayments/Fail.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -127,7 +129,7 @@ const App = () => {
           <Route path="/artist" element={<Artists />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/ArtworkDetails" element={<ArtworkDetails />} />
+          <Route path="/artwork/:artworkId" element={<ArtworkDetails />} />
           <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
           <Route path="/artist/:username" element={<ArtistProfileForUser />} />
           <Route path="/museumshowcase" element={<MuseumShowcase />} />
@@ -136,6 +138,8 @@ const App = () => {
           <Route path="/PlansHistory" element={<PlansHistory />} />
           <Route path="/museumdetails" element={<MuseumDetails />} />
           <Route path="/collection" element={<Collection />} />
+          <Route path="/artwork/success" element={<Success />} />
+          <Route path="/artwork/fail" element={<Fail />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

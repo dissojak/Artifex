@@ -1,38 +1,131 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Details.css";
-const Details = () => {
+import { useSelector } from "react-redux";
+import { useAddRatingMutation } from "../../slices/reviewSlice";
+import { toast } from "react-toastify";
+import { useArtworkPaymentMutation } from "../../slices/artworksSlice";
+
+const Details = (props) => {
+  const artwork = props.artwork;
+  const reviews = props.reviews.reviews;
+
+  const totalRatings = reviews.length;
+  const averageRating =
+    totalRatings > 0
+      ? reviews.reduce((acc, review) => acc + review.rating, 0) / totalRatings
+      : 0;
+  const formattedAverage = averageRating.toFixed(1);
+
+  const { userInfo } = useSelector((state) => state.auth);
+  const [userRating, setUserRating] = useState(0);
+
+  useEffect(() => {
+    const findUserRating = async () => {
+      if (!userInfo || !reviews) {
+        console.error("Invalid inputs to findUserRating:", {
+          userInfo,
+          reviews,
+        });
+        return 0;
+      }
+      const review = reviews.find(
+        (review) => review.clientId._id === userInfo._id
+      );
+      return review ? review.rating : 0;
+    };
+    findUserRating().then((rating) => {
+      setUserRating(rating);
+    });
+  }, [reviews, userInfo]);
+
+  const [updateRating] = useAddRatingMutation();
+  const handleRatingChange = (newRating) => {
+    setUserRating(newRating);
+    const req = async () => {
+      const toastId = toast.loading("Saving Your Rating...");
+      try {
+        const res = await updateRating({
+          artistId: artwork.id_artist._id,
+          artworkId: artwork._id,
+          newRating,
+        }).unwrap();
+        toast.update(toastId, {
+          render: "Your New Rating has been saved Successfully!",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      } catch (err) {
+        toast.update(toastId, {
+          render: err?.data?.message || err.error,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
+    };
+    req();
+  };
+
+  const handleAddToCart = async () => {
+    console.log("Item added to cart");
+    
+  };
+  
+  const [payment] = useArtworkPaymentMutation();
+  const handleBuyArtwork = async() => {
+    console.log("Buy Item ...",artwork.price);
+    try {
+      const res = await payment({
+        amount: artwork.price*1000,
+        artworkId: artwork._id,
+      }).unwrap();
+      localStorage.setItem('artworkId', artwork._id);
+      const paymentLink=res.paymentInfo.result.link;
+      window.location.href = paymentLink;
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
   return (
     <div className="artwork-details">
-      <h1>Artwork Name</h1>
-      <p className="price">1500 DT</p>
+      <h1>{artwork.title}</h1>
+      <p className="price">{artwork.price} DT</p>
       <div className="ratingArtworkDetailsContainer">
         <div className="ratings">
           <div className="special-rating-commentsection">
-            <input value="5" name="rating" id="special-star5" type="radio" />
-            <label htmlFor="special-star5"></label>
-            <input value="4" name="rating" id="special-star4" type="radio" />
-            <label htmlFor="special-star4"></label>
-            <input value="3" name="rating" id="special-star3" type="radio" />
-            <label htmlFor="special-star3"></label>
-            <input value="2" name="rating" id="special-star2" type="radio" />
-            <label htmlFor="special-star2"></label>
-            <input value="1" name="rating" id="special-star1" type="radio" />
-            <label htmlFor="special-star1"></label>
+            {[5, 4, 3, 2, 1].map((star) => (
+              <React.Fragment key={star}>
+                <input
+                  type="radio"
+                  name="rating"
+                  id={`special-star${star}`}
+                  value={star}
+                  checked={userRating === star}
+                  onChange={() => handleRatingChange(star)}
+                />
+                <label htmlFor={`special-star${star}`}></label>
+              </React.Fragment>
+            ))}
           </div>
         </div>
-        <p className="ratings">(4.2 stars) - 12 rating</p>
+        <p className="ratings">
+          ({formattedAverage} stars) - {totalRatings} ratings
+        </p>
       </div>
-      <p className="description">
-        Uncover hidden talents and support up-and-coming artists. Our platform
-        showcases a diverse range of artists, giving you the opportunity to find
-        unique and innovative artwork.
-      </p>
+      <p className="description">{artwork.description}</p>
       <div className="ratingArtworkDetailsContainer">
-        <p className="category" style={{color:"#9866FF",fontWeight: "bold"}}>Category: </p>
-        <p className="category">Digital art</p>
+        <p
+          className="category"
+          style={{ color: "#9866FF", fontWeight: "bold" }}
+        >
+          Category:{" "}
+        </p>
+        <p className="category">{artwork.id_category.name}</p>
       </div>
       <div className="buttonsartsection">
-        <div className="buttoncart">
+        <div className="buttoncart" onClick={handleAddToCart}>
           <div className="button-wrappercart">
             <div className="textcart">Add To Cart</div>
             <span className="iconcart">
@@ -47,7 +140,11 @@ const Details = () => {
             </span>
           </div>
         </div>
-        <div className="buttoncmt" data-tooltip="Price: 15DT">
+        <div
+          className="buttoncmt"
+          data-tooltip={`Price: ${artwork.price}DT`}
+          onClick={handleBuyArtwork}
+        >
           <div className="button-wrappercmt">
             <div className="textcmt">Buy Now</div>
             <span className="iconcmt">

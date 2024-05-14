@@ -11,13 +11,13 @@ import { useIsFollowingMutation } from "../../slices/followSlice.js";
 const ArtistProfileForUser = () => {
   const { username } = useParams();
 
-  const [user, setUser] = useState();
+  const [artist, setArtist] = useState();
   const [getUser] = useGetUserMutation();
   useEffect(() => {
     const req = async () => {
       try {
         const res = await getUser(username);
-        setUser(res.data.user);
+        setArtist(res.data.user);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -34,7 +34,7 @@ const ArtistProfileForUser = () => {
     const request = async () => {
       try {
         const response = await getArtworks({
-          artistId: user._id,
+          artistId: artist._id,
         });
         setArtworks(response.data.artworks);
       } catch (err) {
@@ -45,16 +45,16 @@ const ArtistProfileForUser = () => {
     const req = async () => {
       try {
         const response = await checkIsFollowing({
-          artistId: user._id,
+          artistId: artist._id,
         });
-        console.log("is follwing : ", response.data.isFollowing);
+        // console.log("is follwing : ", response.data.isFollowing);
         setIsFollowing(response.data);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
     };
     req();
-  }, [user]);
+  }, [artist]);
 
   const [isfollowing, setIsFollowing] = useState();
   const [checkIsFollowing] = useIsFollowingMutation();
@@ -75,9 +75,9 @@ const ArtistProfileForUser = () => {
         </div>
       )}
       <div className="ArtistProfileForUser-container">
-        {!isLoading && artworks && user && isfollowing && (
+        {!isLoading && artworks && artist && isfollowing && (
           <ProfileSection
-            user={user}
+            artist={artist}
             artworks={artworks}
             isFollowing={isfollowing.isFollowing}
           />

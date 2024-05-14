@@ -36,6 +36,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    addArtworkToPanier: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/addArtworkToPanier`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 

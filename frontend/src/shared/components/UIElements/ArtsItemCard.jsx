@@ -4,12 +4,13 @@ import eye from "../../../assets/images/eye.png";
 import "./ArtsItemCard.css";
 import { useGetViewsMutation } from "../../../slices/reviewSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const ArtsItem = (props) => {
   const checkBoxId = `checkboxInput-${props.id}`;
   const [getViews, { isLoading }] = useGetViewsMutation();
   const [views, setViews] = useState(props.Views);
   useEffect(() => {
-      if (props.passKey) {
+    if (props.passKey) {
       const req = async () => {
         try {
           const res = await getViews(props.id);
@@ -21,16 +22,19 @@ const ArtsItem = (props) => {
       };
       req();
     }
-    }, []);
+  }, []);
   return (
     <>
       {!isLoading && (
         <div className="cardd" key={props.id}>
-          <img src={props.Image} alt="" className="card-image" />
+          <Link to={`/artwork/${props.id}`} style={{ cursor: "pointer" }}>
+            <img src={props.Image} alt="" className="card-image" />
+          </Link>
           <div className="card-body">
-            <h5 className="card-title">{props.title}</h5>
+            <Link to={`/artwork/${props.id}`} style={{ cursor: "pointer" }} className="text-decoration-link">
+              <h5 className="card-title">{props.title}</h5>
+            </Link>
             <p className="card-text">{props.price} DT</p>
-
             <button className="CartBtn">
               <span className="IconContainer">
                 <svg

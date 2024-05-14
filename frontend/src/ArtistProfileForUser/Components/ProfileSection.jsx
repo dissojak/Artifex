@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useHttp } from "../../shared/hooks/http-hook.js";
 
 const ProfileSection = (props) => {
-  const userData = props.user;
+  const userData = props.artist;
   const [activeTab, setActiveTab] = useState("artworks"); // Default to artworks tab
   const [isFollowing, setIsFollowing] = useState(props.isFollowing); // Default to isFollowing
 

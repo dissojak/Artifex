@@ -22,7 +22,10 @@ exports.getReviewsByArtworkId = asyncHandler(async (req, res, next) => {
 
   let reviews;
   try {
-    reviews = await Review.find({ artworkId });
+    reviews = await Review.find({ artworkId }).populate({
+      path: "clientId",
+      select: "username , profileImage",
+    });
   } catch (err) {
     return next(
       new HttpError("Fetching reviews failed, please try again later.", 500)
@@ -129,7 +132,7 @@ exports.updateView = async (req, res, next) => {
 
     // Find or create analytics for the artwork
     analytics = await Analytics.findOne({ artistId });
-
+    let status;
     if (!analytics) {
       analytics = new Analytics({ artistId });
     }
@@ -141,6 +144,7 @@ exports.updateView = async (req, res, next) => {
       });
       analytics.totaleReviews += 1;
       analytics.viewsAnalytics += 1;
+      status = true;
     } else {
       /*but look this is just for security reasons , otherwise 
     the this else will never excute , cuz the review will never
@@ -158,6 +162,7 @@ exports.updateView = async (req, res, next) => {
         analytics.viewsAnalytics += 1;
       }
       review.view = true;
+      status = false;
     }
 
     // Save the review and analytics changes within a session
@@ -170,6 +175,7 @@ exports.updateView = async (req, res, next) => {
 
     res.status(201).json({
       message: "Clinet viewed this artwork ! Saving data done successfully",
+      status,
     });
   } catch (err) {
     console.error(err);

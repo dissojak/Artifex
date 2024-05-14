@@ -122,6 +122,10 @@ exports.getArtists = asyncHandler(async (req, res, next) => {
           plan: await checkPlan(artist._id),
           numberOfArtworks: await Artwork.countDocuments({
             id_artist: artist._id,
+            visibility: "public",
+            exclusive: false,
+            isDeletedByOwner: false,
+            Sold: false,
           }),
           rating: await artistRating(artist._id),
           category: await getCategoryName(artist.idCategory),
