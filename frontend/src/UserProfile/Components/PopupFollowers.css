@@ -1,95 +1,91 @@
-.modal-backdrop {
+.modal-backdropflw {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px); /* Apply blur effect */
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .modal-content {
+  
+  .modal-contentflw {
     position: relative;
     background: white;
     padding: 20px;
+    padding-right: 5px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 426px;
-    margin: auto;
+    margin-top:8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    top:6%
+    max-height: 80%;
+    overflow: hidden;
   }
   
-  .modal-content .followers-list {
+  .modal-headerflw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Optional */
   }
   
-  .modal-content .follower-item {
+  .followers-listflw {
+    width: 100%;
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: calc(100% - 60px); /* Adjust based on header size */
+  }
+  
+  .follower-itemflw {
     display: flex;
     align-items: center;
     margin: 10px 0;
+    padding-right: 13px;
   }
   
-  .modal-content .follower-item .follower-img-avatar img {
+  .follower-img-avatarflw img {
     width: 75px;
     height: 75px;
     border-radius: 50%;
     margin-right: 10px;
   }
   
-  .modal-content .follower-item span {
-    margin-right: 10px;
-    margin-top: -19px;
-  }
-  .modal-content .follower-info {
+  .follower-infoflw {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   
-  .modal-content .follower-name {
-   font-size: 28px;
-   font-family: "Dubai-Bold";
-   padding-top: 20px;
+  .follower-nameflw{
+    display: block; /* Ensure proper text wrapping */
+    font-size: 28px;
+    font-family: "Dubai-Bold";
   }
-  
-  .modal-content .follower-title {
+  .follower-titleflw{
+    display: block;
     font-size: 20px;
-    color: #7e3fff;
     font-family: "Dubai";
-    margin-bottom: 10px;
+    color:#7e3fff;
+    position: relative;
+    bottom: 18px;
   }
   
-  .modal-content .status-icon {
+  .status-iconflw img {
     width: 35px;
     height: 35px;
-    margin-left: auto; /* Push the icon to the far right */
-    padding-top: 5px;
+    margin-left: auto;
   }
   
-  .modal-content button {
-    padding: 8px 16px;
-    margin-top: 20px;
-    background: #7E3FFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
+  .close-iconflw {
     cursor: pointer;
-  }
-  
-
-  .tit_ch_img_in_followers{
-    position:relative;
     width: 40px;
     height: 40px;
-    top: -2vh;
-    right: -8vw;
-    cursor: pointer;
-}
+  }
+  

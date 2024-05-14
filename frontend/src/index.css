@@ -50,6 +50,11 @@
   font-weight: 700;
 }
 @font-face {
+  font-family: "Raleway-ExtraBold";
+  src: url("./fonts/Raleway-ExtraBold.ttf");
+  font-weight: 700;
+}
+@font-face {
   font-family: "Raleway-Regular";
   src: url("./fonts/Raleway-Regular.ttf");
   font-weight: 700;

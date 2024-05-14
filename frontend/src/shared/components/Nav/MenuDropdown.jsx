@@ -71,9 +71,12 @@ function MenuDropdown() {
         alt="drop"
       />
       <div className={isActive ? "menu active" : "menu"}>
-        <h3 style={{ textAlign: "center", fontFamily: "Raleway-Bold" }}>
-          Tarek Chebbi
+        <h3 style={{ textAlign: "left", fontFamily: "Raleway-Bold" }}>
+        {userInfo.username}
         </h3>
+        <p style={{ textAlign: "left", fontFamily: "Raleway-Regular" }}>
+        {userInfo.email}
+        </p>
         <div className="menu-item">
           <img src={userIcon} alt="My Profile" />
           <Link to="/profile" onClick={() => setIsActive(false)}>

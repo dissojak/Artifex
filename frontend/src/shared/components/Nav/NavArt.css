@@ -78,9 +78,9 @@
     justify-content: start;
     align-items: center;
     gap: 40px;
-    left: 39vw;
-    position: relative;
-    top: -10vh;
+    left: 79vw;
+    position: fixed;
+    top: 4vh;
   }
   
   .div_hw {

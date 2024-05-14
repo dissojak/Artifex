@@ -1,8 +1,8 @@
 import React , { useState }from "react";
 import "../Pages/Orders.css";
-//import PopupFollowers from "../../PopupFollowers.jsx";
+import CompletedPopup from "../../CompletedPopup.jsx";
 const OrdersItem = (props) => {
- // const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "2-digit", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-GB", options); // Using British locale to get DD/MM/YYYY
@@ -11,8 +11,11 @@ const OrdersItem = (props) => {
     if (status === "accepted") {
       console.log("Redirecting to payment...");
       // Redirect to payment or handle payment logic
-     // setIsPopupOpen(!isPopupOpen);
+      
     } 
+    else if (status === "completed") {
+      setIsPopupOpen(!isPopupOpen);
+    }
     else {
       console.log(`Action for status: ${status}`);
       // Handle other status-related actions
@@ -35,12 +38,12 @@ const OrdersItem = (props) => {
   
 </td>
     </tr> 
-    {/*
+    
     {isPopupOpen && (
-   <div className="modal-backdrop">
-  <PopupFollowers onClose={() => setIsPopupOpen(false)} />
-  </div>
-  )}  */}
+
+  <CompletedPopup onClose={() => setIsPopupOpen(false)} />
+  
+  )} 
      </>
   );
 };

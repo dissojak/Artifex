@@ -1,0 +1,145 @@
+.modal-backdropcmpt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-contentcmpt {
+    position: relative;
+    background: white;
+    padding: 20px;
+    padding-right: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 922px;
+    margin-top:8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 80%;
+    overflow: hidden;
+  }
+  
+  .modal-headercmpt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Optional */
+  }
+
+  .close-iconcmpt {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: 1vw;
+  }
+  
+  .artist-profile-containercmpt {
+    display: flex;
+    background-color: #ffffff; /* Adjust the background color */
+    color: #000000;
+    padding: 0px;
+    font-family: Arial, sans-serif; /* Choose a suitable font */
+  }
+  
+  .profile-sectioncmpt {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .artist-photocmpt {
+    width: 75px; /* Adjust size accordingly */
+    height: 75px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+  .subtitlecmpt{
+  position: relative;
+    bottom: 12px;
+    font-size: 20px;
+    font-family: "Dubai";
+    color: #7E3FFF;
+  }
+  .detailscmpt p {
+    margin: 5px 0;
+    color: #7E3FFF; /* As seen for the service type */
+    font-family: "Raleway-SemiBold";
+    font-size: 24px;
+  }
+  
+  .description-sectioncmpt {
+    width: 50%;
+    padding: 20px;
+    border-left: 2px solid rgb(255, 255, 255); /* Stylistic choice */
+  }
+  
+  .description-sectioncmpt h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-family:"Raleway-ExtraBold";
+  }
+  
+  .description-sectioncmpt p {
+    font-size: 16px; 
+    font-family: "Raleway-Regular";
+  }
+  .photo-name-cmpt{
+    display: flex;
+  }
+  .follower-infocmpt {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    bottom: 16px;
+  }
+  .follower-infocmpt h1 {
+    font-size: 28px;
+    font-family: "Dubai-Bold";
+  }
+
+  .service-type-cmplt {
+    display: inline-block;
+    width:248px;
+    height: 50px;
+    padding: 13px; 
+ text-align: center;
+    background-color: #FDF4F6; 
+    color: #E36281; 
+    border-radius: 30px; 
+    font-size: 20px; 
+    font-family: "Raleway-SemiBold";
+  }
+
+  .CompletedStatue-containertest {
+    width: 705px;
+    height: 474px;
+    position: relative;
+    left: 5.5vw;
+    border: 5px solid #9866FF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+
+
+  .completeStatu-list {
+    width: 100%;
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: calc(100% - 60px); /* Adjust based on header size */
+  }
