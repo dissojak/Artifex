@@ -15,7 +15,7 @@ const Fail = () => {
     <button className="retry-button-fail" >Go Back HomePage</button>
     </Link>
   </div>
-  </div>
+  </div> 
   );
 }
 
