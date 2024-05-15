@@ -47,6 +47,7 @@ import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx"
 import Collection from "./Collection/Pages/Collection.jsx";
 import Success from "./shared/components/Pages/successPayments/Success.jsx";
 import Fail from "./shared/components/Pages/failPayments/Fail.jsx";
+import Card from "./Card/Pages/Card.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -140,6 +141,7 @@ const App = () => {
           <Route path="/collection" element={<Collection />} />
           <Route path="/artwork/success" element={<Success />} />
           <Route path="/artwork/fail" element={<Fail />} />
+          <Route path="/Card" element={<Card />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

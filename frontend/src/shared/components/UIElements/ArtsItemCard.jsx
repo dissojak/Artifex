@@ -23,6 +23,8 @@ const ArtsItem = (props) => {
       req();
     }
   }, []);
+
+  console.log(props.Image);
   return (
     <>
       {!isLoading && (

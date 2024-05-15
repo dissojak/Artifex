@@ -334,7 +334,7 @@ exports.getPanier = asyncHandler(async (req, res, next) => {
 
     const artworks = user.panier;
     if (!artworks || artworks.length === 0) {
-      return res.json({ msg: "vide", panier: [] });
+      return res.json({ msg: "vide", artworks: [] });
     }
 
     res.json({
@@ -362,18 +362,61 @@ exports.addArtworkToPanier = asyncHandler(async (req, res, next) => {
       throw new HttpError("User not found", 404);
     }
 
-    // Check if artworkId is valid
     const artwork = await Artwork.findById(artworkId);
     if (!artwork) {
       throw new HttpError("Artwork not found", 404);
     }
 
-    // Add artworkId to the user's panier
+    if (user.panier.includes(artworkId)) {
+      res.status(409).json({ message: "Artwork already in panier" });
+      return;
+    }
+
     user.panier.push(artworkId);
     await user.save();
 
     res.status(200).json({ message: "Artwork added to panier successfully" });
   } catch (error) {
     next(new HttpError("Failed to add artwork to panier", 500));
+  }
+});
+
+
+/**
+ * @desc    delete artwork to panier of user
+ * @route   DELETE /api/user/removeArtworkFromPanier
+ * @param   artworkId
+ * @access  Private
+ */
+exports.removeArtworkFromPanier = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  const artworkId = req.body.artworkId;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new HttpError("User not found", 404);
+    }
+
+    // Check if artworkId is valid
+    const artwork = await Artwork.findById(artworkId);
+    if (!artwork) {
+      throw new HttpError("Artwork not found", 404);
+    }
+
+    // Check if the artwork is already in the user's panier
+    const index = user.panier.indexOf(artworkId);
+    if (index === -1) {
+      res.status(404).json({ message: "Artwork not found in panier" });
+      return;
+    }
+
+    // Remove artworkId from the user's panier
+    user.panier.splice(index, 1);
+    await user.save();
+
+    res.status(200).json({ message: "Artwork removed from panier successfully" });
+  } catch (error) {
+    next(new HttpError("Failed to remove artwork from panier", 500));
   }
 });

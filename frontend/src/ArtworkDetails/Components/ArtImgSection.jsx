@@ -3,6 +3,7 @@ import "./ArtImgSection.css";
 import DefaultImg from "../../assets/images/default_profile_img.jpg";
 import { useUpdateViewMutation } from "../../slices/reviewSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const ArtImgSection = (props) => {
   const artwork = props.artwork;
   const artist = props.artwork.id_artist;
@@ -15,7 +16,8 @@ const ArtImgSection = (props) => {
           artistId: artist._id,
           artworkId: artwork._id,
         }).unwrap();
-        res.status && (toast.success("You are welcome ! This is your firt time here!"));
+        res.status &&
+          toast.success("You are welcome ! This is your firt time here!");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -31,12 +33,18 @@ const ArtImgSection = (props) => {
           alt="profile-img"
           className="Artist-image-ArtImg"
         />
-        <div className="Artist-info-ArtImg">
-          <div className="Artist-name-ArtImg">{artist.username}</div>
-          <div className="Artist-Type-ArtImg">Artist</div>
-        </div>
+        <Link to={`/artist/${artist.username}`} style={{ cursor: "pointer" }} className="text-decoration-link">
+          <div className="Artist-info-ArtImg">
+            <div className="Artist-name-ArtImg">{artist.username}</div>
+            <div className="Artist-Type-ArtImg">Artist</div>
+          </div>
+        </Link>
       </div>
-      <a href={artwork.imageArtwork} style={{cursor:"pointer"}} target="_blank">
+      <a
+        href={artwork.imageArtwork}
+        style={{ cursor: "pointer" }}
+        target="_blank"
+      >
         <img
           src={artwork.imageArtwork}
           alt="Placeholder"

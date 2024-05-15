@@ -72,6 +72,8 @@ router.delete(
   MW.protect,
   AWC.deleteArtworkByAdmin
 );
+router.put("/private",MW.protect,AWC.makePrivate);
+router.put("/public",MW.protect,AWC.makePublic);
 router.delete("/deleteArtwork/:artworkId", MW.protect, AWC.deleteArtwork);
 router.post("/getArtworksByArtistId",MW.protect, AWC.getArtworksByArtistId);
 router.get("/getArtworksByCategory",MW.protect, AWC.getArtworksByCategory);

@@ -43,6 +43,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getPanier: builder.mutation({
+      query: () => ({
+        url: `${USERS_URL}/getPanier`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -52,4 +58,6 @@ export const {
   useRegisterMutation,
   useUpdateUserMutation,
   useGetUserMutation,
+  useAddArtworkToPanierMutation,
+  useGetPanierMutation,
 } = userApiSlice;

@@ -425,7 +425,6 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
   }
 
   const artistId = req.user._id;
-  console.log("artist id is : ", artistId);
   const { title, description, price, imageArtwork, id_category } = req.body;
 
   // Create new artwork instance
@@ -445,7 +444,7 @@ exports.addArtworkSignup = asyncHandler(async (req, res, next) => {
     // artwork = await newArtwork.save({ session });
     artwork = await newArtwork.save();
   } catch (e) {
-    return next(new HttpError("artwork not saved , error hapnned :", e, 500));
+    return next(new HttpError("artwork not saved !", 500));
   }
   res.json({
     msg: "Artwork added successfully",

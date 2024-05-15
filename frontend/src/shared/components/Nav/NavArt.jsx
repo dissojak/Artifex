@@ -13,6 +13,8 @@ import notification from "../../../assets/images/notification.svg";
 import Cart from "../../../assets/images/chariot_feragh.svg";
 import MenuDropdown from "./MenuDropdown.jsx";
 import Logo from "../../../assets/images/Logo_Artifex.svg";
+import { useGetPanierMutation } from "../../../slices/usersApiSlice.js";
+import { toast } from "react-toastify";
 
 const NavArtifex = () => {
   const location = useLocation();
@@ -37,11 +39,27 @@ const NavArtifex = () => {
       case "/artist":
         return isActive ? ArtistsIconActive : ArtistsIcon;
       case "/museums":
-        return isActive ? MuseumIconActive : MuseumIcon; 
+        return isActive ? MuseumIconActive : MuseumIcon;
       default:
         return HomeIcon; // Default icon in case of unmatched route
     }
   };
+
+  const [numItemsInCard, setNumItemsInCard] = useState();
+  const [getPanier, { isLoading }] = useGetPanierMutation();
+
+  useEffect(() => {
+    const req = async () => {
+      try {
+        const res = await getPanier();
+        // console.log(res.data.artworks.length);
+        setNumItemsInCard(res.data.artworks.length);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    req();
+  }, []);
 
   return (
     <>
@@ -100,22 +118,25 @@ const NavArtifex = () => {
             </span>
           </NavLink>
           <div className="indicatorNav" ref={indicatorRef}></div>
-         
         </div>
         <div className="iconsRow">
-            <div className="div_hw">
-              <img src={notification} alt="Heart" className="im_hw" />
-              <div className="nmrywgreen"></div>
-            </div>
-            <div className="div_hw">
-              <img src={HEART} alt="Heart" className="im_hw" />
-              <div className="nmryw">3</div>
-            </div>
+          <div className="div_hw">
+            <img src={notification} alt="Heart" className="im_hw" />
+            <div className="nmrywgreen"></div>
+          </div>
+          <div className="div_hw">
+            <img src={HEART} alt="Heart" className="im_hw" />
+            <div className="nmryw">3</div>
+          </div>
+          <Link to="/Card" style={{ cursor: "pointer" }}>
             <div className="div_hw">
               <img src={Cart} alt="Heart" className="im_hw" />
-              <div className="nmryw">12</div>
+              {!isLoading && (
+                <>{numItemsInCard != 0 && <div className="nmryw">{numItemsInCard}</div>}</>
+              )}
             </div>
-          </div>
+          </Link>
+        </div>
         <MenuDropdown />
       </div>
     </>
