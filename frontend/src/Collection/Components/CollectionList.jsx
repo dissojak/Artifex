@@ -8,6 +8,7 @@ const CollectionList = (props) => {
         {props.collection.map(artwork => (
         <ArtsItem
           passKey={true}
+          collection={true}
           key={artwork._id}
           id={artwork._id}
           Image={artwork.imageArtwork}
