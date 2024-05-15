@@ -1,0 +1,68 @@
+#Payment-Faield-section{
+    width: 99.55vw;
+    height: 75vh;
+    padding-top: 6vh;
+}
+.payment-failed-container-fail {
+    background-color: #FFF;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 17vh;
+   
+  }
+  
+  .icon-fail {
+    width: 24px;
+    height: 24px;
+  }
+  .icon-fail img{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 15.5vw;
+    bottom: 8vh;
+  }
+  .payment-failed-container-fail h1 {
+    color: #333;
+    font-family: "Dubai-Bold";
+    font-size: 38px;
+  }
+  
+  .payment-failed-container-fail p {
+    color: #666;
+    margin: 20px 0;
+    font-family: "Dubai";
+    font-size: 18px; 
+  }
+  
+  .retry-button-fail{
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-family:"Raleway-SemiBold" ;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width:300px ;
+    margin-bottom: 10px;
+    background-color: #7e3fff;
+    color: white;
+    margin-right: 10px;
+  }
+  .retry-button-fail:hover{
+    background-color: #9866ff;
+  }
+  .retry-button-fail img{
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+  }
+
+  
+
+  
