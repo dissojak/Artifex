@@ -3,7 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import { useBuyArtworkMutation } from "../../../../slices/artworksSlice";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-
+import SuccessIcon from "../../../../assets/images/success.svg";
+//import { Link } from "react-router-dom";
+import './Success.css'; 
 const Success = () => {
   const [buyArtwork] = useBuyArtworkMutation();
   const [searchParams] = useSearchParams();
@@ -32,9 +34,18 @@ const Success = () => {
   }, []);
   return (
     status && (
-      <div>
-        <h1>Success</h1>
+      <div id="Payment-success-section">
+      <div className="payment-success-container-success">
+      <div className="icon-success">
+        <img src={SuccessIcon} alt='success' />
       </div>
+      <h1>Payment Successful</h1>
+      <p>Your Details Has Been Successfully Submitted. Check Your Collections To See Your Purchase. Thanks!</p>
+    
+      <button className="gocollection-button-success" >Check Your Collection</button>
+      
+    </div>
+    </div> 
     )
   );
 };
