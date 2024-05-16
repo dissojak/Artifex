@@ -21,12 +21,14 @@ const MuseumItemCard = (props) => {
   const [getParticipantArtists] = useParticipantArtistsMutation();
   const [artists, setArtists] = useState();
   useEffect(() => {
+    // console.log("here is partisipant : ",props.artistsEntered)
     if (props.artistsEntered > 0) {
       const req = async () => {
         try {
+          // console.log("adem");
           const res = await getParticipantArtists(props.id).unwrap();
-          //   console.log(res.data.participantArtists);
-          setArtists(res.data.participantArtists);
+            // console.log(res.participantArtists);
+          setArtists(res.participantArtists);
         } catch (err) {
           toast.error(err?.data?.message || err.error);
         }
