@@ -35,7 +35,7 @@ function MenuDropdown() {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       toast.error(err);
     }
