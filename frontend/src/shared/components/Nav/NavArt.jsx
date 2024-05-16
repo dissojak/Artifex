@@ -12,7 +12,7 @@ import HEART from "../../../assets/images/HEART.svg";
 import notification from "../../../assets/images/notification.svg";
 import Cart from "../../../assets/images/chariot_feragh.svg";
 import MenuDropdown from "./MenuDropdown.jsx";
-import Logo from "../../../assets/images/Logo_Artifex.svg";
+import Logo from "../../../assets/images/Logo_Artifex.png";
 import { useGetPanierMutation } from "../../../slices/usersApiSlice.js";
 import { toast } from "react-toastify";
 

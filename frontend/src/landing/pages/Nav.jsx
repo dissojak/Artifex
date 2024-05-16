@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css"; // Ensure this path is correct
-import Logo from "../../assets/images/Logo_Artifex.svg"; // Verify the path to your logo
+import Logo from "../../assets/images/Logo_Artifex.png"; // Verify the path to your logo
 import Auth from "../../user/Auth/Auth";
 
 const Nav = ({ data, openNav, closeNav }) => {
