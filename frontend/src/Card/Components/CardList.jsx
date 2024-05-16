@@ -3,8 +3,6 @@ import ArtsItem from '../../shared/components/UIElements/ArtsItemCard';
 import "../../Collection/Components/CollectionList.css";
 
 const CardList = (props) => {
-  {props.collection.map(artwork => (console.log(artwork.imageArtwork)))}
-  console.log("this " ,props.collection)
   return (
     <>
       <div className="gallery-container2">
@@ -20,6 +18,7 @@ const CardList = (props) => {
           Views={artwork.Views||0}
           title={artwork.title}
           price={artwork.price}
+          deleteItemById={props.deleteItemById}
         //   rating={artwork.rating.rating||0}
         />
       ))}

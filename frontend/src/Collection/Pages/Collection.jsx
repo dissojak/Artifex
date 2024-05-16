@@ -26,7 +26,7 @@ const Purchases = () => {
   ) : (
     <>
       <div className="Collection-container">
-        {!isLoading && collection && <CollectionList collection={collection} />}
+        {!isLoading && collection && <CollectionList collection={collection}/>}
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { useAddRatingMutation } from "../../slices/reviewSlice";
 import { toast } from "react-toastify";
 import { useArtworkPaymentMutation } from "../../slices/artworksSlice";
 import Pay from "../../assets/images/pay.svg";
+import { useAddArtworkToPanierMutation } from "../../slices/usersApiSlice";
 
 const Details = (props) => {
   const artwork = props.artwork;
@@ -68,8 +69,27 @@ const Details = (props) => {
     req();
   };
 
+  const [addToCard] = useAddArtworkToPanierMutation();
   const handleAddToCart = async () => {
-    console.log("Item added to cart");
+    const toastId = toast.loading("Add to your card ...");
+      try {
+        await addToCard({
+          artworkId: artwork._id,
+        }).unwrap();
+        toast.update(toastId, {
+          render: `${artwork.title} has been added Successfully to your Card!`,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      } catch (err) {
+        toast.update(toastId, {
+          render: err?.data?.message || err.error,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
   };
 
   const [payment] = useArtworkPaymentMutation();

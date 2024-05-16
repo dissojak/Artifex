@@ -49,6 +49,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    removeArtworkFromPanier: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/removeArtworkFromPanier`,
+        method: "DELETE",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -60,4 +67,5 @@ export const {
   useGetUserMutation,
   useAddArtworkToPanierMutation,
   useGetPanierMutation,
+  useRemoveArtworkFromPanierMutation,
 } = userApiSlice;

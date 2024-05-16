@@ -21,12 +21,18 @@ const Card = () => {
       };
       req();
     }, []);
+
+    const deleteItemById = (id) => {
+        const updatedCollection = artworks.filter((item) => item._id !== id);
+        setCollection(updatedCollection);
+      };
+
     return isLoading ? (
         <LoadingArtifex />
       ) : (
         <>
           <div className="Collection-container">
-            {!isLoading && artworks && <CardList collection={artworks} />}
+            {!isLoading && artworks && <CardList collection={artworks} deleteItemById={deleteItemById}/>}
           </div>
         </>
       );

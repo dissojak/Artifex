@@ -60,5 +60,6 @@ the clients data.
 router.get("/getClients", MW.protect, UC.getClients);
 router.get("/getPanier", MW.protect, UC.getPanier);
 router.post("/addArtworkToPanier",MW.protect, UC.addArtworkToPanier);
+router.delete("/removeArtworkFromPanier",MW.protect, UC.removeArtworkFromPanier);
 
 module.exports = router;
