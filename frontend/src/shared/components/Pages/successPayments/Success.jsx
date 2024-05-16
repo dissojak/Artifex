@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useBuyArtworkMutation } from "../../../../slices/artworksSlice";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -41,9 +41,9 @@ const Success = () => {
       </div>
       <h1>Payment Successful</h1>
       <p>Your Details Has Been Successfully Submitted. Check Your Collections To See Your Purchase. Thanks!</p>
-    
+      <Link to="/collection">
       <button className="gocollection-button-success" >Check Your Collection</button>
-      
+      </Link>
     </div>
     </div> 
     )
