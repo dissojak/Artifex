@@ -98,14 +98,15 @@ const ArtsItem = (props) => {
                 </button>
               </>
             )}
-            {props.collection && (
+            {props.collection && (<>
+              <button>pay</button>
               <button
                 className="btn-delete-artwork-from-card"
                 onClick={deleteArtworkHandler}
               >
                 <img src={DeleteIcon} alt="" className="icon" />
               </button>
-            )}
+              </>)}
             <div className="card-footer">
               <span className="author">{props.Artist}</span>
               <div style={{ width: "15px", height: "15px" }}>

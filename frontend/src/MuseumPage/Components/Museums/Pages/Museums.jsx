@@ -17,7 +17,7 @@ const Museums = () => {
       try {
         const responseData = await getMuseums();
         // console.log("adem");
-        // console.log(responseData);
+        console.log(responseData);
         setMuseums(responseData.data.museums);
       } catch (err) {
         toast.error(err?.data?.message || err.error);

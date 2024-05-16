@@ -17,7 +17,7 @@ const ArtImgSection = (props) => {
           artworkId: artwork._id,
         }).unwrap();
         res.status &&
-          toast.success("You are welcome ! This is your firt time here!");
+          toast.success("You Are Welcome ! This is Your First Time Here!");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

@@ -12,7 +12,7 @@ const CardList = (props) => {
           collection={true}
           key={artwork._id}
           id={artwork._id}
-          Image={artwork.ImageArtwork}
+          Image={artwork.imageArtwork}
           username={artwork.Artist}
           Likes={artwork.Likes}
           Views={artwork.Views||0}
