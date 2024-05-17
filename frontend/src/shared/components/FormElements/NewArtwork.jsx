@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useAddArtworkSignupMutation } from "../../../slices/artworksSlice";
 
-const NewArtworkArtist = () => {
+const NewArtworkArtist = (props) => {
   const [categories, setCategories] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttp();
 
@@ -49,7 +49,7 @@ const NewArtworkArtist = () => {
     console.log(formData);
     console.log(img);
     try {
-      const req =await addArtwork({
+      const req = await addArtwork({
         _id: userInfo._id,
         title: formData.title,
         description: formData.description,
@@ -81,6 +81,14 @@ const NewArtworkArtist = () => {
         <div>
           <div className="art-artist-form-container">
             <div className="art-signin-header">Add Artwork</div>
+            <div style={{ cursor: "pointer" }}>
+              <img
+                src="elements/X.svg"
+                alt="Close"
+                className="close-iconflw_artwork"
+                onClick={props.onClose}
+              />
+            </div>
             <div className="art-signin-step">
               <p style={{ color: "black" }}>Title</p>
               <input
@@ -128,11 +136,7 @@ const NewArtworkArtist = () => {
                       <span className="image-uploader-text">Main Image</span>
                     </>
                   ) : (
-                    <img
-                      className="image-uploader"
-                      src={img}
-                      alt=""
-                    />
+                    <img className="image-uploader" src={img} alt="" />
                   )}
                 </div>
               </label>
@@ -142,11 +146,6 @@ const NewArtworkArtist = () => {
                   onClick={saveData}
                 >
                   create
-                  <img
-                    src="elements/arrow_without--.svg"
-                    className="arrow"
-                    alt=""
-                  />
                 </button>
               </div>
             </div>

@@ -102,8 +102,9 @@ const CommentSection = (props) => {
       <h1 style={{ color: "#9866FF", fontSize: "2.8rem", marginTop: "8vh" }}>
         COMMENTS :
       </h1>
+      {/* {validReviews!=0 && userInfo.userType === "artist" && ()} */}
       <div className="comments-section">
-        {!userHasCommented && (
+        {!userHasCommented && userInfo.userType==='client' &&(
           <div className="comment-input-container">
             <img
               src={userInfo.image || DefaultImg}

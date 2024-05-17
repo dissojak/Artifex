@@ -83,7 +83,7 @@ textarea {
   position: absolute;
   top: 30px;
   gap: 13px;
-  right: 32px;
+  right: 6rem;
   padding: 4px;
   display: flex;
 }
@@ -221,4 +221,13 @@ textarea {
   .art-dimension-input:last-child {
     margin-bottom: 0; /* Removes bottom margin from the last input group */
   }
+}
+
+.close-iconflw_artwork{
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right:3vw;
+  top: 5.5vh;
 }

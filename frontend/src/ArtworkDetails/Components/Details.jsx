@@ -72,24 +72,24 @@ const Details = (props) => {
   const [addToCard] = useAddArtworkToPanierMutation();
   const handleAddToCart = async () => {
     const toastId = toast.loading("Add to your card ...");
-      try {
-        await addToCard({
-          artworkId: artwork._id,
-        }).unwrap();
-        toast.update(toastId, {
-          render: `${artwork.title} has been added Successfully to your Card!`,
-          type: "success",
-          isLoading: false,
-          autoClose: 5000,
-        });
-      } catch (err) {
-        toast.update(toastId, {
-          render: err?.data?.message || err.error,
-          type: "error",
-          isLoading: false,
-          autoClose: 5000,
-        });
-      }
+    try {
+      await addToCard({
+        artworkId: artwork._id,
+      }).unwrap();
+      toast.update(toastId, {
+        render: `${artwork.title} has been added Successfully to your Card!`,
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    } catch (err) {
+      toast.update(toastId, {
+        render: err?.data?.message || err.error,
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
   };
 
   const [payment] = useArtworkPaymentMutation();
@@ -121,6 +121,7 @@ const Details = (props) => {
                   name="rating"
                   id={`special-star${star}`}
                   value={star}
+                  // disabled={userInfo.userType === 'artist'}
                   checked={userRating === star}
                   onChange={() => handleRatingChange(star)}
                 />
@@ -143,39 +144,41 @@ const Details = (props) => {
         </p>
         <p className="category">{artwork.id_category.name}</p>
       </div>
-      <div className="buttonsartsection">
-        <div className="buttoncart" onClick={handleAddToCart}>
-          <div className="button-wrappercart">
-            <div className="textcart">Add To Cart</div>
-            <span className="iconcart">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="bi bi-cart2"
-                viewBox="0 0 16 16"
-              >
-                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-              </svg>
-            </span>
+      {userInfo.userType === "client" && (
+        <div className="buttonsartsection">
+          <div className="buttoncart" onClick={handleAddToCart}>
+            <div className="button-wrappercart">
+              <div className="textcart">Add To Cart</div>
+              <span className="iconcart">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  className="bi bi-cart2"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div
+            className="buttoncmt"
+            data-tooltip={`Price: ${artwork.price}DT`}
+            onClick={handleBuyArtwork}
+          >
+            <div className="button-wrappercmt">
+              <div className="textcmt">Buy Now</div>
+              <span className="iconcmt">
+                <img
+                  src={Pay}
+                  alt="pay"
+                  style={{ height: "40px", marginBottom: "5px" }}
+                />
+              </span>
+            </div>
           </div>
         </div>
-        <div
-          className="buttoncmt"
-          data-tooltip={`Price: ${artwork.price}DT`}
-          onClick={handleBuyArtwork}
-        >
-          <div className="button-wrappercmt">
-            <div className="textcmt">Buy Now</div>
-            <span className="iconcmt">
-              <img
-                src={Pay}
-                alt="pay"
-                style={{ height: "40px", marginBottom: "5px" }}
-              />
-            </span>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

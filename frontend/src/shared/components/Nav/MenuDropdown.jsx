@@ -3,11 +3,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import "./MenuDropdown.css"; // Ensure the CSS file is named appropriately
 import avatar from "../../../assets/images/default_profile_img.jpg"; // Ensure paths are correct
 import userIcon from "../../../assets/images/usertest.png";
+import eventIcon from "../../../assets/images/evenement.png";
 import editIcon from "../../../assets/images/edit.png";
 import settingsIcon from "../../../assets/images/settings.png";
 import questionIcon from "../../../assets/images/question.png";
 import logoutIcon from "../../../assets/images/log-out.png";
 import purchasesIcon from "../../../assets/images/purchases.png";
+import PlansHisotyIcon from "../../../assets/images/PlansHistory.svg";
 import logoutIconActive from "../../../assets/images/log-out_m3ebi.png";
 import drop from "../../../assets/images/drop.svg";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +25,9 @@ function MenuDropdown() {
   const [isLogoutHovered, setIsLogoutHovered] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
+  const isClient = userInfo.userType === "client";
+  const isArtist = userInfo.userType === "artist";
+  const isAdmin = userInfo.userType === "admin";
 
   const menuToggle = () => {
     setIsActive(!isActive);
@@ -72,10 +77,10 @@ function MenuDropdown() {
       />
       <div className={isActive ? "menu active" : "menu"}>
         <h3 style={{ textAlign: "left", fontFamily: "Raleway-Bold" }}>
-        {userInfo.username}
+          {userInfo.username}
         </h3>
         <p style={{ textAlign: "left", fontFamily: "Raleway-Regular" }}>
-        {userInfo.email}
+          {userInfo.email}
         </p>
         <div className="menu-item">
           <img src={userIcon} alt="My Profile" />
@@ -83,15 +88,27 @@ function MenuDropdown() {
             My profile
           </Link>
         </div>
+        {isClient && (
+          <div className="menu-item">
+            <img src={purchasesIcon} alt="Edit Profile" />
+            <Link to="/collection" onClick={() => setIsActive(false)}>
+              Collection
+            </Link>
+          </div>
+        )}
+        {isArtist && (
+          <div className="menu-item">
+            <img src={PlansHisotyIcon} alt="Edit Profile" />
+            <Link to="/planshistory" onClick={() => setIsActive(false)}>
+              Plans History
+            </Link>
+          </div>
+        )}
         <div className="menu-item">
-          <img src={purchasesIcon} alt="Edit Profile" />
-          <Link to="/collection" onClick={() => setIsActive(false)}>
-          Collection
+          <img src={eventIcon} alt="Edit Profile" />
+          <Link to="/########" onClick={() => setIsActive(false)}>
+            Events
           </Link>
-        </div>
-        <div className="menu-item">
-          <img src={editIcon} alt="Edit Profile" />
-          <a href="#">Edit profile</a>
         </div>
         <div className="menu-item">
           <img src={settingsIcon} alt="Settings" />
