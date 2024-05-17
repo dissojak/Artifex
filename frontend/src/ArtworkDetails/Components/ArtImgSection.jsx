@@ -25,6 +25,19 @@ const ArtImgSection = (props) => {
     req();
   }, []);
 
+  const updateImageUrl = (imageUrl) => {
+    const oldBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/";
+    const newBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
+    
+    // console.log("here the image ",imageUrl);
+    // console.log(imageUrl.startsWith(oldBaseUrl));
+    if (imageUrl.startsWith(oldBaseUrl)) {
+      return imageUrl.replace(oldBaseUrl, newBaseUrl);
+    } else {
+      return imageUrl; // Return the original URL if it doesn't start with the old base URL
+    }
+  };
+
   return (
     <div id="ArtImgSection">
       <div className="Artist-container-ArtImg">
@@ -41,12 +54,12 @@ const ArtImgSection = (props) => {
         </Link>
       </div>
       <a
-        href={artwork.imageArtwork}
+        href={updateImageUrl(artwork.imageArtwork)}
         style={{ cursor: "pointer" }}
         target="_blank"
       >
         <img
-          src={artwork.imageArtwork}
+          src={updateImageUrl(artwork.imageArtwork)}
           alt="Placeholder"
           className="image-containertest"
         />

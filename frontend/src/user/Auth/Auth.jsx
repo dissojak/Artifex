@@ -12,7 +12,7 @@ import {
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
 
-function Auth() {
+function Auth(props) {
   // const location = useLocation();
   // const queryParams = new URLSearchParams(location.search);
   // const signup = queryParams.get('signup') === 'true';
@@ -118,7 +118,10 @@ function Auth() {
 
   useEffect(() => {
     console.log("isLoginMode :", isLoginMode);
-  }, [isLoginMode]);
+    if (props.signup){
+      handleRegisterClick();
+    }
+  }, []);
 
   const handleRegisterClick = () => {
     const container = document.getElementById("container");

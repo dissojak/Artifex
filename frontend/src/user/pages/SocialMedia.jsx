@@ -52,44 +52,46 @@ const SocialMedia = () => {
       dispatch(setCredentials({ ...res }));
 
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      console.log("user info : ", userInfo._id);
 
-         const rep1=await addArtwork({
-          _id: userInfo._id,
-          title: artwork1.title,
-          description: artwork1.description,
-          price: artwork1.price,
-          imageArtwork:artworkImg1,
-          id_category: artwork1.category,
-        }).unwrap();
+      const rep1 = await addArtwork({
+        _id: userInfo._id,
+        title: artwork1.title,
+        description: artwork1.description,
+        price: artwork1.price,
+        imageArtwork: artworkImg1,
+        id_category: artwork1.category,
+      }).unwrap();
 
-        const rep2=await addArtwork({
-          _id: userInfo._id,
-          title: artwork2.title,
-          description: artwork2.description,
-          price: artwork2.price,
-          imageArtwork:artworkImg2,
-          id_category: artwork2.category,
-        }).unwrap();
+      const rep2 = await addArtwork({
+        _id: userInfo._id,
+        title: artwork2.title,
+        description: artwork2.description,
+        price: artwork2.price,
+        imageArtwork: artworkImg2,
+        id_category: artwork2.category,
+      }).unwrap();
 
-        const rep3=await addArtwork({
-          _id: userInfo._id,
-          title: artwork3.title,
-          description: artwork3.description,
-          price: artwork3.price,
-          imageArtwork:artworkImg3,
-          id_category: artwork3.category,
-        }).unwrap();
+      const rep3 = await addArtwork({
+        _id: userInfo._id,
+        title: artwork3.title,
+        description: artwork3.description,
+        price: artwork3.price,
+        imageArtwork: artworkImg3,
+        id_category: artwork3.category,
+      }).unwrap();
 
-        console.log(rep1);
-        console.log(rep2);
-        console.log(rep3);
+      console.log(rep1);
+      console.log(rep2);
+      console.log(rep3);
 
-        localStorage.removeItem("userData");
-        localStorage.removeItem("newArtworkData1");
-        localStorage.removeItem("newArtworkData2");
-        localStorage.removeItem("newArtworkData3");
-        
+      localStorage.removeItem("userData");
+      localStorage.removeItem("newArtworkData1");
+      localStorage.removeItem("newArtworkData2");
+      localStorage.removeItem("newArtworkData3");
+      localStorage.removeItem("artworkImage3");
+      localStorage.removeItem("artworkImage2");
+      localStorage.removeItem("artworkImage1");
+
       navigate("/home");
     } catch (err) {
       setIsLoading(false);
@@ -106,7 +108,7 @@ const SocialMedia = () => {
       <button className="signupBtn" onClick={submitRegisterHandler}>
         sign me up
       </button>
-      <UploadWidget/>
+      <UploadWidget />
     </>
   );
 };

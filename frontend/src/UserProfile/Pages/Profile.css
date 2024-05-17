@@ -306,3 +306,8 @@
     transform: rotate(360deg);
   }
 }
+
+
+.newArtworkFormContainer{
+  position: relative;
+}

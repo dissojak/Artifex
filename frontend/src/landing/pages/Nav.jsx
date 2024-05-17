@@ -19,7 +19,9 @@ const Nav = ({ data, openNav, closeNav }) => {
           <img src={Logo} alt="Artifex Logo" className="logo" />
         </Link>
         <div className="button-container">
-          <button className="signupBtn1">SIGN UP</button>
+          <Link to="/signup" className="text-decoration-link">
+            <button className="signupBtn1">SIGN UP</button>
+          </Link>
           {/* <Link to="/auth?signup=true" className="signupBtn1">
             SIGN UP
           </Link> */}

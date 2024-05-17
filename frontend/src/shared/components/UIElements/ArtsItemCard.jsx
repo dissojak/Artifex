@@ -55,8 +55,8 @@ const ArtsItem = (props) => {
     const oldBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/";
     const newBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
     
-    console.log("here the image ",imageUrl);
-    console.log(imageUrl.startsWith(oldBaseUrl));
+    // console.log("here the image ",imageUrl);
+    // console.log(imageUrl.startsWith(oldBaseUrl));
     if (imageUrl.startsWith(oldBaseUrl)) {
       return imageUrl.replace(oldBaseUrl, newBaseUrl);
     } else {
@@ -80,7 +80,7 @@ const ArtsItem = (props) => {
               <h5 className="card-title">{props.title}</h5>
             </Link>
             <p className="card-text">{props.price} DT</p>
-            {!props.collection && (
+            {!props.inCard && (
               <>
                 <button className="CartBtn">
                   <span className="IconContainer">
@@ -98,7 +98,7 @@ const ArtsItem = (props) => {
                 </button>
               </>
             )}
-            {props.collection && (<>
+            {props.inCard && (<>
               <button>pay</button>
               <button
                 className="btn-delete-artwork-from-card"

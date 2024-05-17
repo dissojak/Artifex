@@ -27,6 +27,19 @@
   left: 11.5vw;
 }
 
+.art-artist-form-container {
+  transform: scale(0.65);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 77vw;
+  height:min-content;
+  position:absolute;
+  right: -3vw;
+  top:-22vh;
+}
+
 .art-signin-header {
   font-size: 28px; /* Adjust font size as needed */
   color: #333;

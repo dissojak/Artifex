@@ -30,7 +30,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import PrivateRoute from "./BuildKite/PrivateRoute.jsx";
 
 import Landing from "./landing/pages/Landing.jsx";
-import NewArtwork from "./shared/components/FormElements/NewArtwork.jsx";
+import NewArtwork from "./shared/components/FormElements/NewArtworkSignup.jsx";
 import Artists from "./ArtistsPage/Pages/ArtistPage.jsx";
 import Museums from "./MuseumPage/Pages/MuseumPage.jsx";
 import UserProfile from "./UserProfile/Pages/UserProfile.jsx";
@@ -146,7 +146,7 @@ const App = () => {
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}
         <Route path="/:userId/places" element={<UserPlaces />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Auth signup={true}/>} />
         <Route path="/register" element={<RegisterScreen />} />
         {/* Add more routes as needed */}
         <Route path="/AddArtwork" element={<NewArtwork />} />

@@ -15,6 +15,7 @@ import PopupUsername from "../Components/PopupUsername.jsx";
 import PopupEmail from "../Components/PopupEmail.jsx";
 import { useSelector } from "react-redux";
 import PopupFollowers from "../Components/PopupFollowers.jsx";
+import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork.jsx";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -85,7 +86,11 @@ const Profile = () => {
               }`}
             >
               <div className="profile-image-container">
-                <img src={userInfo.image||DefaultImg} alt="Img-Profile" className="profile-image" />
+                <img
+                  src={userInfo.image || DefaultImg}
+                  alt="Img-Profile"
+                  className="profile-image"
+                />
               </div>
               <div className="profile-info">
                 <div className="profile-name">{userInfo.username}</div>
@@ -93,16 +98,22 @@ const Profile = () => {
               </div>
               {/*button section start */}
               <div className="cover-buttons-container">
-              <button className="button-profile-following" onClick={toggleModal}>
-        <p className="label-profile" style={{ color: "#7E3FFF", fontWeight: "bold" }}>
-          Following 700
-        </p>
-      </button>
-      {isOpen && (
-        <div className="modal-backdrop">
-          <PopupFollowers onClose={toggleModal} />
-        </div>
-      )}
+                <button
+                  className="button-profile-following"
+                  onClick={toggleModal}
+                >
+                  <p
+                    className="label-profile"
+                    style={{ color: "#7E3FFF", fontWeight: "bold" }}
+                  >
+                    Following 700
+                  </p>
+                </button>
+                {isOpen && (
+                  <div className="modal-backdrop">
+                    <PopupFollowers onClose={toggleModal} />
+                  </div>
+                )}
                 <button className="button-profile" onClick={activeSettingsMode}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -130,55 +141,46 @@ const Profile = () => {
                 </button>
               </div>
             </div>
-            {
-              isSettings && (
-                // setTimeout(() => {
-                //   return (
-                <div id="SettingsContainerCard">
-                  <button className="btn2" onClick={showChangePwHandler}>
-                    <div className="l">
-                      <img src="elements/password.svg" alt="" />
-                    </div>
-                    <h2 className="ch">Change Password</h2>
-                  </button>
-                  {showChangePw && (
-                    <Popup_pw
-                      showChangePwHandler={showChangePwHandler}
-                      // onPasswordChangeSuccess={handlePasswordChangeSuccess}
-                    />
-                  )}
-                  <button className="btn2" onClick={showChangeUsernameHandler}>
-                    <div className="l">
-                      <img src="elements/username_shape.svg" alt="" />
-                    </div>
-                    <h2 className="ch">Change Username</h2>
-                  </button>
-                  {showChangeUsername && (
-                    <PopupUsername
-                      showChangeUsernameHandler={showChangeUsernameHandler}
-                      // changeUsername={changeUsernameHandler}
-                    />
-                  )}
-                  <button className="btn23" onClick={showChangeEmailHandler}>
-                    <div className="l">
-                      <img src="elements/email.svg" alt="" />
-                    </div>
-                    <h2 className="ch">Change Email</h2>
-                  </button>
-                  {showChangeEmail && (
-                    <PopupEmail
-                      showChangeEmailHandler={showChangeEmailHandler}
-                    />
-                  )}
-                </div>
-              )
-              // )}, 1000)
-            }
-            {/*button section ending */}
+            {isSettings && (
+              <div id="SettingsContainerCard">
+                <button className="btn2" onClick={showChangePwHandler}>
+                  <div className="l">
+                    <img src="elements/password.svg" alt="" />
+                  </div>
+                  <h2 className="ch">Change Password</h2>
+                </button>
+                {showChangePw && (
+                  <Popup_pw
+                    showChangePwHandler={showChangePwHandler}
+                    // onPasswordChangeSuccess={handlePasswordChangeSuccess}
+                  />
+                )}
+                <button className="btn2" onClick={showChangeUsernameHandler}>
+                  <div className="l">
+                    <img src="elements/username_shape.svg" alt="" />
+                  </div>
+                  <h2 className="ch">Change Username</h2>
+                </button>
+                {showChangeUsername && (
+                  <PopupUsername
+                    showChangeUsernameHandler={showChangeUsernameHandler}
+                    // changeUsername={changeUsernameHandler}
+                  />
+                )}
+                <button className="btn23" onClick={showChangeEmailHandler}>
+                  <div className="l">
+                    <img src="elements/email.svg" alt="" />
+                  </div>
+                  <h2 className="ch">Change Email</h2>
+                </button>
+                {showChangeEmail && (
+                  <PopupEmail showChangeEmailHandler={showChangeEmailHandler} />
+                )}
+              </div>
+            )}
           </div>
-          {!isSettings && !isOpen && (
+          {!isSettings && !isOpen && userInfo.userType === "client" && (
             <>
-            
               <div className="Buttons-section3">
                 <div className="tab-container">
                   <input
@@ -250,10 +252,91 @@ const Profile = () => {
                   <div className="indicator"></div>
                 </div>
               </div>
-
               {/* Conditional rendering based on the selected tab */}
               {activeTab === "orders" && <Orders />}
               {activeTab === "artworks" && <SavedArtwork />}
+              {activeTab === "museums" && <PinnedMuseums />}
+            </>
+          )}
+          {!isSettings && !isOpen && (
+            userInfo.userType === "artist" &&
+            <>
+              <div className="Buttons-section3">
+                <div className="tab-container">
+                  <input
+                    type="radio"
+                    name="tab"
+                    id="tab1"
+                    className="tab tab--1"
+                    checked={activeTab === "orders"}
+                    onChange={() => setActiveTab("orders")}
+                  />
+                  <label
+                    className={`tab_label ${
+                      activeTab === "orders" ? "active" : ""
+                    }`}
+                    htmlFor="tab1"
+                  >
+                    <img
+                      src={getIcon("orders")}
+                      style={{ width: "1.2em", height: "1.2em" }}
+                      alt="Order Icon"
+                    />
+                    Booking Orders
+                  </label>
+
+                  <input
+                    type="radio"
+                    name="tab"
+                    id="tab2"
+                    className="tab tab--2"
+                    checked={activeTab === "artworks"}
+                    onChange={() => setActiveTab("artworks")}
+                  />
+                  <label
+                    className={`tab_label ${
+                      activeTab === "artworks" ? "active" : ""
+                    }`}
+                    htmlFor="tab2"
+                  >
+                    <img
+                      src={getIcon("artworks")}
+                      style={{ width: "1.2em", height: "1.2em" }}
+                      alt="Save Icon"
+                    />
+                    Artworks
+                  </label>
+
+                  <input
+                    type="radio"
+                    name="tab"
+                    id="tab3"
+                    className="tab tab--3"
+                    checked={activeTab === "museums"}
+                    onChange={() => setActiveTab("museums")}
+                  />
+                  <label
+                    className={`tab_label ${
+                      activeTab === "museums" ? "active" : ""
+                    }`}
+                    htmlFor="tab3"
+                  >
+                    <img
+                      src={getIcon("museums")}
+                      style={{ width: "1.2em", height: "1.2em" }}
+                      alt="Pin Icon"
+                    />
+                    Open Order
+                  </label>
+
+                  <div className="indicator"></div>
+                </div>
+              </div>
+              {/* Conditional rendering based on the selected tab */}
+              {activeTab === "orders" && <Orders />}
+              <div className="newArtworkFormContainer">
+                {activeTab === "artworks" && <NewArtworkArtist />}
+              </div>
               {activeTab === "museums" && <PinnedMuseums />}
             </>
           )}

@@ -9,7 +9,7 @@ const CardList = (props) => {
         {props.collection.map(artwork => (
         <ArtsItem
           passKey={true}
-          collection={true}
+          inCard={true}
           key={artwork._id}
           id={artwork._id}
           Image={artwork.imageArtwork}
