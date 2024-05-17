@@ -23,6 +23,8 @@ import {
   useFollowedArtistsMutation,
   useGetFollowersMutation,
 } from "../../slices/followSlice.js";
+import ArtistArtworks from "../Components/ArtistArtworks.jsx";
+import { useGetArtworksOfArtistMutation } from "../../slices/artworksSlice.js";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -83,6 +85,25 @@ const Profile = () => {
   const [followers, setFollowers] = useState();
   const [getFollowers] = useGetFollowersMutation();
   const [getFollowing] = useFollowedArtistsMutation();
+  const [artworks, setArtworks] = useState();
+  const [getArtworks, { isLoading }] = useGetArtworksOfArtistMutation();
+
+  useEffect(() => {
+    if (userInfo.userType === "artist") {
+      const request = async () => {
+        try {
+          const response = await getArtworks({
+            artistId: userInfo._id,
+          });
+          // console.log(response.data.artworks);
+          setArtworks(response.data.artworks);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
+      };
+      request();
+    }
+  }, []);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -141,7 +162,7 @@ const Profile = () => {
                         className="label-profile"
                         style={{ color: "#7E3FFF", fontWeight: "bold" }}
                       >
-                        Following {followers && <>{followers.length}</>} 
+                        Following {followers && <>{followers.length}</>}
                       </p>
                     </button>
                     {isOpen && (
@@ -405,7 +426,9 @@ const Profile = () => {
               {/* Conditional rendering based on the selected tab */}
               {activeTab === "orders" && <Orders />}
               <div className="newArtworkFormContainer">
-                {activeTab === "artworks" && <NewArtworkArtist />}
+                {activeTab === "artworks" && artworks && (
+                  <ArtistArtworks artworks={artworks} />
+                )}
               </div>
               {activeTab === "museums" && <PinnedMuseums />}
             </>

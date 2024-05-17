@@ -1,255 +1,248 @@
 .artwork-details {
-    transform: scale(1.1);
-    margin: 20px auto; 
-    margin-top: 0;
-    padding: 20px;
-    color: #292929;
-  }
-  
-  .artwork-details h1 {
-    font-size: 2.5rem;
-    font-family: 'RalewayEB','Raleway-extrabold' ;
-  }
+  transform: scale(1.1);
+  margin: 20px auto;
+  margin-top: 0;
+  padding: 20px;
+  color: #292929;
+}
 
-  .ratingArtworkDetailsContainer{
-    display: flex; /* Uses flexbox to align children side by side */
-    align-items: center; /* Vertically center aligns the items */
-    gap: 8px;
-  }
-  
-  .price {
-    font-size: 1.5rem;
-    margin-top: 0px;
-    font-family: 'DubaiB','Dubai-bold' ;
+.artwork-details h1 {
+  font-size: 2.5rem;
+  font-family: "RalewayEB", "Raleway-extrabold";
+  text-transform: capitalize;
+}
 
-  }
-  
-  .ratings {
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 7px;
-    font-family: 'Raleway','Raleway-Regular' ;
+.ratingArtworkDetailsContainer {
+  display: flex; /* Uses flexbox to align children side by side */
+  align-items: center; /* Vertically center aligns the items */
+  gap: 8px;
+}
 
-  }
-  
-  .stars {
-    color: #ffc107; 
-  }
-  
-  .description {
-    margin-top: 10px;
-    /* line-height: 1.5; */
-    font-family: 'Raleway','Raleway-Regular' ;
-    font-size: 18px;
-    height: 70px;
-  }
-  
-  .category {
-    margin-top: 15px;
-  }
-  
-  .buttonsartsection {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 10px; 
-  }
-  
-  .add-to-cart  {
-    background-color: #7E3FFF; 
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    
-  }
-   .buy-now {
-    background-color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #7e3fff;
-    border: 2px solid #7e3fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    
-  }
+.price {
+  font-size: 1.5rem;
+  margin-top: 0px;
+  font-family: "DubaiB", "Dubai-bold";
+}
 
-  
-  .special-rating-commentsection {
-    display: inline-block;
-  }
-  
-  .special-rating-commentsection input {
-    display: none;
-  }
-  
-  .special-rating-commentsection label {
-    float: right;
-    cursor: pointer;
-    color: #ccc;
-    transition: color 0.3s;
-  }
-  
-  .special-rating-commentsection label:before {
-    content: '\2605';
-    font-size: 25px;
-  }
-  
-  .special-rating-commentsection input:checked ~ label,
-  .special-rating-commentsection label:hover,
-  .special-rating-commentsection label:hover ~ label {
-    color:#7e3fff ;
-    transition: color 0.3s;
-  }
-  .buttoncmt {
-    cursor: pointer;
-    --width: 560px;
-    --height: 55px;
-    --tooltip-height: 35px;
-    --tooltip-width: 110px;
-    --gap-between-tooltip-to-button: 18px;
-    --button-color: #ffffff;
-    --tooltip-color: #fff;
-    border: 2px solid #7e3fff;
-    width: var(--width);
-    height: var(--height);
-    background: var(--button-color);
-    position: relative;
-    text-align: center;
-    border-radius: 0.45em;
-    font-family: "Arial";
-    transition: background 0.3s;
-  }
-  
-  .buttoncmt::before {
-    position: absolute;
-    content: attr(data-tooltip);
-    width: var(--tooltip-width);
-    height: var(--tooltip-height);
-    background-color: #555;
-    font-size: 0.9rem;
-    color: #fff;
-    border-radius: 0.25em;
-    line-height: var(--tooltip-height);
-    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
-    left: calc(50% - var(--tooltip-width) / 2);
-  }
-  
-  .buttoncmt::after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: #555;
-    left: calc(50% - 10px);
-    bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
-  }
-  
-  .buttoncmt::after,
-  .buttoncmt::before {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s;
-  }
-  
-  .textcmt {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .button-wrappercmt,
-  .textcmt,
-  .iconcmt {
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    color: #fff;
-  }
-  
-  .textcmt {
-    top: 0;
-    color: #7e3fff;
-  }
-  
-  .textcmt,
-  .iconcmt {
-    transition: top 0.5s;
-  }
-  
-  .iconcmt {
-    color: #fff;
-    top: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .iconcmt svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .buttoncmt:hover {
-    background: #7e3fff;
-  }
-  
-  .buttoncmt:hover .textcmt {
-    top: -100%;
-  }
-  
-  .buttoncmt:hover .iconcmt {
-    top: 0;
-  }
-  
-  .buttoncmt:hover:before,
-  .buttoncmt:hover:after {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .buttoncmt:hover:after {
-    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
-  }
-  
-  .buttoncmt:hover:before {
-    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
-  }
+.ratings {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 7px;
+  font-family: "Raleway", "Raleway-Regular";
+}
 
+.stars {
+  color: #ffc107;
+}
 
+.description {
+  margin-top: 10px;
+  /* line-height: 1.5; */
+  font-family: "Raleway", "Raleway-Regular";
+  font-size: 18px;
+  height: 70px;
+}
 
+.category {
+  margin-top: 15px;
+  text-transform: capitalize;
+}
 
+.buttonsartsection {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
-  .buttoncart {
-    cursor: pointer;
-    --width: 560px;
-    --height: 55px;
-    --tooltip-height: 35px;
-    --tooltip-width: 90px;
-    --gap-between-tooltip-to-button: 18px;
-    --button-color: #7e3fff;
-    --tooltip-color: #fff;
-    border: 2px solid #7e3fff;
-    width: var(--width);
-    height: var(--height);
-    background: var(--button-color);
-    position: relative;
-    text-align: center;
-    border-radius: 0.45em;
-    font-family: "Arial";
-    transition: background 0.3s;
-  }
-  /*
+.add-to-cart {
+  background-color: #7e3fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+.buy-now {
+  background-color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #7e3fff;
+  border: 2px solid #7e3fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.special-rating-commentsection {
+  display: inline-block;
+}
+
+.special-rating-commentsection input {
+  display: none;
+}
+
+.special-rating-commentsection label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.special-rating-commentsection label:before {
+  content: "\2605";
+  font-size: 25px;
+}
+
+.special-rating-commentsection input:checked ~ label,
+.special-rating-commentsection label:hover,
+.special-rating-commentsection label:hover ~ label {
+  color: #7e3fff;
+  transition: color 0.3s;
+}
+.buttoncmt {
+  cursor: pointer;
+  --width: 560px;
+  --height: 55px;
+  --tooltip-height: 35px;
+  --tooltip-width: 110px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #ffffff;
+  --tooltip-color: #fff;
+  border: 2px solid #7e3fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: background 0.3s;
+}
+
+.buttoncmt::before {
+  position: absolute;
+  content: attr(data-tooltip);
+  width: var(--tooltip-width);
+  height: var(--tooltip-height);
+  background-color: #555;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: 0.25em;
+  line-height: var(--tooltip-height);
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+  left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.buttoncmt::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #555;
+  left: calc(50% - 10px);
+  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.buttoncmt::after,
+.buttoncmt::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.textcmt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrappercmt,
+.textcmt,
+.iconcmt {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.textcmt {
+  top: 0;
+  color: #7e3fff;
+}
+
+.textcmt,
+.iconcmt {
+  transition: top 0.5s;
+}
+
+.iconcmt {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconcmt svg {
+  width: 24px;
+  height: 24px;
+}
+
+.buttoncmt:hover {
+  background: #7e3fff;
+}
+
+.buttoncmt:hover .textcmt {
+  top: -100%;
+}
+
+.buttoncmt:hover .iconcmt {
+  top: 0;
+}
+
+.buttoncmt:hover:before,
+.buttoncmt:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.buttoncmt:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.buttoncmt:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+.buttoncart {
+  cursor: pointer;
+  --width: 560px;
+  --height: 55px;
+  --tooltip-height: 35px;
+  --tooltip-width: 90px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #7e3fff;
+  --tooltip-color: #fff;
+  border: 2px solid #7e3fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: background 0.3s;
+}
+/*
   .buttoncart::before {
     position: absolute;
     content: attr(data-tooltip);
@@ -275,75 +268,75 @@
     bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
   }
   */
-  .buttoncart::after,
-  .buttoncart::before {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s;
-  }
-  
-  .textcart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .button-wrappercart,
-  .textcart,
-  .iconcart {
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    color: #fff;
-  }
-  
-  .textcart {
-    top: 0;
-    color: #ffffff;
-  }
-  
-  .textcart,
-  .iconcart {
-    transition: top 0.5s;
-  }
-  
-  .iconcart {
-    color: #fff;
-    top: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .iconcart svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .buttoncart:hover {
-    background: #7e3fff;
-  }
-  
-  .buttoncart:hover .textcart {
-    top: -100%;
-  }
-  
-  .buttoncart:hover .iconcart {
-    top: 0;
-  }
-  
-  .buttoncart:hover:before,
-  .buttoncart:hover:after {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .buttoncart:hover:after {
-    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
-  }
-  
-  .buttoncart:hover:before {
-    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
-  }
+.buttoncart::after,
+.buttoncart::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.textcart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrappercart,
+.textcart,
+.iconcart {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.textcart {
+  top: 0;
+  color: #ffffff;
+}
+
+.textcart,
+.iconcart {
+  transition: top 0.5s;
+}
+
+.iconcart {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconcart svg {
+  width: 24px;
+  height: 24px;
+}
+
+.buttoncart:hover {
+  background: #7e3fff;
+}
+
+.buttoncart:hover .textcart {
+  top: -100%;
+}
+
+.buttoncart:hover .iconcart {
+  top: 0;
+}
+
+.buttoncart:hover:before,
+.buttoncart:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.buttoncart:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.buttoncart:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}

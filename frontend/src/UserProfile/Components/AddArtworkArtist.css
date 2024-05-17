@@ -1,0 +1,33 @@
+.input {
+  max-width: 190px;
+  display: none;
+}
+
+.labelFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
+  height: 190px;
+  border: 2px dashed #ccc;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  color: #404040;
+  cursor: pointer;
+}
+
+.addFileArtworkContainer {
+position: relative;
+top:6vh;
+left: 1vw;
+}
+
+.gallery-container-artworksArtist{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 20px;
+  position: relative;
+  right: 10vw;
+}

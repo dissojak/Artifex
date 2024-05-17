@@ -8,6 +8,7 @@ import settingsIcon from "../../../assets/images/settings.png";
 import questionIcon from "../../../assets/images/question.png";
 import logoutIcon from "../../../assets/images/log-out.png";
 import purchasesIcon from "../../../assets/images/purchases.png";
+import PlansHisotyIcon from "../../../assets/images/PlansHistory.svg";
 import logoutIconActive from "../../../assets/images/log-out_m3ebi.png";
 import drop from "../../../assets/images/drop.svg";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,9 @@ function MenuDropdown() {
   const [isLogoutHovered, setIsLogoutHovered] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
+  const isClient = userInfo.userType === "client";
+  const isArtist = userInfo.userType === "artist";
+  const isAdmin = userInfo.userType === "admin";
 
   const menuToggle = () => {
     setIsActive(!isActive);
@@ -72,10 +76,10 @@ function MenuDropdown() {
       />
       <div className={isActive ? "menu active" : "menu"}>
         <h3 style={{ textAlign: "left", fontFamily: "Raleway-Bold" }}>
-        {userInfo.username}
+          {userInfo.username}
         </h3>
         <p style={{ textAlign: "left", fontFamily: "Raleway-Regular" }}>
-        {userInfo.email}
+          {userInfo.email}
         </p>
         <div className="menu-item">
           <img src={userIcon} alt="My Profile" />
@@ -83,16 +87,22 @@ function MenuDropdown() {
             My profile
           </Link>
         </div>
-        <div className="menu-item">
-          <img src={purchasesIcon} alt="Edit Profile" />
-          <Link to="/collection" onClick={() => setIsActive(false)}>
-          Collection
-          </Link>
-        </div>
-        <div className="menu-item">
-          <img src={editIcon} alt="Edit Profile" />
-          <a href="#">Edit profile</a>
-        </div>
+        {isClient && (
+          <div className="menu-item">
+            <img src={purchasesIcon} alt="Edit Profile" />
+            <Link to="/collection" onClick={() => setIsActive(false)}>
+              Collection
+            </Link>
+          </div>
+        )}
+        {isArtist && (
+          <div className="menu-item">
+            <img src={PlansHisotyIcon} alt="Edit Profile" />
+            <Link to="/planshistory" onClick={() => setIsActive(false)}>
+              Plans History
+            </Link>
+          </div>
+        )}
         <div className="menu-item">
           <img src={settingsIcon} alt="Settings" />
           <a href="#">Setting</a>
