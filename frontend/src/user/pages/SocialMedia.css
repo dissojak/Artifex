@@ -74,6 +74,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
+    background-color: #F6F6F6;
   }
   select,
   textarea {
