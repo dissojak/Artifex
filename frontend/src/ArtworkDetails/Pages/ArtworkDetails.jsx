@@ -23,7 +23,7 @@ const ArtworkDetails = () => {
       try {
         setIsLoading(true);
         const res = await getArtwork(artworkId);
-        console.log(res.data.artwork);
+        // console.log(res.data.artwork);
         setArtwork(res.data.artwork);
         setIsLoading(false);
       } catch (err) {
@@ -36,6 +36,7 @@ const ArtworkDetails = () => {
       try {
         setIsLoading(true);
         const res = await getReviews(artworkId);
+        console.log("res : ",res);
         console.log(res.data);
         setReviews(res.data);
         setIsLoading(false);

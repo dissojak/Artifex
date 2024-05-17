@@ -32,10 +32,16 @@ exports.getReviewsByArtworkId = asyncHandler(async (req, res, next) => {
     );
   }
 
-  if (!reviews || reviews.length === 0) {
+  if (!reviews) {
     return next(
       new HttpError("Could not find reviews for the provided artwork ID.", 404)
     );
+  }
+
+  if (reviews.length === 0) {
+    res.status(200).json({
+      reviews:[]
+    });
   }
 
   res.status(200).json({
