@@ -9,6 +9,12 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         method: 'GET'
       }),
     }),
+    getArtistOrders: builder.mutation({
+      query: () => ({
+        url: `${ORDERS_URL}/artist`,
+        method: 'GET'
+      }),
+    }),
     makeOrder: builder.mutation({
       query: (data) => ({
         url: `${ORDERS_URL}/new`,
@@ -21,5 +27,6 @@ export const orderApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetClientOrdersMutation,
+  useGetArtistOrdersMutation,
   useMakeOrderMutation,
 } = orderApiSlice;

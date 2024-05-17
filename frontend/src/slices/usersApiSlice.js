@@ -56,6 +56,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateProfileImage: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/update-profile-image`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -68,4 +75,5 @@ export const {
   useAddArtworkToPanierMutation,
   useGetPanierMutation,
   useRemoveArtworkFromPanierMutation,
+  useUpdateProfileImageMutation,
 } = userApiSlice;

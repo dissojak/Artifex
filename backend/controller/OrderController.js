@@ -44,10 +44,16 @@ exports.getArtistOrders = asyncHandler(async (req, res, next) => {
   try {
     const orders = await Order.find({ artistId }).populate("clientId");
 
-    if (!orders || orders.length === 0) {
+    if (!orders) {
       return res
         .status(404)
         .json({ message: "No orders found for this artist" });
+    }
+
+    if (orders.length === 0) {
+      return res.status(200).json({
+        message: "No orders found for this artist , he have 0"
+      });
     }
 
     res.status(200).json({
@@ -238,7 +244,7 @@ exports.rejectOrder = asyncHandler(async (req, res, next) => {
     console.log(
       "Client's socket ID not found, could not send real-time notification."
     );
-  }  
+  }
 
   res.status(200).json({ message: "Order reject  successfully", order });
 });
@@ -298,7 +304,7 @@ exports.submitOrder = asyncHandler(async (req, res, next) => {
       "Client's socket ID not found, could not send real-time notification."
     );
   }
-  
+
   res.status(200).json({ message: "Order submitted successfully", order });
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import SaveIcon from "../../assets/images/saveblack.svg";
 import SaveIconActive from "../../assets/images/savepurple.svg";
@@ -16,6 +16,13 @@ import PopupEmail from "../Components/PopupEmail.jsx";
 import { useSelector } from "react-redux";
 import PopupFollowers from "../Components/PopupFollowers.jsx";
 import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork.jsx";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload.jsx";
+import PopupFollowing from "../Components/PopupFollowing.jsx";
+import { toast } from "react-toastify";
+import {
+  useFollowedArtistsMutation,
+  useGetFollowersMutation,
+} from "../../slices/followSlice.js";
 
 const Profile = () => {
   const [isSettings, setIsSettings] = useState(false);
@@ -47,10 +54,35 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    const req = async () => {
+      if (userInfo.userType === "client") {
+        try {
+          const res = await getFollowing().unwrap();
+          // console.log("following : ", res.followed);
+          setFollowers(res.followed);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
+      } else if (userInfo.userType === "artist") {
+        try {
+          const res = await getFollowers().unwrap();
+          // console.log("this : ",res);
+          setFollowers(res.followers);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
+      }
+    };
+    req();
+  }, []);
   const activeSettingsMode = () => {
     setIsSettings(!isSettings);
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [followers, setFollowers] = useState();
+  const [getFollowers] = useGetFollowersMutation();
+  const [getFollowing] = useFollowedArtistsMutation();
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -85,34 +117,65 @@ const Profile = () => {
                   : "profileInfoContainer"
               }`}
             >
-              <div className="profile-image-container">
+              {/* <div className="profile-image-container">
                 <img
                   src={userInfo.image || DefaultImg}
                   alt="Img-Profile"
                   className="profile-image"
                 />
-              </div>
+              </div> */}
+              <ImageUpload />
               <div className="profile-info">
                 <div className="profile-name">{userInfo.username}</div>
                 <div className="profile-email">{userInfo.email}</div>
               </div>
               {/*button section start */}
               <div className="cover-buttons-container">
-                <button
-                  className="button-profile-following"
-                  onClick={toggleModal}
-                >
-                  <p
-                    className="label-profile"
-                    style={{ color: "#7E3FFF", fontWeight: "bold" }}
-                  >
-                    Following 700
-                  </p>
-                </button>
-                {isOpen && (
-                  <div className="modal-backdrop">
-                    <PopupFollowers onClose={toggleModal} />
-                  </div>
+                {userInfo.userType === "client" && (
+                  <>
+                    <button
+                      className="button-profile-following"
+                      onClick={toggleModal}
+                    >
+                      <p
+                        className="label-profile"
+                        style={{ color: "#7E3FFF", fontWeight: "bold" }}
+                      >
+                        Following {followers && <>{followers.length}</>} 
+                      </p>
+                    </button>
+                    {isOpen && (
+                      <div className="modal-backdrop">
+                        <PopupFollowing
+                          onClose={toggleModal}
+                          followers={followers}
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
+                {userInfo.userType === "artist" && (
+                  <>
+                    <button
+                      className="button-profile-following"
+                      onClick={toggleModal}
+                    >
+                      <p
+                        className="label-profile"
+                        style={{ color: "#7E3FFF", fontWeight: "bold" }}
+                      >
+                        {followers && <>{followers.length}</>} Followers
+                      </p>
+                    </button>
+                    {isOpen && (
+                      <div className="modal-backdrop">
+                        <PopupFollowers
+                          onClose={toggleModal}
+                          followers={followers}
+                        />
+                      </div>
+                    )}
+                  </>
                 )}
                 <button className="button-profile" onClick={activeSettingsMode}>
                   <svg
@@ -179,159 +242,166 @@ const Profile = () => {
               </div>
             )}
           </div>
-          {!isSettings && !isOpen && userInfo.userType === "client" && (
+          {!isSettings && userInfo.userType === "client" && (
             <>
-              <div className="Buttons-section3">
-                <div className="tab-container">
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab1"
-                    className="tab tab--1"
-                    checked={activeTab === "orders"}
-                    onChange={() => setActiveTab("orders")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "orders" ? "active" : ""
-                    }`}
-                    htmlFor="tab1"
-                  >
-                    <img
-                      src={getIcon("orders")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Order Icon"
-                    />
-                    Booking Orders
-                  </label>
+              {!isOpen && (
+                <>
+                  <div className="Buttons-section3">
+                    <div className="tab-container">
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab1"
+                        className="tab tab--1"
+                        checked={activeTab === "orders"}
+                        onChange={() => setActiveTab("orders")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "orders" ? "active" : ""
+                        }`}
+                        htmlFor="tab1"
+                      >
+                        <img
+                          src={getIcon("orders")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Order Icon"
+                        />
+                        Booking Orders
+                      </label>
 
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab2"
-                    className="tab tab--2"
-                    checked={activeTab === "artworks"}
-                    onChange={() => setActiveTab("artworks")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "artworks" ? "active" : ""
-                    }`}
-                    htmlFor="tab2"
-                  >
-                    <img
-                      src={getIcon("artworks")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Save Icon"
-                    />
-                    Saved Artworks
-                  </label>
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab2"
+                        className="tab tab--2"
+                        checked={activeTab === "artworks"}
+                        onChange={() => setActiveTab("artworks")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "artworks" ? "active" : ""
+                        }`}
+                        htmlFor="tab2"
+                      >
+                        <img
+                          src={getIcon("artworks")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Save Icon"
+                        />
+                        Saved Artworks
+                      </label>
 
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab3"
-                    className="tab tab--3"
-                    checked={activeTab === "museums"}
-                    onChange={() => setActiveTab("museums")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "museums" ? "active" : ""
-                    }`}
-                    htmlFor="tab3"
-                  >
-                    <img
-                      src={getIcon("museums")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Pin Icon"
-                    />
-                    Pinned Museums
-                  </label>
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab3"
+                        className="tab tab--3"
+                        checked={activeTab === "museums"}
+                        onChange={() => setActiveTab("museums")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "museums" ? "active" : ""
+                        }`}
+                        htmlFor="tab3"
+                      >
+                        <img
+                          src={getIcon("museums")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Pin Icon"
+                        />
+                        Pinned Museums
+                      </label>
 
-                  <div className="indicator"></div>
-                </div>
-              </div>
+                      <div className="indicator"></div>
+                    </div>
+                  </div>
+                </>
+              )}
               {/* Conditional rendering based on the selected tab */}
               {activeTab === "orders" && <Orders />}
               {activeTab === "artworks" && <SavedArtwork />}
               {activeTab === "museums" && <PinnedMuseums />}
             </>
           )}
-          {!isSettings && !isOpen && (
-            userInfo.userType === "artist" &&
+          {!isSettings && userInfo.userType === "artist" && (
             <>
-              <div className="Buttons-section3">
-                <div className="tab-container">
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab1"
-                    className="tab tab--1"
-                    checked={activeTab === "orders"}
-                    onChange={() => setActiveTab("orders")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "orders" ? "active" : ""
-                    }`}
-                    htmlFor="tab1"
-                  >
-                    <img
-                      src={getIcon("orders")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Order Icon"
-                    />
-                    Booking Orders
-                  </label>
+              {!isOpen && (
+                <>
+                  <div className="Buttons-section3">
+                    <div className="tab-container">
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab1"
+                        className="tab tab--1"
+                        checked={activeTab === "orders"}
+                        onChange={() => setActiveTab("orders")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "orders" ? "active" : ""
+                        }`}
+                        htmlFor="tab1"
+                      >
+                        <img
+                          src={getIcon("orders")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Order Icon"
+                        />
+                        Booking Orders
+                      </label>
 
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab2"
-                    className="tab tab--2"
-                    checked={activeTab === "artworks"}
-                    onChange={() => setActiveTab("artworks")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "artworks" ? "active" : ""
-                    }`}
-                    htmlFor="tab2"
-                  >
-                    <img
-                      src={getIcon("artworks")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Save Icon"
-                    />
-                    Artworks
-                  </label>
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab2"
+                        className="tab tab--2"
+                        checked={activeTab === "artworks"}
+                        onChange={() => setActiveTab("artworks")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "artworks" ? "active" : ""
+                        }`}
+                        htmlFor="tab2"
+                      >
+                        <img
+                          src={getIcon("artworks")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Save Icon"
+                        />
+                        Artworks
+                      </label>
 
-                  <input
-                    type="radio"
-                    name="tab"
-                    id="tab3"
-                    className="tab tab--3"
-                    checked={activeTab === "museums"}
-                    onChange={() => setActiveTab("museums")}
-                  />
-                  <label
-                    className={`tab_label ${
-                      activeTab === "museums" ? "active" : ""
-                    }`}
-                    htmlFor="tab3"
-                  >
-                    <img
-                      src={getIcon("museums")}
-                      style={{ width: "1.2em", height: "1.2em" }}
-                      alt="Pin Icon"
-                    />
-                    Open Order
-                  </label>
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab3"
+                        className="tab tab--3"
+                        checked={activeTab === "museums"}
+                        onChange={() => setActiveTab("museums")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "museums" ? "active" : ""
+                        }`}
+                        htmlFor="tab3"
+                      >
+                        <img
+                          src={getIcon("museums")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Pin Icon"
+                        />
+                        Open Order
+                      </label>
 
-                  <div className="indicator"></div>
-                </div>
-              </div>
+                      <div className="indicator"></div>
+                    </div>
+                  </div>
+                </>
+              )}
               {/* Conditional rendering based on the selected tab */}
               {activeTab === "orders" && <Orders />}
               <div className="newArtworkFormContainer">

@@ -8,7 +8,7 @@ router.post("/isFollowing",MW.protect,FC.isFollowing);
 router.put("/followArtist",MW.protect,FC.followArtist);
 router.delete("/unfollowArtist",MW.protect,FC.unfollowArtist);
 router.get("/followers",MW.protect,FC.getFollowers);
-router.get("/FollowedArtists",MW.protect,FC.getFollowedArtists);
+router.get("/followedArtists",MW.protect,FC.getFollowedArtists);
 router.delete("/removeFollower/:clientId",MW.protect,FC.removeFollower);
 
 

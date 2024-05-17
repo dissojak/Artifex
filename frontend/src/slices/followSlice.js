@@ -18,12 +18,30 @@ export const followApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     unFollowArtist: builder.mutation({
-        query: (data) => ({
-          url: `${FOLLOW_URL}/unfollowArtist`,
-          method: "DELETE",
-          body: data,
-        }),
+      query: (data) => ({
+        url: `${FOLLOW_URL}/unfollowArtist`,
+        method: "DELETE",
+        body: data,
       }),
+    }),
+    getFollowers: builder.mutation({
+      query: () => ({
+        url: `${FOLLOW_URL}/followers`,
+        method: "GET",
+      }),
+    }),
+    FollowedArtists: builder.mutation({
+      query: () => ({
+        url: `${FOLLOW_URL}/followedArtists`,
+        method: "GET",
+      }),
+    }),
+    removeFollower: builder.mutation({
+      query: (clientId) => ({
+        url: `${FOLLOW_URL}/removeFollower/${clientId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -31,5 +49,7 @@ export const {
   useIsFollowingMutation,
   useFollowArtistMutation,
   useUnFollowArtistMutation,
-  //   useUpdateUserMutation,
+  useGetFollowersMutation,
+  useFollowedArtistsMutation,
+  useRemoveFollowerMutation,
 } = followApiSlice;

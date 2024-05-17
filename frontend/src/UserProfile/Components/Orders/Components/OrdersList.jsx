@@ -7,7 +7,7 @@ const OrdersList = (props) => {
       <tbody>
         {props.items.map((order) => (
           <OrdersItem
-            key={order.id}
+            key={order._id}
             id={order.orderId}
             artist={order.artistId.username}
             description={order.description}
