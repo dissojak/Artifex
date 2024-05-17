@@ -42,7 +42,7 @@ const ImageUpload = () => {
         }
       );
       const imageUrl = response.data.secure_url;
-      console.log(imageUrl);
+      // console.log(imageUrl);
       try {
         const res = await updateImage({
           _id: userInfo._id,
@@ -57,7 +57,7 @@ const ImageUpload = () => {
             image: imageUrl,
           };
         }
-        console.log(updateUserInfo);
+        // console.log(updateUserInfo);
         dispatch(setCredentials(updateUserInfo));
         toast.success("image updated successfully");
       } catch (err) {
