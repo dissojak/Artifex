@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import "./MenuDropdown.css"; // Ensure the CSS file is named appropriately
 import avatar from "../../../assets/images/default_profile_img.jpg"; // Ensure paths are correct
 import userIcon from "../../../assets/images/usertest.png";
+import eventIcon from "../../../assets/images/evenement.png";
 import editIcon from "../../../assets/images/edit.png";
 import settingsIcon from "../../../assets/images/settings.png";
 import questionIcon from "../../../assets/images/question.png";
@@ -103,6 +104,12 @@ function MenuDropdown() {
             </Link>
           </div>
         )}
+        <div className="menu-item">
+          <img src={eventIcon} alt="Edit Profile" />
+          <Link to="/########" onClick={() => setIsActive(false)}>
+            Events
+          </Link>
+        </div>
         <div className="menu-item">
           <img src={settingsIcon} alt="Settings" />
           <a href="#">Setting</a>
