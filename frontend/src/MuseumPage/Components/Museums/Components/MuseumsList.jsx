@@ -23,18 +23,6 @@ const MuseumList = (props) => {
             artistsEntered={museum.artistsEntered}
             clientsEntered={museum.clientsEntered}
             artworkIds={museum.artworkIds}
-            //   rating={museum.rating.rating||0}
-
-            // Image: MuseumImage,
-            // Start: "18 August",
-            // Ends: "23 August",
-            // Price: "10",
-            // Name: "Creativity Conclave",
-            // Description:
-            //   "Uniting artists to inspire and innovate. Workshops, discussions, and showcases await!",
-            // Categorie: "Digital Art",
-            // Range: "76",
-            // Profile: ProfileImage,
           />
         ))}
       </div>

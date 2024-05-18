@@ -4,9 +4,12 @@ import DefaultImg from "../../assets/images/default_profile_img.jpg";
 import { useUpdateViewMutation } from "../../slices/reviewSlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const ArtImgSection = (props) => {
   const artwork = props.artwork;
   const artist = props.artwork.id_artist;
+  const { userInfo } = useSelector((state) => state.auth);
+
 
   const [updateView] = useUpdateViewMutation();
   useEffect(() => {
@@ -54,12 +57,12 @@ const ArtImgSection = (props) => {
         </Link>
       </div>
       <a
-        href={updateImageUrl(artwork.imageArtwork)}
+        href={(userInfo._id===artwork.Buyer &&artwork.imageArtwork)||updateImageUrl(artwork.imageArtwork)}
         style={{ cursor: "pointer" }}
         target="_blank"
       >
         <img
-          src={updateImageUrl(artwork.imageArtwork)}
+          src={(userInfo._id===artwork.Buyer &&artwork.imageArtwork)||updateImageUrl(artwork.imageArtwork)}
           alt="Placeholder"
           className="image-containertest"
         />

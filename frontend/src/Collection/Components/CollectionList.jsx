@@ -1,12 +1,12 @@
 import React from 'react';
-import ArtsItem from '../../shared/components/UIElements/ArtsItemCard';
+import ArtsItemCollection from '../../shared/components/UIElements/ArtsItemCardCollection';
 
 const CollectionList = (props) => {
   return (
     <>
       <div className="gallery-container2">
         {props.collection.map(artwork => (
-        <ArtsItem
+        <ArtsItemCollection
           passKey={true}
           collection={true}
           key={artwork._id}
