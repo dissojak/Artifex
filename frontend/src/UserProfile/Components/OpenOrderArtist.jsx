@@ -1,6 +1,6 @@
 import React, {  } from "react";
 import "./OpenOrderArtist.css";
-import Adem from "../../assets/images/Adem.png";
+// import Adem from "../../assets/images/Adem.png";
 import { useSelector } from "react-redux";
 const OpenOrderArtist = () => {
     const { userInfo } = useSelector((state) => state.auth);
