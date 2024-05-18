@@ -108,18 +108,19 @@ const NewArtworkArtist = (props) => {
                 value={formData.price}
                 onChange={handleChange}
               />
-              <p style={{ color: "black" }}>Categorie</p>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              >
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
+               <p style={{ color: "black" }}>Categorie</p>
+      <select
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+      >
+        <option value="" disabled>Select a category</option> 
+        {categories.map((category) => (
+          <option key={category._id} value={category._id}>
+            {category.name}
+          </option>
+        ))}
+      </select>
               <p style={{ color: "black" }}>Description</p>
               <textarea
                 name="description"

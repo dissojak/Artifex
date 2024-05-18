@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useRegisterMutation } from "../../slices/usersApiSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
 import { useAddArtworkSignupMutation } from "../../slices/artworksSlice";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { toast } from "react-toastify";
 import UploadWidget from "../../shared/components/FormElements/UploadWidget";
-
+import Logo from "../../assets/images/Logo_Artifex.png";
+import "./SocialMedia.css";
 const SocialMedia = () => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -104,10 +105,69 @@ const SocialMedia = () => {
   return (
     <>
       {isLoading && <LoadingSpinner asOverlay />}
-      <h1>social media</h1>
-      <button className="signupBtn" onClick={submitRegisterHandler}>
-        sign me up
+     
+      <div>
+          <div
+            className="art-form-backgroundSocialMedia"
+            style={{
+              backgroundImage: `url(${"/elements/background_shape_Auth.svg"})`,
+            }}
+          >
+               <Link to="/home">
+          <img src={Logo} alt="Artifex Logo" className="logoNavArtsocialmedia" />
+        </Link>
+          </div>
+         
+          <div className="art-signin-form-containerSocialMedia">
+            <div className="art-signin-headerSocialMedia">Add Social Media</div>
+
+            
+              <div className="art-signin-stepSocialMedia">
+              
+                <p style={{ color: "black",fontFamily:"Montserrat-bold" }}>WhatsApp</p>
+                <input
+                  className="newArtworkInputsSocialMedia"
+                 
+                  placeholder="https://wa.me/+216"
+                  name="Number"
+                  // value={JSON.parse(localStorage.getItem("newArtworkData1")).title||formData.title}
+               
+                />
+                <p style={{ color: "black",fontFamily:"Montserrat-bold"  }}>Instagram</p>
+                <input
+                 
+                  className="newArtworkInputsSocialMedia"
+                  name="Instagram"
+                  placeholder="https://www.instagram.com/"
+               
+                />
+               <p style={{ color: "black",fontFamily:"Montserrat-bold"  }}>X | Twitter</p>
+                <input
+                 
+                  className="newArtworkInputsSocialMedia"
+                  name="Twitter"
+                  placeholder="https://twitter.com/"
+               
+                />
+                 <p style={{ color: "black",fontFamily:"Montserrat-bold" }}>Linkedin</p>
+                <input
+                
+                  className="newArtworkInputsSocialMedia"
+                  name="Linkedin"
+                  placeholder="https://linkedin.com/"
+               
+                />
+      
+          
+               
+                <div className="art-signin-button-containerSocialMedia">
+                <button className="signupBtnSocialMedia" onClick={submitRegisterHandler}>
+        Sign Me Up
       </button>
+                </div>
+              </div>
+            </div>
+            </div>
       <UploadWidget />
     </>
   );
