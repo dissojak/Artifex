@@ -39,7 +39,7 @@ const OpenOrderArtist = () => {
   </div>
   <button className="submit-btnOpenOrderArtist">Set Your Prices</button>
 </div>
-{/*the end */}
+{/*the end */} 
 </>
   );
 };
