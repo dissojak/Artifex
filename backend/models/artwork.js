@@ -11,7 +11,7 @@ const artworkSchema = new mongoose.Schema({
   description: {
     type: String,
     minlength: [10, "Description must be at least 10 characters long"], // Minimum length of 10 characters
-    maxlength: [100, "Description cannot exceed 100 characters"], // Maximum length of 100 characters
+    maxlength: [400, "Description cannot exceed 400 characters"], // Maximum length of 100 characters
   },
   // Price of the artwork
   price: {

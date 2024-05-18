@@ -8,8 +8,9 @@ import { useSelector } from "react-redux";
 import { useAddArtworkSignupMutation } from "../../../slices/artworksSlice";
 
 const NewArtworkArtist = (props) => {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttp();
+  const [formErrors, setFormErrors] = useState({});
 
   const [formData, setFormData] = useState({
     title: "",
@@ -30,6 +31,26 @@ const NewArtworkArtist = (props) => {
     req();
   }, [sendRequest]);
 
+  const validateForm = () => {
+    const errors = {};
+    if (formData.title.length < 2 || formData.title.length > 15) {
+      errors.title = "Title must be between 2 and 15 characters long";
+    }
+    if (formData.description.length < 10 || formData.description.length > 400) {
+      errors.description = "Description must be between 10 and 400 characters long";
+    }
+    if (isNaN(formData.price) || formData.price === "") {
+      errors.price = "Price must be a number";
+    }
+    if (!formData.category) {
+      errors.category = "Category must be selected";
+    }
+    if (!img) {
+      errors.imageArtwork = "Image must be uploaded";
+    }
+    return errors;
+  };
+
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -45,9 +66,13 @@ const NewArtworkArtist = (props) => {
   };
 
   const saveData = async () => {
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
     const toastId = toast.loading("Saving Your Artwork...");
-    console.log(formData);
-    console.log(img);
     try {
       const req = await addArtwork({
         _id: userInfo._id,
@@ -57,13 +82,13 @@ const NewArtworkArtist = (props) => {
         imageArtwork: img,
         id_category: formData.category,
       }).unwrap();
-      console.log(req);
       toast.update(toastId, {
         render: "Your New Artwork has been saved Successfully!",
         type: "success",
         isLoading: false,
         autoClose: 5000,
       });
+      props.onClose();
     } catch (err) {
       toast.update(toastId, {
         render: err?.data?.message || err.error,
@@ -77,7 +102,7 @@ const NewArtworkArtist = (props) => {
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
-      {!isLoading && categories && (
+      {!isLoading && categories.length > 0 && (
         <div>
           <div className="art-artist-form-container">
             <div className="art-signin-header">Add Artwork</div>
@@ -99,6 +124,7 @@ const NewArtworkArtist = (props) => {
                 value={formData.title}
                 onChange={handleChange}
               />
+              {formErrors.title && <p className="error-text">{formErrors.title}</p>}
               <p style={{ color: "black" }}>Price</p>
               <input
                 type="text"
@@ -108,19 +134,23 @@ const NewArtworkArtist = (props) => {
                 value={formData.price}
                 onChange={handleChange}
               />
-               <p style={{ color: "black" }}>Categorie</p>
-      <select
-        name="category"
-        value={formData.category}
-        onChange={handleChange}
-      >
-        <option value="" disabled>Select a category</option> 
-        {categories.map((category) => (
-          <option key={category._id} value={category._id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
+              {formErrors.price && <p className="error-text">{formErrors.price}</p>}
+              <p style={{ color: "black" }}>Category</p>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="" disabled>
+                  Select a category
+                </option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              {formErrors.category && <p className="error-text">{formErrors.category}</p>}
               <p style={{ color: "black" }}>Description</p>
               <textarea
                 name="description"
@@ -128,6 +158,7 @@ const NewArtworkArtist = (props) => {
                 value={formData.description}
                 onChange={handleChange}
               ></textarea>
+              {formErrors.description && <p className="error-text">{formErrors.description}</p>}
               <label className="image-uploader">
                 <UploadWidget onUploadSuccess={saveDataImg} />
                 <div className="image-uploader-content">
@@ -141,6 +172,7 @@ const NewArtworkArtist = (props) => {
                   )}
                 </div>
               </label>
+              {formErrors.imageArtwork && <p className="error-text">{formErrors.imageArtwork}</p>}
               <div className="art-signin-button-container">
                 <button
                   className="art-signin-button art-signin-next"
