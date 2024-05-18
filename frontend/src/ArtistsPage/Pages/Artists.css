@@ -142,13 +142,11 @@
   
   .bookmarkBtn9 {
     max-width: 7.5rem;
-    border-radius: 0.5rem;
+    border-radius: 6px;
     border: 1px solid #7E3FFF;
     display: flex;
     align-items: center;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding: 0.25rem;
+    padding: 0rem 4px;
     cursor: pointer;
     transition-duration: 0.3s;
     overflow: hidden;
