@@ -25,4 +25,6 @@ router.patch("/socialMedia", MW.protect, AC.socialMedia);
 
 router.get("/artists", MW.protect, AC.getArtists);
 
+router.get("/count/:artistId",MW.protect, AC.countArtworksByArtist)
+
 module.exports = router;

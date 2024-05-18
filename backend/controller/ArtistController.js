@@ -147,3 +147,25 @@ exports.getArtists = asyncHandler(async (req, res, next) => {
     return next(new HttpError("Failed to retrieve artists", 500));
   }
 });
+
+
+/**
+ * @desc    Count artworks of an artist
+ * @route   GET /api/artwork/count/:artistId
+ * @access  Private
+ */
+exports.countArtworksByArtist = asyncHandler(async (req, res, next) => {
+  const artistId = req.params.artistId;
+
+  try {
+    // Count the number of artworks by the given artist
+    const artworkCount = await Artwork.countDocuments({ id_artist: artistId });
+
+    res.status(200).json({
+      message: "Artworks count retrieved successfully",
+      count: artworkCount,
+    });
+  } catch (err) {
+    return next(new HttpError("Failed to count artworks, please try again", 500));
+  }
+});

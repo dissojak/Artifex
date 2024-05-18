@@ -16,6 +16,12 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    countArtworksByArtist: builder.mutation({
+      query: (artistId) => ({
+        url: `${ARTWORKS_URL}/count/${artistId}`,
+        method: 'GET',
+      }),
+    }),
     // register: builder.mutation({
     //   query: (data) => ({
     //     url: `${ARTWORKS_URL}/signup`,
@@ -36,6 +42,7 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetArtistsMutation,
   useOpenOrderMutation,
+  useCountArtworksByArtistMutation,
 //   useLogoutMutation,
 //   useRegisterMutation,
 //   useUpdateUserMutation,

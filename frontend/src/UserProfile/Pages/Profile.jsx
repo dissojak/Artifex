@@ -69,7 +69,7 @@ const Profile = (props) => {
         }
       } else if (userInfo.userType === "artist") {
         try {
-          const res = await getFollowers().unwrap();
+          const res = await getFollowers(userInfo._id).unwrap();
           // console.log("this : ",res);
           setFollowers(res.followers);
         } catch (err) {

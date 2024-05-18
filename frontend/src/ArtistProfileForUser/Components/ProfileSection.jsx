@@ -7,19 +7,24 @@ import Logo from "../../assets/images/logo.svg";
 import ArtsList from "../../home/Components/ArtsList.jsx";
 import {
   useFollowArtistMutation,
+  useGetFollowersMutation,
   useUnFollowArtistMutation,
 } from "../../slices/followSlice.js";
 import { toast } from "react-toastify";
 import { useHttp } from "../../shared/hooks/http-hook.js";
+import { useCountArtworksByArtistMutation } from "../../slices/artistsSlice.js";
 
 const ProfileSection = (props) => {
-  const userData = props.artist;
+  const userDataHere = props.artist;
   const [activeTab, setActiveTab] = useState("artworks"); // Default to artworks tab
   const [isFollowing, setIsFollowing] = useState(props.isFollowing); // Default to isFollowing
 
   const [categories, setCategories] = useState();
   const {sendRequest} = useHttp();
-
+  const [followers, setFollowers] = useState(0);
+  const [count, setCount] = useState(0);
+  const [countArtworks]=useCountArtworksByArtistMutation();
+  const [getFollowers] = useGetFollowersMutation();
   const [followArtist] = useFollowArtistMutation();
   const [UnfollowArtist] = useUnFollowArtistMutation();
 
@@ -27,7 +32,7 @@ const ProfileSection = (props) => {
     setIsFollowing(true);
     try {
       await followArtist({
-        artistId: userData._id,
+        artistId: userDataHere._id,
       }).unwrap();
     } catch (err) {
       setIsFollowing(false);
@@ -39,7 +44,7 @@ const ProfileSection = (props) => {
     setIsFollowing(false);
     try {
       await UnfollowArtist({
-        artistId: userData._id,
+        artistId: userDataHere._id,
       }).unwrap();
     } catch (err) {
       setIsFollowing(true);
@@ -63,6 +68,20 @@ const ProfileSection = (props) => {
         );
         setCategories(responseData.category);
       } catch (e) {}
+      try {
+        const res = await getFollowers(userDataHere._id).unwrap();
+        // console.log("this : ",res);
+        setFollowers(res.followers);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+      try {
+        const res = await countArtworks(userDataHere._id).unwrap();
+        // console.log("this : ",res.count);
+        setCount(res.count);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     };
     req();
   }, [sendRequest]);
@@ -74,10 +93,10 @@ const ProfileSection = (props) => {
         <div className="profile-container7">
           <img
             className="profile-image7"
-            src={userData.profileImage||DefaultImg}
+            src={userDataHere.profileImage||DefaultImg}
             alt="Artist Image"
           />
-          <h1 className="profile-name7">{userData.username}</h1>
+          <h1 className="profile-name7">{userDataHere.username}</h1>
           <p
             className="profile-details7"
             style={{
@@ -88,7 +107,7 @@ const ProfileSection = (props) => {
           >
             <img src={Logo} alt="logo" /> Artist
           </p>
-          <p className="profile-details7">245 Follower • 12 Artwork</p>
+          <p className="profile-details7">{followers && <>{followers.length}</>} Follower • {count && <>{count}</>} Artwork</p>
           <button className="Btn7" onClick={handleFollowChange}>
             {isFollowing ? (
               <p className="text7">Unfollow</p>
@@ -129,7 +148,7 @@ const ProfileSection = (props) => {
           </div>
         </div>
         {/* Conditionally render sections based on activeTab */}
-        {activeTab === "orders" && categories && <OrderSection image={userData.profileImage} categories={categories} id={userData._id} orderStatus={userData.orderStatus}/>}
+        {activeTab === "orders" && categories && <OrderSection image={userDataHere.profileImage} categories={categories} id={userDataHere._id} orderStatus={userDataHere.orderStatus}/>}
         {props.artworks.length > 0 ? (
           <>{activeTab === "artworks" && <ArtsList items={props.artworks} />}</>
         ) : (

@@ -25,8 +25,8 @@ export const followApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getFollowers: builder.mutation({
-      query: () => ({
-        url: `${FOLLOW_URL}/followers`,
+      query: (id) => ({
+        url: `${FOLLOW_URL}/followers/${id}`,
         method: "GET",
       }),
     }),

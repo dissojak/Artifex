@@ -113,7 +113,7 @@ exports.unfollowArtist = async (req, res, next) => {
  * @access  Private
  */
 exports.getFollowers = asyncHandler(async (req, res, next) => {
-  const artistId = req.user._id;
+  const artistId = req.params.id;
 
   try {
     // Find all followers of the artist
