@@ -10,6 +10,7 @@ import { useAddArtworkToPanierMutation } from "../../slices/usersApiSlice";
 const Details = (props) => {
   const artwork = props.artwork;
   const reviews = props.reviews.reviews;
+  // console.log(artwork);
 
   const totalRatings = reviews.length;
   const averageRating =
@@ -144,7 +145,7 @@ const Details = (props) => {
         </p>
         <p className="category">{artwork.id_category.name}</p>
       </div>
-      {userInfo.userType === "client" && (
+      {userInfo.userType === "client" && !artwork.Sold &&(
         <div className="buttonsartsection">
           <div className="buttoncart" onClick={handleAddToCart}>
             <div className="button-wrappercart">

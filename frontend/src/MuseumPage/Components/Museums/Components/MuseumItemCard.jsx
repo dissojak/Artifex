@@ -27,7 +27,7 @@ const MuseumItemCard = (props) => {
         try {
           // console.log("adem");
           const res = await getParticipantArtists(props.id).unwrap();
-            // console.log(res.participantArtists);
+          // console.log(res.participantArtists);
           setArtists(res.participantArtists);
         } catch (err) {
           toast.error(err?.data?.message || err.error);
@@ -111,7 +111,7 @@ const MuseumItemCard = (props) => {
     }
   };
 
-  const [description,setDescription]=useState(props.Description)
+  const [description, setDescription] = useState(props.Description);
   useEffect(() => {
     function truncateDescription() {
       // console.log(props.Description);
@@ -131,16 +131,7 @@ const MuseumItemCard = (props) => {
   // console.log(percentage);
   return (
     <>
-      <div
-        key={props.id}
-        className="event-card11"
-        // style={{
-        //   border: props.isExclusive ? "2px solid #FFD123" : "none",
-        //   boxShadow: props.isExclusive
-        //     ? "0px 2px 25px rgba(255, 209, 35, 0.16)"
-        //     : "0px 2px 25px rgba(0, 0, 0, 0.16)",
-        // }}
-      >
+      <div key={props.id} className="event-card11">
         <Link to="/museumDetails" style={{ cursor: "pointer" }}>
           <div className="event-image11">
             <img
@@ -234,7 +225,6 @@ const MuseumItemCard = (props) => {
                   className="exclusiveMuseumCardImg"
                   alt="exclusive"
                 />
-                // <p className="exclusiveMuseumCard"> (Exclusive)</p>
               )}
             </div>
           </h1>
