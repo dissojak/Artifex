@@ -9,12 +9,13 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
-    // logout: builder.mutation({
-    //   query: () => ({
-    //     url: `${ARTWORKS_URL}/logout`,
-    //     method: 'POST',
-    //   }),
-    // }),
+    openOrder: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/openOrder`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
     // register: builder.mutation({
     //   query: (data) => ({
     //     url: `${ARTWORKS_URL}/signup`,
@@ -34,6 +35,7 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetArtistsMutation,
+  useOpenOrderMutation,
 //   useLogoutMutation,
 //   useRegisterMutation,
 //   useUpdateUserMutation,

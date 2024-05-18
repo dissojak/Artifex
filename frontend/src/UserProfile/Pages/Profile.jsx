@@ -27,7 +27,7 @@ import {
 import ArtistArtworks from "../Components/ArtistArtworks.jsx";
 import { useGetArtworksOfArtistMutation } from "../../slices/artworksSlice.js";
 
-const Profile = () => {
+const Profile = (props) => {
   const [isSettings, setIsSettings] = useState(false);
 
   const [showChangePw, setShowChangePw] = useState(false);
@@ -431,7 +431,7 @@ const Profile = () => {
                   <ArtistArtworks artworks={artworks} />
                 )}
               </div>
-              {activeTab === "museums" && <OpenOrderArtist />}
+              {activeTab === "museums" && <OpenOrderArtist isLoading={props.isLoading} user={props.user}/>}
             </>
           )}
         </div>

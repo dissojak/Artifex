@@ -251,7 +251,7 @@ exports.rejectOrder = asyncHandler(async (req, res, next) => {
 
 /*
 also we need to sett the status of the order to payed 
-after the artist accept it , it will apear pay to clinet 
+after the artist accept it , it will apear pay to client 
 and when he pay it will be back too pending , and send 
 notification to artist with action 'pay'
 */
