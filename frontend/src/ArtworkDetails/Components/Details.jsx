@@ -3,23 +3,28 @@ import "./Details.css";
 import { useSelector } from "react-redux";
 import { useAddRatingMutation } from "../../slices/reviewSlice";
 import { toast } from "react-toastify";
-import { useArtworkPaymentMutation } from "../../slices/artworksSlice";
+import {
+  useArtworkPaymentMutation,
+  useEditArtworkMutation,
+} from "../../slices/artworksSlice";
 import Pay from "../../assets/images/pay.svg";
 import { useAddArtworkToPanierMutation } from "../../slices/usersApiSlice";
 
 const Details = (props) => {
-  const artwork = props.artwork;
-  const reviews = props.reviews.reviews;
-  // console.log(artwork);
+  const { artwork: initialArtwork, reviews } = props;
+  const [artwork, setArtwork] = useState(initialArtwork);
 
-  const totalRatings = reviews.length;
+  const totalRatings = reviews.reviews.length;
   const averageRating =
     totalRatings > 0
-      ? reviews.reduce((acc, review) => acc + review.rating, 0) / totalRatings
+      ? reviews.reviews.reduce((acc, review) => acc + review.rating, 0) /
+        totalRatings
       : 0;
   const formattedAverage = averageRating.toFixed(1);
 
   const { userInfo } = useSelector((state) => state.auth);
+  const isArtist = userInfo.userType === "artist";
+  const isClient = userInfo.userType === "client";
   const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
@@ -31,7 +36,7 @@ const Details = (props) => {
         });
         return 0;
       }
-      const review = reviews.find(
+      const review = reviews.reviews.find(
         (review) => review.clientId._id === userInfo._id
       );
       return review ? review.rating : 0;
@@ -72,13 +77,13 @@ const Details = (props) => {
 
   const [addToCard] = useAddArtworkToPanierMutation();
   const handleAddToCart = async () => {
-    const toastId = toast.loading("Add to your card ...");
+    const toastId = toast.loading("Add to your cart ...");
     try {
       await addToCard({
         artworkId: artwork._id,
       }).unwrap();
       toast.update(toastId, {
-        render: `${artwork.title} has been added Successfully to your Card!`,
+        render: `${artwork.title} has been added Successfully to your Cart!`,
         type: "success",
         isLoading: false,
         autoClose: 5000,
@@ -108,10 +113,79 @@ const Details = (props) => {
     }
   };
 
+  const [updateArtwork] = useEditArtworkMutation();
+
+  // State for editable fields
+  const [editableArtwork, setEditableArtwork] = useState({
+    title: artwork.title,
+    description: artwork.description,
+    price: artwork.price,
+  });
+
+  // State for edit mode
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditableArtwork({
+      ...editableArtwork,
+      [name]: value,
+    });
+  };
+
+  const handleSaveChanges = async () => {
+    const toastId = toast.loading("Saving changes...");
+    try {
+      const res = await updateArtwork({
+        artworkId: artwork._id,
+        ...editableArtwork,
+      }).unwrap();
+      toast.update(toastId, {
+        render: "Changes have been saved successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      });
+      setArtwork({ ...artwork, ...editableArtwork }); // Update artwork state directly
+      setIsEditMode(false); // Exit edit mode after saving changes
+    } catch (err) {
+      toast.update(toastId, {
+        render: err?.data?.message || err.error,
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
   return (
     <div className="artwork-details">
-      <h1>{artwork.title}</h1>
-      <p className="price">{artwork.price} DT</p>
+      {isEditMode ? (
+        <input
+          type="text"
+          name="title"
+          className="text-input-edit CadreColor"
+          value={editableArtwork.title}
+          onChange={handleInputChange}
+        />
+      ) : (
+        <h1>{artwork.title}</h1>
+      )}
+      {isEditMode ? (
+        <input
+          className="CadreColor"
+          type="text"
+          name="price"
+          value={editableArtwork.price}
+          onChange={handleInputChange}
+        />
+      ) : (
+        <p className="price">{artwork.price} DT</p>
+      )}
       <div className="ratingArtworkDetailsContainer">
         <div className="ratings">
           <div className="special-rating-commentsection">
@@ -122,7 +196,6 @@ const Details = (props) => {
                   name="rating"
                   id={`special-star${star}`}
                   value={star}
-                  // disabled={userInfo.userType === 'artist'}
                   checked={userRating === star}
                   onChange={() => handleRatingChange(star)}
                 />
@@ -135,7 +208,16 @@ const Details = (props) => {
           ({formattedAverage} stars) - {totalRatings} ratings
         </p>
       </div>
-      <p className="description">{artwork.description}</p>
+      {isEditMode ? (
+        <textarea
+          className="description-editor CadreColor"
+          name="description"
+          value={editableArtwork.description}
+          onChange={handleInputChange}
+        />
+      ) : (
+        <p className="description">{artwork.description}</p>
+      )}
       <div className="ratingArtworkDetailsContainer">
         <p
           className="category"
@@ -145,7 +227,7 @@ const Details = (props) => {
         </p>
         <p className="category">{artwork.id_category.name}</p>
       </div>
-      {userInfo.userType === "client" && !artwork.Sold &&(
+      {isClient && !artwork.Sold && (
         <div className="buttonsartsection">
           <div className="buttoncart" onClick={handleAddToCart}>
             <div className="button-wrappercart">
@@ -179,6 +261,18 @@ const Details = (props) => {
             </div>
           </div>
         </div>
+      )}
+      {isArtist && (
+        <>
+          <button onClick={toggleEditMode} className="edit-button">
+            {isEditMode ? "Cancel" : "Edit"}
+          </button>
+          {isEditMode && (
+            <button onClick={handleSaveChanges} className="save-button">
+              Save Changes
+            </button>
+          )}
+        </>
       )}
     </div>
   );

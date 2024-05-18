@@ -36,8 +36,8 @@ const ArtworkDetails = () => {
       try {
         setIsLoading(true);
         const res = await getReviews(artworkId);
-        console.log("res : ",res);
-        console.log(res.data);
+        // console.log("res : ",res);
+        // console.log(res.data);
         setReviews(res.data);
         setIsLoading(false);
       } catch (err) {

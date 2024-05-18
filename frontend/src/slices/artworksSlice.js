@@ -49,13 +49,13 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
-    // updateUser: builder.mutation({
-    //   query: (data) => ({
-    //     url: `${ARTWORKS_URL}/settings`,
-    //     method: 'PUT',
-    //     body: data,
-    //   }),
-    // }),
+    editArtwork: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/editArtwork/${data.artworkId}`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -67,6 +67,7 @@ export const {
   useArtworkPaymentMutation,
   useBuyArtworkMutation,
   useGetBoughtArtworkMutation,
+  useEditArtworkMutation,
   //   useRegisterMutation,
   //   useUpdateUserMutation,
 } = artworkApiSlice;

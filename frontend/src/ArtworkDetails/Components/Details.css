@@ -340,3 +340,48 @@
 .buttoncart:hover:before {
   bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
 }
+
+
+/* General button styles */
+.artwork-details button {
+  padding: 10px 15px;
+  margin: 5px;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Edit button */
+.edit-button {
+  background-color: #9866FF;
+  color: rgb(255, 255, 255);
+}
+
+.edit-button:hover {
+  background-color: #7E3FFF;
+}
+
+/* Save button */
+.save-button {
+  background-color: #5BD6FF;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #0CBBF5;
+}
+
+.text-input-edit{
+  margin:1rem 0 ;
+}
+
+.description-editor{
+  margin:1rem 0 ;
+}
+
+.CadreColor{
+  border-color:#7E3FFF;
+}
