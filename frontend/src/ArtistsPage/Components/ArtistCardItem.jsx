@@ -34,7 +34,10 @@ const ArtistCardItem = (props) => {
       <div className="cardArtist9">
         <div className="infos9">
           <div className="image9">
-            <Link to={`/artist/${props.username}`} style={{cursor:'pointer'}}>
+            <Link
+              to={`/artist/${props.username}`}
+              style={{ cursor: "pointer" }}
+            >
               <img
                 style={{
                   height: "7.5rem",
@@ -101,9 +104,14 @@ const ArtistCardItem = (props) => {
                 />
                 <label htmlFor={star1}></label>
               </div>
-              <p className="function9">{props.rating.toFixed(1)}/5</p>
-              <p className="function8">|</p>
-              <p className="function9">{props.reviews} Review</p>
+              {props.museum && <p className="function9">Review in Profile</p>}
+              {!props.museum && (
+                <>
+                  <p className="function9">{props.rating.toFixed(1)}/5</p>
+                  <p className="function8">|</p>
+                  <p className="function9">{props.reviews} Review</p>
+                </>
+              )}
             </div>
             <div className="stats9">
               <div className="flex flex-col">

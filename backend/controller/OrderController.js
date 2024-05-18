@@ -88,6 +88,7 @@ exports.makeOrder = asyncHandler(async (req, res, next) => {
   const clientId = req.user._id;
   const io = req.app.io;
   const socketIds = req.app.socketIds;
+  console.log(socketIds);
 
   const orderId = await generateOrderId();
   const date = new Date();

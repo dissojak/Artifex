@@ -13,7 +13,7 @@ const Card = () => {
       const req = async () => {
         try {
           const res = await getPanier();
-          console.log(res.data);
+          // console.log(res.data);
           setArtworks(res.data.artworks);
         } catch (err) {
           toast.error(err?.data?.message || err.error);

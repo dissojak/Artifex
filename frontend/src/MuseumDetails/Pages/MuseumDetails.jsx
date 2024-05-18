@@ -39,8 +39,9 @@ const MuseumDetails = () => {
       try {
         setIsLoading(true);
         const res = await getArtists(museumId).unwrap();
-        console.log("res : ", res.participantArtists);
-        setArtists(res.participantArtists);
+        const artistDetails = res.participantArtists.map(artist => artist.participantId);
+        console.log("res : ", artistDetails);
+        setArtists(artistDetails);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
