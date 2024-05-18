@@ -7,6 +7,7 @@ import PinIconActive from "../../assets/images/Pinpurple.svg";
 import OrderIcon from "../../assets/images/orderblack.svg";
 import OrderIconActive from "../../assets/images/orderpurple.svg";
 import Orders from "../Components/Orders/Pages/Orders.jsx";
+import OpenOrderArtist from "../Components/OpenOrderArtist.jsx";
 import SavedArtwork from "../Components/SavedArtwork.jsx";
 import PinnedMuseums from "../Components/PinnedMuseums.jsx";
 import DefaultImg from "../../assets/images/default_profile_img.jpg";
@@ -430,7 +431,7 @@ const Profile = () => {
                   <ArtistArtworks artworks={artworks} />
                 )}
               </div>
-              {activeTab === "museums" && <PinnedMuseums />}
+              {activeTab === "museums" && <OpenOrderArtist />}
             </>
           )}
         </div>
