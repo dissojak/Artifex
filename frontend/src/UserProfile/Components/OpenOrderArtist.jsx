@@ -1,6 +1,6 @@
 import React, {  } from "react";
 import "./OpenOrderArtist.css";
-// import Adem from "../../assets/images/Adem.png";
+import DefualImg from "../../assets/images/default_profile_img.jpg";
 import { useSelector } from "react-redux";
 const OpenOrderArtist = () => {
     const { userInfo } = useSelector((state) => state.auth);
@@ -13,7 +13,7 @@ const OpenOrderArtist = () => {
  
   <div className="price-settingOpenOrderArtist">
   <div className="header-contentOpenOrderArtist">
-    <img src={userInfo.image} alt="Profile" className="profile-imageOpenOrderArtist"/>
+    <img src={userInfo.image||DefualImg} alt="Profile" className="profile-imageOpenOrderArtist"/>
     <h2>Accept Orders From Clients</h2>
   </div>
   <p>What's prices are suitable for you?</p>
