@@ -48,6 +48,9 @@ import Collection from "./Collection/Pages/Collection.jsx";
 import Success from "./shared/components/Pages/successPayments/Success.jsx";
 import Fail from "./shared/components/Pages/failPayments/Fail.jsx";
 import Card from "./Card/Pages/Card.jsx";
+import SuccessPaymentMuseum from "./shared/components/Pages/successPayments/SuccessMuseum.jsx";
+import FailPaymentMuseum from "./shared/components/Pages/failPayments/FailMuseum.jsx";
+import Events from "./Events/Pages/Events.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -137,11 +140,14 @@ const App = () => {
           <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
           <Route path="/Plans" element={<PricingOptions />} />
           <Route path="/PlansHistory" element={<PlansHistory />} />
-          <Route path="/museumdetails" element={<MuseumDetails />} />
+          <Route path="/museums/:museumId" element={<MuseumDetails />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="/artwork/success" element={<Success />} />
           <Route path="/artwork/fail" element={<Fail />} />
+          <Route path="/museum/success" element={<SuccessPaymentMuseum />} />
+          <Route path="/museum/fail" element={<FailPaymentMuseum />} />
           <Route path="/Card" element={<Card />} />
+          <Route path="/events" element={<Events />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}

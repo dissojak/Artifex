@@ -31,12 +31,51 @@ export const museumApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     isPinned: builder.mutation({
-        query: (data) => ({
-          url: `${MUSEUMS_URL}/isPinned`,
-          method: "POST",
-          body: data,
-        }),
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/isPinned`,
+        method: "POST",
+        body: data,
       }),
+    }),
+    getMuseumById: builder.mutation({
+      query: (id) => ({
+        url: `${MUSEUMS_URL}/${id}`,
+        method: "GET",
+      }),
+    }),
+    getParticipantArtists: builder.mutation({
+      query: (museumId) => ({
+        url: `${MUSEUMS_URL}/participantArtists/${museumId}`,
+        method: "GET",
+      }),
+    }),
+    MuseumPayment: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/payment`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    buyClientPass: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/buyClientPass`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    buyArtistPass: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/buyArtistPass`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getMuseumsByUserId: builder.mutation({
+      query: () => ({
+        url: `${MUSEUMS_URL}/user/museums`,
+        method: "GET",
+      }),
+    }),
     //new function
   }),
 });
@@ -47,4 +86,10 @@ export const {
   usePinMutation,
   useUnpinMutation,
   useIsPinnedMutation,
+  useGetMuseumByIdMutation,
+  useGetParticipantArtistsMutation,
+  useMuseumPaymentMutation,
+  useBuyArtistPassMutation,
+  useBuyClientPassMutation,
+  useGetMuseumsByUserIdMutation,
 } = museumApiSlice;

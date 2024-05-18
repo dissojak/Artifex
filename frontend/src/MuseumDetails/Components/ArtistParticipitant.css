@@ -1,21 +1,24 @@
 #ArtistParticipant-section {
-    width: 99.55vw;
-    height: 130vh;
-    background-image: url("../../assets/images/linemuseum.svg");
-    background-repeat: no-repeat;
-    /* background-size: 250vh ; */
-    background-position: -10vh 10vh;
-  }
-  
-  .ArtistParticipant-section2 {
-    text-align: left;
-    padding-left: 130px;
-    padding-top: 95px;
-    padding-bottom: 40px;
-  }
-  .ArtistParticipant-section2 h1 { /*fontFamily: "Raleway-Bold", fontSize: "45px",marginBottom: '2rem' */
-font-family :"Raleway-Bold";
-font-size: 45px;
-margin-bottom: 2rem;
-color:#7e3fff;
-  }
+  position: absolute;
+  top: 90vh;
+  width: 99.44vw;
+  height: 130vh;
+  background-image: url("../../assets/images/linemuseum.svg");
+  background-repeat: no-repeat;
+  /* background-size: 250vh ; */
+  background-position: -10vh 10vh;
+}
+
+.ArtistParticipant-section2 {
+  text-align: left;
+  padding-left: 130px;
+  padding-top: 95px;
+  padding-bottom: 40px;
+}
+.ArtistParticipant-section2 h1 {
+  /*fontFamily: "Raleway-Bold", fontSize: "45px",marginBottom: '2rem' */
+  font-family: "Raleway-Bold";
+  font-size: 45px;
+  margin-bottom: 2rem;
+  color: #7e3fff;
+}

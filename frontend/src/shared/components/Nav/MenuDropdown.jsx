@@ -106,7 +106,7 @@ function MenuDropdown() {
         )}
         <div className="menu-item">
           <img src={eventIcon} alt="Edit Profile" />
-          <Link to="/########" onClick={() => setIsActive(false)}>
+          <Link to="/events" onClick={() => setIsActive(false)}>
             Events
           </Link>
         </div>

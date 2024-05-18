@@ -71,6 +71,12 @@ router.get(
 
 router.get("/participantClients", MW.protect, MC.getParticipantClients);
 
+router.post("/payment", MW.protect,MC.museumPayment);
+
+router.post("/buyArtistPass", MW.protect,MC.buyArtistPass);
+
+router.post("/buyClientPass", MW.protect,MC.buyClientPass);
+
 router.post("/artistJoin", MW.protect, MC.artistJoin);
 
 router.post("/clientJoin", MW.protect, MC.clientJoin);
@@ -98,10 +104,12 @@ router.post(
   MC.addExclusiveArtwork
 );
 
+router.get("/:id",MW.protect,MC.getMuseumById);
 router.get("/byDate", MW.protect, MC.getMuseumsByDates);
 router.post("/pin", MW.protect, MPC.pinMuseum);
 router.delete("/unpin", MW.protect, MPC.unPinMuseum);
 router.post("/isPinned", MW.protect, MPC.isPinned);
 router.get("/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
+router.get("/user/museums",MW.protect, MC.getMuseumsByUserId);
 
 module.exports = router;

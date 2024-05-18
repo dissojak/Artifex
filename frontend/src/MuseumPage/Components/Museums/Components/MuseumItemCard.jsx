@@ -12,7 +12,13 @@ import {
   useUnpinMutation,
 } from "../../../../slices/museumsSlice";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const MuseumItemCard = (props) => {
+
+  const { userInfo } = useSelector((state) => state.auth);
+  const isArtist = userInfo.userType === "artist";
+  const isClient = userInfo.userType === "client";
+
   function formatDate(dateString) {
     const options = { day: "2-digit", month: "long" }; // Use 'long' to get the full month name
     return new Date(dateString).toLocaleDateString("en-GB", options); // Adjusted for day and full month name
@@ -68,7 +74,7 @@ const MuseumItemCard = (props) => {
     req();
   }, []);
 
-  const [pin, { isLoadinPin }] = usePinMutation();
+  const [pin] = usePinMutation();
   const PinMuseums = async () => {
     setIsLoading(true);
     try {
@@ -127,12 +133,18 @@ const MuseumItemCard = (props) => {
     truncateDescription();
   }, [props.Description]);
 
-  const percentage = (props.clientsEntered / props.numberMaxClients) * 100;
-  // console.log(percentage);
+  
+  let percentage;
+  if (isArtist) {
+    percentage = (props.artistsEntered / props.numberMaxArtists) * 100;
+  } else if (isClient) {
+    percentage = (props.clientsEntered / props.numberMaxClients) * 100;
+  }
+
   return (
     <>
       <div key={props.id} className="event-card11">
-        <Link to="/museumDetails" style={{ cursor: "pointer" }}>
+        <Link to={`/museums/${props.id}`} style={{ cursor: "pointer" }}>
           <div className="event-image11">
             <img
               src={props.Image}
@@ -268,7 +280,16 @@ const MuseumItemCard = (props) => {
             ></div>
           </div>
           <div className="range-nmr11">
-            {props.clientsEntered}/{props.numberMaxClients}
+          {(isClient && (
+              <>
+                {props.clientsEntered}/{props.numberMaxClients}
+              </>
+            )) ||
+              (isArtist && (
+                <>
+                  {props.artistsEntered}/{props.numberMaxArtists}
+                </>
+              ))}
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ const Artwork = require("../models/artwork");
 const mongoose = require("mongoose");
 const MuseumArtwork = require("../models/museumArtwork");
 const { isCategoryExist } = require("./CategoryController");
+const axios = require("axios");
 
 /**
  * @desc     Create a museum
@@ -93,9 +94,15 @@ exports.getParticipantArtists = asyncHandler(async (req, res, next) => {
     participantType: "artist",
   }).populate("participantId");
 
-  if (!participantArtists || participantArtists.length === 0) {
+  if (!participantArtists) {
     return res.status(404).json({
       note: "vide",
+      message: "No participant artists found for this museum",
+    });
+  }
+  if (participantArtists.length === 0) {
+    return res.status(206).json({
+      participantArtists: [],
       message: "No participant artists found for this museum",
     });
   }
@@ -126,6 +133,146 @@ exports.getParticipantClients = asyncHandler(async (req, res, next) => {
     participantArtists,
   });
 });
+
+exports.museumPayment = async (req, res, next) => {
+  const museumId = req.body.museumId;
+  const participantId = req.user._id;
+
+  const url = "https://developers.flouci.com/api/generate_payment";
+  const payload = {
+    app_token: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+    app_secret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    amount: req.body.amount,
+    accept_card: "true",
+    session_timeout_secs: 1200,
+    success_link: "http://localhost:3000/museum/success",
+    fail_link: "http://localhost:3000/museum/fail",
+    developer_tracking_id: "a702c74a-9a4d-4f36-b18d-b76f63b7bef8",
+  };
+
+  const response = await axios.post(url, payload);
+
+  if (response.data && response.data.result && response.data.result.success) {
+    const museum = await Museum.findById(museumId);
+    if (!museum) {
+      return res.status(404).send({ msg: "Artwork not found", faild: "vide" });
+    }
+    const existingParticipant = await Participant.findOne({
+      museumId,
+      participantId,
+    });
+    if (existingParticipant) {
+      return next(
+        new HttpError("You already have a pass for this museum", 400)
+      );
+    }
+    if (museum && !existingParticipant) {
+      return res.status(200).send({
+        paymentInfo: response.data,
+        museum,
+      });
+    }
+  }
+};
+
+exports.buyArtistPass = async (req, res, next) => {
+  const artistId = req.user._id;
+  const museumId = req.body.museumId;
+  const paymentId = req.body.paymentId;
+  const url = `https://developers.flouci.com/api/verify_payment/${paymentId}`;
+
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      apppublic: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+      appsecret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    },
+  });
+
+  if (response.data && response.data.result.status === "SUCCESS") {
+    const participant = new Participant({
+      museumId,
+      participantId: artistId,
+      participantType: "artist",
+    });
+
+    try {
+      const session = await mongoose.startSession();
+      session.startTransaction();
+      await participant.save({ session });
+      await Museum.findByIdAndUpdate(
+        museumId,
+        { $inc: { artistsEntered: 1 } },
+        { session }
+      );
+      await session.commitTransaction();
+      session.endSession();
+    } catch (error) {
+      return next(new HttpError("Failed to join the museum as an artist", 500));
+    }
+
+    res.status(201).json({
+      message: "You successfully joined the museum",
+      success: true,
+      paymentVerif: response.data,
+    });
+  } else {
+    res.status(400).send({
+      message: "Payment verification failed",
+      success: false,
+      paymentVerif: response.data,
+    });
+  }
+};
+
+exports.buyClientPass = async (req, res, next) => {
+  const clientId = req.user._id;
+  const museumId = req.body.museumId;
+  const paymentId = req.body.paymentId;
+  const url = `https://developers.flouci.com/api/verify_payment/${paymentId}`;
+
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      apppublic: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+      appsecret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    },
+  });
+
+  if (response.data && response.data.result.status === "SUCCESS") {
+    const participant = new Participant({
+      museumId,
+      participantId: clientId,
+      participantType: "client",
+    });
+
+    try {
+      const session = await mongoose.startSession();
+      session.startTransaction();
+      await participant.save({ session });
+      await Museum.findByIdAndUpdate(
+        museumId,
+        { $inc: { clientsEntered: 1 } },
+        { session }
+      );
+      await session.commitTransaction();
+      session.endSession();
+    } catch (error) {
+      return next(new HttpError("Failed to join the museum as an clinet", 500));
+    }
+    res.status(201).json({
+      message: "clinet successfully joined the museum",
+      success: true,
+      paymentVerif: response.data,
+    });
+  } else {
+    res.status(400).send({
+      message: "Payment verification failed",
+      success: false,
+      paymentVerif: response.data,
+    });
+  }
+};
 
 //----------------------- PAYMENT REQUIRED --------------------------
 
@@ -251,6 +398,30 @@ exports.editMuseum = asyncHandler(async (req, res, next) => {
     message: "Museum updated successfully",
     museum: updatedMuseum,
   });
+});
+
+/**
+ * @desc    Get museum by ID
+ * @route   GET /api/museum/:id
+ * @access  Public
+ */
+exports.getMuseumById = asyncHandler(async (req, res, next) => {
+  const museumId = req.params.id;
+
+  try {
+    const museum = await Museum.findById(museumId).populate("idCategory");
+
+    if (!museum) {
+      return next(new HttpError("Museum not found", 404));
+    }
+
+    res.status(200).json({
+      message: "Museum retrieved successfully",
+      museum,
+    });
+  } catch (error) {
+    return next(new HttpError("Failed to retrieve museum", 500));
+  }
 });
 
 /**
@@ -422,4 +593,44 @@ exports.getMuseumsByDates = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({ message: "Museums retrieved successfully", museums });
+});
+
+/**
+ * @desc    Get museums by user ID
+ * @route   GET /api/museum/user/:userId
+ * @access  Public
+ */
+exports.getMuseumsByUserId = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  try {
+    const participants = await Participant.find({ participantId: userId }).populate({
+      path: 'museumId',
+      populate: {
+        path: 'idCategory', // assuming the field in Museum model is idCategory
+        select: 'name'
+      }
+    });
+
+    if (!participants) {
+      return next(
+        new HttpError("User is not a participant in any museum", 404)
+      );
+    }
+
+    if (participants.length === 0) {
+      res.status(206).json({
+        message: "you have 0 passes !",
+        museums: [],
+      });
+    }
+
+    const museums = participants.map((participant) => participant.museumId);
+
+    res.status(200).json({
+      message: "Museums retrieved successfully",
+      museums,
+    });
+  } catch (error) {
+    return next(new HttpError("Failed to retrieve museums", 500));
+  }
 });
