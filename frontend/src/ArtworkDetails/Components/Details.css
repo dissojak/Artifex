@@ -385,3 +385,90 @@
 .CadreColor{
   border-color:#7E3FFF;
 }
+
+/*------ Settings ------*/
+
+.PositionalContainerPrivacy{
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+}
+
+.container-privacy {
+  --color: #a5a5b0;
+  --size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+}
+
+.container-privacy .eye {
+  position: absolute;
+  animation: keyframes-fill 0.5s;
+}
+
+.container-privacy .eye-slash {
+  position: absolute;
+  animation: keyframes-fill 0.5s;
+  display: none;
+}
+
+/* ------ On check event ------ */
+.container-privacy input:checked ~ .eye {
+  display: none;
+}
+
+.container-privacy input:checked ~ .eye-slash {
+  display: block;
+}
+
+/* ------ Hide the default checkbox ------ */
+.container-privacy input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ------ Privacy text styles ------ */
+.privacy-text {
+  position:absolute;
+  font-size: 1rem;
+  width: 7.5rem;
+  color: var(--color);
+  left: 1.5rem; /* Adjust margin as needed */
+  opacity: 0;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.container-privacy:hover .privacy-text {
+  opacity: 1;
+}
+
+.container-privacy input:checked ~ .privacy-text {
+  color: #f00; /* Change color for private state if needed */
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -360,6 +360,27 @@ exports.makePublic = asyncHandler(async (req, res, next) => {
 });
 
 /**
+ * @desc    Check visibility of artwork
+ * @route   GET /api/artwork/visibility/:artworkId
+ * @params  artworkId
+ * @access  Private
+ */
+exports.checkVisibility = asyncHandler(async (req, res, next) => {
+  const { artworkId } = req.params;
+
+  const artwork = await Artwork.findById(artworkId);
+
+  if (!artwork) {
+    return next(new HttpError("Artwork not found", 404));
+  }
+
+  res.status(200).json({
+    message: "Artwork visibility retrieved successfully",
+    visibility: artwork.visibility,
+  });
+});
+
+/**
  * @desc    get artworks for artist profile
  * @route   GET /api/artwork/getArtworksByArtistId
  * @params  artistId ( for not artist itself )
