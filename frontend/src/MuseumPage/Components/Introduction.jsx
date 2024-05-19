@@ -234,22 +234,19 @@ const Introduction = () => {
             </Link>
           )}
           <div className="social-links2">
-            <Link to="#">
+          <Link to="https://www.facebook.com/ArtifexMareketplace" target="_blank">
               {" "}
               <img src={Facebook} alt="Facebook" />
             </Link>
-            <Link to="#">
+            <Link to="https://www.instagram.com/artifexMarketPlace" target="_blank">
               {" "}
               <img src={Instagram} alt="Instagram" />
             </Link>
-            <Link to="#">
+            <Link to="https://twitter.com/Artifex_MP" target="_blank">
               {" "}
               <img src={Twitter} alt="FaceTwitterbook" />
             </Link>
-            <Link to="#">
-              {" "}
-              <img src={Youtube} alt="Youtube" />
-            </Link>
+          
           </div>
           <ul className="icons_home">
             <li>

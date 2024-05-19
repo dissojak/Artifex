@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./slider.css";
-
+import { Link } from "react-router-dom";
 import Slide1 from "../../assets/images/slider1.png";
 import Slide2 from "../../assets/images/slider2.png";
 import Slide3 from "../../assets/images/slider3.png";
@@ -48,8 +48,8 @@ const slider = () => {
       <div className="info">
         <h2 style={{color:'#7E3FFF',fontSize:'50px'}}>{slideTexts[currentSlide]}</h2>
         <p>Artifex is a vibrant artist marketplace where creativity thrives and community connects.</p>
-        <button className="signup-button-slider">SIGN UP</button>
-      <button className="login-button-slider">LOGIN</button>
+        <Link to="/signup" > <button className="signup-button-slider">SIGN UP</button></Link>
+      <Link to="/login"><button className="login-button-slider">LOGIN</button></Link>
       </div>
       {/*
       <button onClick={prevSlide} className="slide-btn prev-btn">Prev</button>
