@@ -231,3 +231,9 @@ textarea {
   right:3vw;
   top: 5.5vh;
 }
+
+.error-text {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}

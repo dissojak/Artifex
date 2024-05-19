@@ -11,8 +11,8 @@ router.post(
       .isLength({ min: 2, max: 15 })
       .withMessage("Title must be at least 2 characters long"),
     check("description")
-      .isLength({ min: 10, max: 100 })
-      .withMessage("Description must be between 10 and 100 characters long"),
+      .isLength({ min: 10, max: 400 })
+      .withMessage("Description must be between 10 and 400 characters long"),
     check("price").isNumeric().withMessage("Price must be a number"),
     check("imageArtwork")
       .isURL()
@@ -32,8 +32,8 @@ router.post(
       .isLength({ min: 2, max: 15 })
       .withMessage("Title must be at least 2 characters long"),
     check("description")
-      .isLength({ min: 10, max: 100 })
-      .withMessage("Description must be between 10 and 100 characters long"),
+      .isLength({ min: 10, max: 400 })
+      .withMessage("Description must be between 10 and 400 characters long"),
     check("price").isNumeric().withMessage("Price must be a number"),
     check("imageArtwork")
       .isURL()
