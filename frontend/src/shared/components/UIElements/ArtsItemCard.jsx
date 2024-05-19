@@ -53,8 +53,9 @@ const ArtsItem = (props) => {
 
   const updateImageUrl = (imageUrl) => {
     const oldBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/";
-    const newBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
-    
+    const newBaseUrl =
+      "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
+
     // console.log("here the image ",imageUrl);
     // console.log(imageUrl.startsWith(oldBaseUrl));
     if (imageUrl.startsWith(oldBaseUrl)) {
@@ -69,9 +70,13 @@ const ArtsItem = (props) => {
       {!isLoading && (
         <div className="cardd" key={props.id}>
           <Link to={`/artwork/${props.id}`} style={{ cursor: "pointer" }}>
-            <img src={updateImageUrl(props.Image)} alt="" className="card-image" />
+            <img
+              src={updateImageUrl(props.Image)}
+              alt=""
+              className="card-image"
+            />
           </Link>
-          <div className="card-body">
+          <div className="card-body-Artwork">
             <Link
               to={`/artwork/${props.id}`}
               style={{ cursor: "pointer" }}
@@ -98,23 +103,34 @@ const ArtsItem = (props) => {
                 </button>
               </>
             )}
-            {props.inCard && (<>
-              <button>pay</button>
-              <button
-                className="btn-delete-artwork-from-card"
-                onClick={deleteArtworkHandler}
-              >
-                <img src={DeleteIcon} alt="" className="icon" />
-              </button>
-              </>)}
-            <div className="card-footer">
+            {props.inCard && (
+              <>
+                <button class="payBtnArtworkCard">
+                  Pay
+                  <svg class="svgIconPay" viewBox="0 0 576 512">
+                    <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
+                  </svg>
+                </button>
+                <button
+                  className="btn-delete-artwork-from-card"
+                  onClick={deleteArtworkHandler}
+                >
+                  <img src={DeleteIcon} alt="" className="icon" />
+                </button>
+              </>
+            )}
+            <div className="card-footer-artwork">
               <span className="author">{props.Artist}</span>
-              <div style={{ width: "15px", height: "15px" }}>
+              <div
+                style={{ width: "15px", height: "15px" }}
+                className="SaveArtworkCheck"
+              >
                 <input
                   type="checkbox"
                   id={checkBoxId}
                   //   id="checkboxInput"
                   className="checkbox-input"
+                  disabled={props.inCard}
                 />
                 <label htmlFor={checkBoxId} className="bookmark">
                   <svg
@@ -127,19 +143,48 @@ const ArtsItem = (props) => {
                   </svg>
                 </label>
               </div>
-              <p> </p>
-              <img
-                src={heart}
-                style={{ width: "15px", height: "15px" }}
-                alt="heart"
-              />
-              <span className="likes">{props.Likes} Likes </span>
-              <img
-                src={eye}
-                style={{ width: "15px", height: "15px" }}
-                alt="eye"
-              />
-              <span className="views">{views}K</span>
+              <div title="Like" class="heart-container">
+                <input id="Give-It-An-Id" class="checkbox" type="checkbox" />
+                <div class="svg-container">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="svg-outline"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="svg-filled"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="100"
+                    width="100"
+                    class="svg-celebrate"
+                  >
+                    <polygon points="10,10 20,20"></polygon>
+                    <polygon points="10,50 20,50"></polygon>
+                    <polygon points="20,80 30,70"></polygon>
+                    <polygon points="90,10 80,20"></polygon>
+                    <polygon points="90,50 80,50"></polygon>
+                    <polygon points="80,80 70,70"></polygon>
+                  </svg>
+                </div>
+              </div>
+              {/* <span className="likes">{props.Likes} Likes </span> */}
+              <div>
+                <img
+                  src={eye}
+                  style={{ width: "15px", height: "15px" }}
+                  alt="eye"
+                  className="vuesArtwork"
+                />
+                <span className="views">{views}K</span>
+              </div>
             </div>
           </div>
         </div>

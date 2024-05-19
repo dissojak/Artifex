@@ -1,59 +1,59 @@
-.loginButtonUI {
-  --primary-color: #645bff;
-  --secondary-color: #fff;
-  --hover-color: #111;
-  --arrow-width: 10px;
-  --arrow-stroke: 2px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 20px;
-  color: var(--secondary-color);
-  padding: 1em 1.8em;
-  background: var(--primary-color);
-  display: flex;
-  transition: 0.2s background;
-  align-items: center;
-  gap: 0.6em;
-  font-weight: bold;
-}
-
-.loginButtonUI .arrow-wrapper-login-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginButtonUI .arrow-login-button {
-  margin-top: 1px;
-  width: var(--arrow-width);
-  background: var(--primary-color);
-  height: var(--arrow-stroke);
+.AtistDeletebutton {
   position: relative;
-  transition: 0.2s;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #cc0000;
+  background-color: #e50000;
+  overflow: hidden;
 }
 
-.loginButtonUI .arrow-login-button::before {
-  content: "";
-  box-sizing: border-box;
+.AtistDeletebutton,
+.AtistDeletebutton__icon,
+.button_Delete_text {
+  transition: all 0.3s;
+}
+
+.AtistDeletebutton .button_Delete_text {
+  transform: translateX(35px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.AtistDeletebutton .AtistDeletebutton__icon {
   position: absolute;
-  border: solid var(--secondary-color);
-  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-  display: inline-block;
-  top: -3px;
-  right: 3px;
-  transition: 0.2s;
-  padding: 3px;
-  transform: rotate(-45deg);
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #cc0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.loginButtonUI:hover {
-  background-color: var(--hover-color);
+.AtistDeletebutton .svg {
+  width: 20px;
 }
 
-.loginButtonUI:hover .arrow-login-button {
-  background: var(--secondary-color);
+.AtistDeletebutton:hover {
+  background: #cc0000;
 }
 
-.loginButtonUI:hover .arrow-login-button:before {
-  right: 0;
+.AtistDeletebutton:hover .button_Delete_text {
+  color: transparent;
+}
+
+.AtistDeletebutton:hover .AtistDeletebutton__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.AtistDeletebutton:active .AtistDeletebutton__icon {
+  background-color: #b20000;
+}
+
+.AtistDeletebutton:active {
+  border: 1px solid #b20000;
 }

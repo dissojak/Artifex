@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../slices/usersApiSlice";
 import { logout } from "../../slices/authSlice";
-import Logo from "../../assets/images/Logo_Artifex.svg";
+import Arrow from "../../assets/images/Forward_arrow.svg";
 
 const Home = () => {
   const auth = useContext(AuthContext);
@@ -75,8 +75,7 @@ const Home = () => {
             }
           >
             <h2
-              className="button_home_1"
-              style={!auth.isAdmin ? { color: "black" } : { color: "#0185B7" }}
+              className="button_home_Artifex"
             >
               For Hosting
             </h2>
@@ -90,9 +89,8 @@ const Home = () => {
             >
               Contact us
             </h2>
-            {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
             <img
-              src={!auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"}
+              src={Arrow}
               alt=""
               className="arrow"
               style={{ padding: "9px 0", color: "black" }}

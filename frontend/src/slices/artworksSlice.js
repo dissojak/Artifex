@@ -71,9 +71,10 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     deleteArtwork: builder.mutation({
-      query: (artworkId) => ({
-        url: `${ARTWORKS_URL}/deleteArtwork/${artworkId}`,
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/deleteArtwork`,
         method: 'DELETE',
+        body:data
       }),
     }),
     checkVisibility: builder.mutation({

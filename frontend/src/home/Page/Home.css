@@ -65,11 +65,12 @@
   cursor: pointer;
 }
 
-.button_home_1 {
+.button_home_Artifex {
   width: 153px;
   height: 36px;
   background-color: #ffffff;
   font-family: "Raleway-extrabold";
+  color:#5BD6FF ;
   font-size: 10px;
   box-sizing: border-box;
   padding-top: 11px;
@@ -87,9 +88,10 @@
 
 .arrow {
   position: absolute;
-  /* top:2.7vh; */
+  top:1.7vh;
   padding: 18px 0;
   right: 2.5vw;
+  width: 3.5rem;
 }
 
 .icons_home {

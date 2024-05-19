@@ -341,7 +341,6 @@
   bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
 }
 
-
 /* General button styles */
 .artwork-details button {
   padding: 10px 15px;
@@ -356,39 +355,39 @@
 
 /* Edit button */
 .edit-button {
-  background-color: #9866FF;
+  background-color: #9866ff;
   color: rgb(255, 255, 255);
 }
 
 .edit-button:hover {
-  background-color: #7E3FFF;
+  background-color: #7e3fff;
 }
 
 /* Save button */
 .save-button {
-  background-color: #5BD6FF;
+  background-color: #5bd6ff;
   color: white;
 }
 
 .save-button:hover {
-  background-color: #0CBBF5;
+  background-color: #0cbbf5;
 }
 
-.text-input-edit{
-  margin:1rem 0 ;
+.text-input-edit {
+  margin: 1rem 0;
 }
 
-.description-editor{
-  margin:1rem 0 ;
+.description-editor {
+  margin: 1rem 0;
 }
 
-.CadreColor{
-  border-color:#7E3FFF;
+.CadreColor {
+  border-color: #7e3fff;
 }
 
 /*------ Settings ------*/
 
-.PositionalContainerPrivacy{
+.PositionalContainerPrivacy {
   justify-content: start;
   align-items: center;
   display: flex;
@@ -439,7 +438,7 @@
 
 /* ------ Privacy text styles ------ */
 .privacy-text {
-  position:absolute;
+  position: absolute;
   font-size: 1rem;
   width: 7.5rem;
   color: var(--color);
@@ -471,4 +470,65 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.AtistDeletebutton {
+  position: relative;
+  width: 165px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #cc0000;
+  background-color: #e50000;
+  overflow: hidden;
+  bottom: 1rem;
+}
+
+.AtistDeletebutton,
+.button_Delete_icon,
+.button_Delete_text {
+  transition: all 0.3s;
+}
+
+.AtistDeletebutton .button_Delete_text {
+  transform: translateX(35px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.AtistDeletebutton .button_Delete_icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 40px;
+  background-color: #cc0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AtistDeletebutton .svg {
+  width: 20px;
+}
+
+.AtistDeletebutton:hover {
+  background: #cc0000;
+}
+
+.AtistDeletebutton:hover .button_Delete_text {
+  color: transparent;
+}
+
+.AtistDeletebutton:hover .button_Delete_icon {
+  width: 135px;
+  transform: translateX(0);
+}
+
+.AtistDeletebutton:active .button_Delete_icon {
+  background-color: #b20000;
+}
+
+.AtistDeletebutton:active {
+  border: 1px solid #b20000;
 }

@@ -214,7 +214,7 @@ exports.deleteArtworkByAdmin = asyncHandler(async (req, res, next) => {
  * @access  Private
  */
 exports.deleteArtwork = asyncHandler(async (req, res, next) => {
-  const artworkId = req.params.artworkId;
+  const artworkId = req.body.artworkId;
 
   try {
     let artwork = await Artwork.findById(artworkId);

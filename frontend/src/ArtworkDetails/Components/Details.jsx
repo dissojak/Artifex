@@ -54,7 +54,8 @@ const Details = (props) => {
         try {
           const res = await checkIsPublic(artwork._id).unwrap();
           // console.log(res);
-          setIsChecked(res.visibility);
+          // console.log(res.visibility==="public");
+          setIsChecked(res.visibility === "public");
         } catch (err) {
           toast.error(err?.data?.message || err.error);
         }
@@ -181,6 +182,29 @@ const Details = (props) => {
   const [makePrivate] = useMakePrivateMutation();
   const [checkIsPublic] = useCheckVisibilityMutation();
 
+  const deleteHandle = async () => {
+    const toastId = toast.loading("deleting...");
+    try {
+      const res = await deleteArtwork({
+        artworkId: artwork._id,
+      }).unwrap();
+      console.log(res);
+      toast.update(toastId, {
+        render: "Artwork Deleted Successfully !",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
+    } catch (err) {
+      toast.update(toastId, {
+        render: err?.data?.message || err.error,
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
+  };
+
   const handleMakePublic = async () => {
     const toastId = toast.loading("visibility changing...");
     setIsChecked(false);
@@ -188,6 +212,7 @@ const Details = (props) => {
       const res = await makePublic({
         artworkId: artwork._id,
       }).unwrap();
+      // console.log(res);
       toast.update(toastId, {
         render: "Artwork is Public now !",
         type: "success",
@@ -212,6 +237,7 @@ const Details = (props) => {
       const res = await makePrivate({
         artworkId: artwork._id,
       }).unwrap();
+      // console.log(res);
       toast.update(toastId, {
         render: "Artwork is Private now !",
         type: "success",
@@ -279,7 +305,7 @@ const Details = (props) => {
                   <path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"></path>
                 </svg>
                 <span className="privacy-text">
-                  {isChecked ? "Make Public" : "Make Private"}
+                  {isChecked ? "Make Private" : "Make Public"}
                 </span>
               </label>
             </div>
@@ -338,6 +364,7 @@ const Details = (props) => {
         </p>
         <p className="category">{artwork.id_category.name}</p>
       </div>
+
       {isClient && !artwork.Sold && (
         <div className="buttonsartsection">
           <div className="buttoncart" onClick={handleAddToCart}>
@@ -383,6 +410,98 @@ const Details = (props) => {
               Save Changes
             </button>
           )}
+          <button
+            className="AtistDeletebutton"
+            type="button"
+            onClick={deleteHandle}
+          >
+            <span className="button_Delete_text">Delete</span>
+            <span
+              className="button_Delete_icon"
+              // style={{width:"50px"}}
+            >
+              <svg
+                className="svg"
+                height="512"
+                viewBox="0 0 512 512"
+                width="512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Delete</title>
+                <path
+                  d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
+                  style={{
+                    fill: "none",
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "32px",
+                  }}
+                />
+                <line
+                  x1="80"
+                  y1="112"
+                  x2="432"
+                  y2="112"
+                  style={{
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeMiterlimit: 10,
+                    strokeWidth: "32px",
+                  }}
+                />
+                <path
+                  d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
+                  style={{
+                    fill: "none",
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "32px",
+                  }}
+                />
+                <line
+                  x1="256"
+                  y1="176"
+                  x2="256"
+                  y2="400"
+                  style={{
+                    fill: "none",
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "32px",
+                  }}
+                />
+                <line
+                  x1="184"
+                  y1="176"
+                  x2="192"
+                  y2="400"
+                  style={{
+                    fill: "none",
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "32px",
+                  }}
+                />
+                <line
+                  x1="328"
+                  y1="176"
+                  x2="320"
+                  y2="400"
+                  style={{
+                    fill: "none",
+                    stroke: "#fff",
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: "32px",
+                  }}
+                />
+              </svg>
+            </span>
+          </button>
         </>
       )}
     </div>
