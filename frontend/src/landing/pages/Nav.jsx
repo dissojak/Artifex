@@ -27,7 +27,7 @@ const Nav = ({ data, openNav, closeNav }) => {
           </Link> */}
           <Link to="/login" className="text-decoration-link">
               <button className="loginButtonUI">
-                Sign up
+                Login
                 <div className="arrow-wrapper-login-button">
                   <div className="arrow-login-button"></div>
                 </div>

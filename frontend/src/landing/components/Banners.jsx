@@ -2,7 +2,7 @@ import React from "react";
 import icon1 from "../../assets/images/community.svg";
 import icon2 from "../../assets/images/transaction.svg";
 import icon3 from "../../assets/images/event.svg";
-
+import { Link } from "react-router-dom";
 import "./Banners.css";
 
 const Banners = () => {
@@ -27,7 +27,7 @@ Your artistic journey starts here."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
             <button className="signup-button-back">LEARN MORE</button>
-      <button className="login-button-back">SIGN UP</button>
+            <Link to="/signup"><button className="login-button-back">SIGN UP</button></Link>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ Your artistic journey starts here."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
             <button className="signup-button-back2">LEARN MORE</button>
-      <button className="login-button-back2">SIGN UP</button>
+            <Link to="/signup"><button className="login-button-back2">SIGN UP</button></Link>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@ Your artistic journey starts here."
             </p>
             <div style={{paddingTop:'40px',textAlign:'center'}}>
             <button className="signup-button-back">LEARN MORE</button>
-      <button className="login-button-back">SIGN UP</button>
+            <Link to="/signup"><button className="login-button-back">SIGN UP</button></Link>
       </div>
     </div>
   </div>
