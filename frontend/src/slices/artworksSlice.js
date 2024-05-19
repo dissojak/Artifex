@@ -56,6 +56,32 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    makePrivate: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/private`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
+    makePublic: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/public`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
+    deleteArtwork: builder.mutation({
+      query: (artworkId) => ({
+        url: `${ARTWORKS_URL}/deleteArtwork/${artworkId}`,
+        method: 'DELETE',
+      }),
+    }),
+    checkVisibility: builder.mutation({
+      query: (artworkId) => ({
+        url: `${ARTWORKS_URL}/visibility/${artworkId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -68,6 +94,10 @@ export const {
   useBuyArtworkMutation,
   useGetBoughtArtworkMutation,
   useEditArtworkMutation,
+  useDeleteArtworkMutation,
+  useMakePrivateMutation,
+  useMakePublicMutation,
+  useCheckVisibilityMutation,
   //   useRegisterMutation,
   //   useUpdateUserMutation,
 } = artworkApiSlice;

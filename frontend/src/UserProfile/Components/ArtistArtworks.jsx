@@ -9,7 +9,7 @@ const ArtistArtworks = (props) => {
     setIsOpen(!isOpen);
   };
 
-  console.log("artworks: ", props.artworks);
+  // console.log("artworks: ", props.artworks);
   return (
     <>
       {!isOpen ? (

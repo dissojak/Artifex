@@ -262,3 +262,26 @@
     top: -70%;
   }
   
+  .download-btn {
+    border: 2px solid rgb(168, 38, 255);
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .download-btn svg {
+    width: 25px;
+    height: 25px;
+    transition: all 0.3s ease;
+  }
+  .download-btn:hover svg {
+    fill: white;
+  }
+  .download-btn:hover {
+    background-color: rgb(168, 38, 255);
+  }
+  
