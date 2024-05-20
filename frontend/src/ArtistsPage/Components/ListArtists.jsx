@@ -16,7 +16,7 @@ const ListArtists = (props) => {
           category={artist.category}
           rating={artist.rating?.rating || 0} // Use optional chaining and default value
           reviews={artist.rating?.nbReviews || 0} // Use optional chaining and default value
-          numberOfArtworks={artist.numberOfArtworks||'Hiden'}
+          numberOfArtworks={artist.numberOfArtworks||(props.museum&&'Hiden')||0}
           numberOfFollowers={artist.numberOfFollowers || 0}
           isFollowing={artist.isFollowing}
           instagram={artist.instagram}

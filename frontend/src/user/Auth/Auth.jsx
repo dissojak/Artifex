@@ -12,6 +12,8 @@ import {
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
 
+import Logo from "../../assets/images/logo.svg";
+
 function Auth(props) {
   // const location = useLocation();
   // const queryParams = new URLSearchParams(location.search);
@@ -40,8 +42,11 @@ function Auth(props) {
 
   useEffect(() => {
     if (userInfo) {
-      if (userInfo.userType==='client'){
-      navigate("/home");}else{navigate("/museums");}
+      if (userInfo.userType === "client") {
+        navigate("/home");
+      } else {
+        navigate("/museums");
+      }
     }
   }, [navigate, userInfo]);
 
@@ -118,7 +123,7 @@ function Auth(props) {
 
   useEffect(() => {
     console.log("isLoginMode :", isLoginMode);
-    if (props.signup){
+    if (props.signup) {
       handleRegisterClick();
     }
   }, []);
@@ -147,6 +152,11 @@ function Auth(props) {
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>
             {isLoading && <LoadingSpinner asOverlay />}
+            <img
+              src={Logo}
+              alt="Artifex-Mini-Logo"
+              className="Artifex-Mini-Logo-Signup"
+            />
             <h1 className="login-signup">Create Account</h1>
             <div className="radio-button-container">
               <div className="radio-button">
@@ -206,8 +216,13 @@ function Auth(props) {
         <div className="form-container sign-in">
           <form onSubmit={submitHandler}>
             {isLoading && <LoadingSpinner asOverlay />}
-            <h1 className="login-signup">Login</h1>
-            <div className="social-icons">
+            <img
+              src={Logo}
+              alt="Artifex-Mini-Logo"
+              className="Artifex-Mini-Logo-Login"
+            />
+            <h1 className="login-text-H1">Login</h1>
+            {/* <div className="social-icons">
               <Link to="#" className="icon">
                 <i className="fab fa-google-plus-g">G</i>
               </Link>
@@ -220,7 +235,7 @@ function Auth(props) {
               <Link to="#" className="icon">
                 <i className="fab fa-linkedin-in">LIn</i>
               </Link>
-            </div>
+            </div> */}
             <span className="use-your-email-for-registration">
               or use your email password
             </span>
@@ -245,16 +260,22 @@ function Auth(props) {
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <h1>Welcome Back!</h1>
-              <p>Enter your personal details to use all site features</p>
+              <h1 className="welcomeLogin">Greetings,</h1>
+              <h1 className="guestLogin">Esteemed Patron!</h1>
+              <p>
+                Embark on your journey by sharing your distinguished credentials
+                to access all site amenities.
+              </p>
               <button className="hidden" onClick={handleLoginClick}>
                 Login
               </button>
             </div>
             <div className="toggle-panel toggle-right">
-              <h1>Hello, Friend!</h1>
+              <h1 className="welcomeLogin">Welcome,</h1>
+              <h1 className="guestLogin">Esteemed Guest!</h1>
               <p>
-                Register with your personal details to use all site features
+                Unlock the full suite of site features by registering with your
+                prestigious details.
               </p>
               <button className="hidden" onClick={handleRegisterClick}>
                 Sign Up

@@ -285,7 +285,7 @@
   height: 50px;
   border-radius: 10px;
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   transition: all 0.2s ease;
   cursor: pointer;
   left: 13.5rem;

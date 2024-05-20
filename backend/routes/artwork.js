@@ -29,7 +29,7 @@ router.post(
   "/signup/AddArtwork",
   [
     check("title")
-      .isLength({ min: 2, max: 15 })
+      .isLength({ min: 2, max: 25 })
       .withMessage("Title must be at least 2 characters long"),
     check("description")
       .isLength({ min: 10, max: 400 })
@@ -51,13 +51,13 @@ router.put(
   (req, res, next) => {
     if (req.body.title) {
       check("title")
-        .isLength({ min: 2, max: 15 })
+        .isLength({ min: 2, max: 25 })
         .withMessage("Title must be at least 2 characters long");
     }
     if (req.body.description) {
       check("description")
-        .isLength({ min: 10, max: 100 })
-        .withMessage("Description must be between 10 and 100 characters long");
+        .isLength({ min: 10, max: 400 })
+        .withMessage("Description must be between 10 and 400 characters long");
     }
     next();
   },

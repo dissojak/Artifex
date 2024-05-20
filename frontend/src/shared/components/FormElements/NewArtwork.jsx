@@ -33,8 +33,8 @@ const NewArtworkArtist = (props) => {
 
   const validateForm = () => {
     const errors = {};
-    if (formData.title.length < 2 || formData.title.length > 15) {
-      errors.title = "Title must be between 2 and 15 characters long";
+    if (formData.title.length < 2 || formData.title.length > 25) {
+      errors.title = "Title must be between 2 and 25 characters long";
     }
     if (formData.description.length < 10 || formData.description.length > 400) {
       errors.description = "Description must be between 10 and 400 characters long";
