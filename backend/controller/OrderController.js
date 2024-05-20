@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 
 exports.getClientOrders = asyncHandler(async (req, res, next) => {
   const clientId = req.user._id;
-  console.log(clientId);
+  // console.log(clientId);
 
   try {
     const orders = await Order.find({ clientId }).populate("artistId");

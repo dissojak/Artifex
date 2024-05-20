@@ -12,7 +12,7 @@ const museumSchema = new mongoose.Schema({
   // Description of the museum
   description: {
     type: String,
-    maxLength: 50,
+    maxLength: 150,
     required: true,
   },
   museumImage: {

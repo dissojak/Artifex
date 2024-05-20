@@ -76,6 +76,12 @@ export const museumApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getPinnedMuseums: builder.mutation({
+      query: () => ({
+        url: `${MUSEUMS_URL}/pinned/PinnedMuseums`,
+        method: "GET",
+      }),
+    }),
     //new function
   }),
 });
@@ -92,4 +98,5 @@ export const {
   useBuyArtistPassMutation,
   useBuyClientPassMutation,
   useGetMuseumsByUserIdMutation,
+  useGetPinnedMuseumsMutation,
 } = museumApiSlice;

@@ -1,9 +1,16 @@
+.PinnedMuseums-container{
+  position: relative;
+  right:17vw;
+}
 
-.PinnedMuseums-container {
-    display: flex;
+  .PinnedMuseums-List-container {
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin-left: -210px;
-    gap: 15px; /* Adjust space between cards */
-    padding: 20px; /* Padding around the gallery container */
+    justify-content: space-around; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Adjust space between cards */
+    padding: 109px;
+    padding-top: 24px;
   }
+  

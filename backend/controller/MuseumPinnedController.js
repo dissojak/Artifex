@@ -84,9 +84,13 @@ exports.getPinnedMuseum = async (req, res, next) => {
   const userId = req.user._id;
   let pinnedMuseums;
   try {
-    pinnedMuseums = await MuseumPinned.find({ userId }).populate(
-      "museumId"
-    );
+    pinnedMuseums = await MuseumPinned.find({ userId }).populate({
+      path: 'museumId',
+      populate: {
+        path: 'idCategory', // assuming the field in Museum model is idCategory
+        select: 'name'
+      }
+    });
   } catch (err) {
     next(
       new HttpError(

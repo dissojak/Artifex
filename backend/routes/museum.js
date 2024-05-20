@@ -13,7 +13,7 @@ router.post(
     check("description")
       .trim()
       .notEmpty()
-      .isLength({ max: 500 })
+      .isLength({ max: 150 })
       .withMessage(
         "Description is required and must be at most 500 characters long"
       ),
@@ -45,7 +45,7 @@ router.patch(
   [
     check("title").notEmpty().withMessage("Title cannot be empty"),
     check("description")
-      .isLength({ max: 500 })
+      .isLength({ max: 150 })
       .withMessage("Description must be less than 500 characters"),
     check("priceClient")
       .isNumeric()
@@ -88,11 +88,11 @@ router.post(
   MW.protect,
   [
     check("title")
-      .isLength({ min: 2, max: 15 })
+      .isLength({ min: 2, max: 25 })
       .withMessage("Title must be at least 2 characters long"),
     check("description")
-      .isLength({ min: 10, max: 100 })
-      .withMessage("Description must be between 10 and 100 characters long"),
+      .isLength({ min: 10, max: 400 })
+      .withMessage("Description must be between 10 and 400 characters long"),
     check("price").isNumeric().withMessage("Price must be a number"),
     check("imageArtwork")
       .isURL()
@@ -109,7 +109,7 @@ router.get("/byDate", MW.protect, MC.getMuseumsByDates);
 router.post("/pin", MW.protect, MPC.pinMuseum);
 router.delete("/unpin", MW.protect, MPC.unPinMuseum);
 router.post("/isPinned", MW.protect, MPC.isPinned);
-router.get("/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
+router.get("/pinned/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
 router.get("/user/museums",MW.protect, MC.getMuseumsByUserId);
 
 module.exports = router;

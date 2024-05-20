@@ -291,6 +291,11 @@ const MuseumItemCard = (props) => {
                 <>
                   {props.artistsEntered}/{props.numberMaxArtists}
                 </>
+              ))||
+              (userInfo.userType==='admin' && (
+                <>
+                  ??/??
+                </>
               ))}
           </div>
         </div>
