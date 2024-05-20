@@ -90,7 +90,7 @@
     color: var(--secondary-color);
     padding: 1em 1.8em;
     background: var(--primary-color);
-    display: flex;
+    display: flex; 
     transition: 0.2s background;
     align-items: center;
     gap: 0.6em;
