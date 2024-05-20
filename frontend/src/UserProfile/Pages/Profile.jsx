@@ -8,6 +8,7 @@ import OrderIcon from "../../assets/images/orderblack.svg";
 import OrderIconActive from "../../assets/images/orderpurple.svg";
 import Orders from "../Components/Orders/Pages/Orders.jsx";
 import OpenOrderArtist from "../Components/OpenOrderArtist.jsx";
+import AddMuseumAdmin from "../Components/AddMuseumAdmin.jsx";
 import SavedArtwork from "../Components/SavedArtwork.jsx";
 import PinnedMuseums from "../Components/PinnedMuseums.jsx";
 import DefaultImg from "../../assets/images/default_profile_img.jpg";
@@ -432,6 +433,45 @@ const Profile = (props) => {
                 )}
               </div>
               {activeTab === "museums" && <OpenOrderArtist isLoading={props.isLoading} user={props.user}/>}
+            </>
+          )}
+               {!isSettings && userInfo.userType === "admin" && (
+            <>
+              {!isOpen && (
+                <>
+                  <div className="Buttons-section3">
+                    <div className="tab-container">
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab1"
+                        className="tab tab--1"
+                        checked={activeTab === "orders"}
+                        onChange={() => setActiveTab("orders")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "orders" ? "active" : ""
+                        }`}
+                        htmlFor="tab1"
+                      >
+                        <img
+                          src={getIcon("orders")}
+                          style={{ width: "1.2em", height: "1.2em" }}
+                          alt="Order Icon"
+                        />
+                        Booking Orders
+                      </label>
+
+                     
+
+                      <div className="indicator"></div>
+                    </div>
+                  </div>
+                </>
+              )}
+              {/* Conditional rendering based on the selected tab */}
+              {activeTab === "orders" && <AddMuseumAdmin />}
             </>
           )}
         </div>
