@@ -85,11 +85,12 @@
     --arrow-stroke: 3px;
     box-sizing: border-box;
     border: 0;
+    cursor: pointer;
     border-radius: 20px;
     color: var(--secondary-color);
     padding: 1em 1.8em;
     background: var(--primary-color);
-    display: flex;
+    display: flex; 
     transition: 0.2s background;
     align-items: center;
     gap: 0.6em;
