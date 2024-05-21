@@ -1,0 +1,16 @@
+#LikedArtworksContainerClinet {
+  width: 99.55vw;
+  height: 150vh;
+  background-image: url("../elements/line.svg");
+  /* background-image: url("./elements/11a.gif"); */
+  background-repeat: no-repeat;
+  background-size: 240vh;
+  background-position: -10vh 30vh;
+}
+
+.auth-section2-LikedArtworks {
+  text-align: center;
+  padding-top: 33vh;
+  padding-bottom: 5vh;
+}
+

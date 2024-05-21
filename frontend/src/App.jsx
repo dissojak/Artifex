@@ -51,6 +51,9 @@ import Card from "./Card/Pages/Card.jsx";
 import SuccessPaymentMuseum from "./shared/components/Pages/successPayments/SuccessMuseum.jsx";
 import FailPaymentMuseum from "./shared/components/Pages/failPayments/FailMuseum.jsx";
 import Events from "./Events/Pages/Events.jsx";
+import LikedArtworks from "./LikedArtworks/pages/LikedArtworks.jsx";
+import SuccessOrderPayment from "./shared/components/Pages/successPayments/SuccessOrderPayment.jsx";
+import FailOrderPayment from "./shared/components/Pages/failPayments/FailOrderPayment.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -137,7 +140,10 @@ const App = () => {
           <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
           <Route path="/artist/:username" element={<ArtistProfileForUser />} />
           <Route path="/museumshowcase" element={<MuseumShowcase />} />
-          <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
+          <Route
+            path="/MuseumShowcaseArtist"
+            element={<MuseumShowcaseArtist />}
+          />
           <Route path="/Plans" element={<PricingOptions />} />
           <Route path="/PlansHistory" element={<PlansHistory />} />
           <Route path="/museums/:museumId" element={<MuseumDetails />} />
@@ -148,13 +154,15 @@ const App = () => {
           <Route path="/museum/fail" element={<FailPaymentMuseum />} />
           <Route path="/Card" element={<Card />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/artworks/liked" element={<LikedArtworks />} />
+          <Route path="/order/success" element={<SuccessOrderPayment />} />
+          <Route path="/order/fail" element={<FailOrderPayment />} />
         </Route>
         <Route path="/login" element={<Auth />} />
         {/* <Route path="/auth" element={<Auth />} /> */}
         <Route path="/:userId/places" element={<UserPlaces />} />
-        <Route path="/signup" element={<Auth signup={true}/>} />
+        <Route path="/signup" element={<Auth signup={true} />} />
         <Route path="/register" element={<RegisterScreen />} />
-        {/* Add more routes as needed */}
         <Route path="/AddArtwork" element={<NewArtwork />} />
         <Route path="/socialMedia" element={<SocialMedia />} />
       </Routes>
@@ -180,7 +188,7 @@ const App = () => {
       >
         <Router>
           {/* <Header /> */}
-          <ToastContainer style={{marginTop:"80px"}}/>
+          <ToastContainer style={{ marginTop: "80px" }} />
           <NavigationWrapper>
             {/*this is sent as a children to navigation 
             warpper that will handel rundering it */}

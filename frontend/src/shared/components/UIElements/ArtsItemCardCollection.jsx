@@ -6,12 +6,15 @@ import { useGetViewsMutation } from "../../../slices/reviewSlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useIsLikedMutation } from "../../../slices/likeSaveSlice";
 
 const ArtsItemCollection = (props) => {
   const checkBoxId = `checkboxInput-${props.id}`;
   const [getViews, { isLoading }] = useGetViewsMutation();
   const [views, setViews] = useState(props.Views);
   const { userInfo } = useSelector((state) => state.auth);
+  const [checkIsLiked] = useIsLikedMutation();
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     if (props.passKey) {
@@ -25,7 +28,16 @@ const ArtsItemCollection = (props) => {
       };
       req();
     }
-  }, [props.id, props.passKey, getViews]);
+    const req1 = async () => {
+      try {
+        const res = await checkIsLiked(props.id).unwrap();
+        setIsLiked(res.isLiked);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    req1();
+  }, [props.id, props.passKey, getViews , checkIsLiked]);
 
   const handleDownload = async () => {
     try {
@@ -95,11 +107,13 @@ const ArtsItemCollection = (props) => {
                       </svg>
                     </label>
                   </div>
-                  <div title="Like" className="heart-container">
+                  <div title="Disabled" className="heart-container">
                     <input
                       id="Give-It-An-Id"
                       className="checkbox"
                       type="checkbox"
+                      checked= {isLiked}
+                      disabled
                     />
                     <div className="svg-container">
                       <svg

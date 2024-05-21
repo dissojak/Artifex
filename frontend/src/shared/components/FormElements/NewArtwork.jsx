@@ -82,6 +82,8 @@ const NewArtworkArtist = (props) => {
         imageArtwork: img,
         id_category: formData.category,
       }).unwrap();
+      // console.log(req.artwork);
+      props.onAjout(req.artwork)
       toast.update(toastId, {
         render: "Your New Artwork has been saved Successfully!",
         type: "success",

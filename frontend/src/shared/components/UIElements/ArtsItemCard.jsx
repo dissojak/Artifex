@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import heart from "../../../assets/images/heart.png";
+// import heart from "../../../assets/images/heart.png";
 import eye from "../../../assets/images/eye.png";
 import DeleteIcon from "../../../assets/images/delete.svg";
 import "./ArtsItemCard.css";
@@ -7,23 +7,146 @@ import { useGetViewsMutation } from "../../../slices/reviewSlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useRemoveArtworkFromPanierMutation } from "../../../slices/usersApiSlice";
+import {
+  useIsLikedMutation,
+  useIsSavedMutation,
+  useLikeArtworkMutation,
+  useSaveArtworkMutation,
+  useUnlikeArtworkMutation,
+  useUnsaveArtworkMutation,
+} from "../../../slices/likeSaveSlice";
+import { useSelector } from "react-redux";
 
 const ArtsItem = (props) => {
   const checkBoxId = `checkboxInput-${props.id}`;
-  const [getViews, { isLoading }] = useGetViewsMutation();
+  const [isLoading, setIsLoading] = useState();
+  const [likeArtwork] = useLikeArtworkMutation();
+  const [unlikeArtwork] = useUnlikeArtworkMutation();
+  const [saveArtwork] = useSaveArtworkMutation();
+  const [unSaveArtwork] = useUnsaveArtworkMutation();
+  const [checkIsSaved] = useIsSavedMutation();
+  const [checkIsLiked] = useIsLikedMutation();
+  const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [getViews] = useGetViewsMutation();
   const [views, setViews] = useState(props.Views);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const SaveArtwork = async () => {
+    try {
+      setIsSaved(true);
+      const res = await saveArtwork({
+        artworkId: props.id,
+        artistId: props.artistId,
+      }).unwrap();
+      // console.log(res);
+    } catch (err) {
+      setIsSaved(false);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const UnSaveArtwork = async () => {
+    try {
+      setIsSaved(false);
+      const res = await unSaveArtwork({
+        artworkId: props.id,
+        artistId: props.artistId,
+      }).unwrap();
+      // console.log(res);
+    } catch (err) {
+      setIsSaved(true);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const handleSaveChange = () => {
+    if (isSaved) {
+      UnSaveArtwork();
+    } else {
+      SaveArtwork();
+    }
+  };
+
+  const LikeArtwork = async () => {
+    try {
+      setIsLiked(true);
+      const res = await likeArtwork({
+        artworkId: props.id,
+        artistId: props.artistId,
+      }).unwrap();
+      // console.log(res);
+    } catch (err) {
+      setIsLiked(false);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const UnlikeArtwork = async () => {
+    try {
+      setIsLiked(false);
+      const res = await unlikeArtwork({
+        artworkId: props.id,
+        artistId: props.artistId,
+      }).unwrap();
+      // console.log(res);
+    } catch (err) {
+      setIsLiked(true);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const handleLikeChange = () => {
+    if (isLiked) {
+      UnlikeArtwork();
+    } else {
+      LikeArtwork();
+    }
+  };
+
   useEffect(() => {
     if (props.passKey) {
+      setIsLoading(true);
       const req = async () => {
         try {
           const res = await getViews(props.id);
           // console.log(res.data.views);
+          setIsLoading(false);
           setViews(res.data.views);
         } catch (err) {
+          setIsLoading(false);
           toast.error(err?.data?.message || err.error);
         }
       };
       req();
+    }
+    if (userInfo) {
+      const req1 = async () => {
+        setIsLoading(true);
+        try {
+          const res = await checkIsLiked(props.id).unwrap();
+          // console.log("is liked :", res.isLiked);
+          setIsLiked(res.isLiked);
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
+      };
+      req1();
+      const req2 = async () => {
+        setIsLoading(true);
+        try {
+          const res = await checkIsSaved(props.id).unwrap();
+          // console.log("is saved :" ,res.isSaved);
+          setIsSaved(res.isSaved);
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
+      };
+      req2();
     }
   }, []);
 
@@ -105,9 +228,9 @@ const ArtsItem = (props) => {
             )}
             {props.inCard && (
               <>
-                <button class="payBtnArtworkCard">
+                <button className="payBtnArtworkCard">
                   Pay
-                  <svg class="svgIconPay" viewBox="0 0 576 512">
+                  <svg className="svgIconPay" viewBox="0 0 576 512">
                     <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
                   </svg>
                 </button>
@@ -121,60 +244,72 @@ const ArtsItem = (props) => {
             )}
             <div className="card-footer-artwork">
               <span className="author">{props.Artist}</span>
-              <div
-                style={{ width: "15px", height: "15px" }}
-                className="SaveArtworkCheck"
-              >
-                <input
-                  type="checkbox"
-                  id={checkBoxId}
-                  //   id="checkboxInput"
-                  className="checkbox-input"
-                  disabled={props.inCard}
-                />
-                <label htmlFor={checkBoxId} className="bookmark">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1em"
-                    viewBox="0 0 384 512"
-                    className="svgIcon"
+              {userInfo && (
+                <>
+                  <div
+                    style={{ width: "15px", height: "15px" }}
+                    className="SaveArtworkCheck"
                   >
-                    <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path>
-                  </svg>
-                </label>
-              </div>
-              <div title="Like" class="heart-container">
-                <input id="Give-It-An-Id" class="checkbox" type="checkbox" />
-                <div class="svg-container">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-outline"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-filled"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="100"
-                    width="100"
-                    class="svg-celebrate"
-                  >
-                    <polygon points="10,10 20,20"></polygon>
-                    <polygon points="10,50 20,50"></polygon>
-                    <polygon points="20,80 30,70"></polygon>
-                    <polygon points="90,10 80,20"></polygon>
-                    <polygon points="90,50 80,50"></polygon>
-                    <polygon points="80,80 70,70"></polygon>
-                  </svg>
-                </div>
-              </div>
+                    <input
+                      type="checkbox"
+                      id={checkBoxId}
+                      //   id="checkboxInput"
+                      className="checkbox-input"
+                      disabled={props.inCard}
+                      checked={isSaved}
+                      onChange={handleSaveChange}
+                    />
+                    <label htmlFor={checkBoxId} className="bookmark">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 384 512"
+                        className="svgIcon"
+                      >
+                        <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path>
+                      </svg>
+                    </label>
+                  </div>
+                  <div title="Like" className="heart-container">
+                    <input
+                      id="Give-It-An-Id"
+                      className="checkbox"
+                      type="checkbox"
+                      checked={isLiked}
+                      onChange={handleLikeChange}
+                    />
+                    <div className="svg-container">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="svg-outline"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="svg-filled"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="100"
+                        width="100"
+                        className="svg-celebrate"
+                      >
+                        <polygon points="10,10 20,20"></polygon>
+                        <polygon points="10,50 20,50"></polygon>
+                        <polygon points="20,80 30,70"></polygon>
+                        <polygon points="90,10 80,20"></polygon>
+                        <polygon points="90,50 80,50"></polygon>
+                        <polygon points="80,80 70,70"></polygon>
+                      </svg>
+                    </div>
+                  </div>
+                </>
+              )}
               {/* <span className="likes">{props.Likes} Likes </span> */}
               <div>
                 <img

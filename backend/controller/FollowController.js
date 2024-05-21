@@ -179,8 +179,23 @@ exports.removeFollower = async (req, res, next) => {
         new HttpError("You are not currently following this artist", 400)
       );
     }
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    const Artist = await User.findByIdAndUpdate(
+      artistId,
+      { $inc: { numberOfFollowers: -1 } },
+      { new: true, session }
+    );
+
+    if (!Artist) {
+      return next(new HttpError("Order not found", 404));
+    }
+
     await Follow.findOneAndDelete({ clientId, artistId });
-    res.status(200).json({ message: `You have unfollowed artist ${artistId}` });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: `You have removed the client ${clientId}` });
   } catch (err) {
     return next(new HttpError("Failed to unfollow the artist", 500));
   }

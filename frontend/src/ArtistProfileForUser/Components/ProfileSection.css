@@ -187,10 +187,16 @@
   }
   
   .no-artworks {
-    /* Styles for the 'no artworks' message */
-    color: #ff6347; /* tomato */
+    color: #ff4c4c;
+    font-size: 1.5em;
     text-align: center;
-    font-size: 24px;
-    margin-top: 50px;
+    padding: 20px;
+    margin:auto;
+    margin-top:4rem;
+    background-color: #ffecec;
+    border: 1px solid #ff4c4c;
+    border-radius: 10px;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   

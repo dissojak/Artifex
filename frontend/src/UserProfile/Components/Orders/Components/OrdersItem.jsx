@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../Pages/Orders.css";
 import CompletedPopup from "../../CompletedPopup.jsx";
+import { useOrderPaymentMutation } from "../../../../slices/ordersSlice.js";
+import { toast } from "react-toastify";
 
 const OrdersItem = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
@@ -10,22 +12,30 @@ const OrdersItem = (props) => {
     return new Date(dateString).toLocaleDateString("en-GB", options); // Using British locale to get DD/MM/YYYY
   }
 
-  const handleStatusClick = (status) => {
+  const [payment] = useOrderPaymentMutation();
+  const handleStatusClick = async (status) => {
     if (status === "accepted") {
-      console.log("Redirecting to payment...");
-      // Redirect to payment or handle payment logic
+      try {
+        const res = await payment({
+          amount: props.price * 1000,
+        }).unwrap();
+        // console.log("Setting orderId in localStorage:", props.orderId);
+        localStorage.setItem("orderId", props.orderId);
+        const paymentLink = res.paymentInfo.result.link;
+        console.log(paymentLink);
+        window.location.href = paymentLink;
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     } else if (status === "completed") {
       setIsPopupOpen(!isPopupOpen);
-    } else {
-      console.log(`Action for status: ${status}`);
-      // Handle other status-related actions
     }
   };
 
   return (
     <>
-      <tr key={props._id}>
-        <td>{props.id}</td>
+      <tr key={props.id}>
+        <td>{props.orderId}</td>
         <td>{props.artist}</td>
         <td>{props.description}</td>
         <td>{props.price}</td>
@@ -33,7 +43,7 @@ const OrdersItem = (props) => {
         <td>{props.orderType}</td>
         <td className={`status ${props.status.toLowerCase()}`}>
           <button
-            className="status-button"
+            className="status-button "
             onClick={() => handleStatusClick(props.status)}
           >
             {props.status === "accepted" ? "Pay" : props.status}

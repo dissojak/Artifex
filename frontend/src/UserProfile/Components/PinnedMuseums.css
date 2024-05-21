@@ -1,6 +1,6 @@
 .PinnedMuseums-container{
   position: relative;
-  right:17vw;
+  right:18vw;
 }
 
   .PinnedMuseums-List-container {
@@ -9,7 +9,7 @@
     justify-content: space-around; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* Adjust space between cards */
+    gap: 2rem; /* Adjust space between cards */
     padding: 109px;
     padding-top: 24px;
   }

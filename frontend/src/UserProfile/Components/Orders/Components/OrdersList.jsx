@@ -8,7 +8,8 @@ const OrdersList = (props) => {
         {props.items.map((order) => (
           <OrdersItem
             key={order._id}
-            id={order.orderId}
+            id={order._id}
+            orderId={order.orderId}
             artist={order.artistId.username}
             description={order.description}
             price={order.artistId.normalPrice}

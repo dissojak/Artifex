@@ -106,6 +106,10 @@ const Profile = (props) => {
     }
   }, []);
 
+  const ajoutArtworkHandler = (newArtwork) => {
+    setArtworks((prevArtworks) => [...prevArtworks, newArtwork]);
+  };
+
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -428,10 +432,18 @@ const Profile = (props) => {
               {activeTab === "orders" && <Orders />}
               <div className="newArtworkFormContainer">
                 {activeTab === "artworks" && artworks && (
-                  <ArtistArtworks artworks={artworks} />
+                  <ArtistArtworks
+                    artworks={artworks}
+                    onAjoutArtwork={ajoutArtworkHandler}
+                  />
                 )}
               </div>
-              {activeTab === "museums" && <OpenOrderArtist isLoading={props.isLoading} user={props.user}/>}
+              {activeTab === "museums" && (
+                <OpenOrderArtist
+                  isLoading={props.isLoading}
+                  user={props.user}
+                />
+              )}
             </>
           )}
         </div>

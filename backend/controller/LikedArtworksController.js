@@ -135,3 +135,25 @@ exports.unlikeArtwork = asyncHandler(async (req, res, next) => {
     next(new HttpError("Failed to unlike this artwork ", 500));
   }
 });
+
+/**
+ * @desc    Check if an artwork is liked by a user
+ * @route   GET /api/liked/saved/isLiked/:artworkId
+ * @access  Private
+ */
+exports.isLiked = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  const artworkId = req.params.artworkId;
+
+  try {
+    const likedArtwork = await LikedArtworks.findOne({ clientId: userId, artworkId });
+
+    if (likedArtwork) {
+      return res.status(200).json({ isLiked: true });
+    } else {
+      return res.status(200).json({ isLiked: false });
+    }
+  } catch (err) {
+    return next(new HttpError("Failed to check if artwork is liked", 500));
+  }
+});

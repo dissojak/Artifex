@@ -19,14 +19,15 @@ import Logo from "../../../assets/images/Logo_Artifex.png";
 import { useGetPanierMutation } from "../../../slices/usersApiSlice.js";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { useGetLikedArtworksMutation } from "../../../slices/likeSaveSlice.js";
 
 const NavArtifex = () => {
   const location = useLocation();
   const indicatorRef = useRef(null);
   const { userInfo } = useSelector((state) => state.auth);
-    const isClient = userInfo.userType === "client";
-    const isArtist = userInfo.userType === "artist";
-    const isAdmin = userInfo.userType === "admin";
+  const isClient = userInfo.userType === "client";
+  const isArtist = userInfo.userType === "artist";
+  const isAdmin = userInfo.userType === "admin";
 
   useEffect(() => {
     const activeTab = document.querySelector(".nav-item.active");
@@ -56,19 +57,42 @@ const NavArtifex = () => {
   };
 
   const [numItemsInCard, setNumItemsInCard] = useState();
-  const [getPanier, { isLoading }] = useGetPanierMutation();
+  const [getPanier] = useGetPanierMutation();
+  const [numberOfArtworks, setNumberOfArtworks] = useState();
+  const [getLikedArtworks] = useGetLikedArtworksMutation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const req = async () => {
       try {
+        setIsLoading(true);
         const res = await getPanier();
         // console.log(res.data.artworks.length);
         setNumItemsInCard(res.data.artworks.length);
+        setIsLoading(false);
       } catch (err) {
+        setIsLoading(false);
         toast.error(err?.data?.message || err.error);
       }
     };
     req();
+    const req1 = async () => {
+      try {
+        setIsLoading(true);
+        const responseData = await getLikedArtworks().unwrap();
+        // console.log("adem");
+        const populatedArtworks = responseData.likedArtworks.map(
+          (item) => item.artworkId
+        );
+        // console.log(populatedArtworks.length);
+        setNumberOfArtworks(populatedArtworks.length);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    req1();
   }, []);
 
   return (
@@ -154,10 +178,18 @@ const NavArtifex = () => {
                   <img src={notification} alt="Heart" className="im_hw" />
                   <div className="nmrywgreen"></div>
                 </div>
-                <div className="div_hw">
-                  <img src={HEART} alt="Heart" className="im_hw" />
-                  <div className="nmryw">3</div>
-                </div>
+                <Link to="/artworks/liked" style={{ cursor: "pointer" }}>
+                  <div className="div_hw">
+                    <img src={HEART} alt="Heart" className="im_hw" />
+                    {!isLoading && (
+                      <>
+                        {numberOfArtworks != 0 && (
+                          <div className="nmryw">{numberOfArtworks}</div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </Link>
                 <Link to="/Card" style={{ cursor: "pointer" }}>
                   <div className="div_hw">
                     <img src={Cart} alt="Heart" className="im_hw" />

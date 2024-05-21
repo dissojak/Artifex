@@ -20,21 +20,24 @@ const ProfileSection = (props) => {
   const [isFollowing, setIsFollowing] = useState(props.isFollowing); // Default to isFollowing
 
   const [categories, setCategories] = useState();
-  const {sendRequest} = useHttp();
+  const { sendRequest } = useHttp();
   const [followers, setFollowers] = useState(0);
   const [count, setCount] = useState(0);
-  const [countArtworks]=useCountArtworksByArtistMutation();
+  const [countArtworks] = useCountArtworksByArtistMutation();
   const [getFollowers] = useGetFollowersMutation();
   const [followArtist] = useFollowArtistMutation();
   const [UnfollowArtist] = useUnFollowArtistMutation();
 
   const follow = async () => {
     setIsFollowing(true);
+    setFollowers(followers + 1);
     try {
       await followArtist({
         artistId: userDataHere._id,
       }).unwrap();
+      // console.log(followers);
     } catch (err) {
+      setFollowers(followers - 1);
       setIsFollowing(false);
       toast.error(err?.data?.message || err.error);
     }
@@ -42,11 +45,14 @@ const ProfileSection = (props) => {
 
   const unfollow = async () => {
     setIsFollowing(false);
+    setFollowers(followers - 1);
     try {
       await UnfollowArtist({
         artistId: userDataHere._id,
       }).unwrap();
+      // console.log(followers);
     } catch (err) {
+      setFollowers(followers + 1);
       setIsFollowing(true);
       toast.error(err?.data?.message || err.error);
     }
@@ -70,8 +76,8 @@ const ProfileSection = (props) => {
       } catch (e) {}
       try {
         const res = await getFollowers(userDataHere._id).unwrap();
-        // console.log("this : ",res);
-        setFollowers(res.followers);
+        // console.log("this : ", res);
+        setFollowers(length(res.followers));
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -93,7 +99,7 @@ const ProfileSection = (props) => {
         <div className="profile-container7">
           <img
             className="profile-image7"
-            src={userDataHere.profileImage||DefaultImg}
+            src={userDataHere.profileImage || DefaultImg}
             alt="Artist Image"
           />
           <h1 className="profile-name7">{userDataHere.username}</h1>
@@ -107,7 +113,10 @@ const ProfileSection = (props) => {
           >
             <img src={Logo} alt="logo" /> Artist
           </p>
-          <p className="profile-details7">{followers && <>{followers.length}</>} Follower • {count && <>{count}</>} Artwork</p>
+          <p className="profile-details7">
+            {followers && <>{followers}</>} Follower • {count && <>{count}</>}{" "}
+            Artwork
+          </p>
           <button className="Btn7" onClick={handleFollowChange}>
             {isFollowing ? (
               <p className="text7">Unfollow</p>
@@ -148,7 +157,14 @@ const ProfileSection = (props) => {
           </div>
         </div>
         {/* Conditionally render sections based on activeTab */}
-        {activeTab === "orders" && categories && <OrderSection image={userDataHere.profileImage} categories={categories} id={userDataHere._id} orderStatus={userDataHere.orderStatus}/>}
+        {activeTab === "orders" && categories && (
+          <OrderSection
+            image={userDataHere.profileImage}
+            categories={categories}
+            id={userDataHere._id}
+            orderStatus={userDataHere.orderStatus}
+          />
+        )}
         {props.artworks.length > 0 ? (
           <>{activeTab === "artworks" && <ArtsList items={props.artworks} />}</>
         ) : (

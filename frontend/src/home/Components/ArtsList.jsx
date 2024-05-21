@@ -12,11 +12,12 @@ const ArtsList = (props) => {
           key={artwork._id}
           id={artwork._id}
           Image={artwork.imageArtwork}
-          username={artwork.Artist}
-          Likes={artwork.Likes}
+          username={artwork.Artist||artwork.id_artist.username}
+          Likes={artwork.Likes||"unkown"}
           Views={artwork.Views||0}
           title={artwork.title}
           price={artwork.price}
+          artistId={artwork.id_artist._id}
         //   rating={artwork.rating.rating||0}
         />
       ))}

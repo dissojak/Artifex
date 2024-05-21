@@ -394,6 +394,7 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
       id_artist: artistId,
       isDeletedByOwner: false,
       Sold:false,
+      visibility: 'public',
     });
 
     if (!artworks || artworks.length === 0) {

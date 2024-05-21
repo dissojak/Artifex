@@ -5,6 +5,7 @@ const Order = require("../models/order");
 const User = require("../models/user");
 const OrderNotification = require("../models/orderNotification");
 const mongoose = require("mongoose");
+const { default: axios } = require("axios");
 
 // @desc    Get orders for a specific client
 // @route   GET /api/order/client
@@ -52,7 +53,7 @@ exports.getArtistOrders = asyncHandler(async (req, res, next) => {
 
     if (orders.length === 0) {
       return res.status(200).json({
-        message: "No orders found for this artist , he have 0"
+        message: "No orders found for this artist , he have 0",
       });
     }
 
@@ -202,6 +203,99 @@ exports.acceptOrder = asyncHandler(async (req, res, next) => {
     );
   }
   res.status(200).json({ message: "Order accepted successfully", order });
+});
+
+exports.orderPayment = async (req, res) => {
+
+  const url = "https://developers.flouci.com/api/generate_payment";
+  const payload = {
+    app_token: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+    app_secret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    amount: req.body.amount,
+    accept_card: "true",
+    session_timeout_secs: 1200,
+    success_link: "http://localhost:3000/order/success",
+    fail_link: "http://localhost:3000/order/fail",
+    developer_tracking_id: "a702c74a-9a4d-4f36-b18d-b76f63b7bef8",
+  };
+
+  const response = await axios.post(url, payload);
+  const orderId = req.body.orderId;
+
+  if (response.data && response.data.result && response.data.result.success) {
+    return res.status(200).send({
+      paymentInfo: response.data,
+    });
+  }
+};
+
+// @desc    pay order of a client
+// @route   POST /api/order/pay
+// @access  Private
+exports.payOrder = asyncHandler(async (req, res, next) => {
+  const io = req.app.io;
+  const socketIds = req.app.socketIds;
+
+  const orderId = req.body.orderId;
+  const paymentId = req.body.paymentId;
+
+  const url = `https://developers.flouci.com/api/verify_payment/${paymentId}`;
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      apppublic: "d01440af-5a3b-4c9f-8567-6c0f964d1ef7",
+      appsecret: "dd3163a3-a4ad-4ec5-8875-e5658b3ef0ff",
+    },
+  });
+
+  const order = await Order.findOneAndUpdate(
+    { orderId },
+    { status: "payed" },
+    { new: true }
+  );
+
+  if (response.data && response.data.result.status === "SUCCESS") {
+    if (!order) {
+      return next(new HttpError("Order not found", 404));
+    }
+
+    const notification = new OrderNotification({
+      recipientId: order.artistId,
+      senderId: order.clientId,
+      action: "payed",
+      orderId: order._id,
+    });
+
+    await notification.save();
+
+    const artistSocketEntry = socketIds.find(
+      (entry) => entry.userId.toString() === order.artistId.toString()
+    );
+    if (artistSocketEntry) {
+      const artistSocketEntry = artistSocketEntry.socketId;
+      io.to(artistSocketEntry).emit("orderPayed", { orderId: order._id });
+      console.log(
+        "Order payment notification sent to artist with socket ID",
+        artistSocketEntry
+      );
+    } else {
+      console.log(
+        "Artist's socket ID not found, could not send real-time notification."
+      );
+    }
+    res.status(200).json({
+      success: true,
+      paymentVerif: response.data,
+      message: "Order payment successided",
+      order,
+    });
+  } else {
+    res.status(400).send({
+      message: "Payment verification failed",
+      success: false,
+      paymentVerif: response.data,
+    });
+  }
 });
 
 // @desc    reject order of a client

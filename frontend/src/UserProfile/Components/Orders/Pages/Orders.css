@@ -16,8 +16,17 @@
     text-align: center; /* Center the text inside the container */
   }
   .noOrdersContainer h1{
-    color: #ff5757;
-    position: relative;
+    color: #ff4c4c;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 20px;
+    margin:auto;
+    margin-top:4rem;
+    background-color: #ffecec;
+    border: 1px solid #ff4c4c;
+    border-radius: 10px;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'ptsimple';
   }
 
@@ -60,6 +69,11 @@
   .status.pending .status-button {
     color: #FFBF09;
     background-color: #FFF7E6;
+  }
+
+  .status.payed .status-button {
+    color: #BF8355;
+    background-color: #F9F0E9;
   }
   
   .status.completed .status-button {

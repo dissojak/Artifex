@@ -15,7 +15,7 @@ const ArtistArtworks = (props) => {
       {!isOpen ? (
         <ArtistArtworksList collection={props.artworks} onOpen={toggleModal}/>
       ) : (
-        <NewArtworkArtist onClose={toggleModal} />
+        <NewArtworkArtist onClose={toggleModal} onAjout={props.onAjoutArtwork} />
       )}
     </>
   );

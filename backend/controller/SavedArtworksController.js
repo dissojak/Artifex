@@ -98,3 +98,25 @@ exports.unsaveArtwork = asyncHandler(async (req, res, next) => {
     next(new HttpError("Failed to unsave the artwork", 500));
   }
 });
+
+/**
+ * @desc    Check if an artwork is saved by a user
+ * @route   GET /api/liked/saved/isSaved/:artworkId
+ * @access  Private
+ */
+exports.isSaved = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  const artworkId = req.params.artworkId;
+
+  try {
+    const savedArtwork = await SavedArtworks.findOne({ clientId: userId, artworkId });
+
+    if (savedArtwork) {
+      return res.status(200).json({ isSaved: true });
+    } else {
+      return res.status(200).json({ isSaved: false });
+    }
+  } catch (err) {
+    return next(new HttpError("Failed to check if artwork is saved", 500));
+  }
+});

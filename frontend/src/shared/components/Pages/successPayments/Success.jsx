@@ -26,7 +26,6 @@ const Success = () => {
         toast.success(`Congrats you are now the owner of ${res.artwork.title}`);
       } catch (err) {
         localStorage.removeItem("artworkId");
-        setStatus(res.success);
         toast.error(err?.data?.message || err.error);
       }
     };
