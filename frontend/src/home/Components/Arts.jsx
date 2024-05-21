@@ -53,7 +53,7 @@ const Arts = () => {
             {categories.map((category) => (
               <option key={category} value={category} style={{fontFamily:'Dubai'}}>{category}</option>
             ))}
-          </select>
+          </select> 
         </div>
         {isLoading ? (
           <div className="center_spinner">
