@@ -221,7 +221,8 @@ const ArtsItem = (props) => {
         amount: props.price * 1000,
         artworkId: props.id,
       }).unwrap();
-      console.log(res);
+      // console.log(res);
+      deleteArtworkHandler();
       localStorage.setItem("artworkId", props.id);
       const paymentLink = res.paymentInfo.result.link;
       window.location.href = paymentLink;
