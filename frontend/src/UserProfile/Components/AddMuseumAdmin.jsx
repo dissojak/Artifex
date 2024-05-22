@@ -59,16 +59,13 @@ const AddMuseumAdmin = (props) => {
                 type="radio"
                 id="normale"
                 name="urgency"
-               
-          
+                defaultChecked
               />
               <label htmlFor="normale">Normale</label>
               <input
                 type="radio"
                 id="exclusive"
                 name="urgency"
-              
-             
               />
               <label htmlFor="exclusive">Exclusive</label>
             </div>

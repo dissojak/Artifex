@@ -5,7 +5,7 @@ import "./NewArtwork.css";
 const UploadWidget = (props) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-  const [uploadedFileUrl, setUploadedFileUrl] = useState(""); // State to store the URL
+  // const [uploadedFileUrl, setUploadedFileUrl] = useState(""); // State to store the URL
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -18,8 +18,8 @@ const UploadWidget = (props) => {
       (error, result) => {
         if (result.event === "success") {
           // Check if the upload was successful
-          console.log("Uploaded file info:", result.info);
-          setUploadedFileUrl(result.info.url); // Set the URL in state
+          // console.log("Uploaded file info:", result.info);
+          // setUploadedFileUrl(result.info.url); // Set the URL in state
           props.onUploadSuccess(result.info.url);
         }
       }
