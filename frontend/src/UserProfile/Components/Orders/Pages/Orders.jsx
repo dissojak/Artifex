@@ -8,6 +8,7 @@ import {
 import OrdersList from "../Components/OrdersList";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import OrdersListArist from "../Components/OrdersListArtist";
 
 const Orders = () => {
   const [isLoading, setIsLoading] = useState();
@@ -17,24 +18,29 @@ const Orders = () => {
   const [orders, setOrders] = useState();
   const { userInfo } = useSelector((state) => state.auth);
 
+  const isClinet = userInfo.userType === "client";
+  const isArtist = userInfo.userType === "artist";
+
   useEffect(() => {
     const req = async () => {
-      if (userInfo.userType === "client") {
+      if (isClinet) {
         setIsLoading(true);
         try {
-          const res = await clientOrders();
-          setOrders(res.data.orders);
+          const res = await clientOrders().unwrap();
+          // console.log(res.orders);
+          setOrders(res.orders);
           setIsLoading(false);
         } catch (err) {
           setIsLoading(false);
           toast.error(err?.data?.message || err.error);
         }
-      } else if (userInfo.userType === "artist") {
+      } else if (isArtist) {
         try {
           setIsLoading(true);
-          const res = await artistOrders();
+          const res = await artistOrders().unwrap();
           setIsLoading(false);
-          setOrders(res.data.orders);
+          // console.log(res.orders);
+          setOrders(res.orders);
         } catch (err) {
           setIsLoading(false);
           toast.error(err?.data?.message || err.error);
@@ -51,12 +57,7 @@ const Orders = () => {
           className="center_spinner"
           style={{ position: "relative", top: "4rem" }}
         >
-          {/* <SBLoader className="Overlay"/> */}
-          {/* <LoadingSpinner /> */}
-          {/* <img src="./elements/11a.gif" alt="" /> */}
           <img src={loading} alt="" />
-
-          {/* <SkeletonLoader /> */}
         </div>
       ) : (
         <>
@@ -80,7 +81,12 @@ const Orders = () => {
                 </tr>
               </thead>
               {/* componenet here  */}
-              {!isLoading && orders && <OrdersList items={orders} />}
+              {!isLoading && orders && isClinet && (
+                <OrdersList items={orders} />
+              )}
+              {!isLoading && orders && isArtist && (
+                <OrdersListArist items={orders} />
+              )}
             </table>
           </div>
         </>

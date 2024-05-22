@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Pages/Orders.css";
 import CompletedPopup from "../../CompletedPopup.jsx";
 import { useOrderPaymentMutation } from "../../../../slices/ordersSlice.js";
@@ -29,17 +29,24 @@ const OrdersItem = (props) => {
       }
     } else if (status === "completed") {
       setIsPopupOpen(!isPopupOpen);
+    }else if (status === "pending") {
+      toast.info("Wait for the Artist until he accept your order !")
+    }else if (status === "payed") {
+      toast.info("The Artist is working on Your Order !");
+    }else if (status === "rejected") {
+      toast.warn("Sorry, The Artist Declined Your Order !");
     }
   };
 
   return (
     <>
       <tr key={props.id}>
+        {/* <td>{props.orderId}</td> */}
         <td>{props.orderId}</td>
         <td>{props.artist}</td>
         <td>{props.description}</td>
         <td>{props.price}</td>
-        <td>{formatDate(props.orderDate)}</td>
+        <td>{formatDate(props.dateCommende)}</td>
         <td>{props.orderType}</td>
         <td className={`status ${props.status.toLowerCase()}`}>
           <button
@@ -53,7 +60,20 @@ const OrdersItem = (props) => {
       {isPopupOpen && (
         <tr>
           <td colSpan="7">
-            <CompletedPopup onClose={() => setIsPopupOpen(false)} />
+            <CompletedPopup
+              onClose={() => setIsPopupOpen(false)}
+              order={{
+                // price: props.price,
+                dateLivrison: formatDate(props.dateLivrison),
+                dateCommende: formatDate(props.dateCommende),
+                orderType: props.orderType,
+                description: props.description,
+                orderImage: props.orderImage,
+                artistImage: props.artistImage,
+                artist: props.artist,
+                orderId: props.orderId,
+              }}
+            />
           </td>
         </tr>
       )}

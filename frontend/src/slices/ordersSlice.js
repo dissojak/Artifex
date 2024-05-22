@@ -36,6 +36,27 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    acceptOrder: builder.mutation({
+      query: (data) => ({
+        url: `${ORDERS_URL}/accept`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    rejectOrder: builder.mutation({
+      query: (data) => ({
+        url: `${ORDERS_URL}/reject`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    submitOrder: builder.mutation({
+      query: (data) => ({
+        url: `${ORDERS_URL}/submit`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -45,4 +66,7 @@ export const {
   useMakeOrderMutation,
   useOrderPaymentMutation,
   usePayOrderMutation,
+  useAcceptOrderMutation,
+  useRejectOrderMutation,
+  useSubmitOrderMutation,
 } = orderApiSlice;
