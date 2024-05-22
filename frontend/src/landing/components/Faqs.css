@@ -8,7 +8,7 @@
   }
   
   .faq-item {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 3px solid #000000;
     padding: 8px 0;
   }
   
@@ -17,7 +17,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: bold;
+   font-family: "Raleway-extrabold";
+   font-size: 20px;
   }
   
   .faq-question:hover {
@@ -31,6 +32,8 @@
   .faq-answer {
     display: none;
     padding-top: 8px;
+    font-family:"Raleway-Regular" ;
+    font-size: 20px;
   }
   
   /* Adjustments when faq item is open */
@@ -50,6 +53,8 @@
   .faqs p {
     color: #666;
     margin-bottom: 20px;
+    font-family:"Raleway-Regular" ;
+    font-size: 18px;
   }
   .faq-item.open .faq-answer {
     display: block; /* This ensures that the answer is shown when the item is open */

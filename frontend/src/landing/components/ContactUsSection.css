@@ -18,6 +18,8 @@
     margin-top: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: "Raleway-extrabold";
+    font-size: 16px
   }
   
   .contact-us-button:hover {

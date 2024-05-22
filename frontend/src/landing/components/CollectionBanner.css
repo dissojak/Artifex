@@ -24,7 +24,8 @@
   
   .banner-right1 p {
     margin: 0 0 20px;  /* Adds space below the paragraph */
-    font-size: 20px;  /* Adjust based on your design requirement */
+    font-size: 20px;
+    font-family: "Raleway-Regular";
   }
   
   .button-container {

@@ -7,8 +7,8 @@ import Adem from '../../assets/images/adem.png';
 const TeamBehind = () => {
   return (
     <div className="services-section">
-      <h1 style={{fontFamily:'Arial, sans-serif',fontWeight:'bold'}}>Current</h1>
-      <p>Discover the team behind Artifex . Hire us to make your own website !</p>
+      <h1 style={{fontFamily:'Dubai-Bold',fontSize:'56px'}}>Current</h1>
+      <p style={{fontFamily:'Raleway-Regular',fontSize:'18px'}}>Discover the team behind Artifex . Hire us to make your own website !</p>
       <br />
       <div className="services-container">
       

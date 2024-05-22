@@ -6,7 +6,7 @@ import './ServicesSection.css'; // Make sure to create a corresponding CSS file
 const ServicesSection = () => {
   return (
     <div className="services-section">
-      <h2>For more info</h2>
+      <h2 style={{fontFamily:'Raleway-Bold',fontSize:'24px'}}>For more info</h2>
       <div className="services-container">
       
         <a className="card human-resources" href="#">
