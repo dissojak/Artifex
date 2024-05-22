@@ -158,6 +158,7 @@ const ArtsItem = (props) => {
         artworkId: props.id,
       }).unwrap();
       // props.deleteItemById(props.id);
+      props.onDelete(props.id);
       toast.update(toastId, {
         render: `${props.title} has been removed Successfully to your Card!`,
         type: "success",

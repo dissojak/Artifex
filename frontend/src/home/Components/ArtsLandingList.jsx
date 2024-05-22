@@ -10,7 +10,7 @@ const ArtsHomeList = (props) => {
         <ArtsItem
           key={artwork.id}
           id={artwork.id}
-          Image={artwork.Image}
+          Image={artwork.imageArtwork}
           username={artwork.Artist}
           Likes={artwork.Likes}
           Views={artwork.Views}

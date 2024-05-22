@@ -7,34 +7,10 @@ import { AuthContext } from "../../shared/context/auth-context";
 import Facebook from "../../assets/images/Facebook.svg";
 import Instagram from "../../assets/images/Instagram.svg";
 import Twitter from "../../assets/images/Tracé 2.svg";
-import Youtube from "../../assets/images/youtube.svg";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useLogoutMutation } from "../../slices/usersApiSlice";
-import { logout } from "../../slices/authSlice";
 import Arrow from "../../assets/images/Forward_arrow.svg";
 
 const Home = () => {
   const auth = useContext(AuthContext);
-
-  const { userInfo } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [logoutApiCall] = useLogoutMutation();
-  const logoutHandler = async () => {
-    try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
-      navigate("/login");
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  //   document.documentElement.style.setProperty('--scrollbar-thumb-color', !auth.isAdmin ? '#87CEEB' : '#C99C6E');
-
   return (
     <>
      

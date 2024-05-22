@@ -19,7 +19,7 @@ const CardList = (props) => {
           Views={artwork.Views||0}
           title={artwork.title}
           price={artwork.price}
-          deleteItemById={props.deleteItemById}
+          onDelete={props.deleteItemById}
           artistId={artwork.id_artist._id}
         //   rating={artwork.rating.rating||0}
         />

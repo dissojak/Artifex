@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Landing.css";
 import Nav from "./Nav.jsx";
 import Slider from "../components/slider.jsx";
@@ -17,6 +17,8 @@ import DiscoverBanner from "../components/DiscoverBanner.jsx";
 import Footer from "../../shared/components/UIElements/Footer.jsx";
 import ArtsHomeList from "../../home/Components/ArtsLandingList.jsx";
 import Art from "../../assets/images/image_artwork.png";
+import { useGetArtworksMutation } from "../../slices/artworksSlice.js";
+import { toast } from "react-toastify";
 
 const Artworks = [
   {
@@ -113,6 +115,20 @@ const Artworks = [
 const isLoading = false;
 
 const Landing = () => {
+  const [artworks, setArtworks] = useState([]);
+  const [getArtworks, { isLoading }] = useGetArtworksMutation();
+  useEffect(() => {
+    const fetchArtworks = async () => {
+      try {
+        const responseData = await getArtworks().unwrap();
+        console.log(responseData.artworks);
+        setArtworks(responseData.artworks);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    };
+    fetchArtworks();
+  }, []);
   return (
     <div className="landing-container">
       <Nav />
@@ -129,7 +145,7 @@ const Landing = () => {
           <img src="./elements/11a.gif" alt="" />
         </div>
       )}
-      {!isLoading && Artworks && <ArtsHomeList items={Artworks} numberOfItems={8} />}
+      {!isLoading && Artworks && <ArtsHomeList items={artworks} numberOfItems={8} />}
       <br />
       <ViewMore />
       <br />

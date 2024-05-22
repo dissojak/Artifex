@@ -23,9 +23,13 @@ const Card = () => {
     }, []);
 
     const deleteItemById = (id) => {
-        const updatedCollection = artworks.filter((item) => item._id !== id);
-        setCollection(updatedCollection);
-      };
+      console.log("ID to delete:", id);
+      const updatedCollection = artworks.filter((item) => {
+        console.log("Item ID:", item._id);
+        return item._id !== id;
+      });
+      setArtworks(updatedCollection);
+    };    
 
     return isLoading ? (
         <LoadingArtifex />

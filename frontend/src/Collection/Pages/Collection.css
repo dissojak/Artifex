@@ -1,8 +1,9 @@
 .Collection-container {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: white;
+    left: 0;
+    top: 5rem;
   }
-  
