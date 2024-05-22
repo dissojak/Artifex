@@ -5,7 +5,7 @@ const CollectionBanner = () => {
   return (
     <div className="collection-banner1">
       <div className="banner-left1"> 
-        <h1 style={{margin: '133px',fontFamily:'Arial, sans-serif',fontWeight:'bold'}}>Delve Into Our Exclusive Collections!</h1>
+        <h1 style={{margin: '133px',fontFamily:'Dubai-Bold'}}>Delve Into Our Exclusive Collections!</h1>
       </div>
       <div className="banner-right1">
         <p>Discover unique collections from talented artists.</p>

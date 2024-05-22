@@ -5,7 +5,7 @@ const DiscoverBanner = () => {
   return (
     <div className="Discover-banner1">
       <div className="banner-left1"> 
-        <h1 style={{margin: '133px',fontFamily:'Arial, sans-serif',fontWeight:'bold'}}>Discover Unique Artwork For Sale.</h1>
+        <h1 style={{margin: '133px',fontFamily:'Dubai-Bold'}}>Discover Unique Artwork For Sale.</h1>
       </div>
       <div className="banner-right1">
         <p>Explore a diverse collection of artwork from talented artists around the world.</p>

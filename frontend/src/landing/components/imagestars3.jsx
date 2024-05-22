@@ -7,14 +7,14 @@ function imagestars3() {
     <div className="card-container3">
       <div className="image-container">
       <div className="special-wrapper">
-      <div className="special-box">
+      <div className="special-box" style={{height:'447px'}}>
         <img src={Banner3} alt="" /> 
        
       </div>
     </div>
       </div>
       <div className='info-container'>
-      <p style={{ color: "#5BD6FF",fontWeight:'bold' }}>Discover</p>
+      <p style={{ color: "#5BD6FF",fontFamily:'Raleway-Bold',fontSize:'16px' }}>Discover</p>
         <h2> Delve Into Our <br />
           Exclusive Collections</h2>
         <p>  Premier destination for both art enthusiasts and creators alike.

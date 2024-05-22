@@ -7,7 +7,7 @@ function imagestars2() {
     <div className="card-container">
       <div className="image-container">
       <div className="special-wrapper">
-      <div className="special-box">
+      <div className="special-box" style={{height:'447px'}}>
         <img src={Banner3} alt="" /> 
         <div className="special-info">
           <UserProfile />
@@ -29,9 +29,11 @@ function imagestars2() {
       </div>
     </div>
       </div>
-      <div className='info-container'>
-        <h2>Discover Unique Artwork Online</h2>
-        <p>Explore curated collections and find the perfect piece for your home or office. Our marketplace connects you with talented artists from around the world.</p>
+      <div className='info-container' style={{paddingTop:'50px'}}>
+        <h2>Discover Unique Artworks from 
+Talented Artists on Artifex 
+Marketplace</h2>
+        <p>Explore our curated collection of featured artworks and bestsellers. Purchase your favorite pieces directly from the artists.</p>
        
         <div className="containerr">
      <div className="row">

@@ -16,12 +16,12 @@ const FAQItem = ({ question, answer }) => {
 const FAQs = ({ faqs }) => {
   return (
     <div className="faqs">
-      <h1 style={{fontWeight:'bold' }}>FAQs</h1>
+      <h1 style={{fontFamily:'Dubai-Bold',fontSize:'56px' }}>FAQs</h1>
       <p>Find Answers To Common Questions About Our Artist Marketplace.</p>
       {faqs.map((faq, index) => (
         <FAQItem key={index} question={faq.question} answer={faq.answer} />
       ))}
-    </div>
+    </div> 
   );
 };
 

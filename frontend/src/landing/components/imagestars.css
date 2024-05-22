@@ -29,14 +29,15 @@
   }
   
   .info-container h2 {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 48px;
+    font-family:'Dubai-Bold';
     color: #333;
     margin-bottom: 20px; /* Adjust space between header and text */
   }
   
   .info-container p {
     font-size: 18px;
+    font-family: "Raleway-Regular";
     color: #666;
     line-height: 1.6;
   }
