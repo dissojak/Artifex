@@ -1,9 +1,8 @@
 import React from "react";
-import "./CompletedPopup.css";
+import "./SubmitPopupArtist.css";
 import DefaultImage from "../../assets/images/default_profile_img.jpg";
-import completeArt from "../../assets/images/completeArt.png";
 
-const CompletedPopup = (props) => {
+const SubmitPopupArtist = (props) => {
   const order = props.order;
   return (
     <div className="modal-backdropcmpt">
@@ -14,13 +13,13 @@ const CompletedPopup = (props) => {
             <div className="profile-sectioncmpt">
               <div className="photo-name-cmpt">
                 <img
-                  src={order.artistImage||DefaultImage}
+                  src={order.clientImage||DefaultImage}
                   alt="Artist Image"
                   className="artist-photocmpt"
                 />
                 <div className="follower-infocmpt">
-                  <h1>{order.artist}</h1>
-                  <p className="subtitlecmpt">Artist</p>
+                  <h1>{order.client}</h1>
+                  <p className="subtitlecmpt">Client</p>
                 </div>
               </div>
               <div className="detailscmpt">
@@ -59,7 +58,7 @@ const CompletedPopup = (props) => {
           <img
             src={order.orderImage}
             alt="Placeholder"
-            className="CompletedStatue-containertest"
+            className="SubmitStatue-containertest"
           />
         </div>
       </div>
@@ -67,4 +66,4 @@ const CompletedPopup = (props) => {
   );
 };
 
-export default CompletedPopup;
+export default SubmitPopupArtist;

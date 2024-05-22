@@ -1,0 +1,141 @@
+.orders-container {
+  position: relative;
+  width: 124%;
+  overflow-x: auto;
+  /* margin-left: -211px; */
+  right: 13.74vw;
+}
+
+.noOrdersContainer {
+  position: absolute; /* or 'absolute' depending on the context */
+  /* z-index: 1; */
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Optional, depends on the desired width */
+  text-align: center; /* Center the text inside the container */
+}
+.noOrdersContainer h1 {
+  color: #ff4c4c;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  margin-top: 4rem;
+  background-color: #ffecec;
+  border: 1px solid #ff4c4c;
+  border-radius: 10px;
+  width: fit-content;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "ptsimple";
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 800px;
+}
+
+th,
+td {
+  padding: 12px;
+  /*border: 1px solid #ccc;*/
+}
+
+th {
+  background-color: #f8f9fb;
+  color: #a6a7a8;
+  border: 1px solid #707070;
+}
+
+.status-button {
+  width: 100%;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Dubai";
+  text-align: center;
+  color: inherit;
+  background-color: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: inherit;
+  outline: none;
+}
+
+.status-button-accept {
+  width: 50%;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Dubai";
+  text-align: center;
+  color: inherit;
+  background-color: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: inherit;
+  outline: none;
+}
+.status-button-reject {
+  width: 50%;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Dubai";
+  text-align: center;
+  color: inherit;
+  background-color: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: inherit;
+  outline: none;
+}
+.reject-accept {
+  align-items: center;
+  justify-self: center;
+  display: block;
+}
+
+/* Specific styles for different statuses */
+.statusArtist.accepted .status-button {
+  color: #ffbf09;
+  background-color: #fff7e6;
+}
+
+.statusArtist.payed .status-button {
+  color: #bf8355;
+  background-color: #f9f0e9;
+}
+
+.statusArtist.pending .status-button-accept {
+  color: #55bf9a;
+  background-color: #e9f9f2;
+}
+
+.statusArtist.pending .status-button-reject {
+  color: #e36281;
+  background-color: #fdf4f6;
+}
+
+.statusArtist.completed .status-button {
+  color: #55bf9a;
+  background-color: #e9f9f2;
+}
+
+.statusArtist.rejected .status-button {
+  color: #e36281;
+  background-color: #fdf4f6;
+}
+
+.statusArtist.payed .status-button {
+  color: #096bff;
+  background-color: #e6eeff;
+}

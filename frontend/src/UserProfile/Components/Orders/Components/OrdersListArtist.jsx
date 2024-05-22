@@ -1,20 +1,20 @@
 import React from "react";
 import "../Pages/Orders.css";
-import OrdersItem from "./OrdersItem";
-const OrdersList = (props) => {
+import OrdersItemArtist from "./OrdersItemArtist";
+const OrdersListArist = (props) => {
   return (
     <>
       <tbody>
         {props.items.map((order) => (
-          <OrdersItem
+          <OrdersItemArtist
             key={order._id}
             id={order._id}
             orderId={order.orderId}
-            artist={order.artistId.username}
-            artistImage={order.artistId.profileImage}
+            client={order.clientId.username}
+            clientImage={order.clientId.profileImage}
             orderImage={order.image_liv}
             description={order.description}
-            price={order.artistId.normalPrice}
+            price={order.clientId.normalPrice}
             dateCommende={order.date}
             dateLivrison={order.date}
             // deliveryDate={order.deliveryDate}
@@ -27,4 +27,4 @@ const OrdersList = (props) => {
   );
 };
 
-export default OrdersList;
+export default OrdersListArist;

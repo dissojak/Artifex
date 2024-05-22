@@ -27,12 +27,11 @@ const Arts = () => {
   }, []);
 
   useEffect(() => {
-    console.log('Filtering artworks for category:', selectedCategory);
     if (selectedCategory === 'all') {
       setFilteredArtworks(artworks);
     } else {
       const filtered = artworks.filter(art => art.id_category.name === selectedCategory);
-      console.log('Filtered artworks:', filtered);
+      // console.log('Filtered artworks:', filtered);
       setFilteredArtworks(filtered);
     }
   }, [selectedCategory, artworks]);
@@ -47,7 +46,7 @@ const Arts = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-           
+            className="custom-select"
           >
             <option value="all" style={{fontFamily:'Dubai'}}>All Categories</option>
             {categories.map((category) => (

@@ -26,12 +26,7 @@ router.put("/accept", MW.protect, OC.acceptOrder);
 router.post("/pay", MW.protect, OC.payOrder);
 router.post("/orderPayment", MW.protect, OC.orderPayment);
 
-router.patch(
-  "/submit",
-  [check("date_live").isDate().withMessage("date entred is not a valid date")],
-  MW.protect,
-  OC.submitOrder
-);
+router.patch("/submit", MW.protect, OC.submitOrder);
 
 // just for testing
 router.get("/find", MW.protect, OC.findOrder);
