@@ -7,6 +7,7 @@ import {
   useAcceptOrderMutation,
   useRejectOrderMutation,
 } from "../../../../slices/ordersSlice.js";
+import SubmitPopupArtist from "../../SubmitPopupArtist.jsx";
 
 const OrdersItemArtist = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
@@ -106,6 +107,26 @@ const OrdersItemArtist = (props) => {
               order={{
                 // price: props.price,
                 dateLivrison: formatDate(props.dateLivrison),
+                dateCommende: formatDate(props.dateCommende),
+                orderType: props.orderType,
+                description: props.description,
+                orderImage: props.orderImage,
+                clientImage: props.clientImage,
+                client: props.client,
+                orderId: props.orderId,
+              }}
+            />
+          </td>
+        </tr>
+      )}
+      {isSubmitPopupOpen && (
+        <tr>
+          <td colSpan="7">
+            <SubmitPopupArtist
+              UpdateStatus={() => setStatus("completed")}
+              onClose={() => setIsSubmitPopupOpen(false)}
+              order={{
+                // price: props.price,
                 dateCommende: formatDate(props.dateCommende),
                 orderType: props.orderType,
                 description: props.description,

@@ -198,7 +198,7 @@ const NewArtwork = () => {
                         className="image-uploader"
                         // src="./Images/pdpWork.jpg"
                         src={img1}
-                        alt=""
+                        alt="artwork"
                       />
                     )}
                   </div>
