@@ -82,6 +82,13 @@ export const museumApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    createMuseum: builder.mutation({
+      query: (data) => ({
+        url: `${MUSEUMS_URL}/create`,
+        method: "POST",
+        body: data,
+      }),
+    }),
     //new function
   }),
 });
@@ -99,4 +106,5 @@ export const {
   useBuyClientPassMutation,
   useGetMuseumsByUserIdMutation,
   useGetPinnedMuseumsMutation,
+  useCreateMuseumMutation,
 } = museumApiSlice;

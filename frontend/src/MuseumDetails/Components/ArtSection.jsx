@@ -124,6 +124,17 @@ const ArtSection = (props) => {
 
   const [payment] = useMuseumPaymentMutation();
   const handleBuyPass = async () => {
+    if (isClient){
+      if (museum.clientsEntered===museum.numberMaxClients){
+        toast.error("Sorry , museum is full you can't join now !");
+        return;
+      }
+    }else if (isArtist) {
+      if(museum.artistsEntered===museum.numberMaxArtists){
+        toast.error("Sorry , museum is full you can't join now !");
+        return;
+      }
+    }
     try {
       const res = await payment({
         amount: price * 1000,
