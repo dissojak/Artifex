@@ -6,7 +6,7 @@ import "./ArtsItemCard.css";
 import { useGetViewsMutation } from "../../../slices/reviewSlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { useRemoveArtworkFromPanierMutation } from "../../../slices/usersApiSlice";
+import { useAddArtworkToPanierMutation, useRemoveArtworkFromPanierMutation } from "../../../slices/usersApiSlice";
 import {
   useIsLikedMutation,
   useIsSavedMutation,
@@ -16,6 +16,7 @@ import {
   useUnsaveArtworkMutation,
 } from "../../../slices/likeSaveSlice";
 import { useSelector } from "react-redux";
+import { useArtworkPaymentMutation } from "../../../slices/artworksSlice";
 
 const ArtsItem = (props) => {
   const checkBoxId = `checkboxInput-${props.id}`;
@@ -189,6 +190,47 @@ const ArtsItem = (props) => {
     }
   };
 
+  const [addToCard] = useAddArtworkToPanierMutation();
+  const handleAddToCart = async () => {
+    const toastId = toast.loading("Add to your cart ...");
+    try {
+      await addToCard({
+        artworkId: props.id,
+      }).unwrap();
+      toast.update(toastId, {
+        render: `${props.title} has been added Successfully to your Cart!`,
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    } catch (err) {
+      toast.update(toastId, {
+        render: err?.data?.message || err.error,
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
+  };
+
+  const [payment] = useArtworkPaymentMutation();
+  const handleBuyArtwork = async () => {
+    console.log(props.id,props.price);
+    try {
+      const res = await payment({
+        amount: props.price * 1000,
+        artworkId: props.id,
+      }).unwrap();
+      console.log(res);
+      localStorage.setItem("artworkId", props.id);
+      const paymentLink = res.paymentInfo.result.link;
+      window.location.href = paymentLink;
+    } catch (err) {
+      toast.error(err?.data?.msg || err.error);
+      deleteArtworkHandler();
+    }
+  };
+
   return (
     <>
       {!isLoading && (
@@ -211,7 +253,7 @@ const ArtsItem = (props) => {
             <p className="card-text">{props.price} DT</p>
             {!props.inCard && (
               <>
-                <button className="CartBtn">
+                <button className="CartBtn" onClick={handleAddToCart}>
                   <span className="IconContainer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +271,7 @@ const ArtsItem = (props) => {
             )}
             {props.inCard && (
               <>
-                <button className="payBtnArtworkCard">
+                <button className="payBtnArtworkCard" onClick={handleBuyArtwork}>
                   Pay
                   <svg className="svgIconPay" viewBox="0 0 576 512">
                     <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
