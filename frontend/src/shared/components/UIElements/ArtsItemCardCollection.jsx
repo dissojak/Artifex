@@ -155,7 +155,7 @@ const ArtsItemCollection = (props) => {
                   alt="eye"
                   className="vuesArtwork"
                 />
-                <span className="views">{views}K</span>
+                <span className="views">{views}</span>
               </div>
             </div>
           </div>
