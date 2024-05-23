@@ -63,6 +63,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    checkUsername: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/checkUsername`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -76,4 +83,5 @@ export const {
   useGetPanierMutation,
   useRemoveArtworkFromPanierMutation,
   useUpdateProfileImageMutation,
+  useCheckUsernameMutation,
 } = userApiSlice;

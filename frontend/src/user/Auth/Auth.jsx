@@ -1,35 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import "./Auth_new.css";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { AuthContext } from "../../shared/context/auth-context";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
-
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  useCheckUsernameMutation,
   useLoginMutation,
   useRegisterMutation,
 } from "../../slices/usersApiSlice";
-
 import Logo from "../../assets/images/logo.svg";
 
 function Auth(props) {
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const signup = queryParams.get('signup') === 'true';
-  // console.log(signup||"there is no signup");
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  // const [isLoading, setIsLoading] = useState(true);
-
   const [userType, setUserType] = useState("customer");
-  // console.log("user: ",userType);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [isUsernameValid, setIsUsernameValid] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,6 +28,7 @@ function Auth(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [login] = useLoginMutation();
   const [register] = useRegisterMutation();
+  const [checkUsername] = useCheckUsernameMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -53,6 +45,40 @@ function Auth(props) {
   useEffect(() => {
     console.log("isLoading:", isLoading);
   }, [isLoading]);
+
+  const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
+
+  const checkUsernameExists = async (username) => {
+    try {
+      const res = await checkUsername({ username }).unwrap();
+      console.log(res);
+      setIsUsernameValid(!res.exists);
+    } catch (err) {
+      setIsUsernameValid(false);
+      toast.error("Error checking username");
+    }
+  };
+
+  const debouncedCheckUsername = useCallback(
+    debounce((username) => {
+      checkUsernameExists(username);
+    }, 250),
+    []
+  );
+
+  const handleUsernameChange = (e) => {
+    const newName = e.target.value;
+    setName(newName);
+    debouncedCheckUsername(newName);
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -74,7 +100,7 @@ function Auth(props) {
         setIsLoading(false);
         toast.error(err?.data?.message || err.error);
       } else {
-        toast.error("Couldn't login error happened");
+        toast.error("Couldn't login, an error occurred");
       }
     } finally {
       setIsLoading(false);
@@ -83,12 +109,14 @@ function Auth(props) {
 
   const submitRegisterHandler = async (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
     setIsLoading(true);
 
-    // if (password !== confirmPassword) {
-    //   setIsLoading(false);
-    //   toast.error("Passwords do not match");
-    // } else {
     if (userType === "customer") {
       try {
         const res = await register({
@@ -111,15 +139,12 @@ function Auth(props) {
         userType: userType,
         pw: password,
       };
-      // Convert the userData object into a string
       const userDataString = JSON.stringify(userData);
-      // Save the stringified user data to localStorage
       localStorage.setItem("userData", userDataString);
       setIsLoading(false);
       navigate("/addArtwork");
     }
   };
-  // };
 
   useEffect(() => {
     console.log("isLoginMode :", isLoginMode);
@@ -196,8 +221,18 @@ function Auth(props) {
               placeholder="Name"
               value={name}
               className="input_login"
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleUsernameChange}
             />
+            {isUsernameValid === false && (
+              <div className="username-validation">
+                Username is already taken.
+              </div>
+            )}
+            {isUsernameValid === true && (
+              <div className="username-validation">
+                Username is available.
+              </div>
+            )}
             <input
               type="email"
               placeholder="Email"
@@ -222,20 +257,6 @@ function Auth(props) {
               className="Artifex-Mini-Logo-Login"
             />
             <h1 className="login-text-H1">Login</h1>
-            {/* <div className="social-icons">
-              <Link to="#" className="icon">
-                <i className="fab fa-google-plus-g">G</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-facebook-f">F</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-github">Git</i>
-              </Link>
-              <Link to="#" className="icon">
-                <i className="fab fa-linkedin-in">LIn</i>
-              </Link>
-            </div> */}
             <span className="use-your-email-for-registration">
               or use your email password
             </span>

@@ -420,3 +420,23 @@ exports.removeArtworkFromPanier = asyncHandler(async (req, res, next) => {
     next(new HttpError("Failed to remove artwork from panier", 500));
   }
 });
+
+
+exports.checkUsername = async (req, res) => {
+  try {
+    const { username } = req.body;
+    if (!username) {
+      return res.status(400).json({ message: 'Username is required' });
+    }
+
+    const user = await User.findOne({ username });
+    if (user) {
+      return res.status(200).json({ exists: true });
+    } else {
+      return res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    console.error('Error checking username:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};

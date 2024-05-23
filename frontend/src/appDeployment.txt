@@ -1,0 +1,185 @@
+import React, { useCallback, useState, Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+
+import MainNavigation from "./shared/components/Navigation/MainNavigation.jsx";
+import { AuthContext } from "./shared/context/auth-context";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import store from "./store";
+import PrivateRoute from "./BuildKite/PrivateRoute.jsx";
+import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
+import './index.css';
+
+// Dynamic Imports
+const Home = lazy(() => import("./home/Page/HomePage.jsx"));
+const Ban = lazy(() => import("./shared/components/Pages/Ban"));
+const Users = lazy(() => import("./user/pages/Users"));
+const NewPlace = lazy(() => import("./places/pages/NewPlace"));
+const UserPlaces = lazy(() => import("./places/pages/UserPlaces.jsx"));
+const UpdatePlace = lazy(() => import("./places/pages/UpdatePlace.jsx"));
+const Auth = lazy(() => import("./user/Auth/Auth.jsx"));
+const Signup = lazy(() => import("./user/pages/Signup.jsx"));
+const RegisterHackatons = lazy(() => import("./register/Page/RegisterHackatons.jsx"));
+const Profile = lazy(() => import("./profile/Pages/Profile.jsx"));
+const RegisterScreen = lazy(() => import("./screens/RegisterScreen"));
+const ProfileScreen = lazy(() => import("./screens/ProfileScreen"));
+const Landing = lazy(() => import("./landing/pages/Landing.jsx"));
+const NewArtwork = lazy(() => import("./shared/components/FormElements/NewArtworkSignup.jsx"));
+const Artists = lazy(() => import("./ArtistsPage/Pages/ArtistPage.jsx"));
+const Museums = lazy(() => import("./MuseumPage/Pages/MuseumPage.jsx"));
+const UserProfile = lazy(() => import("./UserProfile/Pages/UserProfile.jsx"));
+const SocialMedia = lazy(() => import("./user/pages/SocialMedia.jsx"));
+const ArtworkDetails = lazy(() => import("./ArtworkDetails/Pages/ArtworkDetails.jsx"));
+const ArtistProfileForUser = lazy(() => import("./ArtistProfileForUser/Pages/ArtistProfileForUser.jsx"));
+const MuseumShowcase = lazy(() => import("./MuseumShowcase-Client/Pages/MuseumShowcase-Client.jsx"));
+const MuseumShowcaseArtist = lazy(() => import("./MuseumShowcase-Artist/Pages/MuseumShowcase-Artist.jsx"));
+const MuseumDetails = lazy(() => import("./MuseumDetails/Pages/MuseumDetails.jsx"));
+const PricingOptions = lazy(() => import("./PricingOptions/Pages/PricingOptions.jsx"));
+const PlansHistory = lazy(() => import("./PlansHistory/Pages/PlansHistory.jsx"));
+const ArtistProfileClient = lazy(() => import("./ArtistProfile-Client/ArtistProfileClinet.jsx"));
+const Collection = lazy(() => import("./Collection/Pages/Collection.jsx"));
+const Success = lazy(() => import("./shared/components/Pages/successPayments/Success.jsx"));
+const Fail = lazy(() => import("./shared/components/Pages/failPayments/Fail.jsx"));
+const Card = lazy(() => import("./Card/Pages/Card.jsx"));
+const SuccessPaymentMuseum = lazy(() => import("./shared/components/Pages/successPayments/SuccessMuseum.jsx"));
+const FailPaymentMuseum = lazy(() => import("./shared/components/Pages/failPayments/FailMuseum.jsx"));
+const Events = lazy(() => import("./Events/Pages/Events.jsx"));
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState();
+  const [userName, setUserName] = useState();
+  const [ban, setBan] = useState();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [teamId, setTeamId] = useState();
+  const [profileImage, setProfileImage] = useState();
+
+  const login = useCallback(
+    (userId, userName, teamId, isAdmin = false, ban = false) => {
+      setIsLoggedIn(true);
+      setUserId(userId);
+      setUserName(userName);
+      setIsAdmin(isAdmin);
+      setTeamId(teamId);
+      setBan(ban);
+    },
+    []
+  );
+
+  const updateUsername = useCallback((userName) => {
+    setUserName(userName);
+  }, []);
+
+  const updateProfilePicture = useCallback((URLimage) => {
+    setProfileImage(URLimage);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+    setUserId(null);
+    setUserName(null);
+    setIsAdmin(false);
+    setTeamId(null);
+    setBan(null);
+  }, []);
+
+  let routes;
+
+  if (isLoggedIn && !isAdmin && !ban) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:userId/places" element={<UserPlaces />} />
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+        <Route path="/registred-hackatons" element={<RegisterHackatons />} />
+        <Route path="/users" element={<Users />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    );
+  } else if (isLoggedIn && !isAdmin && ban) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Ban />} />
+      </Routes>
+    );
+  } else if (isLoggedIn && isAdmin) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    );
+  } else {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/artist" element={<Artists />} />
+          <Route path="/museums" element={<Museums />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/artwork/:artworkId" element={<ArtworkDetails />} />
+          <Route path="/ArtistProfileAdem" element={<ArtistProfileClient />} />
+          <Route path="/artist/:username" element={<ArtistProfileForUser />} />
+          <Route path="/museumshowcase" element={<MuseumShowcase />} />
+          <Route path="/MuseumShowcaseArtist" element={<MuseumShowcaseArtist />} />
+          <Route path="/Plans" element={<PricingOptions />} />
+          <Route path="/PlansHistory" element={<PlansHistory />} />
+          <Route path="/museums/:museumId" element={<MuseumDetails />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/artwork/success" element={<Success />} />
+          <Route path="/artwork/fail" element={<Fail />} />
+          <Route path="/museum/success" element={<SuccessPaymentMuseum />} />
+          <Route path="/museum/fail" element={<FailPaymentMuseum />} />
+          <Route path="/Card" element={<Card />} />
+          <Route path="/events" element={<Events />} />
+        </Route>
+        <Route path="/login" element={<Auth />} />
+        <Route path="/:userId/places" element={<UserPlaces />} />
+        <Route path="/signup" element={<Auth signup={true} />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/AddArtwork" element={<NewArtwork />} />
+        <Route path="/socialMedia" element={<SocialMedia />} />
+      </Routes>
+    );
+  }
+
+  return (
+    <Provider store={store}>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn: isLoggedIn,
+          userId: userId,
+          userName: userName,
+          ban: ban,
+          teamId: teamId,
+          isAdmin: isAdmin,
+          profileImage: profileImage,
+          login: login,
+          logout: logout,
+          updateUsername: updateUsername,
+          updateProfilePicture: updateProfilePicture,
+        }}
+      >
+        <Router>
+          <ToastContainer style={{ marginTop: "80px" }} />
+          <NavigationWrapper>
+            <Suspense fallback={<div>Loading...</div>}>
+              {routes}
+            </Suspense>
+          </NavigationWrapper>
+        </Router>
+      </AuthContext.Provider>
+    </Provider>
+  );
+};
+
+export default App;

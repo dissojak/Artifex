@@ -76,8 +76,8 @@ const ProfileSection = (props) => {
       } catch (e) {}
       try {
         const res = await getFollowers(userDataHere._id).unwrap();
-        // console.log("this : ", res);
-        setFollowers(length(res.followers));
+        // console.log("this : ", res.followers.length);
+        setFollowers(res.followers.length);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
