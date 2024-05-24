@@ -27,7 +27,11 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const response = isClient ? await clientOrders().unwrap() : await artistOrders().unwrap();
-        setOrders(response.orders);
+  
+        // Reverse the order of the orders array
+        const reversedOrders = response.orders.slice().reverse();
+  
+        setOrders(reversedOrders);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       } finally {
@@ -36,6 +40,7 @@ const Orders = () => {
     };
     fetchOrders();
   }, [isClient, clientOrders, artistOrders]);
+  
 
   // Get current posts
   const indexOfLastOrder = currentPage * ordersPerPage;
