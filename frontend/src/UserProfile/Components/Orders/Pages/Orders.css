@@ -1,92 +1,103 @@
 .orders-container {
-   position: relative;
-    width: 124%;
-    overflow-x: auto;
-    /* margin-left: -211px; */
-    right: 13.74vw;
-  }
+  position: relative;
+  width: 124%;
+  overflow-x: auto;
+  right: 13.74vw;
+}
 
-  .noOrdersContainer {
-    position:absolute; /* or 'absolute' depending on the context */
-    /* z-index: 1; */
-    top: 130%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%; /* Optional, depends on the desired width */
-    text-align: center; /* Center the text inside the container */
-  }
-  .noOrdersContainer h1{
-    color: #ff4c4c;
-    font-size: 1.5em;
-    text-align: center;
-    padding: 20px;
-    margin:auto;
-    margin-top:4rem;
-    background-color: #ffecec;
-    border: 1px solid #ff4c4c;
-    border-radius: 10px;
-    width: fit-content;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'ptsimple';
-  }
+.noOrdersContainer {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    min-width: 800px;
-  }
-  
-  th, td {
-    padding: 12px;
-    /*border: 1px solid #ccc;*/
-  }
-  
-  th {
-    background-color: #F8F9FB;
-    color: #A6A7A8;
-    border: 1px solid #707070;
-  }
- 
-  .status-button {
-    width: 100%;
-    height: 32px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
-    font-family:"Dubai" ;
-    text-align: center;
-    color: inherit; 
-    background-color: inherit; 
-    padding: 4px 8px; 
-    border-radius: 4px; 
-    font-size: inherit;
-    outline: none;
-  }
-  
-  /* Specific styles for different statuses */
-  .status.pending .status-button {
-    color: #FFBF09;
-    background-color: #FFF7E6;
-  }
+.noOrdersContainer h1 {
+  color: #ff4c4c;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  margin-top: 4rem;
+  background-color: #ffecec;
+  border: 1px solid #ff4c4c;
+  border-radius: 10px;
+  width: fit-content;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'ptsimple';
+}
 
-  .status.payed .status-button {
-    color: #BF8355;
-    background-color: #F9F0E9;
-  }
-  
-  .status.completed .status-button {
-    color: #55BF9A;
-    background-color: #E9F9F2;
-  }
-  
-  .status.rejected .status-button {
-    color: #E36281;
-    background-color: #FDF4F6;
-  }
-  
-  .status.accepted .status-button {
-    color: #096BFF;
-    background-color: #E6EEFF;
-  }
+.table-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  overflow: hidden; /* Ensure the rounded corners are visible */
+}
+
+th, td {
+  border: 1px  #eaeaea;
+  padding: 8px;
+  text-align: left;
+}
+
+thead tr th {
+  background-color: #484848; /* Black background */
+  color: white; /* White text */
+  border: 1px solid #eaeaea;
+  padding: 12px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.status-button {
+  width: 100%;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Dubai";
+  text-align: center;
+  color: inherit;
+  background-color: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: inherit;
+  outline: none;
+}
+
+/* Specific styles for different statuses */
+.status.pending .status-button {
+  color: #FFBF09;
+  background-color: #FFF7E6;
+}
+
+.status.payed .status-button {
+  color: #BF8355;
+  background-color: #F9F0E9;
+}
+
+.status.completed .status-button {
+  color: #55BF9A;
+  background-color: #E9F9F2;
+}
+
+.status.rejected .status-button {
+  color: #E36281;
+  background-color: #FDF4F6;
+}
+
+.status.accepted .status-button {
+  color: #096BFF;
+  background-color: #E6EEFF;
+}
