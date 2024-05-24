@@ -14,7 +14,8 @@ const OrdersList = (props) => {
             artistImage={order.artistId.profileImage}
             orderImage={order.image_liv}
             description={order.description}
-            price={order.artistId.normalPrice}
+            normalPrice={order.artistId.normalPrice}
+            rapidPrice={order.artistId.rapidPrice}
             dateCommende={order.date}
             dateLivrison={order.date}
             // deliveryDate={order.deliveryDate}

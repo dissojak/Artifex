@@ -14,7 +14,6 @@ const OrdersListArist = (props) => {
             clientImage={order.clientId.profileImage}
             orderImage={order.image_liv}
             description={order.description}
-            price={order.clientId.normalPrice}
             dateCommende={order.date}
             dateLivrison={order.date}
             // deliveryDate={order.deliveryDate}
