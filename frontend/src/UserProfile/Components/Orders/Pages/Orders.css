@@ -4,8 +4,38 @@
   overflow-x: auto;
   right: 13.74vw;
 }
+.orders-container table tr th {
+  font-family: "Raleway-Bold";
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 20px 0;
+}
 
-.noOrdersContainer {
+.page-item {
+  margin: 0 5px;
+  
+}
+
+.page-link {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #7E3FFF;
+  color: #7E3FFF;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Montserrat-bold";
+}
+
+.page-link:hover,
+.page-link.active {
+  background-color: #7E3FFF;
+  color: white;
+}
+
+.noOrdersContainer { 
   position: absolute;
   top: 130%;
   left: 50%;
