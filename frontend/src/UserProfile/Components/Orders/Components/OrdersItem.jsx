@@ -12,12 +12,19 @@ const OrdersItem = (props) => {
     return new Date(dateString).toLocaleDateString("en-GB", options); // Using British locale to get DD/MM/YYYY
   }
 
+  let price;
+  if (props.orderType === "normal") {
+    price = props.normalPrice;
+  } else {
+    price = props.rapidPrice;
+  }
+
   const [payment] = useOrderPaymentMutation();
   const handleStatusClick = async (status) => {
     if (status === "accepted") {
       try {
         const res = await payment({
-          amount: props.price * 1000,
+          amount: price * 1000,
         }).unwrap();
         // console.log("Setting orderId in localStorage:", props.orderId);
         localStorage.setItem("orderId", props.orderId);
@@ -45,11 +52,7 @@ const OrdersItem = (props) => {
         <td>{props.orderId}</td>
         <td>{props.artist}</td>
         <td>{props.description}</td>
-        {props.orderType === "normal" ? (
-          <td>{props.normalPrice}</td>
-        ) : (
-          <td>{props.rapidPrice}</td>
-        )}
+        <td>{price}</td>
         <td>{formatDate(props.dateCommende)}</td>
         <td>{props.orderType}</td>
         <td className={`status ${props.status.toLowerCase()}`}>
