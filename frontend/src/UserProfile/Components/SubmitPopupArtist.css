@@ -307,6 +307,10 @@
   border-color: #9866ff;
 }
 
+.bttn-primary:disabled {
+  cursor: not-allowed;
+}
+
 .bttn-secondary:hover {
   background-color: #efecf8;
   border-color: #efecf8;

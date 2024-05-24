@@ -101,7 +101,7 @@ const SubmitPopupArtist = (props) => {
                       </svg>
                     </span>
                     <span className="upload-area-description">
-                      <strong>Welecome Artist !</strong>
+                      <strong>Welcome Artist !</strong>
                     </span>
                     <span className="upload-area-title">
                       Click here to upload Artwork .
@@ -121,7 +121,7 @@ const SubmitPopupArtist = (props) => {
             </div>
             <div className="modal-footer">
               <button className="bttn-secondary" onClick={()=>{setImg(""); props.onClose()}}>Cancel</button>
-              <button className="bttn-primary" onClick={uploadHandler}>Upload File</button>
+              <button className="bttn-primary" onClick={uploadHandler} disabled={img===""}>Upload Artwork</button>
             </div>
           </div>
 
