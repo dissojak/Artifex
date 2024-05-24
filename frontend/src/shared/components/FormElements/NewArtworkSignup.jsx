@@ -172,6 +172,9 @@ const NewArtwork = () => {
                   value={formData.category}
                   onChange={handleChange}
                 >
+                   <option value="" disabled>
+                  Select a category
+                </option>
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
@@ -211,7 +214,7 @@ const NewArtwork = () => {
                     Next 1/3
                     <img
                       src="elements/arrow_without--.svg"
-                      className="arrow"
+                      className="arrowww"
                       alt=""
                     />
                   </button>
@@ -246,6 +249,9 @@ const NewArtwork = () => {
                   value={formData2.category}
                   onChange={handleChange2}
                 >
+                   <option value="" disabled>
+                  Select a category
+                </option>
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
@@ -296,7 +302,7 @@ const NewArtwork = () => {
                     Next 2/3
                     <img
                       src="elements/arrow_without--.svg"
-                      className="arrow"
+                      className="arrowww"
                       alt=""
                     />
                   </button>
@@ -331,6 +337,9 @@ const NewArtwork = () => {
                   value={formData3.category}
                   onChange={handleChange3}
                 >
+                   <option value="" disabled>
+                  Select a category
+                </option>
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
@@ -381,7 +390,7 @@ const NewArtwork = () => {
                     Create Your Account 3/3
                     <img
                       src="elements/arrow_without--.svg"
-                      className="arrow"
+                      className="arrowww"
                       alt=""
                     />
                   </button>
