@@ -29,11 +29,11 @@ const OrdersItem = (props) => {
       }
     } else if (status === "completed") {
       setIsPopupOpen(!isPopupOpen);
-    }else if (status === "pending") {
-      toast.info("Wait for the Artist until he accept your order !")
-    }else if (status === "payed") {
+    } else if (status === "pending") {
+      toast.info("Wait for the Artist until he accept your order !");
+    } else if (status === "payed") {
       toast.info("The Artist is working on Your Order !");
-    }else if (status === "rejected") {
+    } else if (status === "rejected") {
       toast.warn("Sorry, The Artist Declined Your Order !");
     }
   };
@@ -45,7 +45,11 @@ const OrdersItem = (props) => {
         <td>{props.orderId}</td>
         <td>{props.artist}</td>
         <td>{props.description}</td>
-        <td>{props.price}</td>
+        {props.orderType === "normal" ? (
+          <td>{props.normalPrice}</td>
+        ) : (
+          <td>{props.rapidPrice}</td>
+        )}
         <td>{formatDate(props.dateCommende)}</td>
         <td>{props.orderType}</td>
         <td className={`status ${props.status.toLowerCase()}`}>

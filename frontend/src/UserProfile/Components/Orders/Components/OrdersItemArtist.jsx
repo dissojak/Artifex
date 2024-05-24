@@ -64,7 +64,7 @@ const OrdersItemArtist = (props) => {
         <td>{props.orderId}</td>
         <td>{props.client}</td>
         <td>{props.description}</td>
-        <td>{props.price}</td>
+        {/* <td>{props.price}</td> */}
         <td>{formatDate(props.dateCommende)}</td>
         <td>{props.orderType}</td>
         <td className={`statusArtist ${status.toLowerCase()}`}>

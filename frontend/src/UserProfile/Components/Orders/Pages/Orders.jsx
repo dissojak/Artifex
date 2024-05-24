@@ -73,7 +73,7 @@ const Orders = () => {
                   <th>Order ID</th>
                   <th>Artist</th>
                   <th>Description</th>
-                  <th>Price</th>
+                  {isClinet && (<th>Price</th>)}
                   <th>Order Date</th>
                   {/* <th>Delivery Date</th> */}
                   <th>Order Type</th>
