@@ -6,7 +6,7 @@ NOTE : This documentation presents an overview of the authentication (Auth) modu
 This is an app for a MERN stack application with authentication. This is for a SPA (Single Page Application) workflow that uses the [Vite](https://vite.dev) Build tool.
 
 auth screens :
-<img src="./frontend/public/screens.png" />
+<img src="./frontend/public/git.png" />
 
 It includes the following:
 
