@@ -5,6 +5,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
+import LogoArtifex from "../../assets/images/Logo_Artifex.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useCheckUsernameMutation,
@@ -24,7 +25,8 @@ function Auth(props) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const handleRedirectToHome = () => {
+    navigate('/');}
   const [isLoading, setIsLoading] = useState(false);
   const [login] = useLoginMutation();
   const [register] = useRegisterMutation();
@@ -171,8 +173,9 @@ function Auth(props) {
         className="auth-background"
         style={{
           backgroundImage: `url(${"./elements/background_shape_Auth.svg"})`,
-        }}
-      ></div>
+        }} 
+      > </div>
+      <div onClick={handleRedirectToHome} ><img src={LogoArtifex}  alt="Artifex Logo" className="logoNavArt" style={{position:'fixed',left:'2vw',bottom:'91vh'}} /></div>
       <div className="container" id="container">
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>

@@ -19,7 +19,7 @@ import ArtsHomeList from "../../home/Components/ArtsLandingList.jsx";
 import Art from "../../assets/images/image_artwork.png";
 import { useGetArtworksMutation } from "../../slices/artworksSlice.js";
 import { toast } from "react-toastify";
-
+import { useNavigate } from 'react-router-dom';
 const Artworks = [
   {
     id: 1,
@@ -115,6 +115,9 @@ const Artworks = [
 const isLoading = false;
 
 const Landing = () => {
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate('/login');}
   const [artworks, setArtworks] = useState([]);
   const [getArtworks, { isLoading }] = useGetArtworksMutation();
   useEffect(() => {
@@ -129,6 +132,7 @@ const Landing = () => {
     };
     fetchArtworks();
   }, []);
+  
   return (
     <div className="landing-container">
       <Nav />
@@ -139,6 +143,7 @@ const Landing = () => {
       <ImageStars2 />
       <ImageStars3 />
       <Collection />
+      <div onClick={handleRedirect} >
       {isLoading && (
         <div className="center_spinner">
           {/* <LoadingSpinner /> */}
@@ -146,6 +151,7 @@ const Landing = () => {
         </div>
       )}
       {!isLoading && Artworks && <ArtsHomeList items={artworks} numberOfItems={8} />}
+      </div>
       <br />
       <ViewMore />
       <br />
