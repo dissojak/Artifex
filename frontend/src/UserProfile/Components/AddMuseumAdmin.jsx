@@ -119,7 +119,11 @@ const AddMuseumAdmin = (props) => {
                 <input
                   placeholder="e.g. Jazz Movement: Fizz [Shark of the Ocean]"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 16) {
+                        setTitle(e.target.value);
+                    }
+                }}
                 />
                 {errors.title && <p className="error-message">{errors.title}</p>}
               </div>

@@ -13,4 +13,10 @@
     padding: 109px;
     padding-top: 24px;
   }
-  
+  .pagination-containermuseum {
+    width: 100%; 
+    position: absolute; 
+    bottom: 0;
+    left: 169px; 
+    z-index: 100; 
+  }

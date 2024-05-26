@@ -4,33 +4,69 @@ import { toast } from "react-toastify";
 import PinnedMuseumsList from "./PinnedMuseumsList.jsx";
 import { useGetPinnedMuseumsMutation } from "../../slices/museumsSlice.js";
 
-
 const PinnedMuseums = () => {
-  const [museums, setMuseums] = useState();
+  const [museums, setMuseums] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [museumsPerPage] = useState(6);
   const [getPinnedMuseums, { isLoading }] = useGetPinnedMuseumsMutation();
   
   useEffect(() => {
-    const req = async () => {
+    const fetchMuseums = async () => {
       try {
         const responseData = await getPinnedMuseums().unwrap();
-        // console.log("adem");
-        const populatedMuseums = responseData.pinnedMuseums.map(item => item.museumId);
-        // console.log(populatedMuseums);
-        setMuseums(populatedMuseums);
+        setMuseums(responseData.pinnedMuseums.map(item => item.museumId));
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
     };
-    req();
+    fetchMuseums();
   }, []);
+
+  const indexOfLastMuseum = currentPage * museumsPerPage;
+  const indexOfFirstMuseum = indexOfLastMuseum - museumsPerPage;
+  const currentMuseums = museums.slice(indexOfFirstMuseum, indexOfLastMuseum);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <>
- <div className="PinnedMuseums-container">
- {!isLoading && museums && <PinnedMuseumsList items={museums} />}
-</div>
-{/*the end */}
-</>
+      <div className="PinnedMuseums-container">
+        {isLoading ? (
+          <p></p>
+        ) : (
+          <>
+            <PinnedMuseumsList items={currentMuseums} />
+            <Pagination museumsPerPage={museumsPerPage} totalMuseums={museums.length} paginate={paginate} currentPage={currentPage} />
+          </>
+        )}
+      </div>
+    </>
+  );
+};
+
+const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => {
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalMuseums / museumsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <div className="pagination-containermuseum">
+      <ul className="pagination">
+        {pageNumbers.map(number => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)}
+             
+               className={`page-link ${currentPage === number ? 'active' : ''}`}
+            >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+      </div>
+    </nav>
   );
 };
 

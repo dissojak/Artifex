@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from "react";
 import "./Museums.css";
-import MuseumImage from "../../../../assets/images/BIG.svg"; // Update path accordingly
-import TraceImage from "../../../../assets/images/Tracé 10.svg"; // Update path accordingly
-import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update path accordingly
-import ProfileImage from "../../../../assets/images/Adem.jpg";
-
+import MuseumList from "../Components/MuseumsList"; // Adjust import if necessary
 import { useGetClientMuseumsMutation } from "../../../../slices/museumsSlice";
-import MuseumList from "../Components/MuseumsList";
 import { toast } from "react-toastify";
 
 const Museums = () => {
-  const [museums, setMuseums] = useState();
+  const [museums, setMuseums] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [museumsPerPage] = useState(8);
   const [getMuseums, { isLoading }] = useGetClientMuseumsMutation();
+
   useEffect(() => {
-    const req = async () => {
+    const fetchMuseums = async () => {
       try {
         const responseData = await getMuseums();
-        // console.log("adem");
-        // console.log(responseData);
         setMuseums(responseData.data.museums);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
     };
-    req();
+    fetchMuseums();
   }, []);
+
+  // Get current museums
+  const indexOfLastMuseum = currentPage * museumsPerPage;
+  const indexOfFirstMuseum = indexOfLastMuseum - museumsPerPage;
+  const currentMuseums = museums.slice(indexOfFirstMuseum, indexOfLastMuseum);
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <>
       <div id="museum-section">
@@ -35,10 +40,39 @@ const Museums = () => {
           </h1>
           <p>Get to know the special pieces from our artists in Artifex.</p>
         </div>
-        {/* call component here  */}
-        {!isLoading && museums && <MuseumList items={museums} />}
+        {isLoading ? <p></p> : <MuseumList items={currentMuseums} />}
+        <Pagination
+          museumsPerPage={museumsPerPage}
+          totalMuseums={museums.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </>
+  );
+};
+
+const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => {
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalMuseums / museumsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map(number => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)}
+               href="#!"
+               className={`page-link ${currentPage === number ? 'active' : ''}`}
+            >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

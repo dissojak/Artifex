@@ -50,3 +50,42 @@
   .savedartwork-card:hover .btn-add {
   background-color: #0056b3;
   }
+
+
+
+  /* Container for pagination */
+.pagination-container20 {
+  width: 100%; /* Full width of the container */
+  position: absolute; /* Fix position relative to the viewport */
+  bottom: -23px; /* Align to the bottom of the page */
+  left: 0; /* Align to the left of the page */
+  z-index: 100; /* Ensure it sits above other content */
+}
+
+.pagination20 {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 20px 0;
+}
+
+.page-item20 {
+  margin: 0 5px;
+  
+}
+
+.page-link20 {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #7E3FFF;
+  color: #7E3FFF;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Montserrat-bold";
+}
+
+.page-link20:hover,
+.page-link20.active {
+  background-color: #7E3FFF;
+  color: white;
+}
