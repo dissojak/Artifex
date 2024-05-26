@@ -13,16 +13,15 @@ const LikedArtworks = () => {
     const req = async () => {
       try {
         const responseData = await getLikedArtworks().unwrap();
-        // console.log("adem");
-        const populatedArtworks = responseData.likedArtworks.map(item => item.artworkId);
-        // console.log(populatedArtworks);
-        setArtworks(populatedArtworks);
+        const reversedArtworks = responseData.likedArtworks.map(item => item.artworkId).reverse();
+        setArtworks(reversedArtworks);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
     };
     req();
   }, []);
+  
   return (
     <Fragment>
       <div id="LikedArtworksContainerClinet">
