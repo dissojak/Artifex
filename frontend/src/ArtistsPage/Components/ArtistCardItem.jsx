@@ -194,7 +194,7 @@ const ArtistCardItem = (props) => {
             {props.linkedin && (
               <Link
                 className="socialContainer9 containerThree9"
-                href="#"
+                to={`https://www.linkedin.com/in/${props.linkedin}`}
                 style={{ width: socialMedia }}
                 target="_blank"
               >

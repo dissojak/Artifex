@@ -132,9 +132,8 @@ exports.getArtists = asyncHandler(async (req, res, next) => {
           isFollowing: await isFollowingCheck(artist._id, clientId),
           profileImage: artist.profileImage,
           numberOfFollowers: artist.numberOfFollowers,
-          phone_number: artist.phoneNumber,
+          phone_number: artist.phone_number,
           instagram: artist.instagram,
-          facebook: artist.facebook,
           twitter: artist.twitter,
           linkedin: artist.linkedin,
         };

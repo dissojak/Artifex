@@ -37,6 +37,8 @@ const ArtistPage = () => {
     );
   };  
 
+  console.log(artists);
+
   return (
     <>
       <div className="ArtistPage-container">
