@@ -1,0 +1,81 @@
+/* PriceSetting.css */
+.price-settingOpenOrderArtist_admin {
+    background: transparent;
+    padding: 20px;
+    position: absolute;
+    right: 1vw;
+    bottom: -57vh;
+    gap: 34px;
+    width: 95%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header-contentOpenOrderArtist {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-imageOpenOrderArtist {
+    width: 70px; /* Adjust size as needed */
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  
+  .price-settingOpenOrderArtist_admin h2 {
+    color: #333;
+    font-size:28px;
+    font-family:"Raleway-SemiBold" ;
+  }
+  
+  .price-settingOpenOrderArtist_admin p {
+    color: #333;
+    font-size:20px;
+    font-family:"Raleway-SemiBold" ;
+   
+  }
+  
+  .prices-formOpenOrderArtist_admin {
+    display: flex;
+   
+  }
+  
+  .prices-formOpenOrderArtist_admin div {
+    margin-right: 20px;
+  }
+  .prices-formOpenOrderArtist_admin label{
+    color: #333;
+    font-size:28px;
+    font-family:"Raleway-Bold" ;
+    margin-right:1rem ;
+  }
+
+  .prices-formOpenOrderArtist_admin .input1OpenOrderArtist_admin{
+    padding: 8px;
+    margin: 65px 0;
+    border: 2px solid #A6A7A8;
+    border-radius: 10px;
+    width: 491px;
+    height:70px;
+    font-size: 20px;
+    font-family: "Raleway-Regular";
+}
+  .submit-btnOpenOrderArtist_admin {
+    cursor: pointer;
+    width: 234px;
+    height: 70px;
+    color: rgb(255, 255, 255);
+    border-radius: 50px;
+    background-color: #7e3fff;
+    overflow: hidden;
+    position: relative;
+    bottom: 25vh;
+    left: 50vw;
+    font-size: 24px;
+    font-family:"Raleway-SemiBold" ;
+    border-color: none;
+  }
+  

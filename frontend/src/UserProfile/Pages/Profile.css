@@ -114,6 +114,16 @@
   padding-bottom: 40px;
 }
 
+.Buttons-section_admin {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+}
+
 /*buttons*/
 /* Remove this container when use*/
 

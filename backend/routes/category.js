@@ -7,9 +7,10 @@ const router = express.Router();
 router.post(
   "/addCategory",
   check("category").notEmpty().withMessage("put a valid category name"),
+  MW.protect,
   CC.addCategory
 );
 
-router.get("/getCategories",CC.getCategories);
+router.get("/getCategories", CC.getCategories);
 
 module.exports = router;

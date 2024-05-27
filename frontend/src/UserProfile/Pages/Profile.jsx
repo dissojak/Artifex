@@ -27,6 +27,7 @@ import {
 } from "../../slices/followSlice.js";
 import ArtistArtworks from "../Components/ArtistArtworks.jsx";
 import { useGetArtworksOfArtistMutation } from "../../slices/artworksSlice.js";
+import CreateCategory from "../Components/CreateCategory.jsx";
 
 const Profile = (props) => {
   const [isSettings, setIsSettings] = useState(false);
@@ -447,11 +448,11 @@ const Profile = (props) => {
               )}
             </>
           )}
-               {!isSettings && userInfo.userType === "admin" && (
+          {!isSettings && userInfo.userType === "admin" && (
             <>
               {!isOpen && (
                 <>
-                  <div className="Buttons-section3">
+                  <div className="Buttons-section_admin">
                     <div className="tab-container">
                       <input
                         type="radio"
@@ -467,23 +468,31 @@ const Profile = (props) => {
                         }`}
                         htmlFor="tab1"
                       >
-                        <img
-                          src={getIcon("orders")}
-                          style={{ width: "1.2em", height: "1.2em" }}
-                          alt="Order Icon"
-                        />
-                        Booking Orders
+                        Add Museum
                       </label>
-
-                     
-
+                      <input
+                        type="radio"
+                        name="tab"
+                        id="tab2"
+                        className="tab tab--2"
+                        checked={activeTab === "artworks"}
+                        onChange={() => setActiveTab("artworks")}
+                      />
+                      <label
+                        className={`tab_label ${
+                          activeTab === "artworks" ? "active" : ""
+                        }`}
+                        htmlFor="tab2"
+                      >
+                        Add Category{" "}
+                      </label>
                       <div className="indicator"></div>
                     </div>
                   </div>
                 </>
               )}
-              {/* Conditional rendering based on the selected tab */}
               {activeTab === "orders" && <AddMuseumAdmin />}
+              {activeTab === "artworks" && <CreateCategory />}
             </>
           )}
         </div>
