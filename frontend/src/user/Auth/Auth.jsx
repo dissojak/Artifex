@@ -175,7 +175,7 @@ function Auth(props) {
           backgroundImage: `url(${"./elements/background_shape_Auth.svg"})`,
         }} 
       > </div>
-      <div onClick={handleRedirectToHome} ><img src={LogoArtifex}  alt="Artifex Logo" className="logoNavArt" style={{position:'fixed',left:'2vw',bottom:'91vh'}} /></div>
+      <div onClick={handleRedirectToHome} ><img src={Logo}  alt="Artifex Logo" className="logoNavArt" style={{position:'fixed',left:'2vw',bottom:'91vh'}} /></div>
       <div className="container" id="container">
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>
