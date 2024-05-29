@@ -1,0 +1,28 @@
+.sponsors-container {
+    text-align: center;
+    padding: 20px;
+    background-color: transparent; 
+    
+  }
+  
+  .sponsors-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family:'Dubai-Bold';
+    font-size: 50px;
+  }
+  
+  .sponsors-container p {
+    font-size: 20px;
+    color: #666; 
+    margin-bottom: 20px;
+    font-family:"Raleway-Regular" ;
+  }
+  
+  .sponsors-container .logos img {
+    margin: 0 20px; 
+    height: 100px; 
+    vertical-align: middle;
+    gap: 20px; 
+  }
+  
