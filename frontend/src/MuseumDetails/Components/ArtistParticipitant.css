@@ -1,6 +1,7 @@
 #ArtistParticipant-section {
-  position: absolute;
-  top: 90vh;
+  position: relative;
+  /* top: 100vh; */
+  top:-10vh;
   width: 99.44vw;
   height: 130vh;
   background-image: url("../../assets/images/linemuseum.svg");
@@ -12,7 +13,8 @@
 .ArtistParticipant-section2 {
   text-align: left;
   padding-left: 130px;
-  padding-top: 95px;
+  margin-top: 90px;
+  /* padding-top: 95px; */
   padding-bottom: 40px;
 }
 .ArtistParticipant-section2 h1 {

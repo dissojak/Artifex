@@ -150,6 +150,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  z-index: 1;
 }
 
 .add-to-cart8 {
