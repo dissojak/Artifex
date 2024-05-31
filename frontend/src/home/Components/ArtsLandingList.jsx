@@ -8,8 +8,8 @@ const ArtsHomeList = (props) => {
       <div className="gallery-container2">
         {X_Items.map(artwork => (
         <ArtsItem
-          key={artwork.id}
-          id={artwork.id}
+          key={artwork._id}
+          id={artwork._id}
           Image={artwork.imageArtwork}
           username={artwork.Artist}
           Likes={artwork.Likes}

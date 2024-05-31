@@ -20,105 +20,13 @@ import ArtsHomeList from "../../home/Components/ArtsLandingList.jsx";
 import Art from "../../assets/images/image_artwork.png";
 import { useGetArtworksMutation } from "../../slices/artworksSlice.js";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom';
-const Artworks = [
-  {
-    id: 1,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 2,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 3,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 4,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 5,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 6,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 7,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 8,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 9,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-  {
-    id: 10,
-    Image: Art,
-    Artist: "Tarek Chebbi",
-    Likes: "77",
-    Views: "10.7",
-    title: "stars",
-    price: "12",
-  },
-];
-const isLoading = false;
-
+import { useNavigate } from "react-router-dom";
+import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton.jsx";
 const Landing = () => {
   const navigate = useNavigate();
   const handleRedirect = () => {
-    navigate('/login');}
+    navigate("/login");
+  };
   const [artworks, setArtworks] = useState([]);
   const [getArtworks, { isLoading }] = useGetArtworksMutation();
   useEffect(() => {
@@ -133,7 +41,7 @@ const Landing = () => {
     };
     fetchArtworks();
   }, []);
-  
+
   return (
     <div className="landing-container">
       <Nav />
@@ -144,14 +52,21 @@ const Landing = () => {
       <ImageStars2 />
       <ImageStars3 />
       <Collection />
-      <div onClick={handleRedirect} >
-      {isLoading && (
-        <div className="center_spinner">
-          {/* <LoadingSpinner /> */}
-          <img src="./elements/11a.gif" alt="" />
-        </div>
-      )}
-      {!isLoading && Artworks && <ArtsHomeList items={artworks} numberOfItems={8} />}
+      <div onClick={handleRedirect}>
+        {isLoading && (
+          // <div className="center_spinner">
+          //   {/* <LoadingSpinner /> */}
+          //   <img src="./elements/11a.gif" alt="" />
+          // </div>
+          <div className="art-skeleton-container">
+            {Array.from({ length: 8 }, (_, index) => (
+              <ArtworkSkeleton key={index} />
+            ))}
+          </div>
+        )}
+        {!isLoading && artworks && (
+          <ArtsHomeList items={artworks} numberOfItems={8} />
+        )}
       </div>
       <br />
       <ViewMore />

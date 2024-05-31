@@ -3,26 +3,26 @@ import "./SkeletonLoader.css";
 
 const ArtistSkeleton = () => {
   return (
-    <div class="skeleton-card">
+    <div className="skeleton-card">
       <div>
         <div className="skeleton-info-container">
-          <div class="skeleton-image"></div>
-          <div class="skeleton-content">
-            <div class="skeleton-text skeleton-title"></div>
-            <div class="skeleton-text skeleton-subtitle"></div>
+          <div className="skeleton-image"></div>
+          <div className="skeleton-content">
+            <div className="skeleton-text skeleton-title"></div>
+            <div className="skeleton-text skeleton-subtitle"></div>
             <div className="skeleton-info-container withgap">
-              <div class="skeleton-text skeleton-subtitle"></div>
-              <div class="skeleton-text skeleton-subtitle"></div>
+              <div className="skeleton-text skeleton-subtitle"></div>
+              <div className="skeleton-text skeleton-subtitle"></div>
             </div>
-            <div class="skeleton-text skeleton-followers"></div>
+            <div className="skeleton-text skeleton-followers"></div>
           </div>
         </div>
-        <div class="skeleton-stats">
-          <div class="skeleton-Follow"></div>
-          <div class="skeleton-stat"></div>
-          <div class="skeleton-stat"></div>
-          <div class="skeleton-stat"></div>
-          <div class="skeleton-stat"></div>
+        <div className="skeleton-stats">
+          <div className="skeleton-Follow"></div>
+          <div className="skeleton-stat"></div>
+          <div className="skeleton-stat"></div>
+          <div className="skeleton-stat"></div>
+          <div className="skeleton-stat"></div>
         </div>
       </div>
     </div>
