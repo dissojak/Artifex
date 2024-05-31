@@ -3,20 +3,15 @@ import "./ArtistPage.css";
 import "./Artists.css";
 import ListArtists from "../Components/ListArtists.jsx";
 import { useGetArtistsMutation } from '../../slices/artistsSlice.js';
-import { setCredentials } from '../../slices/authSlice.js';
 import { toast } from "react-toastify";
-import loading from "../../assets/images/loadpurple.gif";
+import ArtistSkeleton from "../Components/ArtistSkeleton.jsx";
 
 const ArtistPage = () => {
   const [artists, setArtists] = useState();
-
-  // const { userInfo } = useSelector((state) => state.auth);
-
   const [getArtists, { isLoading }] = useGetArtistsMutation();
 
-
   useEffect(() => {
-    const req = async () => {
+    const fetchArtists = async () => {
       try {
         const responseData = await getArtists();
         setArtists(responseData.data.artists);
@@ -24,46 +19,32 @@ const ArtistPage = () => {
         toast.error(err?.data?.message || err.error);
       }
     };
-    req();
-  },[]);
+    fetchArtists();
+  }, []);
 
-  const SkeletonLoader = () => {
-    return (
-      <div className="skeleton-loader">
-        <div className="skeleton-image"></div>
-        <div className="skeleton-text"></div>
-        <div className="skeleton-text small"></div>
-      </div>
-    );
-  };  
-
-  console.log(artists);
+  // Helper function to render multiple skeleton loaders
+  const renderSkeletons = (count) => {
+    return Array.from({ length: count }, (_, index) => <ArtistSkeleton key={index} />);
+  };
 
   return (
-    <>
-      <div className="ArtistPage-container">
-        <div id="Artists-section">
-          <div className="Artists-section2">
-            <p style={{ color: "#FD006F", fontWeight: "bold" ,marginBottom: '1rem' }}>Discover</p>
-            <h1 style={{ fontWeight: "bold", fontSize: "40px",marginBottom: '2rem' }}>
-              Meet Our Artists
-            </h1>
-            <p>Get to know the passionate individuals behind Artifex.</p>
-          </div>
-          {isLoading && (
-            <div className="center_spinner" style={{position:'relative',top:'4rem'}}>
-              {/* <SBLoader className="Overlay"/> */}
-              {/* <LoadingSpinner /> */}
-              {/* <img src="./elements/11a.gif" alt="" /> */}
-              <img src={loading} alt="" />
-
-              {/* <SkeletonLoader /> */}
-            </div>
-          )}
-          {!isLoading && artists && <ListArtists items={artists}/>}
+    <div className="ArtistPage-container">
+      <div id="Artists-section">
+        <div className="Artists-section2">
+          <p style={{ color: "#FD006F", fontWeight: "bold", marginBottom: '1rem' }}>Discover</p>
+          <h1 style={{ fontWeight: "bold", fontSize: "40px", marginBottom: '2rem' }}>Meet Our Artists</h1>
+          <p>Get to know the passionate individuals behind Artifex.</p>
         </div>
+        {isLoading ? (
+          <div className="Artists-container">
+            {/* Render multiple skeletons, adjust the number as needed */}
+            {renderSkeletons(10)}
+          </div>
+        ) : (
+          artists && <ListArtists items={artists} />
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

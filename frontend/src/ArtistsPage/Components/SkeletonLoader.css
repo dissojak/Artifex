@@ -1,47 +1,99 @@
-.skeleton-loader {
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #eee;
-    margin: 10px;
-  }
-  
-  .skeleton-image {
-    width: 100px;
-    height: 100px;
-    background-color: #ddd;
-    border-radius: 50%;
-  }
-  
-  .skeleton-text {
-    height: 20px;
-    margin-top: 10px;
-    background-color: #ddd;
-  }
-  
-  .skeleton-text.small {
-    width: 60%;
-    height: 10px;
-    background-color: #ddd;
-  }
-  
-  @keyframes shimmer {
-    0% {
-      background-position: -468px 0
-    }
-    100% {
-      background-position: 468px 0
-    }
-  }
-  
-  .skeleton-loader div {
-    animation-duration: 1.2s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: shimmer;
-    animation-timing-function: linear;
-    background: darkgray;
-    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-    background-size: 800px 104px;
-    position: relative;
-  }
-  
+.skeleton-card {
+  display: flex;
+  width: 360px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.skeleton-image {
+  width: 125px;
+  height: 125px;
+  /* border-radius: 50%; */
+  background: #e0e0e0;
+  margin-right: 10px;
+}
+
+.skeleton-Follow{
+  width: 125px;
+  height: 40px;
+  /* border-radius: 50%; */
+  background: #e0e0e0;
+  margin-right: 10px;
+  margin-top: 10px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-content {
+  flex-grow: 1;
+}
+
+.skeleton-text {
+  height: 15px;
+  background: #e0e0e0;
+  margin: 5px 0;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-title {
+  width: 80%;
+  height: 25px;
+
+}
+
+.withgap{
+  gap:10px
+}
+
+.skeleton-info-container{
+  display: flex;
+  align-items: center;
+}
+
+.skeleton-subtitle {
+  width: 45%;
+}
+
+.skeleton-followers{
+  width: 90%;
+  height: 3rem;
+
+}
+
+.skeleton-stats, .skeleton-social {
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.skeleton-stat, .skeleton-social-icon {
+  position: relative;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  background: #e0e0e0;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-social-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* Shimmer Effect */
+.skeleton-image, .skeleton-text, .skeleton-stat, .skeleton-social-icon .skeleton-Follow{
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  position: relative;
+}
