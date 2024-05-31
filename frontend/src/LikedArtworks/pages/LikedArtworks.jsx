@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useGetLikedArtworksMutation } from "../../slices/likeSaveSlice";
 import loading from "../../assets/images/loadpurple.gif";
-import "./LikedArtworks.css"
+import "./LikedArtworks.css";
 import ArtsList from "../../home/Components/ArtsList";
 import { toast } from "react-toastify";
-
+import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const LikedArtworks = () => {
   const [artworks, setArtworks] = useState();
@@ -13,7 +13,9 @@ const LikedArtworks = () => {
     const req = async () => {
       try {
         const responseData = await getLikedArtworks().unwrap();
-        const reversedArtworks = responseData.likedArtworks.map(item => item.artworkId).reverse();
+        const reversedArtworks = responseData.likedArtworks
+          .map((item) => item.artworkId)
+          .reverse();
         setArtworks(reversedArtworks);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -21,21 +23,30 @@ const LikedArtworks = () => {
     };
     req();
   }, []);
-  
+
   return (
     <Fragment>
       <div id="LikedArtworksContainerClinet">
         <div className="auth-section2-LikedArtworks">
-          <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Artworks You Liked</h1>
+          <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>
+            Artworks You Liked
+          </h1>
         </div>
         {isLoading && (
-          <div className="center_spinner">
-            <img src={loading} alt="" />
+          // <div className="center_spinner">
+          //   <img src={loading} alt="" />
+          // </div>
+          <div className="Collection-container">
+            <div className="art-skeleton-container">
+              {Array.from({ length: 8 }, (_, index) => (
+                <ArtworkSkeleton key={index} />
+              ))}
+            </div>
           </div>
         )}
         {/* <div className="likedContainer"> */}
         {!isLoading && artworks && <ArtsList items={artworks} />}
-        </div>
+      </div>
       {/* </div> */}
     </Fragment>
   );

@@ -7,6 +7,7 @@ import eye from "../../assets/images/eye.png";
 import { useGetSavedArtworksMutation } from "../../slices/likeSaveSlice";
 import { toast } from "react-toastify";
 import ArtsList from "../../home/Components/ArtsList";
+import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const SavedArtwork = () => {
   const [artworks, setArtworks] = useState([]);
@@ -44,9 +45,14 @@ const SavedArtwork = () => {
   return (
     <div className="savedartwork-container">
       {isLoading ? (
-        <div className="center_spinner">
-          <img src={loading} alt="Loading..." />
-        </div>
+        // <div className="center_spinner">
+        //   <img src={loading} alt="Loading..." />
+        // </div>
+        <div className="gallery-container2">
+            {Array.from({ length: artworksPerPage }, (_, index) => (
+              <ArtworkSkeleton key={index} />
+            ))}
+          </div>
       ) : (
         <>
           <ArtsList items={currentArtworks} />

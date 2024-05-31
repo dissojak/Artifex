@@ -3,6 +3,7 @@ import { useGetBoughtArtworkMutation } from "../../slices/artworksSlice";
 import { toast } from "react-toastify";
 import LoadingArtifex from "../../shared/components/UI/LoadingUI/LoadingArtifex";
 import CollectionList from "../Components/CollectionList";
+import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const Purchases = () => {
   const [collection, setCollection] = useState();
@@ -22,11 +23,18 @@ const Purchases = () => {
   }, []);
 
   return isLoading ? (
-    <LoadingArtifex />
+    // <LoadingArtifex />
+    <div className="Collection-container">
+      <div className="art-skeleton-container">
+        {Array.from({ length: 8 }, (_, index) => (
+          <ArtworkSkeleton key={index} />
+        ))}
+      </div>
+    </div>
   ) : (
     <>
       <div className="Collection-container">
-        {!isLoading && collection && <CollectionList collection={collection}/>}
+        {!isLoading && collection && <CollectionList collection={collection} />}
       </div>
     </>
   );
