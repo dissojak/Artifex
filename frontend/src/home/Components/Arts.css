@@ -35,6 +35,14 @@
     padding: 20px; /* Padding around the gallery container */
   }
   
+  .art-skeleton-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 5rem; /* Adjust space between cards */
+    padding: 20px; /* Padding around the gallery container */
+  }
+
   .cardd {
     width: 293px; /* Width of each card */
     border-radius: 10px;

@@ -13,8 +13,6 @@ const Home = () => {
   const auth = useContext(AuthContext);
   return (
     <>
-     
-
       {auth.isLoggedIn && (
         <>
           <div id="header_right_home">
@@ -50,11 +48,7 @@ const Home = () => {
               (window.location.href = "mailto:StoonProduction@gmail.com")
             }
           >
-            <h2
-              className="button_home_Artifex"
-            >
-              For Hosting
-            </h2>
+            <h2 className="button_home_Artifex">For Hosting</h2>
             <h2
               className="button_home_2"
               style={
@@ -73,11 +67,17 @@ const Home = () => {
             />
           </button>
           <div className="social-links2">
-          <Link to="https://www.facebook.com/ArtifexMareketplace" target="_blank">
+            <Link
+              to="https://www.facebook.com/ArtifexMareketplace"
+              target="_blank"
+            >
               {" "}
               <img src={Facebook} alt="Facebook" />
             </Link>
-            <Link to="https://www.instagram.com/artifexMarketPlace" target="_blank">
+            <Link
+              to="https://www.instagram.com/artifexMarketPlace"
+              target="_blank"
+            >
               {" "}
               <img src={Instagram} alt="Instagram" />
             </Link>
@@ -85,7 +85,6 @@ const Home = () => {
               {" "}
               <img src={Twitter} alt="FaceTwitterbook" />
             </Link>
-          
           </div>
           <ul className="icons_home">
             <li>

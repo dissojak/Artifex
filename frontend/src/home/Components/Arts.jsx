@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Arts.css";
 import ArtsList from "./ArtsList";
+import ArtworkSkeleton from "./ArtworkSkeleton"; // Ensure you import ArtworkSkeleton
 import loading from "../../assets/images/loadpurple.gif";
 import { toast } from "react-toastify";
 import { useGetArtworksMutation } from "../../slices/artworksSlice";
@@ -57,8 +58,10 @@ const Arts = () => {
           </select>
         </div>
         {isLoading ? (
-          <div className="center_spinner">
-            <img src={loading} alt="Loading..." />
+          <div className="art-skeleton-container">
+            {Array.from({ length: artworksPerPage }, (_, index) => (
+              <ArtworkSkeleton key={index} />
+            ))}
           </div>
         ) : (
           <>
@@ -87,10 +90,7 @@ const Pagination = ({ artworksPerPage, totalArtworks, paginate, currentPage }) =
       <ul className="pagination">
         {pageNumbers.map(number => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)}
-             
-               className={`page-link ${currentPage === number ? 'active' : ''}`}
-            >
+            <a onClick={() => paginate(number)} className={`page-link ${currentPage === number ? 'active' : ''}`}>
               {number}
             </a>
           </li>
