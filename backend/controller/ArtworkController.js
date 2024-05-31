@@ -201,7 +201,7 @@ exports.deleteArtworkByAdmin = asyncHandler(async (req, res, next) => {
 
     await artwork.deleteOne();
 
-    res.json({ msg: "Artwork deleted successfully" });
+    res.status(202).json({ msg: "Artwork deleted successfully" });
   } catch (error) {
     next(new HttpError(`${error.message},Failed to delete artwork`, 500));
   }
@@ -236,7 +236,7 @@ exports.deleteArtwork = asyncHandler(async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({
+    res.status(204).json({
       msg: "Artwork deleted successfully",
       artwork,
     });
