@@ -133,7 +133,6 @@ const NewArtwork = () => {
     <>
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && categories && (
-        // <div className="art-form-background-wrapper">
         <div>
           <div
             className="art-form-background"
