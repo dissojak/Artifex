@@ -1,0 +1,74 @@
+.table-skeleton {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.skeleton-row {
+    display: flex;
+    align-items: center;
+    /* border-bottom: 1px solid #e0e0e0; */
+}
+
+.skeleton-cell {
+    height: 30px;
+    background-color: #e0e0e0;
+    margin-right: 10px;
+    border-radius: 4px;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-cell.idSkeleton {
+    width: 13.5%;
+    animation: shimmer 2s infinite;
+
+}
+
+.skeleton-cell.artistSkeleton {
+    width: 10%;
+    animation: shimmer 2s infinite;
+
+}
+
+.skeleton-cell.descriptionSkeleton {
+    width: 17%;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-cell.descriptionArtistSkeleton {
+    width: 28%;
+    animation: shimmer 2s infinite;
+}
+
+.skeleton-cell.priceSkeleton {
+    width: 10%;
+}
+
+.skeleton-cell.dateSkeleton {
+    width: 16%;
+}
+
+.skeleton-cell.typeSkeleton {
+    width: 17.5%;
+}
+
+.skeleton-cell.statusSkeleton {
+    width: 10.5%;
+    margin: 0;
+    animation: shimmer 2s infinite;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+@keyframes shimmer {
+    0% {
+        background-color: #f6f7f8;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+    100% {
+        background-color: #f6f7f8;
+    }
+}

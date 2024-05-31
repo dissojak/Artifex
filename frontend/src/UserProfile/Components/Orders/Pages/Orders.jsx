@@ -9,6 +9,7 @@ import OrdersList from "../Components/OrdersList";
 import OrdersListArtist from "../Components/OrdersListArtist";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import OrderSkeleton from "../Components/OrderSkeleton";
 
 const Orders = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +17,7 @@ const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [ordersPerPage] = useState(10);
 
-  const { userInfo } = useSelector(state => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
   const isClient = userInfo.userType === "client";
   const isArtist = userInfo.userType === "artist";
 
@@ -26,11 +27,13 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = isClient ? await clientOrders().unwrap() : await artistOrders().unwrap();
-  
+        const response = isClient
+          ? await clientOrders().unwrap()
+          : await artistOrders().unwrap();
+
         // Reverse the order of the orders array
         const reversedOrders = response.orders.slice().reverse();
-  
+
         setOrders(reversedOrders);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -40,7 +43,6 @@ const Orders = () => {
     };
     fetchOrders();
   }, [isClient, clientOrders, artistOrders]);
-  
 
   // Get current posts
   const indexOfLastOrder = currentPage * ordersPerPage;
@@ -48,14 +50,33 @@ const Orders = () => {
   const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
 
   // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="orders-container">
       {isLoading ? (
-        <div className="center_spinner">
-          <img src={loading} alt="Loading..." />
-        </div>
+        // <div className="center_spinner">
+        //   <img src={loading} alt="Loading..." />
+        // </div>
+        <>
+          <div>
+            <thead>
+              <tr>
+                <th style={{width:"150px" , borderTopLeftRadius:'8px'}}>Order ID</th>
+                <th style={{width:"120px"}}>Artist</th>
+                {isClient &&<th style={{width:"210px"}}>Description</th>}
+                {isArtist &&<th style={{width:"320px"}}>Description</th>}
+                {isClient && <th th style={{width:"115px"}}>Price</th>}
+                <th style={{width:"180px"}}>Order Date</th>
+                <th style={{width:"200px"}}>Order Type</th>
+                <th style={{width:"120px", borderTopRightRadius:'8px'}}>Status</th>
+              </tr>
+            </thead>
+            {Array.from({ length: ordersPerPage }).map((_, index) => (
+              <OrderSkeleton key={index} />
+            ))}
+          </div>
+        </>
       ) : orders.length > 0 ? (
         <>
           <table>
@@ -64,8 +85,8 @@ const Orders = () => {
                 <th>Order ID</th>
                 <th>Artist</th>
                 <th>Description</th>
-                  {isClient && (<th>Price</th>)}
-                  <th>Order Date</th>
+                {isClient && <th>Price</th>}
+                <th>Order Date</th>
                 <th>Order Type</th>
                 <th>Status</th>
               </tr>
@@ -77,7 +98,7 @@ const Orders = () => {
             ordersPerPage={ordersPerPage}
             totalOrders={orders.length}
             paginate={paginate}
-            currentPage={currentPage}  // This ensures the active page is highlighted
+            currentPage={currentPage} // This ensures the active page is highlighted
           />
         </>
       ) : (
@@ -99,13 +120,17 @@ const Pagination = ({ ordersPerPage, totalOrders, paginate, currentPage }) => {
   return (
     <nav>
       <ul className="pagination">
-        {pageNumbers.map(number => (
+        {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)}
-              
-               className={`page-link ${currentPage === number ? 'active' : ''}`}
-               // Inline style for demonstration; usually better to use CSS classes
-               style={currentPage === number ? { backgroundColor: '#7E3FFF', color: 'white' } : null}
+            <a
+              onClick={() => paginate(number)}
+              className={`page-link ${currentPage === number ? "active" : ""}`}
+              // Inline style for demonstration; usually better to use CSS classes
+              style={
+                currentPage === number
+                  ? { backgroundColor: "#7E3FFF", color: "white" }
+                  : null
+              }
             >
               {number}
             </a>
