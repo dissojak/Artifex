@@ -41,7 +41,7 @@ const Museums = () => {
           </h1>
           <p>Get to know the special pieces from our artists in Artifex.</p>
         </div>
-        {!isLoading ? (
+        {isLoading ? (
           <>
               <div className="Museum-skeleton-container">
                 {Array.from({ length: 8 }, (_, index) => (
