@@ -57,7 +57,7 @@ const MuseumDetails = () => {
   return isLoading ? (
     <LoadingArtifex />
   ) : (
-    <div className="MuseumDetails-container">
+    <div className="MuseumDetails-container" style={{ marginTop: isClient ? '113vh' : '-15vh' }}>
       {!isLoading && museum && <ArtSection museum={museum} />}
       {isClient && (
         <>
