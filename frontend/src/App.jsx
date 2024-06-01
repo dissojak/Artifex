@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -34,7 +34,6 @@ import MuseumDetails from "./MuseumDetails/Pages/MuseumDetails.jsx";
 import PricingOptions from "./PricingOptions/Pages/PricingOptions.jsx";
 import PlansHistory from "./PlansHistory/Pages/PlansHistory.jsx";
 import NavigationWrapper from "./shared/components/Navigation/NavigationWrapper.jsx";
-import ArtistProfileClient from "./ArtistProfile-Client/ArtistProfileClinet.jsx";
 import Collection from "./Collection/Pages/Collection.jsx";
 import Success from "./shared/components/Pages/successPayments/Success.jsx";
 import Fail from "./shared/components/Pages/failPayments/Fail.jsx";
@@ -150,7 +149,6 @@ const App = () => {
         <Route path="/order/fail" element={<FailOrderPayment />} />
       </Route>
       <Route path="/login" element={<Auth />} />
-      {/* <Route path="/auth" element={<Auth />} /> */}
       <Route path="/:userId/places" element={<UserPlaces />} />
       <Route path="/signup" element={<Auth signup={true} />} />
       <Route path="/register" element={<RegisterScreen />} />

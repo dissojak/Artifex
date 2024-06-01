@@ -118,6 +118,14 @@ body {
   /* background-color: #fff; */
 }
 
+h1, h2 {
+  margin: 10px 0;
+}
+
+p, span {
+  margin: 5px 0;
+}
+
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
