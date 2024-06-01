@@ -3,6 +3,7 @@ import "./Museums.css";
 import MuseumList from "../Components/MuseumsList"; // Adjust import if necessary
 import { useGetClientMuseumsMutation } from "../../../../slices/museumsSlice";
 import { toast } from "react-toastify";
+import MuseumSkeleton from "../Components/MuseumSkeleton";
 
 const Museums = () => {
   const [museums, setMuseums] = useState([]);
@@ -28,7 +29,7 @@ const Museums = () => {
   const currentMuseums = museums.slice(indexOfFirstMuseum, indexOfLastMuseum);
 
   // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -40,7 +41,17 @@ const Museums = () => {
           </h1>
           <p>Get to know the special pieces from our artists in Artifex.</p>
         </div>
-        {isLoading ? <p></p> : <MuseumList items={currentMuseums} />}
+        {!isLoading ? (
+          <>
+              <div className="Museum-skeleton-container">
+                {Array.from({ length: 8 }, (_, index) => (
+                  <MuseumSkeleton key={index} />
+                ))}
+              </div>
+          </>
+        ) : (
+          <MuseumList items={currentMuseums} />
+        )}
         <Pagination
           museumsPerPage={museumsPerPage}
           totalMuseums={museums.length}
@@ -52,7 +63,12 @@ const Museums = () => {
   );
 };
 
-const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => {
+const Pagination = ({
+  museumsPerPage,
+  totalMuseums,
+  paginate,
+  currentPage,
+}) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalMuseums / museumsPerPage); i++) {
     pageNumbers.push(i);
@@ -61,11 +77,12 @@ const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => 
   return (
     <nav>
       <ul className="pagination">
-        {pageNumbers.map(number => (
+        {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)}
-               href="#!"
-               className={`page-link ${currentPage === number ? 'active' : ''}`}
+            <a
+              onClick={() => paginate(number)}
+              href="#!"
+              className={`page-link ${currentPage === number ? "active" : ""}`}
             >
               {number}
             </a>
