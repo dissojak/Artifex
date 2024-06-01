@@ -37,7 +37,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "concurrently": "^8.0.1",
     "nodemon": "^2.0.22",
-    "vite": "^5.2.2",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "vite": "^5.2.2"
   }
 }
