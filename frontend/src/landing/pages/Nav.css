@@ -78,9 +78,9 @@
   }
   
   .loginButtonUI {
-    --primary-color: #645bff;
+    --primary-color: rgb(126, 63, 255);
     --secondary-color: #fff;
-    --hover-color: #111;
+    --hover-color: #2e007c;
     --arrow-width: 10px;
     --arrow-stroke: 3px;
     box-sizing: border-box;
