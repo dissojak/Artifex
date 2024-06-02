@@ -13,6 +13,11 @@
     padding: 109px;
     padding-top: 24px;
   }
+
+  .SkeletonMuseums-List{
+    gap: 5.5rem;
+  }
+
   .pagination-containermuseum {
     width: 100%; 
     position: absolute; 

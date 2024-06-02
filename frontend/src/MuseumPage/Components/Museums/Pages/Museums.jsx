@@ -42,13 +42,11 @@ const Museums = () => {
           <p>Get to know the special pieces from our artists in Artifex.</p>
         </div>
         {isLoading ? (
-          <>
-              <div className="Museum-skeleton-container">
-                {Array.from({ length: 8 }, (_, index) => (
-                  <MuseumSkeleton key={index} />
-                ))}
-              </div>
-          </>
+          <div className="Museum-skeleton-container">
+            {Array.from({ length: 8 }, (_, index) => (
+              <MuseumSkeleton key={index} />
+            ))}
+          </div>
         ) : (
           <MuseumList items={currentMuseums} />
         )}

@@ -3,6 +3,7 @@ import "./PinnedMuseums.css";
 import { toast } from "react-toastify";
 import PinnedMuseumsList from "./PinnedMuseumsList.jsx";
 import { useGetPinnedMuseumsMutation } from "../../slices/museumsSlice.js";
+import MuseumSkeleton from "../../MuseumPage/Components/Museums/Components/MuseumSkeleton.jsx";
 
 const PinnedMuseums = () => {
   const [museums, setMuseums] = useState([]);
@@ -32,7 +33,11 @@ const PinnedMuseums = () => {
     <>
       <div className="PinnedMuseums-container">
         {isLoading ? (
-          <p></p>
+          <div className="SkeletonMuseums-List PinnedMuseums-List-container">
+          {Array.from({ length: 8 }, (_, index) => (
+            <MuseumSkeleton key={index} />
+          ))}
+        </div>
         ) : (
           <>
             <PinnedMuseumsList items={currentMuseums} />

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "./Events.css";
-import { useGetMuseumsByUserIdMutation } from '../../slices/museumsSlice';
-import MuseumList from '../../MuseumPage/Components/Museums/Components/MuseumsList';
+import { useGetMuseumsByUserIdMutation } from "../../slices/museumsSlice";
+import MuseumList from "../../MuseumPage/Components/Museums/Components/MuseumsList";
+import MuseumMuseumSkeleton from "../../MuseumPage/Components/Museums/Components/MuseumSkeleton";
 
 const Events = () => {
   const [museums, setMuseums] = useState();
@@ -23,16 +24,20 @@ const Events = () => {
       <div id="museum-section-events">
         <div className="museum-section2">
           <p style={{ color: "#5BD6FF", fontWeight: "bold" }}>Discover</p>
-          <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>
-            Your Events
-          </h1>
+          <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Your Events</h1>
         </div>
-        {/* call component here  */}
-        {!isLoading && museums && <MuseumList items={museums} />}
+        {isLoading ? (
+          <div className="Museum-skeleton-container">
+            {Array.from({ length: 4 }, (_, index) => (
+              <MuseumMuseumSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <>{museums && <MuseumList items={museums} />}</>
+        )}
       </div>
     </>
   );
 };
-
 
 export default Events;
