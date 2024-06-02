@@ -1,44 +1,44 @@
 /* General Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: #FFFFFF; /* Change according to your color scheme */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 80px; /* Adjust based on your preference */
-    width: 100%;
-    left:-2px;
-    position: absolute;
-    top: 0;
-    z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #ffffff; /* Change according to your color scheme */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 80px; /* Adjust based on your preference */
+  width: 100%;
+  left: -2px;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
-    margin-top: 5px;
-    height: 60px; /* Adjust size to fit your logo */
+  margin-top: 5px;
+  height: 60px; /* Adjust size to fit your logo */
 }
 
 .button-container {
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    gap: 20px; /* Space between buttons */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 20px; /* Space between buttons */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 10px;
-    }
-    .logo {
-        margin-bottom: 10px;
-    }
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .logo {
+    margin-bottom: 10px;
+  }
 }
 
 .signupBtn {
-    width: 150px;
+  width: 150px;
   height: 50px;
   border-radius: 4px;
   font-weight: bold;
@@ -49,95 +49,91 @@
   padding-left: 50px;
   gap: 9px;
   color: white;
-  background: #7E3FFF;
+  background: #7e3fff;
   position: relative;
   cursor: pointer;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
-  }
-  .signupBtn:hover {
-    background-color: #9866ff;
-  }
-  .signupBtn1 {
-    border-radius: 25px;
-    font-weight: bold;
-    border: 4px solid #FD006F; /* Add border with specified color */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0.65rem 1.8rem;
-    gap: 9px;
-    color: #FD006F;
-    
-    position: relative;
-    cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
-  }
-  .signupBtn1:hover {
-    background-color:#FE0081 ;
-    color: white;
-  }
-  
-  .loginButtonUI {
-    --primary-color: rgb(126, 63, 255);
-    --secondary-color: #fff;
-    --hover-color: #2e007c;
-    --arrow-width: 10px;
-    --arrow-stroke: 3px;
-    box-sizing: border-box;
-    border: 0;
-    cursor: pointer;
-    border-radius: 20px;
-    color: var(--secondary-color);
-    padding: 1em 1.8em;
-    background: var(--primary-color);
-    display: flex; 
-    transition: 0.2s background;
-    align-items: center;
-    gap: 0.6em;
-    font-weight: bold;
-  }
-  
-  .loginButtonUI .arrow-wrapper-login-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .loginButtonUI .arrow-login-button {
-    margin-top: 1px;
-    width: 15px;
-    background: var(--primary-color);
-    height: 1.5px;
-    position: relative;
-    transition: 0.2s;
-  }
-  
-  .loginButtonUI .arrow-login-button::before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    border: solid var(--secondary-color);
-    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-    display: inline-block;
-    top: -3px;
-    right: 3px;
-    transition: 0.2s;
-    padding: 3px;
-    transform: rotate(-45deg);
-  }
-  
-  .loginButtonUI:hover {
-    background-color: var(--hover-color);
-  }
-  
-  .loginButtonUI:hover .arrow-login-button {
-    background: var(--secondary-color);
-  }
-  
-  .loginButtonUI:hover .arrow-login-button:before {
-    right: 0;
-  }
-  
-  
-  
-  
+}
+.signupBtn:hover {
+  background-color: #9866ff;
+}
+.signupBtn1 {
+  border-radius: 25px;
+  font-weight: bold;
+  border: 4px solid #fd006f; /* Add border with specified color */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.65rem 1.8rem;
+  gap: 9px;
+  color: #fd006f;
+
+  position: relative;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+}
+.signupBtn1:hover {
+  background-color: #fe0081;
+  color: white;
+}
+
+.loginButtonUI {
+  --primary-color: rgb(126, 63, 255);
+  --secondary-color: #fff;
+  --hover-color: #2e007c;
+  --arrow-width: 10px;
+  --arrow-stroke: 3px;
+  box-sizing: border-box;
+  border: 2px solid #7e3fff;
+  cursor: pointer;
+  border-radius: 25px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.loginButtonUI .arrow-wrapper-login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginButtonUI .arrow-login-button {
+  margin-top: 1px;
+  width: 15px;
+  background: var(--primary-color);
+  height: 1.5px;
+  position: relative;
+  transition: 0.2s;
+}
+
+.loginButtonUI .arrow-login-button::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.loginButtonUI:hover {
+  background-color: var(--hover-color);
+}
+
+.loginButtonUI:hover .arrow-login-button {
+  background: var(--secondary-color);
+}
+
+.loginButtonUI:hover .arrow-login-button:before {
+  right: 0;
+}
