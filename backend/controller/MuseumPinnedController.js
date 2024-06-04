@@ -62,6 +62,7 @@ exports.isPinned = async (req, res) => {
   const { museumId } = req.body; 
   const userId = req.user._id;
 
+  //adem
   try {
       const result = await MuseumPinned.findOne({ userId, museumId });
       if (result) {
