@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 
-.hover_img {
+/* .hover_img {
   width: 10.35vw;
   height: 10.35vw;
   border-radius: 50%;
@@ -42,7 +42,7 @@
 
 .button_member:hover .hover_img {
   opacity: 0.6;
-}
+} */
 
 .name_member {
   font-family: "Raleway-extrabold";

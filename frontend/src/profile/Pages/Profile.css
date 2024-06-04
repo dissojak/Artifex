@@ -29,10 +29,9 @@
   }
   
   .hover_img {
-    width: 10.35vw;
-    height: 10.35vw;
+    width: 9.3vw;
+    height: 9.3vw;
     border-radius: 50%;
-  
     position: absolute;
     top: 0px;
     left: 0px;
@@ -41,7 +40,7 @@
   }
   
   .button_member:hover .hover_img {
-    opacity: 0.6;
+    opacity: 0.5;
   }
   
   .name_member {

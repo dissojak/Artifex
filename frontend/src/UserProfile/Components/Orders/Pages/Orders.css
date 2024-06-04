@@ -104,6 +104,11 @@ tr:nth-child(even) {
   border-radius: 4px;
   font-size: inherit;
   outline: none;
+  
+}
+
+.status-button::first-letter{
+  text-transform: uppercase;
 }
 
 /* Specific styles for different statuses */

@@ -212,21 +212,6 @@
   border: 6px solid white; /* Optional: Adds a white border around the image */
 }
 
-.hover_img {
-  width: 9.3vw;
-  height: 9.3vw;
-  border-radius: 50%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-/* .profileImageContainerHandler:hover .hover_img {
-  opacity: 0.6;
-} */
-
 .profile-info {
   z-index: 1;
   display: flex;
