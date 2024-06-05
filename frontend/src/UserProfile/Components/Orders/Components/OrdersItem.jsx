@@ -60,7 +60,7 @@ const OrdersItem = (props) => {
             onClick={() => handleStatusClick(props.status)}
           >
             {props.status === "accepted" ? "Pay" : props.status}
-            {props.status === "payed" ? "paid" : null}
+            {/* {props.status === "payed" ? "paid" : null} */}
           </button>
         </td>
       </tr>
