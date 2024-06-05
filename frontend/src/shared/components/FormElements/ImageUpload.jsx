@@ -5,7 +5,7 @@ import "./ProfileImage.css";
 import { useHttp } from "../../hooks/http-hook";
 import ErrorModal from "../UIElements/ErrorModal";
 import LoadingSpinner from "../UIElements/LoadingSpinner";
-import "../../../profile/Pages/Profile.css";
+import "../../../UserProfile/Pages/Profile.css";
 import DefaultImg from "../../../assets/images/default_profile_img.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useUpdateProfileImageMutation } from "../../../slices/usersApiSlice";

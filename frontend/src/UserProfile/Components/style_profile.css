@@ -1,13 +1,7 @@
-#bg {
-  width: 100%;
-  height: 100%;
-  background-color: #ffdcba;
-  position: fixed;
-}
 
-.container {
+/* .container {
   margin-top: 20vh;
-}
+} */
 
 .img_member {
   width: 10.35vw;
@@ -21,37 +15,10 @@
   background-color: transparent;
 }
 
-.btn2,
-.btn23 {
+.button_member {
+  overflow: hidden;
+  position: relative;
   background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-/* .hover_img {
-  width: 10.35vw;
-  height: 10.35vw;
-  border-radius: 50%;
-
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.button_member:hover .hover_img {
-  opacity: 0.6;
-} */
-
-.name_member {
-  font-family: "Raleway-extrabold";
-  font-size: 2.8vw;
-  color: #4d3223;
-}
-
-.name_member::first-letter {
-  text-transform: uppercase;
 }
 
 .word_member::first-letter {
@@ -79,14 +46,6 @@
   margin-left: 1.5vw;
 }
 
-#divs3 {
-  margin-top: 3vh;
-  margin-left: 20vw;
-  width: 68.5vw;
-  display: flex;
-  justify-content: space-between;
-}
-
 .l {
   box-sizing: border-box;
   padding-top: 4.3vh;
@@ -104,7 +63,7 @@
   font-family: "Raleway-SemiBold";
   /* font-size: 27px; */
   font-size: 1.75vw;
-  color: #4d3223;
+  color: #ffffff;
 }
 .btn2 img {
   width: 27.5vh;
@@ -136,6 +95,6 @@
   white-space: nowrap;
 }
 
-.loader{
+.loader {
   z-index: 10;
 }

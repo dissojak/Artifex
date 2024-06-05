@@ -48,7 +48,6 @@ const OrdersItem = (props) => {
   return (
     <>
       <tr key={props.id}>
-        {/* <td>{props.orderId}</td> */}
         <td>{props.orderId}</td>
         <td>{props.artist}</td>
         <td>{props.description}</td>
@@ -61,7 +60,7 @@ const OrdersItem = (props) => {
             onClick={() => handleStatusClick(props.status)}
           >
             {props.status === "accepted" ? "Pay" : props.status}
-            {props.status === "payed" ? "paid" : props.status}
+            {/* {props.status === "payed" ? "paid" : null} */}
           </button>
         </td>
       </tr>

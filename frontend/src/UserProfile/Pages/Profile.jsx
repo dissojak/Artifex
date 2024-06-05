@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
+// import "./style_profile.css";
 import SaveIcon from "../../assets/images/saveblack.svg";
 import SaveIconActive from "../../assets/images/savepurple.svg";
 import PinIcon from "../../assets/images/Pinblack.svg";
@@ -17,7 +18,7 @@ import PopupUsername from "../Components/PopupUsername.jsx";
 import PopupEmail from "../Components/PopupEmail.jsx";
 import { useSelector } from "react-redux";
 import PopupFollowers from "../Components/PopupFollowers.jsx";
-import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork.jsx";
+// import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork.jsx";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload.jsx";
 import PopupFollowing from "../Components/PopupFollowing.jsx";
 import { toast } from "react-toastify";
