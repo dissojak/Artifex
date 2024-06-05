@@ -92,6 +92,14 @@
   font-size: 1.75vw;
   color: #ffffff;
 }
+
+.btn2,
+.btn23 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .btn2 img {
   width: 27.5vh;
   height: auto; /* Maintain aspect ratio */
@@ -321,3 +329,24 @@
 .newArtworkFormContainer{
   position: relative;
 }
+
+.hover_img {
+  width: 9.3vw;
+  height: 9.3vw;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.button_member:hover .hover_img {
+  opacity: 0.5;
+}
+ .button_member {
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+  }
+  

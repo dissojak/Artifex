@@ -46,6 +46,18 @@
     top:6.9vh;
 }
 
+.ch1user {
+    width: 35.15vw;
+    height: 40vh;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding-left: 2.95vw;
+    padding-right: 2.95vw;
+    position: relative;
+    top:3vh;
+}
+
 .first_ch {
     display: flex;
     justify-content: space-between;
