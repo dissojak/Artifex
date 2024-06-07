@@ -295,3 +295,7 @@
     transition: color 0.3s;
   }
 
+.BadgeArtists{
+  width: 20px;
+  margin-left: 10px;
+}

@@ -15,6 +15,7 @@ const ArtistPage = () => {
       try {
         const responseData = await getArtists();
         setArtists(responseData.data.artists);
+        console.log(responseData.data.artists)
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

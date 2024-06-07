@@ -2,7 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Pages/Artists.css";
 import "./SkeletonLoader.css";
-import { useGetUserMutation } from "../../slices/usersApiSlice";
+import Diamant from "../../assets/images/platinumBadge2.svg";
+import Platinum from "../../assets/images/diamant.svg";
+import Gold from "../../assets/images/crown.svg";
+
+// import { useGetUserMutation } from "../../slices/usersApiSlice";
 
 const ArtistCardItem = (props) => {
   const rating = Math.round(props.rating);
@@ -54,6 +58,15 @@ const ArtistCardItem = (props) => {
               <Link to={`/artist/${props.username}`} className="name9">
                 {props.username}
               </Link>
+              {props.plan === "platinum" && (
+                <img src={Platinum} className="BadgeArtists" alt="Badge" />
+              )}
+              {props.plan === "diamond" && (
+                <img src={Diamant} className="BadgeArtists" alt="Badge" />
+              )}
+              {props.plan === "gold" && (
+                <img src={Gold} className="BadgeArtists" alt="Badge" />
+              )}
               <p className="function9">{props.category}</p>
             </div>
             <div className="cont-rating9">
