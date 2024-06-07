@@ -239,7 +239,7 @@ const Profile = (props) => {
                   <div className="l">
                     <img src="elements/password.svg" alt="" />
                   </div>
-                  <h2 className="ch">Change Password</h2>
+                  <h2 className="ch" style={{color:'white'}}>Change Password</h2>
                 </button>
                 {showChangePw && (
                   <Popup_pw
@@ -251,7 +251,7 @@ const Profile = (props) => {
                   <div className="l">
                     <img src="elements/username_shape.svg" alt="" />
                   </div>
-                  <h2 className="ch">Change Username</h2>
+                  <h2 className="ch" style={{color:'white'}}>Change Username</h2>
                 </button>
                 {showChangeUsername && (
                   <PopupUsername
@@ -263,7 +263,7 @@ const Profile = (props) => {
                   <div className="l">
                     <img src="elements/email.svg" alt="" />
                   </div>
-                  <h2 className="ch">Change Email</h2>
+                  <h2 className="ch" style={{color:'white'}}>Change Email</h2>
                 </button>
                 {showChangeEmail && (
                   <PopupEmail showChangeEmailHandler={showChangeEmailHandler} />
