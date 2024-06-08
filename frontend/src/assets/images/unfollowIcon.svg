@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15.092" height="14.49" viewBox="0 0 15.092 14.49">
+  <g id="unfollowIcon" transform="translate(-1.25 -1.25)">
+    <g id="Layer_2" data-name="Layer 2" transform="translate(1.25 1.25)">
+      <path id="Tracé_6378" data-name="Tracé 6378" d="M9.438,15.78A3.686,3.686,0,0,0,9.7,17.173l.042.1H2.818A1.568,1.568,0,0,1,1.25,15.7v-.348a4.676,4.676,0,0,1,1.916-3.8,4.669,4.669,0,0,0,6.216,0,4.669,4.669,0,0,1,1.3,1.435A3.651,3.651,0,0,0,9.438,15.78Z" transform="translate(-1.25 -4.355)" fill="#fff"/>
+      <circle id="Ellipse_113" data-name="Ellipse 113" cx="3.658" cy="3.658" r="3.658" transform="translate(1.394)" fill="#fff"/>
+      <path id="Tracé_6381" data-name="Tracé 6381" d="M31.1,28a3.1,3.1,0,1,0,3.1,3.1A3.1,3.1,0,0,0,31.1,28Zm1.758,4.2-.656.656-1.1-1.1-1.1,1.1-.656-.657,1.1-1.1-1.1-1.1.656-.656,1.1,1.1,1.1-1.1.656.657-1.1,1.1Z" transform="translate(-19.099 -19.7)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
