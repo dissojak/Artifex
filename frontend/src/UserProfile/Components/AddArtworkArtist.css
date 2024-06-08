@@ -7,9 +7,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 250px;
-  height: 190px;
-  border: 2px dashed #ccc;
+  width: 293px;
+  height: 360px;
+  border-radius: 10px;
+  border: 2px dashed #9866ff;
   align-items: center;
   text-align: center;
   padding: 5px;
@@ -17,13 +18,20 @@
   cursor: pointer;
 }
 
-.addFileArtworkContainer {
-position: relative;
-top:6vh;
-left: 1vw;
+.labelFile:hover p {
+  color: #9866ff;
 }
 
-.gallery-container-artworksArtist{
+.labelFile:hover:hover #Capa_1{
+  fill-opacity: 35%;
+}
+/* .addFileArtworkContainer {
+position: relative;
+top:0vh;
+left: 2vw;
+} */
+
+.gallery-container-artworksArtist {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;

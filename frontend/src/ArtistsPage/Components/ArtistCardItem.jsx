@@ -67,7 +67,8 @@ const ArtistCardItem = (props) => {
               {props.plan === "gold" && (
                 <img src={Gold} className="BadgeArtists" alt="Badge" />
               )}
-              <p className="function9">{props.category}</p>
+              {/* <p className="function9">{props.category}</p> */}
+              <p className="function9">Artist</p>
             </div>
             <div className="cont-rating9">
               <div className="rating9" id={props.id}>
