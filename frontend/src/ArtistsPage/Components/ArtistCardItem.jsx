@@ -188,7 +188,7 @@ const ArtistCardItem = (props) => {
               <Link
                 to={`https://www.instagram.com/${props.instagram}`}
                 className="socialContainer9 containerOne9"
-                style={{ width: socialMedia }}
+                style={{ width: socialMedia,cursor: 'pointer' }}
                 target="_blank"
               >
                 <svg
@@ -204,7 +204,7 @@ const ArtistCardItem = (props) => {
             {props.twitter && (
               <Link
                 className="socialContainer9 containerTwo9"
-                style={{ width: socialMedia }}
+                style={{ width: socialMedia,cursor: 'pointer' }}
                 to={`https://twitter.com/${props.twitter}`}
                 target="_blank"
               >
@@ -222,7 +222,7 @@ const ArtistCardItem = (props) => {
               <Link
                 className="socialContainer9 containerThree9"
                 to={`https://www.linkedin.com/in/${props.linkedin}`}
-                style={{ width: socialMedia }}
+                style={{ width: socialMedia,cursor: 'pointer' }}
                 target="_blank"
               >
                 <svg
@@ -239,7 +239,7 @@ const ArtistCardItem = (props) => {
               to={`https://wa.me/+216${props.phoneNumber}`}
               className="socialContainer9 containerFour9"
               href="#"
-              style={{ width: socialMedia }}
+              style={{ width: socialMedia,cursor: 'pointer' }}
               target="_blank"
             >
               <svg

@@ -206,6 +206,10 @@
   transition-duration: 0.3s;
 }
 
+.IconContainer9_hovered:active {
+  transform: scale(0.95);
+}
+
 .card_social9 {
   width: fit-content;
   height: fit-content;
