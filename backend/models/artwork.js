@@ -57,6 +57,11 @@ const artworkSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  status: {
+    type: String,
+    enum: ['pending','declined','approved'],
+    default: 'pending'
+  },
 });
 
 artworkSchema.plugin(uniqueValidator);

@@ -35,13 +35,14 @@
   color: white;
 }
 
-.noOrdersContainer { 
+/* .noOrdersContainer { 
   position: absolute;
   top: 130%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
+  z-index: 10;
 }
 
 .noOrdersContainer h1 {
@@ -57,7 +58,8 @@
   width: fit-content;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: 'ptsimple';
-}
+  z-index: 10;
+} */
 
 .table-container {
   width: 100%;

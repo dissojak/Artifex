@@ -7,8 +7,7 @@
 }
 
 .noOrdersContainer {
-  position: absolute; /* or 'absolute' depending on the context */
-  /* z-index: 1; */
+  position: relative; /* or 'absolute' depending on the context */
   top: 130%;
   left: 50%;
   transform: translate(-50%, -50%);

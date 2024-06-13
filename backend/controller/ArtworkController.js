@@ -107,6 +107,7 @@ exports.getArtworks = asyncHandler(async (req, res, next) => {
       exclusive: false,
       isDeletedByOwner: false,
       Sold: false,
+      status: "approved",
     })
       .populate({
         path: "id_category", // Populate the 'id_category' field
@@ -152,6 +153,44 @@ exports.getArtworks = asyncHandler(async (req, res, next) => {
 });
 
 /**
+ * @desc    Get artworks from database
+ * @route   GET /api/artwork/getArtworksForAdmin
+ * @access  Private
+ * @author  Admin
+ */
+exports.getArtworksForAdmin = asyncHandler(async (req, res, next) => {
+  try {
+    const artworks = await Artwork.find({
+      isDeletedByOwner: false,
+      status: "pending",
+    })
+      .populate({
+        path: "id_category", // Populate the 'id_category' field
+        select: "name", // Select the 'name'
+        // select: 'name -_id' // Select only the 'name' field and exclude the '_id' field
+      })
+      .populate({
+        path: "id_artist",
+        select: "username , profileImage",
+      });
+
+    if (!artworks || artworks.length === 0) {
+      return res.status(200).json({
+        message: "No artworks found for this artist",
+        artworks: [],
+      });
+    }
+
+    res.status(200).json({
+      message: "Artworks retrieved successfully",
+      artworks,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to retrieve artworks", 500));
+  }
+});
+
+/**
  * @desc    Get Exclusive Artworks from database
  * @route   GET /api/artwork/getExclusiveArtworks
  * @access  Private
@@ -182,6 +221,24 @@ exports.getExclusiveArtworks = asyncHandler(async (req, res, next) => {
     next(new HttpError(error.message || "Failed to retrieve artwork", 500));
   }
 });
+
+/**
+ * @desc    Approve all artworks
+ * @route   PUT /api/artwork/approveAll
+ * @access  Private
+ * @author  SupperAdmin
+ */
+// approveAllArtworks();
+async function approveAllArtworks() {
+  try {
+    const result = await Artwork.updateMany({}, { status: "approved" });
+    console.log(
+      `Successfully updated ${result.nModified} artworks to approved status.`
+    );
+  } catch (error) {
+    console.error("Error updating artworks:", error);
+  }
+}
 
 /**
  * @desc    Delete an artwork
@@ -393,8 +450,8 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
     const artworks = await Artwork.find({
       id_artist: artistId,
       isDeletedByOwner: false,
-      Sold:false,
-      visibility: 'public',
+      Sold: false,
+      visibility: "public",
     });
 
     if (!artworks || artworks.length === 0) {

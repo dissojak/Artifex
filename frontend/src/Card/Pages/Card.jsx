@@ -7,7 +7,7 @@ import CardList from "../Components/CardList";
 import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const Card = () => {
-  const [artworks, setArtworks] = useState();
+  const [artworks, setArtworks] = useState([]);
   const [getPanier, { isLoading }] = useGetPanierMutation();
 
   useEffect(() => {
@@ -43,11 +43,20 @@ const Card = () => {
     </div>
   ) : (
     <>
-      <div className="Collection-container">
-        {!isLoading && artworks && (
-          <CardList collection={artworks} deleteItemById={deleteItemById} />
-        )}
-      </div>
+      {artworks.length === 0 ? (
+        <div style={{marginTop:'-265px'}}>
+          <h1 className="no-artworks">
+            The Card is Empty 
+            <br/>You Can Add a New Artwork !
+          </h1>
+        </div>
+      ) : (
+        <div className="Collection-container">
+          {!isLoading && artworks && (
+            <CardList collection={artworks} deleteItemById={deleteItemById} />
+          )}
+        </div>
+      )}
     </>
   );
 };

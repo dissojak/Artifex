@@ -31,10 +31,14 @@ const Orders = () => {
           ? await clientOrders().unwrap()
           : await artistOrders().unwrap();
 
+        console.log(response);
         // Reverse the order of the orders array
-        const reversedOrders = response.orders.slice().reverse();
-
-        setOrders(reversedOrders);
+        if (response.orders.length !== 0) {
+          const reversedOrders = response.orders.slice().reverse();
+          setOrders(reversedOrders);
+        } else {
+          setOrders([]);
+        }
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       } finally {
@@ -55,27 +59,32 @@ const Orders = () => {
   return (
     <div className="orders-container">
       {isLoading ? (
-        // <div className="center_spinner">
-        //   <img src={loading} alt="Loading..." />
-        // </div>
         <>
-          <div>
+          <table>
             <thead>
               <tr>
-                <th style={{width:"150px" , borderTopLeftRadius:'8px'}}>Order ID</th>
-                <th style={{width:"120px"}}>Artist</th>
-                {isClient &&<th style={{width:"210px"}}>Description</th>}
-                {isArtist &&<th style={{width:"320px"}}>Description</th>}
-                {isClient && <th th style={{width:"115px"}}>Price</th>}
-                <th style={{width:"180px"}}>Order Date</th>
-                <th style={{width:"200px"}}>Order Type</th>
-                <th style={{width:"120px", borderTopRightRadius:'8px'}}>Status</th>
+                <th style={{ width: "150px", borderTopLeftRadius: "8px" }}>
+                  Order ID
+                </th>
+                <th style={{ width: "120px" }}>Artist</th>
+                {isClient && <th style={{ width: "210px" }}>Description</th>}
+                {isArtist && <th style={{ width: "320px" }}>Description</th>}
+                {isClient && (
+                  <th th style={{ width: "115px" }}>
+                    Price
+                  </th>
+                )}
+                <th style={{ width: "180px" }}>Order Date</th>
+                <th style={{ width: "200px" }}>Order Type</th>
+                <th style={{ width: "120px", borderTopRightRadius: "8px" }}>
+                  Status
+                </th>
               </tr>
             </thead>
-            {Array.from({ length: ordersPerPage }).map((_, index) => (
-              <OrderSkeleton key={index} />
-            ))}
-          </div>
+          </table>
+          {Array.from({ length: ordersPerPage }).map((_, index) => (
+            <OrderSkeleton key={index} />
+          ))}
         </>
       ) : orders.length > 0 ? (
         <>

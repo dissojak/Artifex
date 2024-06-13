@@ -44,6 +44,7 @@ import Events from "./Events/Pages/Events.jsx";
 import LikedArtworks from "./LikedArtworks/pages/LikedArtworks.jsx";
 import SuccessOrderPayment from "./shared/components/Pages/successPayments/SuccessOrderPayment.jsx";
 import FailOrderPayment from "./shared/components/Pages/failPayments/FailOrderPayment.jsx";
+import ManageArtworks from "./UserProfile/interface/Admin/ManageArtworks/ManageArtworks.jsx";
 
 // Helper component to handle protected routes by userType
 const ProtectedRoute = ({ children, userType, allowedTypes }) => {
@@ -145,6 +146,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/ManageArtworks" element={<ManageArtworks />} />
         <Route path="/order/success" element={<SuccessOrderPayment />} />
         <Route path="/order/fail" element={<FailOrderPayment />} />
       </Route>

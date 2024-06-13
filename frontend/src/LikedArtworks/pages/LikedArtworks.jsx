@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const LikedArtworks = () => {
-  const [artworks, setArtworks] = useState();
+  const [artworks, setArtworks] = useState([]);
   const [getLikedArtworks, { isLoading }] = useGetLikedArtworksMutation();
   useEffect(() => {
     const req = async () => {
@@ -44,10 +44,12 @@ const LikedArtworks = () => {
             </div>
           </div>
         )}
-        {/* <div className="likedContainer"> */}
-        {!isLoading && artworks && <ArtsList items={artworks} />}
+        {artworks.length === 0 ? (
+          <h1 className="no-artworks">You Didn't Liked Any Artwork Yet !</h1>
+        ) : (
+          <>{!isLoading && artworks && <ArtsList items={artworks} />}</>
+        )}
       </div>
-      {/* </div> */}
     </Fragment>
   );
 };

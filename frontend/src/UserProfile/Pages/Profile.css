@@ -287,14 +287,37 @@
   border-radius: 20px;
   cursor: pointer;
 }
+
+.button-profile-manageArtworks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  height: 36px;
+  width: 200px;
+  border: none;
+  background: #d4bfff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .cover-buttons-container {
   z-index: 1;
   position: absolute;
   display: flex;
   gap: 8px;
   left: 46vw;
-    top: 10vh;
-   
+  top: 10vh;
+}
+
+.cover-buttons-container-admin {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  left: 42vw;
+  top: 10vh;
 }
 
 .lable-profile {
@@ -311,9 +334,15 @@
 .button-profile-following:hover {
   background: #b38eff;
 }
+.button-profile-manageArtworks:hover {
+  background: #b38eff;
+}
 .button-profile:hover .svg-icon-profile {
   animation: spin 2s linear infinite;
 }
+/* .button-profile-manageArtworks:hover h3 {
+  animation: spin 2s linear infinite;
+} */
 
 @keyframes spin {
   0% {
@@ -325,8 +354,7 @@
   }
 }
 
-
-.newArtworkFormContainer{
+.newArtworkFormContainer {
   position: relative;
 }
 
@@ -344,9 +372,8 @@
 .button_member:hover .hover_img {
   opacity: 0.5;
 }
- .button_member {
-    overflow: hidden;
-    position: relative;
-    background-color: transparent;
-  }
-  
+.button_member {
+  overflow: hidden;
+  position: relative;
+  background-color: transparent;
+}

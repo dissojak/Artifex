@@ -66,6 +66,7 @@ router.put(
 );
 
 router.get("/getArtworks", AWC.getArtworks);
+router.get("/getArtworksForAdmin", AWC.getArtworksForAdmin);
 router.get("/getExclusiveArtworks", MW.protect, AWC.getExclusiveArtworks);
 router.delete(
   "/deleteArtworkByAdmin/:artworkId",

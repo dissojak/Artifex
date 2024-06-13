@@ -6,7 +6,7 @@ import CollectionList from "../Components/CollectionList";
 import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const Purchases = () => {
-  const [collection, setCollection] = useState();
+  const [collection, setCollection] = useState([]);
   const [getCollection, { isLoading }] = useGetBoughtArtworkMutation();
 
   useEffect(() => {
@@ -32,10 +32,16 @@ const Purchases = () => {
       </div>
     </div>
   ) : (
-    <>
+    <>{collection.length === 0 ? (
+      <div style={{marginTop:'-250px'}}>
+        <h1 className="no-artworks">
+          You Don't Own No Artwork Yet !
+        </h1>
+      </div>
+    ) :
       <div className="Collection-container">
         {!isLoading && collection && <CollectionList collection={collection} />}
-      </div>
+      </div>}
     </>
   );
 };
