@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useApproveArtworkMutation, useDeclineArtworkMutation } from "../../../slices/artworksSlice";
 
 const ArtsAdminItem = (props) => {
+  const [isLoading, setIsLoading] = useState();
   const { userInfo } = useSelector((state) => state.auth);
   const [approve] = useApproveArtworkMutation();
   const [decline] = useDeclineArtworkMutation();
