@@ -453,3 +453,67 @@
   transform: translate(5px,5px);
   transition-duration: .3s;
 }
+
+.button-Admin-Artwork-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.artwork-button-admin {
+  width: 50%;
+  padding: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.accept-admin {
+  background-color: rgb(34, 34, 34);
+  color: white;
+}
+.reject-admin {
+  background-color: #ececec;
+  color: rgb(34, 34, 34);
+}
+.accept-admin:hover {
+  background-color: rgb(0, 0, 0);
+}
+.reject-admin:hover {
+  background-color: #ddd;
+}
+
+.download_status_container{
+  display: flex;
+}
+
+/* General styling for artwork items */
+.artwork-item-status {
+  position: relative;
+  right: 3.1rem;
+  bottom:0.3rem;
+  padding: 0.9rem;
+  border-radius: 5px;
+}
+
+/* Styling for approved artworks */
+.approvedByAdmin {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+.declinedByAdmin {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+.pendingBySystem {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+}
+.status-label {
+  font-weight: bold;
+  text-transform: capitalize;
+}

@@ -37,7 +37,7 @@ const ArtsItemCollection = (props) => {
       }
     };
     req1();
-  }, [props.id, props.passKey, getViews , checkIsLiked]);
+  }, [props.id, props.passKey, getViews, checkIsLiked]);
 
   const handleDownload = async () => {
     try {
@@ -46,7 +46,7 @@ const ArtsItemCollection = (props) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `Artifex_${props.title}.png`; // Customize the file name here
+      link.download = `Artifex_${props.title}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -82,6 +82,23 @@ const ArtsItemCollection = (props) => {
                 <path d="M14.29,17.29,13,18.59V13a1,1,0,0,0-2,0v5.59l-1.29-1.3a1,1,0,0,0-1.42,1.42l3,3a1,1,0,0,0,.33.21.94.94,0,0,0,.76,0,1,1,0,0,0,.33-.21l3-3a1,1,0,0,0-1.42-1.42ZM18.42,6.22A7,7,0,0,0,5.06,8.11,4,4,0,0,0,6,16a1,1,0,0,0,0-2,2,2,0,0,1,0-4A1,1,0,0,0,7,9a5,5,0,0,1,9.73-1.61,1,1,0,0,0,.78.67,3,3,0,0,1,.24,5.84,1,1,0,1,0,.5,1.94,5,5,0,0,0,.17-9.62Z"></path>
               </svg>
             </button>
+            <>
+              {props.status === "approved" && (
+                <span className="artwork-item-status status-label approvedByAdmin">
+                  ✔ Approved
+                </span>
+              )}
+              {props.status === "pending" && (
+                <span className="artwork-item-status status-label pendingBySystem">
+                  ⌛ Pending
+                </span>
+              )}
+              {props.status === "declined" && (
+                <span className="artwork-item-status status-label declinedByAdmin">
+                  ✘ Declined
+                </span>
+              )}
+            </>
             <div className="card-footer-artwork">
               <span className="author">{props.Artist}</span>
               {userInfo.userType === "client" && (
@@ -112,7 +129,7 @@ const ArtsItemCollection = (props) => {
                       id="Give-It-An-Id"
                       className="checkbox"
                       type="checkbox"
-                      checked= {isLiked}
+                      checked={isLiked}
                       disabled
                     />
                     <div className="svg-container">

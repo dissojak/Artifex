@@ -10,7 +10,7 @@ import ArtistsIconActive from "../../../assets/images/artist_m3ebyxs.svg";
 import PlanIcon from "../../../assets/images/plan.svg";
 import PlanIconActive from "../../../assets/images/plan_m3eby.svg";
 
-import Logo1 from "../../../assets/images/Logo_Artifex.svg";
+// import Logo1 from "../../../assets/images/Logo_Artifex.svg";
 import HEART from "../../../assets/images/HEART.svg";
 import notification from "../../../assets/images/notification.svg";
 import Cart from "../../../assets/images/chariot_feragh.svg";

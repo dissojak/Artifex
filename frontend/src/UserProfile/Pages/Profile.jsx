@@ -100,8 +100,8 @@ const Profile = (props) => {
           const response = await getArtworks({
             artistId: userInfo._id,
           });
-          // console.log(response.data.artworks);
-          setArtworks(response.data.artworks);
+          // console.log(response.data.artworks.slice().reverse());
+          setArtworks(response.data.artworks.slice().reverse());
         } catch (err) {
           toast.error(err?.data?.message || err.error);
         }

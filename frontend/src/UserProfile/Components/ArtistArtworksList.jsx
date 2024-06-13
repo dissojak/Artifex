@@ -72,6 +72,7 @@ const ArtistArtworksList = (props) => {
               Views={artwork.Views || 0}
               title={artwork.title}
               price={artwork.price}
+              status={artwork.status}
               //   rating={artwork.rating.rating||0}
             />
           ))}

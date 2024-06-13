@@ -16,6 +16,12 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getArtworksForAdmin: builder.mutation({
+      query: () => ({
+        url: `${ARTWORKS_URL}/getArtworksForAdmin`,
+        method: "GET",
+      }),
+    }),
     getArtworksOfArtist: builder.mutation({
       query: (data) => ({
         url: `${ARTWORKS_URL}/getArtworksByArtistId`,
@@ -70,6 +76,20 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    approveArtwork: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/approveArtwork`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
+    declineArtwork: builder.mutation({
+      query: (data) => ({
+        url: `${ARTWORKS_URL}/declineArtwork`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
     deleteArtwork: builder.mutation({
       query: (data) => ({
         url: `${ARTWORKS_URL}/deleteArtwork`,
@@ -89,6 +109,7 @@ export const artworkApiSlice = apiSlice.injectEndpoints({
 export const {
   useAddArtworkSignupMutation,
   useGetArtworksMutation,
+  useGetArtworksForAdminMutation,
   useGetArtworksOfArtistMutation,
   useGetArtworkMutation,
   useArtworkPaymentMutation,
@@ -99,6 +120,9 @@ export const {
   useMakePrivateMutation,
   useMakePublicMutation,
   useCheckVisibilityMutation,
+  useApproveArtworkMutation,
+  useDeclineArtworkMutation,
+
   //   useRegisterMutation,
   //   useUpdateUserMutation,
 } = artworkApiSlice;

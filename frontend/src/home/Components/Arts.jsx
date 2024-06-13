@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Arts.css";
 import ArtsList from "./ArtsList";
-import ArtworkSkeleton from "./ArtworkSkeleton"; // Ensure you import ArtworkSkeleton
-import loading from "../../assets/images/loadpurple.gif";
+import ArtworkSkeleton from "./ArtworkSkeleton";
 import { toast } from "react-toastify";
 import { useGetArtworksMutation } from "../../slices/artworksSlice";
 

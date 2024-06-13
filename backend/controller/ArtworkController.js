@@ -191,6 +191,68 @@ exports.getArtworksForAdmin = asyncHandler(async (req, res, next) => {
 });
 
 /**
+ * @desc    Approve an artwork
+ * @route   PUT /api/artwork/approveArtwork
+ * @params  artworkId
+ * @access  Private
+ * @author  Admin
+ */
+exports.approveArtwork = asyncHandler(async (req, res, next) => {
+  const { artworkId, authorisation } = req.body;
+
+  if (!authorisation) {
+    return next(new HttpError("UNAUTHORIZED !", 401));
+  }
+
+  try {
+    const artwork = await Artwork.findById(artworkId);
+
+    if (!artwork) {
+      return next(new HttpError("Artwork not found", 404));
+    }
+
+    artwork.status = "approved";
+    await artwork.save();
+
+    res.status(200).json({
+      message: "Artwork approved successfully",
+      artwork,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to approve artwork", 500));
+  }
+});
+
+/**
+ * @desc    Decline an artwork
+ * @route   PUT /api/artwork/declineArtwork
+ * @params  artworkId
+ * @access  Private
+ * @author  Admin
+ */
+exports.declineArtwork = asyncHandler(async (req, res, next) => {
+  const { artworkId } = req.body;
+
+  try {
+    const artwork = await Artwork.findById(artworkId);
+
+    if (!artwork) {
+      return next(new HttpError("Artwork not found", 404));
+    }
+
+    artwork.status = "declined";
+    await artwork.save();
+
+    res.status(200).json({
+      message: "Artwork declined successfully",
+      artwork,
+    });
+  } catch (error) {
+    next(new HttpError("Failed to decline artwork", 500));
+  }
+});
+
+/**
  * @desc    Get Exclusive Artworks from database
  * @route   GET /api/artwork/getExclusiveArtworks
  * @access  Private

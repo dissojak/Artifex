@@ -75,11 +75,7 @@ router.delete(
 );
 router.put("/private", MW.protect, AWC.makePrivate);
 router.put("/public", MW.protect, AWC.makePublic);
-router.get(
-  "/visibility/:artworkId",
-  MW.protect,
-  AWC.checkVisibility
-);
+router.get("/visibility/:artworkId", MW.protect, AWC.checkVisibility);
 router.delete("/deleteArtwork", MW.protect, AWC.deleteArtwork);
 router.post("/getArtworksByArtistId", MW.protect, AWC.getArtworksByArtistId);
 router.get("/getArtworksByCategory", MW.protect, AWC.getArtworksByCategory);
@@ -89,5 +85,8 @@ router.post("/buyArtwork", MW.protect, AWC.buyArtwork);
 router.post("/artworkPayment", MW.protect, AWC.artworkPayment);
 
 router.get("/getArtwork/:artworkId", MW.protect, AWC.getArtwork);
+
+router.put("/approveArtwork", MW.protect, AWC.approveArtwork);
+router.put("/declineArtwork", MW.protect, AWC.declineArtwork);
 
 module.exports = router;
