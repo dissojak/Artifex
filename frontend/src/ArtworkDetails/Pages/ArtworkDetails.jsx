@@ -12,7 +12,6 @@ const ArtworkDetails = () => {
   const [isLoading, setIsLoading] = useState();
   const { artworkId } = useParams();
 
-
   const [getArtwork] = useGetArtworkMutation();
   const [artwork, setArtwork] = useState();
   const [getReviews] = useGetReviewsByArtworkIdMutation();
@@ -37,7 +36,7 @@ const ArtworkDetails = () => {
         setIsLoading(true);
         const res = await getReviews(artworkId);
         // console.log("res : ",res);
-        // console.log(res.data);
+        console.log(res.data);
         setReviews(res.data);
         setIsLoading(false);
       } catch (err) {
@@ -47,6 +46,28 @@ const ArtworkDetails = () => {
     };
     request();
   }, []);
+
+  const deleteCommentById = (clientId) => {
+    const updatedReviews = reviews.reviews.map((review) => {
+      if (review.clientId._id === clientId) {
+        return { ...review, comment: "" };
+      }
+      return review;
+    });
+
+    setReviews({ ...reviews, reviews: updatedReviews });
+  };
+
+  const addCommentById = (clientId, newComment) => {
+    const updatedReviews = reviews.reviews.map((review) => {
+      if (review.clientId._id === clientId) {
+        return { ...review, comment: newComment };
+      }
+      return review;
+    });
+
+    setReviews({ ...reviews, reviews: updatedReviews });
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,8 +79,17 @@ const ArtworkDetails = () => {
     <div className="ArtworkDetails-container">
       {!isLoading && artwork && <ArtSection artwork={artwork} />}
       <div id="DetailsSectionContainer">
-        {!isLoading && artwork && reviews && <Details artwork={artwork} reviews={reviews} />}
-        {!isLoading && artwork && reviews && <CommentSection artwork={artwork} reviews={reviews} />}
+        {!isLoading && artwork && reviews && (
+          <Details artwork={artwork} reviews={reviews} />
+        )}
+        {!isLoading && artwork && reviews && (
+          <CommentSection
+            artwork={artwork}
+            reviews={reviews}
+            onDelete={deleteCommentById}
+            onAddition={addCommentById}
+          />
+        )}
       </div>
     </div>
   );

@@ -34,10 +34,11 @@ const Home = () => {
             WHERE CREATIVITY{" "}
           </h1>
           <h1 className="meets">UNLEASHES POSSIBILITIES</h1>
-          <p className="p1">
+          <p className="p1-home p-first">
             "Embark on a journey of innovation. At Artifex, we cultivate a
             community where creativity thrives, collaboration flourishes, and
-            <br />
+          </p>
+          <p className="p1-home p-second">
             groundbreaking solutions take flight. Join us, explore, and shape
             the landscape of tomorrow."
           </p>
@@ -51,11 +52,7 @@ const Home = () => {
             <h2 className="button_home_Artifex">For Hosting</h2>
             <h2
               className="button_home_2"
-              style={
-                !auth.isAdmin
-                  ? { color: "#ffff", backgroundColor: "#5BD6FF" }
-                  : { color: "#ffff", backgroundColor: "#5BD6FF" }
-              }
+              style={{ color: "#ffff", backgroundColor: "#5BD6FF" }}
             >
               Contact us
             </h2>
@@ -63,7 +60,7 @@ const Home = () => {
               src={Arrow}
               alt=""
               className="arrow"
-              style={{ padding: "9px 0", color: "black" }}
+              style={{ padding: "9px 0" }}
             />
           </button>
           <div className="social-links2">

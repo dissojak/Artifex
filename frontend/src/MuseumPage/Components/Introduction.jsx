@@ -7,8 +7,8 @@ import { AuthContext } from "../../shared/context/auth-context";
 import Facebook from "../../assets/images/Facebook.svg";
 import Instagram from "../../assets/images/Instagram.svg";
 import Twitter from "../../assets/images/Tracé 2.svg";
+import Arrow from "../../assets/images/Forward_arrow.svg";
 import { useSelector } from "react-redux";
-
 
 const Introduction = () => {
   const auth = useContext(AuthContext);
@@ -51,32 +51,19 @@ const Introduction = () => {
                 (window.location.href = "mailto:StoonProduction@gmail.com")
               }
             >
-              <h2
-                className="button_home_1"
-                style={
-                  !auth.isAdmin ? { color: "black" } : { color: "#0185B7" }
-                }
-              >
-                For Hosting
-              </h2>
+              <h2 className="button_home_Artifex">For Hosting</h2>
               <h2
                 className="button_home_2"
-                style={
-                  !auth.isAdmin
-                    ? { color: "#ffff", backgroundColor: "#5BD6FF" }
-                    : { color: "#ffff", backgroundColor: "#5BD6FF" }
-                }
+                style={{ color: "#ffff", backgroundColor: "#5BD6FF" }}
               >
                 Contact us
               </h2>
               {/* <img src="elements/arrow.svg" alt="" className="arrow"/> */}
               <img
-                src={
-                  !auth.isAdmin ? "elements/arrow.svg" : "elements/arrow.svg"
-                }
+                src={Arrow}
                 alt=""
                 className="arrow"
-                style={{ padding: "9px 0", color: "black" }}
+                style={{ padding: "9px 0" }}
               />
             </button>
           ) : (
@@ -213,11 +200,17 @@ const Introduction = () => {
             </Link>
           )}
           <div className="social-links2">
-          <Link to="https://www.facebook.com/ArtifexMareketplace" target="_blank">
+            <Link
+              to="https://www.facebook.com/ArtifexMareketplace"
+              target="_blank"
+            >
               {" "}
               <img src={Facebook} alt="Facebook" />
             </Link>
-            <Link to="https://www.instagram.com/artifexMarketPlace" target="_blank">
+            <Link
+              to="https://www.instagram.com/artifexMarketPlace"
+              target="_blank"
+            >
               {" "}
               <img src={Instagram} alt="Instagram" />
             </Link>
@@ -225,7 +218,6 @@ const Introduction = () => {
               {" "}
               <img src={Twitter} alt="FaceTwitterbook" />
             </Link>
-          
           </div>
           <ul className="icons_home">
             <li>

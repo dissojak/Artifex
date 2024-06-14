@@ -41,7 +41,7 @@
   position: absolute;
 }
 
-.p1 {
+.p1-home {
   font-family: "Raleway-regular";
   font-size: 18px;
   color: #ffffff;
@@ -49,9 +49,17 @@
   justify-content: center;
   transform: translateX(-45%);
   left: 46%;
-  bottom: 25vh;
   position: absolute;
   text-align: center;
+}
+
+.p-first{
+  bottom: 25vh;
+  width: 70vw;
+}
+
+.p-second{
+  bottom: 22vh;
 }
 
 .button_home {

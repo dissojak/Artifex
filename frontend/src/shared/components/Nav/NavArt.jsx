@@ -103,7 +103,7 @@ const NavArtifex = () => {
         </Link>
       </div>
       <div className="navInNavContainer">
-        {!isAdmin && (
+        {!isAdmin ? (
           <>
             <div className="nav-container">
               <NavLink
@@ -205,6 +205,35 @@ const NavArtifex = () => {
               </div>
             )}
           </>
+        ) : (
+          <div className="nav-container" style={{left:"4rem"}}>
+            <NavLink
+              to={"/museums"}
+              exact="true"
+              id="museums-tab"
+              className="nav-item"
+              activeclassname="active"
+            >
+              <img
+                src={getIcon("/museums")}
+                alt="Museums"
+                className="iconTailleNav"
+              />
+              <span
+                style={{
+                  position: "relative",
+                  top: "-6px",
+                  marginBottom: "-3px",
+                  marginTop: "10px",
+                }}
+              >
+                Museum
+              </span>
+            </NavLink>
+            <div 
+            // className="indicatorNav" 
+            ref={indicatorRef}></div>
+          </div>
         )}
         <MenuDropdown />
       </div>

@@ -121,3 +121,27 @@
   .comment-menu li:hover {
     background-color: #E1D2FF;
   }
+
+  .commentSendButton {
+    width: fit-content;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .commentSendButton svg {
+    height: 18px;
+    transition: all 0.3s;
+  }
+  .commentSendButton svg path {
+    transition: all 0.3s;
+  }
+  .commentSendButton:hover svg path {
+    fill: #3c3c3c;
+    stroke: white;
+  }
