@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
   // useLocation,
   // Redirect,
   //  Switch,
@@ -45,6 +46,7 @@ import LikedArtworks from "./LikedArtworks/pages/LikedArtworks.jsx";
 import SuccessOrderPayment from "./shared/components/Pages/successPayments/SuccessOrderPayment.jsx";
 import FailOrderPayment from "./shared/components/Pages/failPayments/FailOrderPayment.jsx";
 import ManageArtworks from "./UserProfile/interface/Admin/ManageArtworks/ManageArtworks.jsx";
+import NoAuthorization from "./shared/components/Pages/NoAuthorization/NoAuthorization.jsx";
 
 // Helper component to handle protected routes by userType
 const ProtectedRoute = ({ children, userType, allowedTypes }) => {
@@ -52,7 +54,7 @@ const ProtectedRoute = ({ children, userType, allowedTypes }) => {
   return allowedTypes.includes(userInfo.userType) ? (
     children
   ) : (
-    <Navigate to="/" />
+    <Navigate to="/NoAuthorization" />
   );
 };
 
@@ -90,7 +92,7 @@ const App = () => {
         />
         <Route path="/museumshowcase" element={<MuseumShowcase />} />
         <Route
-          path="/MuseumShowcaseArtist"
+          path="/MuseumShowcaseArtist/:museumId"
           element={<MuseumShowcaseArtist />}
         />
         <Route
@@ -156,6 +158,7 @@ const App = () => {
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/AddArtwork" element={<NewArtwork />} />
       <Route path="/socialMedia" element={<SocialMedia />} />
+      <Route path="/NoAuthorization" element={<NoAuthorization />} />
     </Routes>
   );
 

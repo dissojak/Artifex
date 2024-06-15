@@ -25,24 +25,52 @@ const Orders = () => {
   const [artistOrders] = useGetArtistOrdersMutation();
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = isClient
-          ? await clientOrders().unwrap()
-          : await artistOrders().unwrap();
+    window.addEventListener("beforeunload", clearSessionStorage);
+    return () => {
+      window.removeEventListener("beforeunload", clearSessionStorage);
+    };
+  }, []);
 
-        console.log(response);
-        // Reverse the order of the orders array
-        if (response.orders.length !== 0) {
-          const reversedOrders = response.orders.slice().reverse();
-          setOrders(reversedOrders);
-        } else {
-          setOrders([]);
-        }
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      } finally {
+  const clearSessionStorage = () => {
+    sessionStorage.removeItem("clientOrdersCache");
+    sessionStorage.removeItem("artistOrdersCache");
+  };
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const cacheKey = isClient ? "clientOrdersCache" : "artistOrdersCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+
+      if (cache && now - cache.timestamp < 300000) {
+        console.log("cache orders");
+        // Use cached data if it's less than 5 minutes old
+        const reversedOrders = cache.data.slice().reverse();
+        setOrders(reversedOrders);
         setIsLoading(false);
+      } else {
+        try {
+          const response = isClient
+            ? await clientOrders().unwrap()
+            : await artistOrders().unwrap();
+
+          console.log("request orders");
+          // Reverse the order of the orders array
+          if (response.orders.length !== 0) {
+            const reversedOrders = response.orders.slice().reverse();
+            setOrders(reversedOrders);
+            sessionStorage.setItem(
+              cacheKey,
+              JSON.stringify({ data: response.orders, timestamp: now })
+            );
+          } else {
+            setOrders([]);
+          }
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        } finally {
+          setIsLoading(false);
+        }
       }
     };
     fetchOrders();

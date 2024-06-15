@@ -111,5 +111,7 @@ router.delete("/unpin", MW.protect, MPC.unPinMuseum);
 router.post("/isPinned", MW.protect, MPC.isPinned);
 router.get("/pinned/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
 router.get("/user/museums",MW.protect, MC.getMuseumsByUserId);
+router.get("/isParticipant/:museumId", MW.protect, MC.isParticipant);
+
 
 module.exports = router;

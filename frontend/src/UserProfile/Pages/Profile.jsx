@@ -61,31 +61,10 @@ const Profile = (props) => {
     }
   };
 
-  useEffect(() => {
-    const req = async () => {
-      if (userInfo.userType === "client") {
-        try {
-          const res = await getFollowing().unwrap();
-          // console.log("following : ", res.followed);
-          setFollowers(res.followed);
-        } catch (err) {
-          toast.error(err?.data?.message || err.error);
-        }
-      } else if (userInfo.userType === "artist") {
-        try {
-          const res = await getFollowers(userInfo._id).unwrap();
-          // console.log("this : ",res);
-          setFollowers(res.followers);
-        } catch (err) {
-          toast.error(err?.data?.message || err.error);
-        }
-      }
-    };
-    req();
-  }, []);
   const activeSettingsMode = () => {
     setIsSettings(!isSettings);
   };
+
   const [isOpen, setIsOpen] = useState(false);
   const [followers, setFollowers] = useState();
   const [getFollowers] = useGetFollowersMutation();
@@ -94,21 +73,95 @@ const Profile = (props) => {
   const [getArtworks, { isLoading }] = useGetArtworksOfArtistMutation();
 
   useEffect(() => {
-    if (userInfo.userType === "artist") {
-      const request = async () => {
+    window.addEventListener("beforeunload", clearSessionStorage);
+    return () => {
+      window.removeEventListener("beforeunload", clearSessionStorage);
+    };
+  }, []);
+
+  const clearSessionStorage = () => {
+    sessionStorage.removeItem("clientFollowingCache");
+    sessionStorage.removeItem("artistFollowersCache");
+  };
+
+  useEffect(() => {
+    const fetchFollowersOrFollowing = async () => {
+      const cacheKey =
+        userInfo.userType === "client"
+          ? "clientFollowingCache"
+          : "artistFollowersCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+
+      if (cache && now - cache.timestamp < 300000) {
+        console.log("cache followers/following");
+        setFollowers(cache.data);
+      } else {
+        console.log("request followers/following");
         try {
-          const response = await getArtworks({
-            artistId: userInfo._id,
-          });
-          // console.log(response.data.artworks.slice().reverse());
-          setArtworks(response.data.artworks.slice().reverse());
+          let res;
+          if (userInfo.userType === "client") {
+            res = await getFollowing().unwrap();
+            setFollowers(res.followed);
+            sessionStorage.setItem(
+              cacheKey,
+              JSON.stringify({ data: res.followed, timestamp: now })
+            );
+          } else if (userInfo.userType === "artist") {
+            res = await getFollowers(userInfo._id).unwrap();
+            setFollowers(res.followers);
+            sessionStorage.setItem(
+              cacheKey,
+              JSON.stringify({ data: res.followers, timestamp: now })
+            );
+          }
         } catch (err) {
           toast.error(err?.data?.message || err.error);
         }
+      }
+    };
+    fetchFollowersOrFollowing();
+  }, [userInfo, getFollowers, getFollowing]);
+
+  useEffect(() => {
+    if (userInfo.userType === "artist") {
+      const fetchArtworks = async () => {
+        const cacheKey = "artistArtworksCache";
+        const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+        const now = new Date().getTime();
+
+        if (cache && now - cache.timestamp < 900000) {
+          // Check if cached data is fresh (within 15 minutes)
+          console.log("cache artworks");
+          // Use cached data if it's less than 15 minutes old
+          const reversedArtworks = cache.data.slice().reverse();
+          console.log(reversedArtworks);
+          setArtworks(reversedArtworks);
+        } else {
+          try {
+            const response = await getArtworks({
+              artistId: userInfo._id,
+            }).unwrap();
+            console.log("request artworks");
+            // Reverse the order of the artworks array
+            if (response.artworks.length !== 0) {
+              const reversedArtworks = response.artworks.slice().reverse();
+              setArtworks(reversedArtworks);
+              sessionStorage.setItem(
+                cacheKey,
+                JSON.stringify({ data: response.artworks, timestamp: now })
+              );
+            } else {
+              setArtworks([]);
+            }
+          } catch (err) {
+            toast.error(err?.data?.message || err.error);
+          }
+        }
       };
-      request();
+      fetchArtworks();
     }
-  }, []);
+  }, [userInfo, getArtworks]);
 
   const ajoutArtworkHandler = (newArtwork) => {
     setArtworks((prevArtworks) => [newArtwork, ...prevArtworks]);

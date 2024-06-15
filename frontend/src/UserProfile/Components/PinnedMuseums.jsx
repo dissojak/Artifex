@@ -7,41 +7,70 @@ import MuseumSkeleton from "../../MuseumPage/Components/Museums/Components/Museu
 
 const PinnedMuseums = () => {
   const [museums, setMuseums] = useState([]);
+  const [isLoading, setIsLoading] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [museumsPerPage] = useState(6);
-  const [getPinnedMuseums, { isLoading }] = useGetPinnedMuseumsMutation();
-  
+  const [getPinnedMuseums] = useGetPinnedMuseumsMutation();
+
   useEffect(() => {
     const fetchMuseums = async () => {
-      try {
-        const responseData = await getPinnedMuseums().unwrap();
-        setMuseums(responseData.pinnedMuseums.map(item => item.museumId));
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      setIsLoading(true);
+      const cacheKey = "pinnedMuseumsCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+      if (cache && now - cache.timestamp < oneDay) {
+        // Check if cached data is fresh (within 24 hours)
+        console.log("cache pinned museums");
+        setMuseums(cache.data);
+        setIsLoading(false);
+      } else {
+        try {
+          console.log("request pinned museums");
+          const responseData = await getPinnedMuseums().unwrap();
+          const populatedMuseums = responseData.pinnedMuseums.map(
+            (item) => item.museumId
+          );
+          setMuseums(populatedMuseums);
+          sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: populatedMuseums, timestamp: now })
+          );
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
       }
     };
     fetchMuseums();
-  }, []);
+  }, [getPinnedMuseums]);
 
   const indexOfLastMuseum = currentPage * museumsPerPage;
   const indexOfFirstMuseum = indexOfLastMuseum - museumsPerPage;
   const currentMuseums = museums.slice(indexOfFirstMuseum, indexOfLastMuseum);
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
       <div className="PinnedMuseums-container">
         {isLoading ? (
           <div className="SkeletonMuseums-List PinnedMuseums-List-container">
-          {Array.from({ length: 8 }, (_, index) => (
-            <MuseumSkeleton key={index} />
-          ))}
-        </div>
+            {Array.from({ length: 8 }, (_, index) => (
+              <MuseumSkeleton key={index} />
+            ))}
+          </div>
         ) : (
           <>
             <PinnedMuseumsList items={currentMuseums} />
-            <Pagination museumsPerPage={museumsPerPage} totalMuseums={museums.length} paginate={paginate} currentPage={currentPage} />
+            <Pagination
+              museumsPerPage={museumsPerPage}
+              totalMuseums={museums.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </>
         )}
       </div>
@@ -49,7 +78,12 @@ const PinnedMuseums = () => {
   );
 };
 
-const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => {
+const Pagination = ({
+  museumsPerPage,
+  totalMuseums,
+  paginate,
+  currentPage,
+}) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalMuseums / museumsPerPage); i++) {
     pageNumbers.push(i);
@@ -58,18 +92,20 @@ const Pagination = ({ museumsPerPage, totalMuseums, paginate, currentPage }) => 
   return (
     <nav>
       <div className="pagination-containermuseum">
-      <ul className="pagination">
-        {pageNumbers.map(number => (
-          <li key={number} className="page-item">
-            <a onClick={() => paginate(number)}
-             
-               className={`page-link ${currentPage === number ? 'active' : ''}`}
-            >
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <ul className="pagination">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+              <a
+                onClick={() => paginate(number)}
+                className={`page-link ${
+                  currentPage === number ? "active" : ""
+                }`}
+              >
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );

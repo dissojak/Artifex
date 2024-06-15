@@ -10,34 +10,59 @@ const Arts = () => {
   const [filteredArtworks, setFilteredArtworks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [artworksPerPage] = useState(12);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [categories, setCategories] = useState([]);
   const [getArtworks, { isLoading }] = useGetArtworksMutation();
 
   useEffect(() => {
     const fetchArtworks = async () => {
-      try {
-        const responseData = await getArtworks();
-        setArtworks(responseData.data.artworks);
-        setCategories([...new Set(responseData.data.artworks.map(art => art.id_category.name))]);
-        filterArtworks(responseData.data.artworks, 'all');
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      const cache = JSON.parse(sessionStorage.getItem("artworksCache"));
+      const now = new Date().getTime();
+
+      if (cache && now - cache.timestamp < 180000) {
+        console.log("session artwork");
+
+        // Use cached data if it's less than 3 minutes old
+        setArtworks(cache.data);
+        setCategories([
+          ...new Set(cache.data.map((art) => art.id_category.name)),
+        ]);
+        filterArtworks(cache.data, "all");
+      } else {
+        console.log("sending artwork request");
+        try {
+          const responseData = await getArtworks().unwrap();
+          const data = responseData.artworks;
+          setArtworks(data);
+          setCategories([...new Set(data.map((art) => art.id_category.name))]);
+          filterArtworks(data, "all");
+
+          // Update the cache
+          sessionStorage.setItem(
+            "artworksCache",
+            JSON.stringify({ data, timestamp: now })
+          );
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
     };
     fetchArtworks();
-  }, []);
+  }, [getArtworks]);
 
   useEffect(() => {
     filterArtworks(artworks, selectedCategory);
   }, [selectedCategory, artworks]);
 
   const filterArtworks = (artworks, category) => {
-    const filtered = category === 'all' ? artworks : artworks.filter(art => art.id_category.name === category);
+    const filtered =
+      category === "all"
+        ? artworks
+        : artworks.filter((art) => art.id_category.name === category);
     setFilteredArtworks(filtered);
   };
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <Fragment>
@@ -52,7 +77,9 @@ const Arts = () => {
           >
             <option value="all">All Categories</option>
             {categories.map((category) => (
-              <option key={category} value={category}>{category}</option>
+              <option key={category} value={category}>
+                {category}
+              </option>
             ))}
           </select>
         </div>
@@ -64,7 +91,12 @@ const Arts = () => {
           </div>
         ) : (
           <>
-            <ArtsList items={filteredArtworks.slice((currentPage - 1) * artworksPerPage, currentPage * artworksPerPage)} />
+            <ArtsList
+              items={filteredArtworks.slice(
+                (currentPage - 1) * artworksPerPage,
+                currentPage * artworksPerPage
+              )}
+            />
             <Pagination
               artworksPerPage={artworksPerPage}
               totalArtworks={filteredArtworks.length}
@@ -78,7 +110,12 @@ const Arts = () => {
   );
 };
 
-const Pagination = ({ artworksPerPage, totalArtworks, paginate, currentPage }) => {
+const Pagination = ({
+  artworksPerPage,
+  totalArtworks,
+  paginate,
+  currentPage,
+}) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalArtworks / artworksPerPage); i++) {
     pageNumbers.push(i);
@@ -87,9 +124,12 @@ const Pagination = ({ artworksPerPage, totalArtworks, paginate, currentPage }) =
   return (
     <nav>
       <ul className="pagination">
-        {pageNumbers.map(number => (
+        {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} className={`page-link ${currentPage === number ? 'active' : ''}`}>
+            <a
+              onClick={() => paginate(number)}
+              className={`page-link ${currentPage === number ? "active" : ""}`}
+            >
               {number}
             </a>
           </li>

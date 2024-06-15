@@ -26,7 +26,6 @@ const MuseumDetails = () => {
       try {
         setIsLoading(true);
         const res = await getMuseum(museumId).unwrap();
-        console.log(res.museum);
         setMuseum(res.museum);
         setIsLoading(false);
       } catch (err) {

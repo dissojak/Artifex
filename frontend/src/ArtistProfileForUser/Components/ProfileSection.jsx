@@ -36,6 +36,8 @@ const ProfileSection = (props) => {
         artistId: userDataHere._id,
       }).unwrap();
       // console.log(followers);
+      sessionStorage.removeItem("clientFollowingCache");
+      sessionStorage.removeItem("artistFollowersCache");
     } catch (err) {
       setFollowers(followers - 1);
       setIsFollowing(false);
@@ -50,6 +52,8 @@ const ProfileSection = (props) => {
       await UnfollowArtist({
         artistId: userDataHere._id,
       }).unwrap();
+      sessionStorage.removeItem("clientFollowingCache");
+      sessionStorage.removeItem("artistFollowersCache");
       // console.log(followers);
     } catch (err) {
       setFollowers(followers + 1);

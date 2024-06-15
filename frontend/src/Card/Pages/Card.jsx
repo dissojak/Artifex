@@ -8,20 +8,39 @@ import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const Card = () => {
   const [artworks, setArtworks] = useState([]);
-  const [getPanier, { isLoading }] = useGetPanierMutation();
+  const [isLoading, setIsLoading] = useState([]);
+  const [getPanier] = useGetPanierMutation();
 
   useEffect(() => {
-    const req = async () => {
-      try {
-        const res = await getPanier();
-        // console.log(res.data);
-        setArtworks(res.data.artworks);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+    const fetchPanier = async () => {
+      setIsLoading(true);
+      const cacheKey = "panierCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const oneDay = 24 * 60 * 60 * 1000;
+
+      if (cache && now - cache.timestamp < oneDay) {
+        console.log("cache panier");
+        setArtworks(cache.data);
+        setIsLoading(false);
+      } else {
+        try {
+          console.log("request panier");
+          const res = await getPanier();
+          setArtworks(res.data.artworks);
+          sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: res.data.artworks, timestamp: now })
+          );
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
       }
     };
-    req();
-  }, []);
+    fetchPanier();
+  }, [getPanier]);
 
   const deleteItemById = (id) => {
     console.log("ID to delete:", id);
@@ -29,6 +48,7 @@ const Card = () => {
       console.log("Item ID:", item._id);
       return item._id !== id;
     });
+    sessionStorage.removeItem("panierCache");
     setArtworks(updatedCollection);
   };
 
@@ -44,10 +64,11 @@ const Card = () => {
   ) : (
     <>
       {artworks.length === 0 ? (
-        <div style={{marginTop:'-265px'}}>
+        <div style={{ marginTop: "-265px" }}>
           <h1 className="no-artworks">
-            The Card is Empty 
-            <br/>You Can Add a New Artwork !
+            The Card is Empty
+            <br />
+            You Can Add a New Artwork !
           </h1>
         </div>
       ) : (

@@ -7,21 +7,55 @@ import MuseumSkeleton from "../Components/MuseumSkeleton";
 
 const Museums = () => {
   const [museums, setMuseums] = useState([]);
+  const [isLoading, setIsLoading] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [museumsPerPage] = useState(8);
-  const [getMuseums, { isLoading }] = useGetClientMuseumsMutation();
+  const [getMuseums] = useGetClientMuseumsMutation();
+
+  useEffect(() => {
+    // Clear session storage on refresh
+    const clearSessionStorage = () => {
+      sessionStorage.removeItem("museumsCache");
+    };
+
+    window.addEventListener("beforeunload", clearSessionStorage);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("beforeunload", clearSessionStorage);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchMuseums = async () => {
-      try {
-        const responseData = await getMuseums();
-        setMuseums(responseData.data.museums);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      setIsLoading(true);
+      const cacheKey = "museumsCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const oneDay = 3 * 60 * 1000;
+
+      if (cache && now - cache.timestamp < oneDay) {
+        console.log("cache museums");
+        setMuseums(cache.data);
+        setIsLoading(false);
+      } else {
+        try {
+          console.log("request museums");
+          const responseData = await getMuseums();
+          setMuseums(responseData.data.museums);
+          sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: responseData.data.museums, timestamp: now })
+          );
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
       }
     };
     fetchMuseums();
-  }, []);
+  }, [getMuseums]);
 
   // Get current museums
   const indexOfLastMuseum = currentPage * museumsPerPage;

@@ -6,18 +6,48 @@ import ArtsAdminList from "./ArtsAdminList";
 
 const ManageArtworks = () => {
   const [artworks, setArtworks] = useState([]);
+  const [isLoading, setIsLoading] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [artworksPerPage] = useState(12);
-  const [getArtworks, { isLoading }] = useGetArtworksForAdminMutation();
+  const [getArtworks] = useGetArtworksForAdminMutation();
 
   useEffect(() => {
+    const clearSessionStorage = () => {
+      sessionStorage.removeItem("artworksCache");
+    };
+    window.addEventListener("beforeunload", clearSessionStorage);
+    return () => {
+      window.removeEventListener("beforeunload", clearSessionStorage);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
     const fetchArtworks = async () => {
-      try {
-        const responseData = await getArtworks().unwrap();
-        setArtworks(responseData.artworks);
-        console.log(responseData.artworks);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      const cacheKey = "artworksCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const oneDay = 1 * 60 * 1000;
+
+      if (cache && now - cache.timestamp < oneDay) {
+        console.log("cache artworks");
+        setArtworks(cache.data);
+        setIsLoading(false);
+      } else {
+        try {
+          console.log("request artworks");
+          const responseData = await getArtworks().unwrap();
+          setArtworks(responseData.artworks);
+          console.log(responseData.artworks);
+          sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: responseData.artworks, timestamp: now })
+          );
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
       }
     };
     fetchArtworks();
@@ -52,7 +82,10 @@ const ManageArtworks = () => {
       ) : (
         <>
           <div className="Collection-container">
-            <ArtsAdminList items={currentArtworks} deleteItemById={deleteItemById} />
+            <ArtsAdminList
+              items={currentArtworks}
+              deleteItemById={deleteItemById}
+            />
             <Pagination
               artworksPerPage={artworksPerPage}
               totalArtworks={artworks.length}

@@ -40,6 +40,7 @@ const ArtsItem = (props) => {
         artworkId: props.id,
         artistId: props.artistId,
       }).unwrap();
+      sessionStorage.removeItem("savedArtworksCache");
       // console.log(res);
     } catch (err) {
       setIsSaved(false);
@@ -54,6 +55,7 @@ const ArtsItem = (props) => {
         artworkId: props.id,
         artistId: props.artistId,
       }).unwrap();
+      sessionStorage.removeItem("savedArtworksCache");
       // console.log(res);
     } catch (err) {
       setIsSaved(true);
@@ -76,6 +78,7 @@ const ArtsItem = (props) => {
         artworkId: props.id,
         artistId: props.artistId,
       }).unwrap();
+      sessionStorage.removeItem("likedArtworksCache");
       // console.log(res);
     } catch (err) {
       setIsLiked(false);
@@ -90,6 +93,7 @@ const ArtsItem = (props) => {
         artworkId: props.id,
         artistId: props.artistId,
       }).unwrap();
+      sessionStorage.removeItem("likedArtworksCache");
       // console.log(res);
     } catch (err) {
       setIsLiked(true);
@@ -166,6 +170,7 @@ const ArtsItem = (props) => {
         isLoading: false,
         autoClose: 5000,
       });
+      sessionStorage.removeItem("panierCache");
     } catch (err) {
       toast.update(toastId, {
         render: err?.data?.message || err.error,
@@ -203,6 +208,7 @@ const ArtsItem = (props) => {
         isLoading: false,
         autoClose: 5000,
       });
+      sessionStorage.removeItem("panierCache");
     } catch (err) {
       toast.update(toastId, {
         render: err?.data?.message || err.error,

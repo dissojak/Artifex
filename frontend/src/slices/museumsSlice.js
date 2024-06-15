@@ -89,6 +89,13 @@ export const museumApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    isParticipant: builder.mutation({
+      query: (museumId) => ({
+        url: `${MUSEUMS_URL}/isParticipant/${museumId}`,
+        method: "GET",
+      }),
+    }),
+    
     //new function
   }),
 });
@@ -107,4 +114,5 @@ export const {
   useGetMuseumsByUserIdMutation,
   useGetPinnedMuseumsMutation,
   useCreateMuseumMutation,
+  useIsParticipantMutation,
 } = museumApiSlice;

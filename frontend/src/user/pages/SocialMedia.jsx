@@ -133,7 +133,7 @@ const SocialMedia = () => {
         <div className="art-signin-form-containerSocialMedia">
           <div className="art-signin-headerSocialMedia">Add Social Media</div>
           <div className="art-signin-stepSocialMedia">
-            <p style={{ color: "black", fontFamily: "Montserrat-bold" }}>WhatsApp</p>
+            <p style={{ color: "black", fontFamily: "Montserrat-bold" }}>WhatsApp *</p>
             <input
               className="newArtworkInputsSocialMedia"
               placeholder="87654321"

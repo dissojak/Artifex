@@ -80,6 +80,7 @@ const MuseumItemCard = (props) => {
         museumId: props.id,
       }).unwrap();
       setIsPinned(true);
+      sessionStorage.removeItem("pinnedMuseumsCache");
       //   console.log(res);
       setIsLoading(false);
     } catch (err) {
@@ -97,6 +98,7 @@ const MuseumItemCard = (props) => {
         museumId: props.id,
       }).unwrap();
       setIsPinned(false);
+      sessionStorage.removeItem("pinnedMuseumsCache");
       //   console.log(res);
       setIsLoading(false);
     } catch (err) {
@@ -149,7 +151,14 @@ const MuseumItemCard = (props) => {
   return (
     <>
       <div key={props.id} className="event-card11">
-        <Link to={`/museums/${props.id}`} style={{ cursor: "pointer" }}>
+        <Link
+          to={
+            !isEventToday
+              ? `/museums/${props.id}`
+              : `/MuseumShowcaseArtist/${props.id}`
+          }
+          style={{ cursor: "pointer" }}
+        >
           <div className="event-image11">
             <img
               src={props.Image}
@@ -235,7 +244,7 @@ const MuseumItemCard = (props) => {
                               style={
                                 isEventToday
                                   ? isPinned
-                                    ? {stroke: "#7E3FFF" }
+                                    ? { stroke: "#7E3FFF" }
                                     : {}
                                   : {}
                               }

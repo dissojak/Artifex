@@ -8,17 +8,39 @@ import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 
 const LikedArtworks = () => {
   const [artworks, setArtworks] = useState([]);
-  const [getLikedArtworks, { isLoading }] = useGetLikedArtworksMutation();
+  const [isLoading, setIsLoading] = useState([]);
+  const [getLikedArtworks] = useGetLikedArtworksMutation();
   useEffect(() => {
     const req = async () => {
-      try {
-        const responseData = await getLikedArtworks().unwrap();
-        const reversedArtworks = responseData.likedArtworks
-          .map((item) => item.artworkId)
-          .reverse();
+      setIsLoading(true);
+      const cacheKey = "likedArtworksCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+      if (cache && now - cache.timestamp < oneDay) {
+        // Check if cached data is fresh (within 24 hours)
+        console.log("cache liked artworks");
+        const reversedArtworks = cache.data.map((item) => item.artworkId).reverse();
         setArtworks(reversedArtworks);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        setIsLoading(false);
+      } else {
+        try {
+          const responseData = await getLikedArtworks().unwrap();
+          const reversedArtworks = responseData.likedArtworks
+            .map((item) => item.artworkId)
+            .reverse();
+          setArtworks(reversedArtworks);
+          console.log(reversedArtworks);
+          sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: responseData.likedArtworks, timestamp: now })
+          );
+          setIsLoading(false);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+          setIsLoading(false);
+        }
       }
     };
     req();

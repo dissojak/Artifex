@@ -73,7 +73,8 @@ exports.createMuseum = asyncHandler(async (req, res, next) => {
 });
 
 exports.getMuseums = asyncHandler(async (req, res, next) => {
-  const museums = await Museum.find().populate("idCategory");
+  const today = new Date();
+  const museums = await Museum.find({ dateEnd: { $gt: today } }).populate("idCategory");
 
   if (!museums || museums.length === 0) {
     return next(new HttpError("No museums found", 404));
@@ -598,33 +599,35 @@ exports.getMuseumsByDates = asyncHandler(async (req, res, next) => {
 /**
  * @desc    Get museums by user ID
  * @route   GET /api/museum/user/:userId
- * @access  Public
+ * @access  Private
  */
 exports.getMuseumsByUserId = asyncHandler(async (req, res, next) => {
   const userId = req.user._id;
+  const today = new Date();
+
   try {
     const participants = await Participant.find({ participantId: userId }).populate({
       path: 'museumId',
       populate: {
-        path: 'idCategory', // assuming the field in Museum model is idCategory
+        path: 'idCategory',
         select: 'name'
       }
     });
 
     if (!participants) {
-      return next(
-        new HttpError("User is not a participant in any museum", 404)
-      );
+      return next(new HttpError("User is not a participant in any museum", 404));
     }
 
     if (participants.length === 0) {
-      res.status(206).json({
-        message: "you have 0 passes !",
+      return res.status(206).json({
+        message: "you have 0 passes!",
         museums: [],
       });
     }
 
-    const museums = participants.map((participant) => participant.museumId);
+    const museums = participants
+      .map((participant) => participant.museumId)
+      .filter((museum) => new Date(museum.dateEnd) > today);
 
     res.status(200).json({
       message: "Museums retrieved successfully",
@@ -632,5 +635,36 @@ exports.getMuseumsByUserId = asyncHandler(async (req, res, next) => {
     });
   } catch (error) {
     return next(new HttpError("Failed to retrieve museums", 500));
+  }
+});
+
+/**
+ * @desc    Check if user is a participant in the museum
+ * @route   GET /api/museum/isParticipant/:museumId
+ * @access  Private
+ */
+exports.isParticipant = asyncHandler(async (req, res, next) => {
+  const userId = req.user._id;
+  const museumId = req.params.museumId;
+
+  try {
+    const participant = await Participant.findOne({
+      museumId,
+      participantId: userId,
+    });
+
+    if (participant) {
+      return res.status(200).json({
+        message: "User is a participant in the museum",
+        isParticipant: true,
+      });
+    } else {
+      return res.status(200).json({
+        message: "User is not a participant in the museum",
+        isParticipant: false,
+      });
+    }
+  } catch (error) {
+    return next(new HttpError("Failed to check participation status", 500));
   }
 });

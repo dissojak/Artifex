@@ -102,6 +102,16 @@
   src: url("fonts/Dubai-Medium.ttf");
 }
 
+@font-face {
+  font-family: "Giveny";
+  src: url("fonts/Giveny.ttf");
+}
+
+@font-face {
+  font-family: "MaronBarista";
+  src: url("fonts/MaronBarista.otf");
+}
+
 * {
   box-sizing: border-box;
 }
