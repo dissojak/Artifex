@@ -10,7 +10,6 @@ const ArtImgSection = (props) => {
   const artist = props.artwork.id_artist;
   const { userInfo } = useSelector((state) => state.auth);
 
-
   const [updateView] = useUpdateViewMutation();
   useEffect(() => {
     const req = async () => {
@@ -19,8 +18,10 @@ const ArtImgSection = (props) => {
           artistId: artist._id,
           artworkId: artwork._id,
         }).unwrap();
-        res.status &&
+        if (res.status) {
           toast.success("You Are Welcome ! This is Your First Time Here!");
+          props.onAddtionReview(res.review);
+        }
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -30,8 +31,9 @@ const ArtImgSection = (props) => {
 
   const updateImageUrl = (imageUrl) => {
     const oldBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/";
-    const newBaseUrl = "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
-    
+    const newBaseUrl =
+      "http://res.cloudinary.com/duvougrqx/image/upload/l_logo_artifex,e_colorize,co_white,o_50/";
+
     // console.log("here the image ",imageUrl);
     // console.log(imageUrl.startsWith(oldBaseUrl));
     if (imageUrl.startsWith(oldBaseUrl)) {
@@ -49,7 +51,11 @@ const ArtImgSection = (props) => {
           alt="profile-img"
           className="Artist-image-ArtImg"
         />
-        <Link to={`/artist/${artist.username}`} style={{ cursor: "pointer" }} className="text-decoration-link">
+        <Link
+          to={`/artist/${artist.username}`}
+          style={{ cursor: "pointer" }}
+          className="text-decoration-link"
+        >
           <div className="Artist-info-ArtImg">
             <div className="Artist-name-ArtImg">{artist.username}</div>
             <div className="Artist-Type-ArtImg">Artist</div>
@@ -57,12 +63,18 @@ const ArtImgSection = (props) => {
         </Link>
       </div>
       <a
-        href={(userInfo._id===artwork.Buyer &&artwork.imageArtwork)||updateImageUrl(artwork.imageArtwork)}
+        href={
+          (userInfo._id === artwork.Buyer && artwork.imageArtwork) ||
+          updateImageUrl(artwork.imageArtwork)
+        }
         style={{ cursor: "pointer" }}
         target="_blank"
       >
         <img
-          src={(userInfo._id===artwork.Buyer &&artwork.imageArtwork)||updateImageUrl(artwork.imageArtwork)}
+          src={
+            (userInfo._id === artwork.Buyer && artwork.imageArtwork) ||
+            updateImageUrl(artwork.imageArtwork)
+          }
           alt="Placeholder"
           className="image-containertest"
         />

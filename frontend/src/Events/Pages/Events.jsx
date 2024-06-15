@@ -33,7 +33,7 @@ const Events = () => {
             ))}
           </div>
         ) : (
-          <>{museums && <MuseumList items={museums} />}</>
+          <>{museums && <MuseumList items={museums} isInEvent={true} />}</>
         )}
       </div>
     </>

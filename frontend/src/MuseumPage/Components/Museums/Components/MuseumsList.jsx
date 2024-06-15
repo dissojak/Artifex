@@ -23,6 +23,7 @@ const MuseumList = (props) => {
             artistsEntered={museum.artistsEntered}
             clientsEntered={museum.clientsEntered}
             artworkIds={museum.artworkIds}
+            isEvent={props.isInEvent}
           />
         ))}
       </div>

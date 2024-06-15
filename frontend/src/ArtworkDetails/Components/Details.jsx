@@ -214,7 +214,7 @@ const Details = (props) => {
       }).unwrap();
       // console.log(res);
       toast.update(toastId, {
-        render: "Artwork is Public now !",
+        render: "Artwork is Private now !",
         type: "success",
         isLoading: false,
         autoClose: 3000,
@@ -239,7 +239,7 @@ const Details = (props) => {
       }).unwrap();
       // console.log(res);
       toast.update(toastId, {
-        render: "Artwork is Private now !",
+        render: "Artwork is Public now !",
         type: "success",
         isLoading: false,
         autoClose: 3000,

@@ -507,14 +507,26 @@ exports.checkVisibility = asyncHandler(async (req, res, next) => {
  */
 exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
   const artistId = req.body.artistId || req.user._id;
-
+  const artist = req.body.artistId;
+  const client = req.user._id;
   try {
-    const artworks = await Artwork.find({
-      id_artist: artistId,
-      isDeletedByOwner: false,
-      Sold: false,
-      visibility: "public",
-    });
+    let artworks;
+    if (artist == client) {
+      artworks = await Artwork.find({
+        id_artist: artistId,
+        isDeletedByOwner: false,
+        Sold: false,
+      });
+    } else {
+      artworks = await Artwork.find({
+        id_artist: artistId,
+        isDeletedByOwner: false,
+        Sold: false,
+        exclusive: false,
+        visibility: "public",
+        status: "approved",
+      });
+    }
 
     if (!artworks || artworks.length === 0) {
       return res.status(200).json({

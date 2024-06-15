@@ -111,7 +111,7 @@ const Profile = (props) => {
   }, []);
 
   const ajoutArtworkHandler = (newArtwork) => {
-    setArtworks((prevArtworks) => [...prevArtworks, newArtwork]);
+    setArtworks((prevArtworks) => [newArtwork, ...prevArtworks]);
   };
 
   const toggleModal = () => {

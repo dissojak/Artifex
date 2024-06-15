@@ -69,6 +69,13 @@ const ArtworkDetails = () => {
     setReviews({ ...reviews, reviews: updatedReviews });
   };
 
+  const addReview = (newReview) => {
+    setReviews((prevReviews) => ({
+      ...prevReviews,
+      reviews: [...prevReviews.reviews, newReview],
+    }));
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -77,7 +84,7 @@ const ArtworkDetails = () => {
     <LoadingArtifex />
   ) : (
     <div className="ArtworkDetails-container">
-      {!isLoading && artwork && <ArtSection artwork={artwork} />}
+      {!isLoading && artwork && <ArtSection artwork={artwork} onAddReview={addReview}/>}
       <div id="DetailsSectionContainer">
         {!isLoading && artwork && reviews && (
           <Details artwork={artwork} reviews={reviews} />

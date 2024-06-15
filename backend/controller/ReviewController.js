@@ -182,6 +182,7 @@ exports.updateView = async (req, res, next) => {
     res.status(201).json({
       message: "Clinet viewed this artwork ! Saving data done successfully",
       status,
+      review,
     });
   } catch (err) {
     console.error(err);

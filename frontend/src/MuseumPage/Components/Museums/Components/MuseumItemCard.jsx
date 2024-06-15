@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MuseumImage from "../../../../assets/images/BIG.svg"; // Update path accordingly
 import TraceImage from "../../../../assets/images/Tracé 10.svg"; // Update path accordingly
 import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update path accordingly
-import ProfileImage from "../../../../assets/images/Adem.jpg";
+import EventPassMove from "../../../../assets/images/event_pass_exclusive_move.svg";
 import "../Pages/Museums.css";
 import { toast } from "react-toastify";
 import {
@@ -139,6 +138,14 @@ const MuseumItemCard = (props) => {
     percentage = (props.clientsEntered / props.numberMaxClients) * 100;
   }
 
+  let isEventToday;
+  if (props.isEvent) {
+    const today = new Date();
+    const startDate = new Date(props.Start);
+    const endDate = new Date(props.Ends);
+    isEventToday = today >= startDate && today <= endDate;
+  }
+
   return (
     <>
       <div key={props.id} className="event-card11">
@@ -152,10 +159,20 @@ const MuseumItemCard = (props) => {
             <div className="event-overlay11">
               <div className="event-overlay-top11">
                 <div className="event-date11">
-                  <div className="event-debut-date11">
+                  <div
+                    className="event-debut-date11"
+                    style={
+                      isEventToday
+                        ? { backgroundColor: "#FFBE00", color: "black" }
+                        : {}
+                    }
+                  >
                     {formatDate(props.Start)}
                   </div>
-                  <div className="event-end-date11">
+                  <div
+                    className="event-end-date11"
+                    style={isEventToday ? { color: "#FFB700" } : {}}
+                  >
                     {formatDate(props.Ends)}
                   </div>
                 </div>
@@ -166,6 +183,11 @@ const MuseumItemCard = (props) => {
                   <>
                     <button
                       className="btn-311"
+                      style={
+                        isEventToday
+                          ? { backgroundColor: "#FFBE00", color: "black" }
+                          : {}
+                      }
                       onClick={(e) => e.stopPropagation()}
                     >
                       {isLoading ? (
@@ -184,10 +206,24 @@ const MuseumItemCard = (props) => {
                             fill="none"
                             viewBox="0 0 75 100"
                             className="pin33"
+                            style={
+                              isEventToday
+                                ? isPinned
+                                  ? { fill: "#7E3FFF", stroke: "white" }
+                                  : {}
+                                : {}
+                            }
                           >
                             <line
                               strokeWidth="12"
-                              stroke="white"
+                              stroke={!isEventToday ? "white" : "black"}
+                              style={
+                                isEventToday
+                                  ? isPinned
+                                    ? { stroke: "#7E3FFF" }
+                                    : {}
+                                  : {}
+                              }
                               y2="100"
                               x2="37"
                               y1="64"
@@ -195,7 +231,14 @@ const MuseumItemCard = (props) => {
                             ></line>
                             <path
                               strokeWidth="10"
-                              stroke="white"
+                              stroke={!isEventToday ? "white" : "black"}
+                              style={
+                                isEventToday
+                                  ? isPinned
+                                    ? {stroke: "#7E3FFF" }
+                                    : {}
+                                  : {}
+                              }
                               d="M16.5 36V4.5H58.5V36V53.75V54.9752L59.1862 55.9903L66.9674 67.5H8.03256L15.8138 55.9903L16.5 54.9752V53.75V36Z"
                             ></path>
                           </svg>
@@ -204,15 +247,29 @@ const MuseumItemCard = (props) => {
                     </button>
                   </>
                 )}
-                <button className="btn-pass11">
+                <button
+                  className="btn-pass11"
+                  style={
+                    isEventToday
+                      ? { backgroundColor: "#FFBE00", color: "black" }
+                      : {}
+                  }
+                >
                   <span className="btn-text-one11">
-                    Get Your Pass <img src={TraceImage} alt="" />
+                    Get Your Pass{" "}
+                    <img
+                      src={TraceImage}
+                      style={isEventToday ? { color: "#7E3FFF" } : {}}
+                      alt=""
+                    />
                   </span>
                   <span className="btn-text-two11">
                     <img
                       src={
                         props.isExclusive
-                          ? "./elements/exclusive_event_pass.svg"
+                          ? !isEventToday
+                            ? "./elements/exclusive_event_pass.svg"
+                            : EventPassMove
                           : EventPassImage
                       }
                       alt=""
@@ -291,12 +348,8 @@ const MuseumItemCard = (props) => {
                 <>
                   {props.artistsEntered}/{props.numberMaxArtists}
                 </>
-              ))||
-              (userInfo.userType==='admin' && (
-                <>
-                  ??/??
-                </>
-              ))}
+              )) ||
+              (userInfo.userType === "admin" && <>??/??</>)}
           </div>
         </div>
       </div>
