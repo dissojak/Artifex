@@ -112,6 +112,7 @@ router.post("/isPinned", MW.protect, MPC.isPinned);
 router.get("/pinned/PinnedMuseums", MW.protect, MPC.getPinnedMuseum);
 router.get("/user/museums",MW.protect, MC.getMuseumsByUserId);
 router.get("/isParticipant/:museumId", MW.protect, MC.isParticipant);
+router.get("/:museumId/artworks", MW.protect, MC.getArtworksOfMuseum);
 
 
 module.exports = router;
