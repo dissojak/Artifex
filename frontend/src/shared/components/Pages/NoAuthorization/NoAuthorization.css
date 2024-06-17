@@ -1,0 +1,54 @@
+
+.forbidden-403 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    text-align: center;
+    color: #7e3fff;
+    background: #f8f8f8;
+    position: relative;
+    top: -11vh;
+  }
+  
+  .forbidden-403-content {
+    max-width: 600px;
+    padding: 20px;
+   
+    background: #ffffff;
+    
+  }
+  
+  .forbidden-403-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .forbidden-403-header h1 {
+    font-size: 120px;
+    margin: 0;
+  }
+  
+  .forbidden-403-logo {
+    width: 185vh;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .forbidden-403-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #7e3fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Dubai-Bold";
+  }
+  
+  .forbidden-403-button:hover {
+    background-color: #9866ff;
+  }
+  
