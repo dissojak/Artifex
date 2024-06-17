@@ -1,0 +1,128 @@
+.card_museum_artwork {
+  width: 293px; /* Width of each card */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card_museum_artwork.selected {
+  outline: 2px solid #7e3fff;
+  position: relative;
+  cursor: pointer;
+}
+
+.selected-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 2.5rem;
+  border-bottom-right-radius: 16px;
+  background-color: rgba(126, 63, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5em;
+  pointer-events: none;
+}
+
+.uploadArtworksButton {
+  position: relative;
+  background-color: #fff766;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+
+  left: 68%;
+}
+
+.uploadArtworksButton:hover {
+  background-color: #ffee30; /* Darker shade of green when hovered */
+}
+
+.uploadArtworksButton img {
+  vertical-align: middle;
+  width: 3rem;
+  margin-right: 0.5rem;
+}
+
+/* .LoadersImgsContainer{
+  position: relative;
+  left:50%;
+
+} */
+
+.loaderImg {
+  width: 25rem;
+}
+
+.loaderImgART {
+  width: 13rem;
+  position: absolute;
+  right: 6.5vw;
+  top: 5vh;
+}
+
+.uploadLoader {
+  position: absolute;
+  top: -8vh;
+  left: 5vw;
+}
+
+.LoaderUploaderContainer {
+  width: fit-content;
+  gap: 10px;
+  position: relative;
+  left: 17vw;
+  top: 5vh;
+}
+
+.Loaderfolder {
+  width: min-content;
+  margin: auto;
+  animation: float 1.2s infinite linear;
+}
+
+.Loaderfolder .topLoader {
+  background-color: #ff8f56;
+  width: 60px;
+  height: 12px;
+  border-top-right-radius: 10px;
+}
+
+.Loaderfolder .bottomLoader {
+  background-color: #ffce63;
+  width: 100px;
+  height: 70px;
+  box-shadow: 5px 5px 0 0 #283149;
+  border-top-right-radius: 8px;
+}
+
+.LoaderUploaderContainer .titleLoader {
+  font-size: 1em;
+  font-weight: 300;
+  color: #283149;
+  text-align: center;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-25px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+} 

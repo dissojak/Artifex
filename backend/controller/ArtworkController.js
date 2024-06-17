@@ -509,9 +509,10 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
   const artistId = req.body.artistId || req.user._id;
   const artist = req.body.artistId;
   const client = req.user._id;
+  const inMuseum = req.body.inMuseum; // it's true or Undefined !
   try {
     let artworks;
-    if (artist == client) {
+    if (artist == client && !inMuseum) {
       artworks = await Artwork.find({
         id_artist: artistId,
         isDeletedByOwner: false,

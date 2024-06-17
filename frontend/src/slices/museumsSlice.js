@@ -101,6 +101,14 @@ export const museumApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    addArtworksToMuseum: builder.mutation({
+      query: ({ museumId, artworkIds }) => ({
+        url: `${MUSEUMS_URL}/addArtworks`,
+        method: "POST",
+        body: { museumId, artworkIds },
+      }),
+    }),
+
     //new function
   }),
 });
@@ -121,4 +129,5 @@ export const {
   useCreateMuseumMutation,
   useIsParticipantMutation,
   useGetArtworksOfMuseumMutation,
+  useAddArtworksToMuseumMutation,
 } = museumApiSlice;

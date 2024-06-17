@@ -50,7 +50,7 @@ const Profile = (props) => {
     setShowChangeEmail((prevMode) => !prevMode);
   };
 
-  const [activeTab, setActiveTab] = useState("orders");
+  const [activeTab, setActiveTab] = useState("artworks");
   const getIcon = (tabName) => {
     if (tabName === "orders") {
       return activeTab === "orders" ? OrderIconActive : OrderIcon;
@@ -82,6 +82,7 @@ const Profile = (props) => {
   const clearSessionStorage = () => {
     sessionStorage.removeItem("clientFollowingCache");
     sessionStorage.removeItem("artistFollowersCache");
+    sessionStorage.removeItem("artistArtworksCache");
   };
 
   useEffect(() => {
@@ -131,11 +132,9 @@ const Profile = (props) => {
         const now = new Date().getTime();
 
         if (cache && now - cache.timestamp < 900000) {
-          // Check if cached data is fresh (within 15 minutes)
           console.log("cache artworks");
           // Use cached data if it's less than 15 minutes old
-          const reversedArtworks = cache.data.slice().reverse();
-          console.log(reversedArtworks);
+          const reversedArtworks = cache.data;
           setArtworks(reversedArtworks);
         } else {
           try {
@@ -149,7 +148,7 @@ const Profile = (props) => {
               setArtworks(reversedArtworks);
               sessionStorage.setItem(
                 cacheKey,
-                JSON.stringify({ data: response.artworks, timestamp: now })
+                JSON.stringify({ data: reversedArtworks, timestamp: now })
               );
             } else {
               setArtworks([]);
@@ -164,7 +163,16 @@ const Profile = (props) => {
   }, [userInfo, getArtworks]);
 
   const ajoutArtworkHandler = (newArtwork) => {
-    setArtworks((prevArtworks) => [newArtwork, ...prevArtworks]);
+    const now = new Date().getTime();
+    setArtworks((prevArtworks) => {
+      const updatedArtworks = [newArtwork, ...prevArtworks];
+      const cacheKey = "artistArtworksCache";
+      sessionStorage.setItem(
+        cacheKey,
+        JSON.stringify({ data: updatedArtworks, timestamp: now })
+      );
+      return updatedArtworks;
+    });
   };
 
   const toggleModal = () => {
@@ -548,10 +556,12 @@ const Profile = (props) => {
               {activeTab === "orders" && <Orders />}
               <div className="newArtworkFormContainer">
                 {activeTab === "artworks" && artworks && (
-                  <ArtistArtworks
-                    artworks={artworks}
-                    onAjoutArtwork={ajoutArtworkHandler}
-                  />
+                  <div className="gallery-container-artworksArtist">
+                    <ArtistArtworks
+                      artworks={artworks}
+                      onAjoutArtwork={ajoutArtworkHandler}
+                    />
+                  </div>
                 )}
               </div>
               {activeTab === "museums" && (

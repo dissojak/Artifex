@@ -14,12 +14,18 @@ import ArtworkSkeleton from "../../home/Components/ArtworkSkeleton";
 import Artworktoadd from "./Artworktoadd";
 import ArtsList from "../../home/Components/ArtsList";
 import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork";
+import { useGetArtworksOfArtistMutation } from "../../slices/artworksSlice";
+import ArtistArtworks from "../../UserProfile/Components/ArtistArtworks";
+import ArtistArtworksList from "../../UserProfile/Components/ArtistArtworksList";
+import MuseumArtistArtworksList from "./MuseumArtistArtworksList";
+import DoneLoader from "../../assets/images/doneLoader.gif";
 
 const Showcase = () => {
   const { museumId } = useParams();
   const navigate = useNavigate();
   const [museum, setMuseum] = useState(null);
   const [artworks, setArtworks] = useState([]);
+  const [MuseumsArtworks, setMuseumsArtworks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [artworksPerPage] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +34,7 @@ const Showcase = () => {
   const [isParticipation, setIsParticipation] = useState(null);
   const [checkIsParticipant] = useIsParticipantMutation();
   const [getArtworks] = useGetArtworksOfMuseumMutation();
+  const [getMuseumsArtworks] = useGetArtworksOfArtistMutation();
   const { userInfo } = useSelector((state) => state.auth);
   const isClient = userInfo.userType === "client";
   const isArtist = userInfo.userType === "artist";
@@ -51,6 +58,7 @@ const Showcase = () => {
     if (isParticipation === null) {
       req_participant();
     }
+
     const req_museum = async () => {
       try {
         setIsLoading(true);
@@ -81,8 +89,45 @@ const Showcase = () => {
         toast.error(err?.data?.message || err.error);
       }
     };
+    const fetchArtworks = async () => {
+      const cacheKey = "MuseumArtistArtworksCache";
+      const cache = JSON.parse(sessionStorage.getItem(cacheKey));
+      const now = new Date().getTime();
 
+      if (cache && now - cache.timestamp < 900000) {
+        console.log("cache museum artworks");
+        const reversedArtworks = cache.data.slice().reverse();
+        console.log("museum artworks", reversedArtworks);
+        setMuseumsArtworks(reversedArtworks);
+      } else {
+        try {
+          const response = await getMuseumsArtworks({
+            artistId: userInfo._id,
+            inMuseum: true,
+          }).unwrap();
+          console.log("request museum artworks");
+          // Reverse the order of the artworks array
+          if (response.artworks.length !== 0) {
+            const reversedArtworks = response.artworks.slice().reverse();
+            // Reverse the order of the artworks array
+            console.log("request museum artworks", reversedArtworks);
+            setMuseumsArtworks(reversedArtworks);
+            sessionStorage.setItem(
+              cacheKey,
+              JSON.stringify({ data: response.artworks, timestamp: now })
+            );
+          } else {
+            setMuseumsArtworks([]);
+          }
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
+      }
+    };
     if (isParticipation) {
+      if (isArtist) {
+        fetchArtworks();
+      }
       req_museum();
       req_artworks();
     }
@@ -96,6 +141,10 @@ const Showcase = () => {
 
   const ajoutArtworkHandler = (newArtwork) => {
     setArtworks((prevArtworks) => [newArtwork, ...prevArtworks]);
+  };
+
+  const handleArtworksAdded = (addedArtworks) => {
+    setArtworks((prevArtworks) => [...addedArtworks, ...prevArtworks]);
   };
 
   useEffect(() => {
@@ -131,7 +180,7 @@ const Showcase = () => {
             <ArtworkSkeleton key={index} />
           ))}
         </div>
-        <Artworktoadd />
+        {isArtist && <Artworktoadd />}
       </div>
     </>
   ) : (
@@ -151,18 +200,49 @@ const Showcase = () => {
         <p className="ShowcaseMusartist-details">
           Special Artworks Only On Our Museums
         </p>
-        {!isOpen ? (
-          <ArtsList items={artworks} isShowCase={true} onOpen={toggleModal} />
-        ) : (
-          <>{museum?.isExclusive ? (
-            <>
-              <div className="addArtworkToShowCase">
-                <NewArtworkArtist
-                  onClose={toggleModal}
-                  onAjout={ajoutArtworkHandler}
-                />
-              </div>{" "}
-            </>):( <><p>Add non-exclusive</p><button onClick={toggleModal}>close</button></>)}
+        {/* <img src={DoneLoader} alt="" /> */}
+        <ArtsList items={artworks} isShowCase={isArtist} onOpen={toggleModal} />
+        {isArtist && (
+          <>
+            {" "}
+            {isOpen && (
+              <>
+                {museum?.isExclusive ? (
+                  <>
+                    <div className="addArtworkToShowCase">
+                      <NewArtworkArtist
+                        onClose={toggleModal}
+                        onAjout={ajoutArtworkHandler}
+                      />
+                    </div>{" "}
+                  </>
+                ) : (
+                  <>
+                    <div className="popupOverlay" onClick={toggleModal}>
+                      <div
+                        className="popupMuseumShowArtworksContainer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {MuseumsArtworks && (
+                          // <div className="gallery-container-museumsArtworksArtist">
+                            <MuseumArtistArtworksList
+                              collection={MuseumsArtworks}
+                              onUpdateArtworks={handleArtworksAdded}
+                              onClose={toggleModal}
+                              onOpen={() => {
+                                navigate("/profile");
+                              }}
+                            />
+                          // </div>
+                        )}
+                        {/* <p>Add non-exclusive</p>
+                        <button onClick={toggleModal}>close</button> */}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </>
+            )}
           </>
         )}
         <Pagination

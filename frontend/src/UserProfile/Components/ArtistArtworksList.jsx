@@ -8,7 +8,7 @@ const ArtistArtworksList = (props) => {
 
   return (
     <>
-      <div className="gallery-container-artworksArtist">
+      {/* <div className="gallery-container-artworksArtist"> */}
         <>
           {userInfo.userType === "artist" && (
             <>
@@ -77,7 +77,7 @@ const ArtistArtworksList = (props) => {
             />
           ))}
         </>
-      </div>
+      {/* </div> */}
     </>
   );
 };

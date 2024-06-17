@@ -1,5 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const clearSessionStorage = () => {
+  sessionStorage.removeItem("clientFollowingCache");
+  sessionStorage.removeItem("artworksCache");
+  sessionStorage.removeItem("museumsCache");
+  sessionStorage.removeItem("clientOrdersCache");
+  sessionStorage.removeItem("pinnedMuseumsCache");
+  sessionStorage.removeItem("savedArtworksCache");
+  sessionStorage.removeItem("likedArtworksCache");
+  sessionStorage.removeItem("panierCache");
+  sessionStorage.removeItem("artistsCache");
+  sessionStorage.removeItem("artistArtworksCache");
+  sessionStorage.removeItem("artistFollowersCache");
+  sessionStorage.removeItem("artistOrdersCache");
+};
+
 const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -24,6 +39,7 @@ const authSlice = createSlice({
     logout: (state, action) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
+      clearSessionStorage();
     },
   },
 });
