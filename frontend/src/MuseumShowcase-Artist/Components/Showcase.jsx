@@ -136,6 +136,7 @@ const Showcase = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
+    console.log(!isOpen, museum?.isExclusive);
     setIsOpen(!isOpen);
   };
 
@@ -209,12 +210,14 @@ const Showcase = () => {
               <>
                 {museum?.isExclusive ? (
                   <>
-                    <div className="addArtworkToShowCase">
-                      <NewArtworkArtist
-                        onClose={toggleModal}
-                        onAjout={ajoutArtworkHandler}
-                      />
-                    </div>{" "}
+                    <div className="popupOverlay" onClick={toggleModal}>
+                      <div className="addArtworkToShowCase">
+                        <NewArtworkArtist
+                          onClose={toggleModal}
+                          onAjout={ajoutArtworkHandler}
+                        />
+                      </div>
+                    </div>
                   </>
                 ) : (
                   <>
@@ -225,14 +228,14 @@ const Showcase = () => {
                       >
                         {MuseumsArtworks && (
                           // <div className="gallery-container-museumsArtworksArtist">
-                            <MuseumArtistArtworksList
-                              collection={MuseumsArtworks}
-                              onUpdateArtworks={handleArtworksAdded}
-                              onClose={toggleModal}
-                              onOpen={() => {
-                                navigate("/profile");
-                              }}
-                            />
+                          <MuseumArtistArtworksList
+                            collection={MuseumsArtworks}
+                            onUpdateArtworks={handleArtworksAdded}
+                            onClose={toggleModal}
+                            onOpen={() => {
+                              navigate("/profile");
+                            }}
+                          />
                           // </div>
                         )}
                         {/* <p>Add non-exclusive</p>
