@@ -204,7 +204,7 @@ exports.acceptOrder = asyncHandler(async (req, res, next) => {
     orderId,
     username: artist.username,
     profileImage: artist.profileImage,
-    serviceType,
+    serviceType:order.serviceType,
     date,
   };
 
