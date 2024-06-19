@@ -11,6 +11,7 @@ import githublogo from '../../assets/images/githublogo.png';
 import GoldenFruitsLogo from '../../assets/images/GoldenFruitsLogo.png';
 import logoStoonProd from '../../assets/images/logostoonprodREC.png';
 import logoStoon from '../../assets/images/AAA_STOOOON.png';
+import LogoTousihen from '../../assets/images/TOUSIHEN.svg';
 const Sponsors = () => {
   return (
     <div className="sponsors-container">
@@ -23,9 +24,10 @@ const Sponsors = () => {
         {/* <img src={expresslogo} alt="expresslogo" /> */}
         <img src={logoStoonProd} alt="logoStoonProd" />
         <img src={HVHLogo} alt="HVHLogo" />
+        <img src={LogoTousihen} alt="githublogo" />
         <img src={logoStoon} alt="logoStoon" />
         <img src={GoldenFruitsLogo} alt="GoldenFruitsLogo" />
-        <img src={githublogo} alt="githublogo" />
+        {/* <img src={githublogo} alt="githublogo" /> */}
       </div>
     </div>
   );
