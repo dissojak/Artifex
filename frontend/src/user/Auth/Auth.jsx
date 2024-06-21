@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../slices/authSlice";
 import { toast } from "react-toastify";
 import LogoArtifex from "../../assets/images/Logo_Artifex.png";
+import ValidLogo from "../../assets/images/valid.svg";
+import InValidLogo from "../../assets/images/invalid.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useCheckUsernameMutation,
@@ -26,7 +28,8 @@ function Auth(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleRedirectToHome = () => {
-    navigate('/');}
+    navigate("/");
+  };
   const [isLoading, setIsLoading] = useState(false);
   const [login] = useLoginMutation();
   const [register] = useRegisterMutation();
@@ -173,9 +176,18 @@ function Auth(props) {
         className="auth-background"
         style={{
           backgroundImage: `url(${"./elements/background_shape_Auth.svg"})`,
-        }} 
-      > </div>
-      <div onClick={handleRedirectToHome} ><img src={Logo}  alt="Artifex Logo" className="logoNavArt" style={{position:'fixed',left:'2vw',bottom:'91vh'}} /></div>
+        }}
+      >
+        {" "}
+      </div>
+      <div onClick={handleRedirectToHome}>
+        <img
+          src={Logo}
+          alt="Artifex Logo"
+          className="logoNavArt"
+          style={{ position: "fixed", left: "2vw", bottom: "91vh" }}
+        />
+      </div>
       <div className="container" id="container">
         <div className="form-container sign-up">
           <form onSubmit={submitRegisterHandler}>
@@ -226,16 +238,8 @@ function Auth(props) {
               className="input_login"
               onChange={handleUsernameChange}
             />
-            {isUsernameValid === false && (
-              <div className="username-validation">
-                Username is already taken.
-              </div>
-            )}
-            {isUsernameValid === true && (
-              <div className="username-validation">
-                Username is available.
-              </div>
-            )}
+            {isUsernameValid === false && <img className="valid-invalid-username" src={InValidLogo} />}
+            {isUsernameValid === true && <img className="valid-invalid-username" src={ValidLogo} />}
             <input
               type="email"
               placeholder="Email"

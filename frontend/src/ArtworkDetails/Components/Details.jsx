@@ -106,6 +106,7 @@ const Details = (props) => {
         isLoading: false,
         autoClose: 5000,
       });
+      sessionStorage.removeItem("panierCache");
     } catch (err) {
       toast.update(toastId, {
         render: err?.data?.message || err.error,

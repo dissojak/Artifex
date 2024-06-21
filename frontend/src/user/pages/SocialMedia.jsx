@@ -109,7 +109,7 @@ const SocialMedia = () => {
       localStorage.removeItem("artworkImage2");
       localStorage.removeItem("artworkImage1");
 
-      navigate("/home");
+      navigate("/Museums");
     } catch (err) {
       setIsLoading(false);
       toast.error(err?.data?.message || err.error);

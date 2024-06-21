@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./SavedArtwork.css";
-import Art from "../../assets/images/image_artwork.png";
-import loading from "../../assets/images/loadpurple.gif";
-import heart from "../../assets/images/heart.png";
-import eye from "../../assets/images/eye.png";
 import { useGetSavedArtworksMutation } from "../../slices/likeSaveSlice";
 import { toast } from "react-toastify";
 import ArtsList from "../../home/Components/ArtsList";
@@ -67,15 +63,12 @@ const SavedArtwork = () => {
   return (
     <div className="savedartwork-container">
       {isLoading ? (
-        // <div className="center_spinner">
-        //   <img src={loading} alt="Loading..." />
-        // </div>
         <div className="gallery-container2">
           {Array.from({ length: artworksPerPage }, (_, index) => (
             <ArtworkSkeleton key={index} />
           ))}
         </div>
-      ) : (
+      ) : currentArtworks.length !== 0 ? (
         <>
           <ArtsList items={currentArtworks} />
           <div className="pagination-container20">
@@ -95,6 +88,10 @@ const SavedArtwork = () => {
             </ul>
           </div>
         </>
+      ) : (
+        <div className="noOrdersContainer">
+          <h1>No Saved Artworks Yet! <br/> Go Save One Now</h1>
+        </div>
       )}
     </div>
   );

@@ -38,6 +38,7 @@ const ProfileSection = (props) => {
       // console.log(followers);
       sessionStorage.removeItem("clientFollowingCache");
       sessionStorage.removeItem("artistFollowersCache");
+      sessionStorage.removeItem("artistsCache");
     } catch (err) {
       setFollowers(followers - 1);
       setIsFollowing(false);
@@ -54,6 +55,7 @@ const ProfileSection = (props) => {
       }).unwrap();
       sessionStorage.removeItem("clientFollowingCache");
       sessionStorage.removeItem("artistFollowersCache");
+      sessionStorage.removeItem("artistsCache");
       // console.log(followers);
     } catch (err) {
       setFollowers(followers + 1);

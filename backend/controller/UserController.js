@@ -80,8 +80,8 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
   const { username, email, pw, userType, phone_number } = req.body;
 
+  console.log(`Checking if user exists with email: ${email}`);
   const userExists = await User.findOne({ email });
-
   if (userExists) {
     return next(new HttpError("User already exists", 400));
   }
@@ -107,7 +107,8 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
       facebook: req.body.facebook,
     };
   }
-
+  
+  console.log(`Creating user with username: ${username}, email: ${email}`);
   const user = await User.create(userData);
 
   if (user) {

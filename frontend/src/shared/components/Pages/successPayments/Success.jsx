@@ -12,6 +12,7 @@ const Success = () => {
   const [status, setStatus] = useState();
   const { userInfo } = useSelector((state) => state.auth);
 
+  console.log(userInfo._id);
   useEffect(() => {
     const req = async () => {
       const artworkId = localStorage.getItem("artworkId");

@@ -3,6 +3,7 @@ import TraceImage from "../../../../assets/images/Tracé 10.svg"; // Update path
 import EventPassImage from "../../../../assets/images/event_pass.svg"; // Update path accordingly
 import EventPassMove from "../../../../assets/images/event_pass_exclusive_move.svg";
 import "../Pages/Museums.css";
+import DefaultPic from "../../../../assets/images/default_profile_img.jpg";
 import { toast } from "react-toastify";
 import {
   useIsPinnedMutation,
@@ -323,7 +324,7 @@ const MuseumItemCard = (props) => {
                 {artists.slice(0, is3 ? 2 : 3).map((artist) => (
                   <li key={artist.participantId._id}>
                     <img
-                      src={artist.participantId.profileImage}
+                      src={artist.participantId.profileImage || DefaultPic}
                       alt={artist.participantId.username || "Artist"} // It's good practice to provide meaningful alt text
                       className="profile-image11"
                     />

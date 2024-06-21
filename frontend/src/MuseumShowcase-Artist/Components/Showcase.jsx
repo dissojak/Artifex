@@ -208,14 +208,20 @@ const Showcase = () => {
             {" "}
             {isOpen && (
               <>
-                {museum?.isExclusive ? (
+                {!museum?.isExclusive ? (
                   <>
                     <div className="popupOverlay" onClick={toggleModal}>
                       <div className="addArtworkToShowCase">
+                      <div
+                        className="popupMuseumShowAddArtworkContainer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="addartworkcontainershowcase">
                         <NewArtworkArtist
                           onClose={toggleModal}
                           onAjout={ajoutArtworkHandler}
-                        />
+                        /></div>
+                        </div>
                       </div>
                     </div>
                   </>

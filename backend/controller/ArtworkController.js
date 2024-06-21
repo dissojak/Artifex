@@ -516,6 +516,7 @@ exports.getArtworksByArtistId = asyncHandler(async (req, res, next) => {
       artworks = await Artwork.find({
         id_artist: artistId,
         isDeletedByOwner: false,
+        exclusive: false,
         Sold: false,
       });
     } else {
@@ -669,6 +670,8 @@ exports.artworkPayment = async (req, res) => {
 
 exports.buyArtwork = async (req, res, next) => {
   const userId = req.user._id;
+  // console.log(userId);
+
   const artworkId = req.body.artworkId;
   const paymentId = req.body.paymentId;
   const url = `https://developers.flouci.com/api/verify_payment/${paymentId}`;
@@ -733,3 +736,27 @@ exports.getArtwork = asyncHandler(async (req, res, next) => {
     next(new HttpError("Failed to retrieve the artwork", 500));
   }
 });
+
+const trimArtworkDescriptions = async () => {
+  try {
+    // Find all artworks
+    const artworks = await Artwork.find();
+
+    // Loop through each artwork and update the description
+    for (const artwork of artworks) {
+      if (artwork.description.length > 250) {
+        artwork.description = artwork.description.slice(0, 250);
+        await artwork.save();
+      }
+    }
+
+    res.status(200).json({
+      msg: "All artwork descriptions updated successfully",
+    });
+  } catch (error) {
+    console.log("Failed to update artwork descriptions", 500);
+  }
+};
+
+// trim description on all the artworks
+// trimArtworkDescriptions();

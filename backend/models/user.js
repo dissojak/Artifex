@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema(
     // Phone number field
     phone_number: {
       type: Number, // Phone number of the user
-      unique: true,
+      // unique: true,
     },
     // Instagram username field
     instagram: {

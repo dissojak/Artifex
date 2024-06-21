@@ -22,6 +22,7 @@ const OrderSection = (props) => {
     try {
       const res = await makeOrder(formData).unwrap();
       toast.success("Order placed successfully");
+      sessionStorage.removeItem("clientOrdersCache");
       // Reset the form state after successful submission
       setUrgency("");
       setDetails("");

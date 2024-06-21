@@ -62,7 +62,7 @@ const PinnedMuseums = () => {
               <MuseumSkeleton key={index} />
             ))}
           </div>
-        ) : (
+        ) : museums.length !== 0 ? (
           <>
             <PinnedMuseumsList items={currentMuseums} />
             <Pagination
@@ -72,6 +72,10 @@ const PinnedMuseums = () => {
               currentPage={currentPage}
             />
           </>
+        ) : (
+          <div className="noOrdersContainer">
+            <h1 style={{position:"relative",left:'12vw'}}>No Pinned Musuems Yet <br/>Pin one</h1>
+          </div>
         )}
       </div>
     </>

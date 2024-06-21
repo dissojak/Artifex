@@ -10,6 +10,8 @@ const http = require("http");
 const socketIo = require("socket.io");
 const jwt = require("jsonwebtoken");
 
+const User = require("./models/user");
+
 const user = require("./routes/user");
 const artist = require("./routes/artist");
 const admin = require("./routes/admin");
@@ -31,7 +33,6 @@ const JWT_SECRET = "abc123";
 
 let socketIds = [];
 io.on("connection", (socket) => {
-
   console.log("Client connected", socket.id);
   const socketId = socket.id;
 
@@ -43,14 +44,14 @@ io.on("connection", (socket) => {
       userId,
       socketId,
     };
-    console.log("the item : ",item);
+    console.log("the item : ", item);
     socketIds.push(item);
-    console.log("the update of the list is : ",socketIds);
+    console.log("the update of the list is : ", socketIds);
   });
   socket.on("disconnect", () => {
     socketIds = socketIds.filter((item) => item.socketId !== socket.id);
     app.socketIds = socketIds;
-    console.log("the list in disconnection: ",socketIds);
+    console.log("the list in disconnection: ", socketIds);
     console.log("Client disconnected");
   });
 });
@@ -96,6 +97,33 @@ app.use((req, res, next) => {
   next(error);
 });
 
+// // Improved error handling middleware
+// app.use((error, req, res, next) => {
+//   if (res.headersSent) {
+//     return next(error);
+//   }
+
+//   console.error('Error details:', {
+//     message: error.message,
+//     name: error.name,
+//     code: error.code,
+//     stack: error.stack,
+//   });
+
+//   const statusCode = error.code && Number.isInteger(error.code) ? error.code : 500;
+//   res.status(statusCode).json({ message: error.message || 'An unknown error occurred' });
+
+//   // Handle MongoDB duplicate key error
+//   if (error.name === 'MongoError' && error.code === 11000) {
+//     const field = Object.keys(error.keyValue);
+//     const message = `Duplicate value entered for field ${field}. Please use another value.`;
+//     error = new HttpError(message, 400);
+//   }
+
+//   res.status(error.code || 500);
+//   res.json({ message: error.message || 'An unknown error occurred' });
+// });
+
 app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
@@ -113,12 +141,27 @@ cloudinary.config({
 // const CLOUDINARY_URL="CLOUDINARY_URL=cloudinary://513133278582537:0UgeZPnsrmRfbWu-u8eZxo-W0uk@duvougrqx";
 // cloudinary.config(process.env.CLOUDINARY_URL);
 
+// const ensureIndexes = async () => {
+//   try {
+//     await User.init(); // Ensure indexes are created
+//     console.log('Indexes ensured');
+//   } catch (error) {
+//     console.error('Error ensuring indexes:', error);
+//   }
+// };
+
 mongoose
   .connect(
-    "mongodb+srv://dissojak:stoondissojakb2a@stoon.r8tcyqv.mongodb.net/ARTIFEX?retryWrites=true&w=majority"
+    "mongodb+srv://dissojak:stoondissojakb2a@stoon.r8tcyqv.mongodb.net/ARTIFEX-For-PFE?retryWrites=true&w=majority"
   )
   .then(() => {
-    server.listen(5000);
+    server.listen(
+      5000
+      //   , async () => {
+      //   await ensureIndexes(); // Ensure indexes on startup
+      //   console.log('Server running on port 5000');
+      // }
+    );
   })
   .catch((err) => {
     console.log("MongoDB connection error:", err);

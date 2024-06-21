@@ -325,5 +325,8 @@ body {
   z-index: -1; /* Ensure it stays behind the form container */
 }
 
-
-
+.valid-invalid-username{
+  position: absolute;
+  bottom:12rem;
+  right: 3rem;
+} 

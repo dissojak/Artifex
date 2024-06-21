@@ -79,21 +79,21 @@ const ManageArtworks = () => {
             ))}
           </div>
         </div>
+      ) : artworks.length !== 0 ? (
+        <div className="Collection-container">
+          <ArtsAdminList
+            items={currentArtworks}
+            deleteItemById={deleteItemById}
+          />
+          <Pagination
+            artworksPerPage={artworksPerPage}
+            totalArtworks={artworks.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
       ) : (
-        <>
-          <div className="Collection-container">
-            <ArtsAdminList
-              items={currentArtworks}
-              deleteItemById={deleteItemById}
-            />
-            <Pagination
-              artworksPerPage={artworksPerPage}
-              totalArtworks={artworks.length}
-              paginate={paginate}
-              currentPage={currentPage}
-            />
-          </div>
-        </>
+        <p>no artworks</p>
       )}
     </div>
   );
