@@ -159,9 +159,10 @@ Artifex is a powerful platform designed to streamline the creation, curation, an
 
 Key features include:
 
-Seamless management of artworks and collections
-Artist and client collaboration tools
-Analytics and insights for tracking engagement
-Advanced user authentication and role-based access
-Secure transactions for commissions and orders
+- Seamless management of artworks and collections
+- Artist and client collaboration tools
+- Analytics and insights for tracking engagement
+- Advanced user authentication and role-based access
+- Secure transactions for commissions and orders
+
 Artifex also supports museum events, allowing curators and artists to host digital or physical exhibitions. Manage museum schedules, set up exclusive events, and track participation by both artists and attendees. Artifex simplifies the organization of large-scale events, from ticketing and promotion to real-time engagement during exhibitions, making it easier than ever to bring art to a global audience.
