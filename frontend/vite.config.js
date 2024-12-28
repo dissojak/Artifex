@@ -21,7 +21,7 @@ export default defineConfig({
     port: 3000, // Development port
     proxy: {
       "/api": {
-        target: "https://artifex-backend.onrender.com/", // Proxy API calls to the backend in production
+        target: "https://artifex-backend.onrender.com", // Proxy API calls to the backend in production
         // target: "http://localhost:5000",
         changeOrigin: true,
         // rewrite: (path) => {
