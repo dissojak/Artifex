@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 import "./ImageUpload.css";
 import "./ProfileImage.css";
 import { useHttp } from "../../hooks/http-hook";
@@ -28,26 +28,28 @@ const ImageUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ufkishd8");
-
+  
     try {
       setIsUploading(true);
-
-      const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/duvougrqx/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const imageUrl = response.data.secure_url;
-      // console.log(imageUrl);
+  
+      const response = await fetch("https://api.cloudinary.com/v1_1/duvougrqx/image/upload", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to upload image to Cloudinary");
+      }
+  
+      const data = await response.json();
+      const imageUrl = data.secure_url;
+  
       try {
         const res = await updateImage({
           _id: userInfo._id,
           imageUrl,
         }).unwrap();
+  
         let updateUserInfo = { ...userInfo };
         if (updateUserInfo.image) {
           updateUserInfo.image = imageUrl;
@@ -57,20 +59,21 @@ const ImageUpload = () => {
             image: imageUrl,
           };
         }
-        // console.log(updateUserInfo);
+  
         dispatch(setCredentials(updateUserInfo));
-        toast.success("image updated successfully");
+        toast.success("Image updated successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
-
+  
       setUrl(imageUrl);
       setIsUploading(false);
     } catch (error) {
-      console.error("Error uploading profile picture:", error.response.data);
+      console.error("Error uploading profile picture:", error);
       setIsUploading(false);
     }
   };
+  
 
   return (
     <>
