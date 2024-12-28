@@ -21,8 +21,8 @@ export default defineConfig({
     port: 3000, // Development port
     proxy: {
       "/api": {
-        // target: "https://artifex-backend-weld.vercel.app/", // Proxy API calls to the backend in production
-        target: "http://localhost:5000",
+        target: "https://artifex-backend.onrender.com/", // Proxy API calls to the backend in production
+        // target: "http://localhost:5000",
         changeOrigin: true,
         // rewrite: (path) => {
         //   console.log("Rewriting path:", path); // Log the path to ensure it's being rewritten
