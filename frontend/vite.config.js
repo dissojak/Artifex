@@ -26,7 +26,7 @@ export default defineConfig({
         changeOrigin: true,
         // rewrite: (path) => {
         //   console.log("Rewriting path:", path); // Log the path to ensure it's being rewritten
-        // //   // return path.replace(/^\/api/, "");
+        //   return path.replace(/^\/api/, "");
         // },
       },
     },
