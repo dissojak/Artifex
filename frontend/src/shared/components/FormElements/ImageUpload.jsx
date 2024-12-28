@@ -11,7 +11,7 @@ import { useUpdateProfileImageMutation } from "../../../slices/usersApiSlice";
 import { toast } from "react-toastify";
 import { setCredentials } from "../../../slices/authSlice";
 import "../Nav/DropDownProfilePic.css";
-// import axios from "axios";
+import axios from "axios";
 
 const ImageUpload = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -32,15 +32,15 @@ const ImageUpload = () => {
     try {
       setIsUploading(true);
 
-      // const response = await axios.post(
-      //   "https://api.cloudinary.com/v1_1/duvougrqx/image/upload",
-      //   formData,
-      //   {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   }
-      // );
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/duvougrqx/image/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       const imageUrl = response.data.secure_url;
       // console.log(imageUrl);
       try {

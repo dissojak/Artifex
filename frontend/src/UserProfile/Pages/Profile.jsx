@@ -19,7 +19,8 @@ import PopupEmail from "../Components/PopupEmail.jsx";
 import { useSelector } from "react-redux";
 import PopupFollowers from "../Components/PopupFollowers.jsx";
 // import NewArtworkArtist from "../../shared/components/FormElements/NewArtwork.jsx";
-import ImageUpload from "../../shared/components/FormElements/ImageUpload.jsx";
+
+// import ImageUpload from "../../shared/components/FormElements/ImageUpload.jsx";
 import PopupFollowing from "../Components/PopupFollowing.jsx";
 import { toast } from "react-toastify";
 import {
@@ -214,8 +215,8 @@ const Profile = (props) => {
                   alt="Img-Profile"
                   className="profile-image"
                 />
-              </div> */}
-              <ImageUpload />
+              </div> 
+              <ImageUpload />*/}
               <div className="profile-info">
                 <div className="profile-name">{userInfo.username}</div>
                 <div className="profile-email">{userInfo.email}</div>
