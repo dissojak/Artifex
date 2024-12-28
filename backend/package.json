@@ -19,7 +19,7 @@
     "socket.io": "^4.7.5"
   },
   "scripts": {
-    "start": "app.js",
+    "start": "node app.js",
     "local start": "nodemon app.js"
   },
   "devDependencies": {
