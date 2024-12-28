@@ -8,7 +8,7 @@ const { calculateScore } = require("./AnalyticsController");
 const axios = require("axios");
 
 /**
- * @desc    Add new artwork
+ * @desc    Add new artwork 
  * @route   POST /api/artwork/addArtwork
  * @params  title,description,price,imageArtwork,id_category
  * @access  Private

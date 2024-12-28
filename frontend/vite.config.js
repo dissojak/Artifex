@@ -18,7 +18,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000, // Development port
+    // port: 3000, // Development port
     proxy: {
       '/api': {
         target: 'https://artifex-backend-weld.vercel.app/', // Proxy API calls to the backend in production
