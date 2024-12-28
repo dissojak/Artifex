@@ -669,7 +669,7 @@ exports.artworkPayment = async (req, res) => {
 };
 
 exports.buyArtwork = async (req, res, next) => {
-  const userId = req.user._id;
+  const userId = req.user._id ||req.body.userId;
   // console.log(userId);
 
   const artworkId = req.body.artworkId;

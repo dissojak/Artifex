@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import * as axios from 'axios';
 import "./ImageUpload.css";
 import "./ProfileImage.css";
 import { useHttp } from "../../hooks/http-hook";
@@ -11,7 +12,6 @@ import { useUpdateProfileImageMutation } from "../../../slices/usersApiSlice";
 import { toast } from "react-toastify";
 import { setCredentials } from "../../../slices/authSlice";
 import "../Nav/DropDownProfilePic.css";
-import axios from "axios";
 
 const ImageUpload = () => {
   const { userInfo } = useSelector((state) => state.auth);
