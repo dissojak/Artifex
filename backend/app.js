@@ -63,6 +63,7 @@ app.use(cors({
   origin: 'https://artifex-front.vercel.app', // Directly specify your production frontend URL
   methods: 'GET, POST, PUT, DELETE, PATCH',
   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  credentials: true,
 }));
 
 app.use(bodyParser.json());
