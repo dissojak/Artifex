@@ -13,8 +13,13 @@ export default defineConfig({
     include: ['axios'], // Pre-bundle axios
   },
   build: {
+    chunkSizeWarningLimit: 1000, // Increase the chunk size warning limit to 1MB
     rollupOptions: {
-      external: [], // Ensure axios is bundled
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'axios'], // Create a vendor chunk for libraries like react, react-dom, and axios
+        },
+      },
     },
   },
   server: {
