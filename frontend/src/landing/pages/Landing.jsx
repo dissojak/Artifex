@@ -36,6 +36,7 @@ const Landing = () => {
         console.log(responseData.artworks);
         setArtworks(responseData.artworks);
       } catch (err) {
+        console.log(err.data);
         toast.error(err?.data?.message || err.error);
       }
     };

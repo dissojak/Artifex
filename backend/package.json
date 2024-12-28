@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^1.7.9",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -19,7 +19,8 @@
     "socket.io": "^4.7.5"
   },
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "app.js",
+    "local start": "nodemon app.js"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

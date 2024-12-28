@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,18 +12,22 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'], // Create a vendor chunk for libraries like react and react-dom
+          vendor: ["react", "react-dom"], // Create a vendor chunk for libraries like react and react-dom
         },
       },
     },
   },
   server: {
-    // port: 3000, // Development port
+    port: 3000, // Development port
     proxy: {
-      '/api': {
-        target: 'https://artifex-backend-weld.vercel.app/', // Proxy API calls to the backend in production
+      "/api": {
+        // target: "https://artifex-backend-weld.vercel.app/", // Proxy API calls to the backend in production
+        target: "http://localhost:5000",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''), // Remove /api prefix
+        // rewrite: (path) => {
+        //   console.log("Rewriting path:", path); // Log the path to ensure it's being rewritten
+        // //   // return path.replace(/^\/api/, "");
+        // },
       },
     },
   },
