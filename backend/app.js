@@ -59,7 +59,11 @@ io.on("connection", (socket) => {
 app.socketIds = socketIds;
 app.io = io;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://artifex-front.vercel.app', // Directly specify your production frontend URL
+  methods: 'GET, POST, PUT, DELETE, PATCH',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+}));
 
 app.use(bodyParser.json());
 app.use(cookieParser());

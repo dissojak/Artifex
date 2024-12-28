@@ -1,5 +1,5 @@
-import { apiSlice } from "./apiSlice";
-const MUSEUMS_URL = "/api/museum";
+import { apiSlice,url } from "./apiSlice";
+const MUSEUMS_URL = url+"/api/museum";
 
 export const museumApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

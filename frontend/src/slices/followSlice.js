@@ -1,5 +1,5 @@
-import { apiSlice } from "./apiSlice";
-const FOLLOW_URL = "/api/follow";
+import { apiSlice,url } from "./apiSlice";
+const FOLLOW_URL = url+"/api/follow";
 
 export const followApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

@@ -7,3 +7,6 @@ export const apiSlice = createApi({
   tagTypes: ['User'],
   endpoints: (builder) => ({}),
 });
+
+export const url = "https://artifex-backend.onrender.com";
+// export const url = "";

@@ -1,5 +1,5 @@
-import { apiSlice } from "./apiSlice";
-const LIKED_SAVED_URL = "/api/liked/saved";
+import { apiSlice,url } from "./apiSlice";
+const LIKED_SAVED_URL = url+"/api/liked/saved";
 
 export const likedSavedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
