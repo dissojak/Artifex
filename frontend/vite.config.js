@@ -26,7 +26,8 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        // Use an environment variable for the backend URL
+        target: 'https://artifex-backend-weld.vercel.app/' || 'http://localhost:5000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''), // Optional: strip /api if necessary
       },
