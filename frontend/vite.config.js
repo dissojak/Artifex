@@ -4,9 +4,17 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      axios: 'axios', // Alias for axios (no need for require.resolve in ESM)
+    },
+  },
+  optimizeDeps: {
+    include: ['axios'], // Pre-bundle axios
+  },
   build: {
     rollupOptions: {
-      external: ['axios'], // Tell Vite to treat axios as an external dependency
+      external: [], // Ensure axios is bundled
     },
   },
   server: {

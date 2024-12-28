@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import * as axios from 'axios';
+import axios from 'axios';
 import "./ImageUpload.css";
 import "./ProfileImage.css";
 import { useHttp } from "../../hooks/http-hook";
