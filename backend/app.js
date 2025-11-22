@@ -157,7 +157,7 @@ cloudinary.config({
 
 mongoose
   .connect(
-    "mongodb+srv://dissojak:stoondissojakb2a@stoon.r8tcyqv.mongodb.net/ARTIFEX-For-PFE?retryWrites=true&w=majority"
+    "mongodb+srv://dissojak:PutYourPW@stoon.r8tcyqv.mongodb.net/ARTIFEX-For-PFE?retryWrites=true&w=majority"
   )
   .then(() => {
     server.listen(
